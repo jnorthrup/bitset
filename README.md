@@ -3,10 +3,10 @@ Many applications of BitSets involve [embarrassingly parallel](https://www.wikip
 
 ## Benchmark
 Time to compute and send indices of all live bits to `.forEach(IntConsumer)` in random (50% filled) BitSets.
-![Live Index Overhead](https://github.com/ashouldis/BitSet/img/overhead.png "Overhead Benchmark")
+![Live Index Overhead](https://github.com/ashouldis/BitSet/blob/master/img/overhead.png "Overhead Benchmark")
 
 Time to modify all live bit indices with one bitwise operation in random (50% filled) BitSets.
-![Clear Live Bits](https://github.com/ashouldis/BitSet/img/clear.png "Manipulate Benchmark")
+![Clear Live Bits](https://github.com/ashouldis/BitSet/blob/master/img/clear.png "Manipulate Benchmark")
 
 Tested on i5-8250U
 
