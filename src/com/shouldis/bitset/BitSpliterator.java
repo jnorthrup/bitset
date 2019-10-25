@@ -252,12 +252,6 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 		}
 	}
 
-	public static void main(String[] args) {
-		BitSet set = new BitSet(1000);
-		set.randomize();
-		set.live().forEach(System.out::println);
-	}
-
 	/**
 	 * An implementation of {@link BitSpliterator} used to stream the indices of
 	 * <i>live</i> bits within a {@link BitSet}, splitting at appropriate indices to
