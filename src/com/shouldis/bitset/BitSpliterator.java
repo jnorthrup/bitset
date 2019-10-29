@@ -47,7 +47,7 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 	 * The boundary index that this {@link BitSpliterator} will stop upon reaching.
 	 */
 	protected final int end;
-
+	
 	/**
 	 * Creates a {@link BitSpliterator} with the specified starting and ending
 	 * position.

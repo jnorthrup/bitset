@@ -75,14 +75,14 @@ public class BitSet {
 	 * ceiling({@link #size} / {@link BitSet#WORD_SIZE}).
 	 */
 	protected final int[] words;
-
+	
 	/**
 	 * Creates a {@link BitSet} with the specified number of bits indices. Indices 0
 	 * through <b>size</b> -1 will be accessible. All bits are initially in the
 	 * <i>dead</i> state.
 	 * 
 	 * @param size the number of bit indices that this {@link BitSet} will hold.
-	 * @throws IllegalArgumentException if <b>size</b> is less than 1.
+	 * @throws IllegalArgumentException if <b>size</b> is less than 0.
 	 */
 	public BitSet(int size) {
 		this.size = size;
