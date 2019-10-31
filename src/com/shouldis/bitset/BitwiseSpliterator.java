@@ -3,12 +3,12 @@ package com.shouldis.bitset;
 import java.util.function.IntConsumer;
 
 /**
- * This class in an implementation of {@link BitSpliterator} that is able to
+ * This class is an implementation of {@link BitSpliterator} that is able to
  * return a stream of indices that represents which bits will be <i>live</i>
- * after performing the specified {@link BitOperation} between the words of 2
- * {@link BitSet}s. The three main operations: {@link And}, {@link Or}, and
- * {@link XOr} are provided by this class. The two {@link BitSet}s being
- * compared must be of equal size.
+ * after performing a {@link #bitwiseFunction(int, int)} between the words of 2
+ * {@link BitSet}s at the same word index. The three main operations:
+ * {@link And}, {@link Or}, and {@link XOr} are provided by this class. The two
+ * {@link BitSet}s being compared must be of equal size.
  * 
  * @author Aaron Shouldis
  * @see BitSpliterator
@@ -52,8 +52,8 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 
 	/**
 	 * Calculates the result of the bitwise operation represented by this
-	 * {@link BitwiseSpliterator} between the words at the specified
-	 * <b>wordIndex</b> from {@link #set1} and {@link #set2}.
+	 * {@link BitwiseSpliterator} between the specified words from {@link #set1} and
+	 * {@link #set2}.
 	 * 
 	 * @param wordIndex the index of the words within {@link #words} to be taken
 	 *                  from {@link #set1} and {@link #set2}.
@@ -275,7 +275,7 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 
 	/**
 	 * Calculates the result of {@link #bitwiseFunction(int, int)} on the words at
-	 * the specified word index.
+	 * the specified <b>wordIndex</b>.
 	 * 
 	 * @param wordIndex the word index in {@link #set1} and {@link #set2} to
 	 *                  process.
