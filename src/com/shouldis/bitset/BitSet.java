@@ -384,7 +384,7 @@ public class BitSet {
 	/**
 	 * Calculates the index of the next <i>live</i> bit after the specified
 	 * <b>index</b>, including that <b>index</b>. All bits from that specified
-	 * <B>index</b>, until {@link #size} will be checked. If no <i>live</i> bits are
+	 * <b>index</b>, until {@link #size} will be checked. If no <i>live</i> bits are
 	 * found, -1 is returned.
 	 * 
 	 * @param index (inclusive) the first index to check.
