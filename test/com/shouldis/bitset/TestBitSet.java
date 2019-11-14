@@ -65,40 +65,6 @@ public class TestBitSet {
 	}
 
 	@Test
-	public void testReadSuccess() {
-		byte[] bytes;
-		int size;
-		BitSet fromBytes;
-		for (BitSet set : SETS) {
-			bytes = set.bytes();
-			size = set.size;
-			fromBytes = BitSet.read(bytes, size);
-			Assert.assertEquals(fromBytes, set);
-		}
-	}
-
-	@Test(expected = NullPointerException.class)
-	public void testReadNull() {
-		BitSet.read(null, 256);
-	}
-
-	@Test(expected = IllegalArgumentException.class)
-	public void testReadNegative() {
-		byte[] bytes = SETS[0].bytes();
-		BitSet.read(bytes, -1);
-	}
-
-	@Test(expected = IllegalArgumentException.class)
-	public void testReadShortage() {
-		BitSet set = SETS[4];
-		int size = set.size;
-		byte[] bytes = set.bytes();
-		byte[] shorter = new byte[bytes.length - 1];
-		System.arraycopy(bytes, 0, shorter, 0, shorter.length);
-		BitSet.read(shorter, size);
-	}
-
-	@Test
 	public void testAdd() {
 		for (BitSet set : SETS) {
 			set.empty();

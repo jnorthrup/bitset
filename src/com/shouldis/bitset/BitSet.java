@@ -1,7 +1,5 @@
 package com.shouldis.bitset;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
@@ -75,7 +73,7 @@ public class BitSet {
 	 * ceiling({@link #size} / {@link BitSet#WORD_SIZE}).
 	 */
 	protected final int[] words;
-	
+
 	/**
 	 * Creates a {@link BitSet} with the specified number of bits indices. Indices 0
 	 * through <b>size</b> -1 will be accessible. All bits are initially in the
@@ -107,37 +105,6 @@ public class BitSet {
 	public BitSet(BitSet set) {
 		this(set.size);
 		copy(set);
-	}
-
-	/**
-	 * Creates a {@link BitSet} with the specified <b>size</b> using the specified
-	 * array of <b>bytes</b> created by serializing a {@link BitSet} with
-	 * {@link #bytes()}.
-	 * 
-	 * @param bytes the byte array representation of a {@link BitSet} to be copied
-	 *              into the contents {@link #words}.
-	 * @param size  the number of indices the created {@link BitSet} will hold.
-	 * @return a {@link BitSet} of the specified <b>size</b> made from the specified
-	 *         <b>bytes</b>.
-	 * @throws NullPointerException       if <b>bytes</b> is null.
-	 * @throws NegativeArraySizeException if <b>size</b> is negative.
-	 * @throws IllegalArgumentException   if (<b>bytes</b>.length * 8) is less than
-	 *                                    <b>size</b>.
-	 * @see BitSet#BitSet(int)
-	 */
-	public static BitSet read(byte[] bytes, int size) {
-		if (bytes.length < size >> 3) {
-			StringBuilder builder = new StringBuilder();
-			builder.append(bytes.length << 3).append(" < ").append(size);
-			throw new IllegalArgumentException(builder.toString());
-		}
-		BitSet set = new BitSet(size);
-		ByteBuffer buffer = ByteBuffer.wrap(bytes);
-		buffer.order(ByteOrder.LITTLE_ENDIAN);
-		for (int i = 0; i < set.words.length; i++) {
-			set.words[i] = buffer.getInt();
-		}
-		return set;
 	}
 
 	/**
@@ -677,23 +644,6 @@ public class BitSet {
 		if (hangingBits > 0 && words.length > 0) {
 			words[words.length - 1] &= (MASK >>> hangingBits);
 		}
-	}
-
-	/**
-	 * Converts the contents of this {@link BitSet} into an array of bytes.
-	 * 
-	 * @return the byte array representation.
-	 * @see {@link BitSet#read(byte[], int)}
-	 */
-	public final byte[] bytes() {
-		cleanLastWord();
-		byte[] bytes = new byte[words.length << 2];
-		ByteBuffer buffer = ByteBuffer.wrap(bytes);
-		buffer.order(ByteOrder.LITTLE_ENDIAN);
-		for (int i = 0; i < words.length; i++) {
-			buffer.putInt(words[i]);
-		}
-		return bytes;
 	}
 
 	/**

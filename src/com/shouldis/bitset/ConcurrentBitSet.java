@@ -2,8 +2,6 @@ package com.shouldis.bitset;
 
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.VarHandle;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -45,33 +43,6 @@ public class ConcurrentBitSet extends BitSet {
 	 */
 	public ConcurrentBitSet(BitSet set) {
 		super(set);
-	}
-
-	/**
-	 * Creates a {@link ConcurrentBitSet} with the specified <b>size</b> from the
-	 * specified array of <b>bytes</b>.
-	 * 
-	 * @param bytes the byte array representation of a {@link ConcurrentBitSet} to
-	 *              be copied into the contents {@link #words}.
-	 * @param size  the number of indices the {@link ConcurrentBitSet} will hold.
-	 * @return a {@link ConcurrentBitSet} made from the specified <b>bytes</b>.
-	 * @see ConcurrentBitSet#ConcurrentBitSet(int)
-	 */
-	public static final ConcurrentBitSet read(byte[] bytes, int size) {
-		if (bytes.length < size >> 3) {
-			StringBuilder builder = new StringBuilder();
-			builder.append(bytes.length << 3).append(" < ").append(size);
-			throw new IllegalArgumentException(builder.toString());
-		}
-		ConcurrentBitSet set = new ConcurrentBitSet(size);
-		ByteBuffer buffer = ByteBuffer.wrap(bytes);
-		buffer.order(ByteOrder.LITTLE_ENDIAN);
-		for (int i = 0; i < set.words.length; i++) {
-			set.words[i] = buffer.getInt();
-			Random ran = new Random();
-			ran.nextInt();
-		}
-		return set;
 	}
 
 	@Override
