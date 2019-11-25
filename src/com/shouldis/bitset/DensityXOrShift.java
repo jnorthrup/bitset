@@ -40,10 +40,11 @@ package com.shouldis.bitset;
  * <p>
  * The underlying pseudo-random number generator {@link XOrShift} has a period
  * of 2<sup>64</sup> -1. This generator consumes multiple elements of that
- * sequence with each call of {@link #nextInt()} and {@link #nextLong()}, as a
- * side-effect making it possible to reduce the period by a factor of
- * {@link #depth} if it is a divisor of 2<sup>64</sup> -1 such as 3, 5, 15, 17,
- * 51.
+ * sequence with each call to {@link #nextInt()}, {@link #nextLong()}, and every
+ * 64th call to {@link #nextBoolean()}. As a side-effect of consuming multiple
+ * elements of the sequence with each call, it is possible to reduce the period
+ * of the sequence by a factor of {@link #depth} if it is a divisor of
+ * 2<sup>64</sup> -1 such as 3, 5, 15, 17, 51.
  * 
  * @author Aaron Shouldis
  * @see XOrShift
