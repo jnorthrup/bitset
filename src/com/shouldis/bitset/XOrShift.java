@@ -254,7 +254,10 @@ public class XOrShift {
 			current = SEED_ENTROPY.get();
 			next = current * MAGIC_NUMBER;
 		} while (!SEED_ENTROPY.compareAndSet(current, next));
-		return next ^ MAGIC_NUMBER ^ System.nanoTime();
+		do {
+			next ^= MAGIC_NUMBER ^ System.nanoTime();
+		} while (next == 0);
+		return next;
 	}
 
 }
