@@ -92,7 +92,7 @@ public class DensityXOrShift extends XOrShift {
 	 * <b>depth</b>, and <b>seed</b>. <b>density</b> will be bounded by
 	 * {@link #boundDensity(double, int)} to ensure it is always a valid percentage.
 	 * <b>depth</b> will be bounded by {@link #boundDepth(int)} to ensure it is with
-	 * in the range [1, {@link BitSet#WORD_SIZE} -1].
+	 * in the range [1, 63].
 	 * <p>
 	 * {@link #nextInt()}, {@link #nextLong()}, and {@link #nextBoolean()} of this
 	 * {@link DensityXOrShift} will generate <i>live</i> bits at a rate determined
@@ -123,7 +123,7 @@ public class DensityXOrShift extends XOrShift {
 	 * <b>depth</b>. <b>density</b> will be bounded by
 	 * {@link #boundDensity(double, int)} to ensure it is always a valid percentage.
 	 * <b>depth</b> will be bounded by {@link #boundDepth(int)} to ensure it is with
-	 * in the range [1, {@link BitSet#WORD_SIZE} -1].
+	 * in the range [1, 63].
 	 * <p>
 	 * {@link #nextInt()}, {@link #nextLong()}, and {@link #nextBoolean()} of this
 	 * {@link DensityXOrShift} will generate <i>live</i> bits at a rate determined
@@ -145,7 +145,7 @@ public class DensityXOrShift extends XOrShift {
 	 * {@link #boundDensity(double, int)} to ensure it is always a valid percentage.
 	 * <b>tolerance</b> will be used to compute a {@link #depth}, which will then be
 	 * bounded by {@link #boundDepth(int)} to ensure it is with in the range [1,
-	 * {@link BitSet#WORD_SIZE} -1].
+	 * 63].
 	 * <p>
 	 * {@link #nextInt()}, {@link #nextLong()}, and {@link #nextBoolean()} of this
 	 * {@link DensityXOrShift} will generate <i>live</i> bits at a rate determined
@@ -170,7 +170,7 @@ public class DensityXOrShift extends XOrShift {
 	 * {@link #boundDensity(double, int)} to ensure it is always a valid percentage.
 	 * <b>tolerance</b> will be used to compute a {@link #depth}, which will then be
 	 * bounded by {@link #boundDepth(int)} to ensure it is with in the range [1,
-	 * {@link BitSet#WORD_SIZE} -1].
+	 * 63].
 	 * <p>
 	 * {@link #nextInt()}, {@link #nextLong()}, and {@link #nextBoolean()} of this
 	 * {@link DensityXOrShift} will generate <i>live</i> bits at a rate determined
