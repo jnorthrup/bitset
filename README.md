@@ -2,7 +2,7 @@
 Many applications of BitSets involve [embarrassingly parallel](https://www.wikipedia.org/wiki/Embarrassingly_parallel) operations. [java.util.BitSet](https://docs.oracle.com/javase/10/docs/api/java/util/BitSet.html) doesn't provide any way to take advantage of this, which inspired this library. This library also provides a variety of tools to stream, manipulate and randomize BitSets.
 
 ## Documentation
-This library is fully documented. view the JavaDocs [here](https://ashouldis.github.io/BitSet/).
+This library is fully documented -- the JavaDocs are best viewed [here](https://ashouldis.github.io/BitSet/).
 
 ## Benchmark
 Time to stream the indices of all live bits to `.forEach(IntConsumer)` in randomized BitSets.  

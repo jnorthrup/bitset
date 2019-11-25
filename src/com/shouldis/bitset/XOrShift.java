@@ -236,7 +236,7 @@ public class XOrShift {
 	public final void setSeed(long seed) {
 		if (seed == 0L) {
 			seed = generateSeed();
-		} else {
+		} else if (seed != MAGIC_NUMBER) {
 			seed ^= MAGIC_NUMBER;
 		}
 		state = seed;
