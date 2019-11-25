@@ -3,11 +3,11 @@ package com.shouldis.bitset;
 import java.util.function.IntConsumer;
 
 /**
- * This class is an implementation of {@link BitSpliterator} that is able to
- * return a stream of indices that represents which bits will be <i>live</i>
- * after performing a {@link #bitwiseFunction(int, int)} between the words of 2
- * {@link BitSet}s at the same word index. The three main operations:
- * {@link And}, {@link Or}, and {@link XOr} are provided by this class. The two
+ * Implementation of {@link BitSpliterator} that is creates a stream of indices
+ * that represents which bits will be <i>live</i> after performing a
+ * {@link #bitwiseFunction(int, int)} between the words of 2 {@link BitSet}s at
+ * the same word index. The three traditional operations: {@link And},
+ * {@link Or}, and {@link XOr} are provided by this class. The two
  * {@link BitSet}s being compared must be of equal size.
  * 
  * @author Aaron Shouldis
@@ -29,7 +29,7 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 
 	/**
 	 * Creates a {@link BitwiseSpliterator} with the specified starting and ending
-	 * position. THis {@link BitwiseSpliterator} will perform bitwise operations on
+	 * position. This {@link BitwiseSpliterator} will perform bitwise operations on
 	 * the words of the specified {@link BitSet}s.
 	 * 
 	 * @param set1     the first {@link BitSet}, which will be operated on against
@@ -55,138 +55,14 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 	 * {@link BitwiseSpliterator} between the specified words from {@link #set1} and
 	 * {@link #set2}.
 	 * 
-	 * @param wordIndex the index of the words within {@link #words} to be taken
-	 *                  from {@link #set1} and {@link #set2}.
-	 * @return the result of the bitwise operation on the words at the specified
-	 *         <b>wordIndex</b>.
+	 * @param word1 the integer word from @{@link #set1} to be operated against
+	 *              <b>word2</b>.
+	 * @param word2 the integer word from @{@link #set2} to be operated against
+	 *              <b>word1</b>.
+	 * @return the result of the bitwise operation between <b>word1</b> and
+	 *         <b>word2</b>
 	 */
 	protected abstract int bitwiseFunction(int word1, int word2);
-
-	/**
-	 * Creates a {@link BitwiseSpliterator} which will supply the indices of bits
-	 * within the specified range resulting in the <i>live</i> state after the
-	 * bitwise 'and' operation is applied to the words from {@link set1} and
-	 * {@link set2}.
-	 * 
-	 * @param set1     the first {@link BitSet} that will have its words operated on
-	 *                 against those of {@link #set2}.
-	 * @param set2     the second {@link BitSet} that will have its words operated
-	 *                 on against those of {@link #set1}.
-	 * @param position (inclusive) the first index to include.
-	 * @param end      (exclusive) index after the last index to include.
-	 * @return A {@link BitwiseSpliterator} representing the indices of the bits
-	 *         resulting in the <i>live</i> state after a bitwise 'and' operation.
-	 * @throws NullPointerException     if <b>set1</b> or <b>set2</b> are null.
-	 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
-	 *                                  to <b>end</b>, or the sizes of <b>set1</b>
-	 *                                  and <b>set2</b> differ.
-	 */
-	public static final BitwiseSpliterator and(BitSet set1, BitSet set2, int position, int end) {
-		return new BitwiseSpliterator.And(set1, set2, position, end);
-	}
-
-	/**
-	 * Creates a {@link BitwiseSpliterator} which will supply the indices of bits
-	 * resulting in the <i>live</i> state after the bitwise 'and' operation is
-	 * applied to the words from {@link set1} and {@link set2}.
-	 * 
-	 * @param set1 the first {@link BitSet} that will have its words operated on
-	 *             against those of {@link #set2}.
-	 * @param set2 the second {@link BitSet} that will have its words operated on
-	 *             against those of {@link #set1}.
-	 * @return A {@link BitwiseSpliterator} representing the indices of the bits
-	 *         resulting in the <i>live</i> state after a bitwise 'and' operation.
-	 * @throws NullPointerException     if <b>set1</b> or <b>set2</b> are null.
-	 * @throws IllegalArgumentException if the sizes of <b>set1</b> and <b>set2</b>
-	 *                                  differ.
-	 */
-	public static final BitwiseSpliterator and(BitSet set1, BitSet set2) {
-		return and(set1, set2, 0, set1.size);
-	}
-
-	/**
-	 * Creates a {@link BitwiseSpliterator} which will supply the indices of bits
-	 * within the specified range resulting in the <i>live</i> state after the
-	 * bitwise 'or' operation is applied to the words from {@link set1} and
-	 * {@link set2}.
-	 * 
-	 * @param set1     the first {@link BitSet} that will have its words operated on
-	 *                 against those of {@link #set2}.
-	 * @param set2     the second {@link BitSet} that will have its words operated
-	 *                 on against those of {@link #set1}.
-	 * @param position (inclusive) the first index to include.
-	 * @param end      (exclusive) index after the last index to include.
-	 * @return A {@link BitwiseSpliterator} representing the indices of the bits
-	 *         resulting in the <i>live</i> state after a bitwise 'or' operation.
-	 * @throws NullPointerException     if <b>set1</b> or <b>set2</b> are null.
-	 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
-	 *                                  to <b>end</b>, or the sizes of <b>set1</b>
-	 *                                  and <b>set2</b> differ.
-	 */
-	public static final BitwiseSpliterator or(BitSet set1, BitSet set2, int position, int end) {
-		return new BitwiseSpliterator.Or(set1, set2, position, end);
-	}
-
-	/**
-	 * Creates a {@link BitwiseSpliterator} which will supply the indices of bits
-	 * resulting in the <i>live</i> state after the bitwise 'or' operation is
-	 * applied to the words from {@link set1} and {@link set2}.
-	 * 
-	 * @param set1 the first {@link BitSet} that will have its words operated on
-	 *             against those of {@link #set2}.
-	 * @param set2 the second {@link BitSet} that will have its words operated on
-	 *             against those of {@link #set1}.
-	 * @return A {@link BitwiseSpliterator} representing the indices of the bits
-	 *         resulting in the <i>live</i> state after a bitwise 'or' operation.
-	 * @throws NullPointerException     if <b>set1</b> or <b>set2</b> are null.
-	 * @throws IllegalArgumentException if the sizes of <b>set1</b> and <b>set2</b>
-	 *                                  differ.
-	 */
-	public static final BitwiseSpliterator or(BitSet set1, BitSet set2) {
-		return or(set1, set2, 0, set1.size);
-	}
-
-	/**
-	 * Creates a {@link BitwiseSpliterator} which will supply the indices of bits
-	 * within the specified range resulting in the <i>live</i> state after the
-	 * bitwise 'xor' operation is applied to the words from {@link set1} and
-	 * {@link set2}.
-	 * 
-	 * @param set1     the first {@link BitSet} that will have its words operated on
-	 *                 against those of {@link #set2}.
-	 * @param set2     the second {@link BitSet} that will have its words operated
-	 *                 on against those of {@link #set1}.
-	 * @param position (inclusive) the first index to include.
-	 * @param end      (exclusive) index after the last index to include.
-	 * @return A {@link BitwiseSpliterator} representing the indices of the bits
-	 *         resulting in the <i>live</i> state after a bitwise 'xor' operation.
-	 * @throws NullPointerException     if <b>set1</b> or <b>set2</b> are null.
-	 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
-	 *                                  to <b>end</b>, or the sizes of <b>set1</b>
-	 *                                  and <b>set2</b> differ.
-	 */
-	public static final BitwiseSpliterator xor(BitSet set1, BitSet set2, int position, int end) {
-		return new BitwiseSpliterator.XOr(set1, set2, position, end);
-	}
-
-	/**
-	 * Creates a {@link BitwiseSpliterator} which will supply the indices of bits
-	 * resulting in the <i>live</i> state after the bitwise 'xor' operation is
-	 * applied to the words from {@link set1} and {@link set2}.
-	 * 
-	 * @param set1 the first {@link BitSet} that will have its words operated on
-	 *             against those of {@link #set2}.
-	 * @param set2 the second {@link BitSet} that will have its words operated on
-	 *             against those of {@link #set1}.
-	 * @return A {@link BitwiseSpliterator} representing the indices of the bits
-	 *         resulting in the <i>live</i> state after a bitwise 'xor' operation.
-	 * @throws NullPointerException     if <b>set1</b> or <b>set2</b> are null.
-	 * @throws IllegalArgumentException if the sizes of <b>set1</b> and <b>set2</b>
-	 *                                  differ.
-	 */
-	public static final BitwiseSpliterator xor(BitSet set1, BitSet set2) {
-		return xor(set1, set2, 0, set1.size);
-	}
 
 	@Override
 	public long getExactSizeIfKnown() {
@@ -287,20 +163,20 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 	}
 
 	/**
-	 * An implementation of {@link BitwiseSpliterator} used to stream the indices of
-	 * bits that result in the <i>live</i> state after the 'and' operation,
+	 * Implementation of {@link BitwiseSpliterator} used to stream the indices of
+	 * bits that result in the <i>live</i> state after the {@code AND} operation,
 	 * splitting at appropriate indices to manipulate a {@link BitSet} in parallel.
 	 * Words are cached as they are encountered, so any modifications after
 	 * iteration begins may not be included.
 	 * 
 	 * @see BitwiseSpliterator
 	 */
-	private static final class And extends BitwiseSpliterator {
+	public static final class And extends BitwiseSpliterator {
 
 		/**
 		 * Creates a {@link BitwiseSpliterator.And} that will cover indices of bits
 		 * resulting in the <i>live</i> state within the specified starting and ending
-		 * indices <b>position</b> and <b>end</b> after an 'and' operation..
+		 * indices <b>position</b> and <b>end</b> after an {@code AND} operation..
 		 * 
 		 * @param set1     The first {@link BitSet} that will be operated on against
 		 *                 <b>set2</b>.
@@ -319,8 +195,8 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 
 		@Override
 		public long estimateSize() {
-			float density1 = set1.density(position, end);
-			float density2 = set2.density(position, end);
+			double density1 = set1.density(position, end);
+			double density2 = set2.density(position, end);
 			return Math.round((end - position) * density1 * density2);
 		}
 
@@ -340,20 +216,20 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 	}
 
 	/**
-	 * An implementation of {@link BitwiseSpliterator} used to stream the indices of
-	 * bits that result in the <i>live</i> state after the 'or' operation, splitting
-	 * at appropriate indices to manipulate a {@link BitSet} in parallel. Words are
-	 * cached as they are encountered, so any modifications after iteration begins
-	 * may not be included.
+	 * Implementation of {@link BitwiseSpliterator} used to stream the indices of
+	 * bits that result in the <i>live</i> state after the {@code OR} operation,
+	 * splitting at appropriate indices to manipulate a {@link BitSet} in parallel.
+	 * Words are cached as they are encountered, so any modifications after
+	 * iteration begins may not be included.
 	 * 
 	 * @see BitwiseSpliterator
 	 */
-	private static final class Or extends BitwiseSpliterator {
+	public static final class Or extends BitwiseSpliterator {
 
 		/**
 		 * Creates a {@link BitwiseSpliterator.And} that will cover indices of bits
 		 * resulting in the <i>live</i> state within the specified starting and ending
-		 * indices <b>position</b> and <b>end</b> after an 'or' operation..
+		 * indices <b>position</b> and <b>end</b> after an {@code OR} operation..
 		 * 
 		 * @param set1     The first {@link BitSet} that will be operated on against
 		 *                 <b>set2</b>.
@@ -372,8 +248,8 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 
 		@Override
 		public long estimateSize() {
-			float density1 = set1.density(position, end);
-			float density2 = set2.density(position, end);
+			double density1 = set1.density(position, end);
+			double density2 = set2.density(position, end);
 			return Math.round((end - position) * (density1 + density2 - (density1 * density2)));
 		}
 
@@ -393,20 +269,20 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 	}
 
 	/**
-	 * An implementation of {@link BitwiseSpliterator} used to stream the indices of
-	 * bits that result in the <i>live</i> state after the 'xor' operation,
+	 * Implementation of {@link BitwiseSpliterator} used to stream the indices of
+	 * bits that result in the <i>live</i> state after the {@code XOR} operation,
 	 * splitting at appropriate indices to manipulate a {@link BitSet} in parallel.
 	 * Words are cached as they are encountered, so any modifications after
 	 * iteration begins may not be included.
 	 * 
 	 * @see BitwiseSpliterator
 	 */
-	private static final class XOr extends BitwiseSpliterator {
+	public static final class XOr extends BitwiseSpliterator {
 
 		/**
 		 * Creates a {@link BitwiseSpliterator.And} that will cover indices of bits
 		 * resulting in the <i>live</i> state within the specified starting and ending
-		 * indices <b>position</b> and <b>end</b> after an 'xor' operation..
+		 * indices <b>position</b> and <b>end</b> after an {@code XOR} operation..
 		 * 
 		 * @param set1     The first {@link BitSet} that will be operated on against
 		 *                 <b>set2</b>.
@@ -425,8 +301,8 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 
 		@Override
 		public long estimateSize() {
-			float density1 = set1.density(position, end);
-			float density2 = set2.density(position, end);
+			double density1 = set1.density(position, end);
+			double density2 = set2.density(position, end);
 			return Math.round((end - position) * (density1 + density2 - (2.0f * density1 * density2)));
 		}
 

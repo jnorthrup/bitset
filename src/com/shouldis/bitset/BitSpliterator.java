@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 /**
- * This class is an implementation of {@link Spliterator} that is meant to be
+ * Implementation of {@link Spliterator} that is meant to be
  * used in conjunction with {@link BitSet}s. This class allows for parallel
  * processing on the indices of a {@link BitSet} such that those operations will
  * never enter race conditions on the underlying integers in
@@ -128,7 +128,7 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 	}
 
 	/**
-	 * An implementation of {@link BitSpliterator} used to stream all values within
+	 * Implementation of {@link BitSpliterator} used to stream all values within
 	 * a specified integer array representing indices in an order appropriate to
 	 * manipulate a {@link BitSet} in parallel. The contents of that specified
 	 * arrays must be in ascending order; behavior is undefined otherwise.
@@ -206,7 +206,7 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 	}
 
 	/**
-	 * An implementation of {@link BitSpliterator} used to stream all indices of a
+	 * Implementation of {@link BitSpliterator} used to stream all indices of a
 	 * specified range, splitting at appropriate indices to manipulate a
 	 * {@link BitSet} in parallel.
 	 * 
@@ -253,7 +253,7 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 	}
 
 	/**
-	 * An implementation of {@link BitSpliterator} used to stream the indices of
+	 * Implementation of {@link BitSpliterator} used to stream the indices of
 	 * <i>live</i> bits within a {@link BitSet}, splitting at appropriate indices to
 	 * manipulate a {@link BitSet} in parallel. Words are cached as they are
 	 * encountered, so any modifications after iteration begins may not be included.
@@ -375,7 +375,7 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 	}
 
 	/**
-	 * An implementation of {@link BitSpliterator} used to stream the indices of
+	 * Implementation of {@link BitSpliterator} used to stream the indices of
 	 * <i>dead</i> bits within a {@link BitSet}, splitting at appropriate indices to
 	 * manipulate a {@link BitSet} in parallel. Words are cached as they are
 	 * encountered, so any modifications after iteration begins may not be included.

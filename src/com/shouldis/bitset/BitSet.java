@@ -1,16 +1,15 @@
 package com.shouldis.bitset;
 
 import java.util.Arrays;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 
 /**
- * This class represents a fixed number of bits stored within an internal
- * integer array, mapping positive integer indices to individual bits and
- * facilitating the manipulation of those individual bits or ranges of bits, as
- * well as retrieving their boolean values. Using this memory structure, this
- * class allows grouping of multiple bitwise operations into fewer operations on
- * the underlying integer words.
+ * Represents a fixed number of bits stored within an internal integer array,
+ * mapping positive integer indices to individual bits and facilitating the
+ * manipulation of those individual bits or ranges of bits, as well as
+ * retrieving their boolean values. Using this memory structure, this class
+ * allows grouping of multiple bitwise operations into fewer operations on the
+ * underlying integer words.
  * <p>
  * The bits represented by this {@link BitSet} will either be in the <i>live</i>
  * state ({@code 1, true}), or the <i>dead</i> state ({@code 0, false}).
@@ -21,19 +20,18 @@ import java.util.stream.IntStream;
  * {@link ConcurrentBitSet} may be used to make all operations thread-safe,
  * requiring no external synchronization at the cost of performance.
  * <p>
- * If {@link #size} isn't a multiple of {@link BitSet#WORD_SIZE}, there will be
- * "hanging" bits that exist on the end of the last integer word, but are not
- * accounted for by {@link #size}. No exception will be thrown when these bit
- * indices are manipulated or read, and in aggregating functions
- * ({@link #population()}, {@link #hashCode()}, etc.), any hanging bits will
- * have their effect on those functions made consistent by
+ * If {@link #size} isn't a multiple of {@link #WORD_SIZE}, there will be
+ * "hanging" bits that exist on the end of the last integer within
+ * {@link #words}, which are not accounted for by {@link #size}. No exception
+ * will be thrown when these bit indices are manipulated or read, and in
+ * aggregating functions ({@link #population()}, {@link #hashCode()}, etc.), any
+ * hanging bits will have their effect on those functions made consistent by
  * {@link #cleanLastWord()}.
  * <p>
  * Otherwise, accessing a negative index, or any index greater than or equal to
- * {@link #size} will cause an {@link IndexOutOfBoundsException}.
+ * {@link #size} will cause an {@link IndexOutOfBoundsException} to be thrown.
  * 
  * @author Aaron Shouldis
- * @see BitSpliterator
  * @see ConcurrentBitSet
  */
 public class BitSet {
@@ -50,7 +48,7 @@ public class BitSet {
 	protected static final int MOD_SIZE_MASK = WORD_SIZE - 1;
 
 	/**
-	 * log<sub>2</sub>({@link BitSet#WORD_SIZE}). Used to relate bit indices to word
+	 * log<sub>2</sub>({@link #WORD_SIZE}). Used to relate bit indices to word
 	 * indices through bit-shifting as an alternative to division or multiplication
 	 * by {@link #WORD_SIZE}.
 	 */
@@ -70,7 +68,7 @@ public class BitSet {
 
 	/**
 	 * Array holding the integer words whose bits are manipulated. Has length
-	 * ceiling({@link #size} / {@link BitSet#WORD_SIZE}).
+	 * ceiling({@link #size} / {@link #WORD_SIZE}).
 	 */
 	protected final int[] words;
 
@@ -167,8 +165,9 @@ public class BitSet {
 	 * @param from (inclusive) the index of the first bit to be checked.
 	 * @param to   (exclusive) the end of the range of bits to be checked.
 	 * @return the number of <i>live</i> bits inside the specified range.
-	 * @throws {@link ArrayIndexOutOfBoundsException} if <b>from</b> or <b>to</b>
-	 *                are outside of the range 0 to {@link #size},
+	 * @throws ArrayIndexOutOfBoundsException if <b>from</b> or <b>to</b> are
+	 *                                        outside of the range 0 to
+	 *                                        {@link #size},
 	 */
 	public final int get(int from, int to) {
 		if (from >= to) {
@@ -211,8 +210,9 @@ public class BitSet {
 	 *             <i>live</i> state.
 	 * @param to   (exclusive) the end of the range of bits to be changed to the
 	 *             <i>live</i> state.
-	 * @throw {@link ArrayIndexOutOfBoundsException} if <b>from</b> or <b>to</b> are
-	 *        outside of the range 0 to {@link #size},
+	 * @throws ArrayIndexOutOfBoundsException if <b>from</b> or <b>to</b> are
+	 *                                        outside of the range 0 to
+	 *                                        {@link #size},
 	 */
 	public void set(int from, int to) {
 		if (from >= to) {
@@ -251,8 +251,9 @@ public class BitSet {
 	 * 
 	 * @param from (inclusive) the index of the first bit to be cleared.
 	 * @param to   (exclusive) the end of the range of bits to be cleared.
-	 * @throw {@link ArrayIndexOutOfBoundsException} if <b>from</b> or <b>to</b> are
-	 *        outside of the range 0 to {@link #size},
+	 * @throws ArrayIndexOutOfBoundsException if <b>from</b> or <b>to</b> are
+	 *                                        outside of the range 0 to
+	 *                                        {@link #size},
 	 */
 	public void clear(int from, int to) {
 		if (from >= to) {
@@ -291,8 +292,9 @@ public class BitSet {
 	 * 
 	 * @param from (inclusive) the index of the first bit to be toggled.
 	 * @param to   (exclusive) the end of the range of bits to be toggled.
-	 * @throw {@link ArrayIndexOutOfBoundsException} if <b>from</b> or <b>to</b> are
-	 *        outside of the range 0 to {@link #size},
+	 * @throws ArrayIndexOutOfBoundsException if <b>from</b> or <b>to</b> are
+	 *                                        outside of the range 0 to
+	 *                                        {@link #size},
 	 */
 	public void toggle(int from, int to) {
 		if (from >= to) {
@@ -316,16 +318,18 @@ public class BitSet {
 	/**
 	 * Changes the state of all bits in the specified range randomly.
 	 * 
-	 * @param from (inclusive) the index of the first bit to be randomized.
-	 * @param to   (exclusive) the end of the range of bits to be randomized.
-	 * @throw {@link ArrayIndexOutOfBoundsException} if <b>from</b> or <b>to</b> are
-	 *        outside of the range 0 to {@link #size},
+	 * @param random the instance of {@link XOrShift} used to randomize.
+	 * @param from   (inclusive) the index of the first bit to be randomized.
+	 * @param to     (exclusive) the end of the range of bits to be randomized.
+	 * @throws ArrayIndexOutOfBoundsException if <b>from</b> or <b>to</b> are
+	 *                                        outside of the range 0 to
+	 *                                        {@link #size}.
+	 * @see DensityXOrShift
 	 */
-	public void randomize(int from, int to) {
+	public void randomize(XOrShift random, int from, int to) {
 		if (from >= to) {
 			return;
 		}
-		ThreadLocalRandom random = ThreadLocalRandom.current();
 		int start = wordIndex(from);
 		int end = wordIndex(to - 1);
 		int startMask = MASK << from;
@@ -343,9 +347,14 @@ public class BitSet {
 
 	/**
 	 * Changes the state of all bits randomly.
+	 * 
+	 * @param random the instance of {@link XOrShift} used to randomize.
+	 * @see DensityXOrShift
 	 */
-	public void randomize() {
-		randomize(0, size);
+	public void randomize(XOrShift random) {
+		for (int i = 0; i < words.length; i++) {
+			words[i] ^= random.nextInt();
+		}
 	}
 
 	/**
@@ -608,11 +617,11 @@ public class BitSet {
 	 * @param to   (exclusive) the end of the range of bits to be checked.
 	 * @return the percentage of <i>live</i> bits.
 	 */
-	public final float density(int from, int to) {
+	public final double density(int from, int to) {
 		if (from >= to) {
-			return 0.0f;
+			return 0.0;
 		}
-		return get(from, to) / (float) (to - from);
+		return get(from, to) / (double) (to - from);
 	}
 
 	/**
@@ -621,8 +630,8 @@ public class BitSet {
 	 *
 	 * @return the percentage of <i>live</i> bits.
 	 */
-	public final float density() {
-		return population() / (float) size;
+	public final double density() {
+		return population() / (double) size;
 	}
 
 	/**
@@ -641,7 +650,7 @@ public class BitSet {
 	 */
 	protected void cleanLastWord() {
 		int hangingBits = modSize(-size);
-		if (hangingBits > 0 && words.length > 0) {
+		if (hangingBits > 0) {
 			words[words.length - 1] &= (MASK >>> hangingBits);
 		}
 	}
@@ -658,13 +667,12 @@ public class BitSet {
 	}
 
 	/**
-	 * Equivalent to {@code index % SIZE} for positive numbers, and
-	 * {@code SIZE - (index % SIZE)} for negative numbers. Used calculate the modulo
-	 * of positive numbers faster.
+	 * Equivalent to {@code index % WORD_SIZE} for positive numbers, and modulo of
+	 * positive numbers faster.
 	 * 
 	 * @param index the index to perform the modulo operation upon.
 	 * @return the result of the modulo operation.
-	 * @see BitSet#MOD_SIZE_MASK
+	 * @see #MOD_SIZE_MASK
 	 */
 	protected static final int modSize(int index) {
 		return index & MOD_SIZE_MASK;

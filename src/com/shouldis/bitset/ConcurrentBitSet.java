@@ -2,15 +2,12 @@ package com.shouldis.bitset;
 
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.VarHandle;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * This class is an implementation of {@link BitSet} in which all methods
- * capable of modifying the state of bits are performed as atomic operations.
- * The use of atomic operations allows concurrent modification of this
- * {@link ConcurrentBitSet} without any external synchronization at the cost of
- * processing time.
+ * Implementation of {@link BitSet} in which all methods capable of modifying
+ * the state of bits are performed as atomic operations. The use of atomic
+ * operations allows concurrent modification of this {@link ConcurrentBitSet}
+ * without any external synchronization at the cost of processing time.
  * <p>
  * All methods have behavior as specified by {@link BitSet}.
  * 
@@ -151,11 +148,10 @@ public class ConcurrentBitSet extends BitSet {
 	}
 
 	@Override
-	public void randomize(int from, int to) {
+	public void randomize(XOrShift random, int from, int to) {
 		if (from >= to) {
 			return;
 		}
-		Random random = ThreadLocalRandom.current();
 		int start = wordIndex(from);
 		int end = wordIndex(to - 1);
 		int startMask = MASK << from;
@@ -165,9 +161,16 @@ public class ConcurrentBitSet extends BitSet {
 		} else {
 			atomicXOr(start, startMask & random.nextInt());
 			for (int i = start + 1; i < end; i++) {
-				words[i] = random.nextInt();
+				atomicXOr(i, random.nextInt());
 			}
 			atomicXOr(end, endMask & random.nextInt());
+		}
+	}
+
+	@Override
+	public void randomize(XOrShift random) {
+		for (int i = 0; i < words.length; i++) {
+			atomicXOr(i, random.nextInt());
 		}
 	}
 
