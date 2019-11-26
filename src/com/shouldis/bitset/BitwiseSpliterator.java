@@ -55,9 +55,9 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 	 * {@link BitwiseSpliterator} between the specified words from {@link #set1} and
 	 * {@link #set2}.
 	 * 
-	 * @param word1 the integer word from @{@link #set1} to be operated against
+	 * @param word1 the integer word from {@link #set1} to be operated against
 	 *              <b>word2</b>.
-	 * @param word2 the integer word from @{@link #set2} to be operated against
+	 * @param word2 the integer word from {@link #set2} to be operated against
 	 *              <b>word1</b>.
 	 * @return the result of the bitwise operation between <b>word1</b> and
 	 *         <b>word2</b>
