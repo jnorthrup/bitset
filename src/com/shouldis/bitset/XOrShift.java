@@ -15,7 +15,7 @@ public class XOrShift {
 	/**
 	 * Magic number value used to deterministically add entropy to seeds.
 	 */
-	private static final long MAGIC_NUMBER = 0xBEEFBEEFBEEFBEEFL;
+	private static final long MAGIC_NUMBER = 0xA33AA9B7ACAB7991L;
 
 	/**
 	 * Atomic value used to ensure that seeds generated at similar times are
