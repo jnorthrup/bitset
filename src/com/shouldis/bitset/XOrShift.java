@@ -60,16 +60,6 @@ public class XOrShift {
 	}
 
 	/**
-	 * Returns the next pseudo-random, uniformly distributed integer value from this
-	 * random number generator's sequence.
-	 * 
-	 * @return the next randomly generated integer.
-	 */
-	private final int nextRawInt() {
-		return (int) (nextRawLong() >>> BitSet.WORD_SIZE);
-	}
-
-	/**
 	 * Returns the next pseudo-random, uniformly distributed long value from this
 	 * random number generator's sequence, but shifted to ensure it is always
 	 * positive.
@@ -78,17 +68,6 @@ public class XOrShift {
 	 */
 	public final long nextPositiveLong() {
 		return nextRawLong() >>> 1;
-	}
-
-	/**
-	 * Returns the next pseudo-random, uniformly distributed integer value from this
-	 * random number generator's sequence, but shifted to ensure it is always
-	 * positive.
-	 * 
-	 * @return the next randomly generated integer.
-	 */
-	public final int nextPositiveInt() {
-		return (int) (nextRawLong() >>> BitSet.WORD_SIZE + 1);
 	}
 
 	/**
@@ -125,6 +104,27 @@ public class XOrShift {
 			}
 		}
 		return random;
+	}
+
+	/**
+	 * Returns the next pseudo-random, uniformly distributed integer value from this
+	 * random number generator's sequence.
+	 * 
+	 * @return the next randomly generated integer.
+	 */
+	private final int nextRawInt() {
+		return (int) (nextRawLong() >>> BitSet.WORD_SIZE);
+	}
+
+	/**
+	 * Returns the next pseudo-random, uniformly distributed integer value from this
+	 * random number generator's sequence, but shifted to ensure it is always
+	 * positive.
+	 * 
+	 * @return the next randomly generated integer.
+	 */
+	public final int nextPositiveInt() {
+		return (int) (nextRawLong() >>> BitSet.WORD_SIZE + 1);
 	}
 
 	/**
