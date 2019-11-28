@@ -17,9 +17,9 @@ import java.lang.invoke.VarHandle;
 public class ConcurrentBitSet extends BitSet {
 
 	/**
-	 * A handle on the integer array methods for direct atomic operations.
+	 * A handle on the long array methods for direct, atomic operations.
 	 */
-	private static final VarHandle HANDLE = MethodHandles.arrayElementVarHandle(int[].class);
+	private static final VarHandle HANDLE = MethodHandles.arrayElementVarHandle(long[].class);
 
 	/**
 	 * Creates a {@link ConcurrentBitSet} with the specified <b>size</b>.
@@ -45,11 +45,11 @@ public class ConcurrentBitSet extends BitSet {
 	@Override
 	public boolean add(int index) {
 		int wordIndex = wordIndex(index);
-		int mask = bitMask(index);
-		int expected, word;
+		long mask = bitMask(index);
+		long expected, word;
 		do {
 			expected = words[wordIndex];
-			if ((expected & mask) != 0) {
+			if ((expected & mask) != 0L) {
 				return false;
 			}
 			word = expected | mask;
@@ -60,11 +60,11 @@ public class ConcurrentBitSet extends BitSet {
 	@Override
 	public boolean remove(int index) {
 		int wordIndex = wordIndex(index);
-		int mask = bitMask(index);
-		int expected, word;
+		long mask = bitMask(index);
+		long expected, word;
 		do {
 			expected = words[wordIndex];
-			if ((expected & mask) == 0) {
+			if ((expected & mask) == 0L) {
 				return false;
 			}
 			word = expected & ~mask;
@@ -84,14 +84,14 @@ public class ConcurrentBitSet extends BitSet {
 		}
 		int start = wordIndex(from);
 		int end = wordIndex(to - 1);
-		int startMask = MASK << from;
-		int endMask = MASK >>> -to;
+		long startMask = MASK << from;
+		long endMask = MASK >>> -to;
 		if (start == end) {
 			atomicOr(start, startMask & endMask);
 		} else {
 			atomicOr(start, startMask);
 			for (int i = start + 1; i < end; i++) {
-				words[i] = MASK;
+				setWord(i, MASK);
 			}
 			atomicOr(end, endMask);
 		}
@@ -109,14 +109,14 @@ public class ConcurrentBitSet extends BitSet {
 		}
 		int start = wordIndex(from);
 		int end = wordIndex(to - 1);
-		int startMask = MASK << from;
-		int endMask = MASK >>> -to;
+		long startMask = MASK << from;
+		long endMask = MASK >>> -to;
 		if (start == end) {
 			atomicAnd(start, ~(startMask & endMask));
 		} else {
 			atomicAnd(start, ~startMask);
 			for (int i = start + 1; i < end; i++) {
-				words[i] = 0;
+				setWord(i, 0L);
 			}
 			atomicAnd(end, ~endMask);
 		}
@@ -134,8 +134,8 @@ public class ConcurrentBitSet extends BitSet {
 		}
 		int start = wordIndex(from);
 		int end = wordIndex(to - 1);
-		int startMask = MASK << from;
-		int endMask = MASK >>> -to;
+		long startMask = MASK << from;
+		long endMask = MASK >>> -to;
 		if (start == end) {
 			atomicXOr(start, startMask & endMask);
 		} else {
@@ -154,23 +154,23 @@ public class ConcurrentBitSet extends BitSet {
 		}
 		int start = wordIndex(from);
 		int end = wordIndex(to - 1);
-		int startMask = MASK << from;
-		int endMask = MASK >>> -to;
+		long startMask = MASK << from;
+		long endMask = MASK >>> -to;
 		if (start == end) {
-			atomicXOr(start, startMask & endMask & random.nextInt());
+			atomicXOr(start, startMask & endMask & random.nextLong());
 		} else {
-			atomicXOr(start, startMask & random.nextInt());
+			atomicXOr(start, startMask & random.nextLong());
 			for (int i = start + 1; i < end; i++) {
-				atomicXOr(i, random.nextInt());
+				atomicXOr(i, random.nextLong());
 			}
-			atomicXOr(end, endMask & random.nextInt());
+			atomicXOr(end, endMask & random.nextLong());
 		}
 	}
 
 	@Override
 	public void randomize(XOrShift random) {
 		for (int i = 0; i < words.length; i++) {
-			atomicXOr(i, random.nextInt());
+			atomicXOr(i, random.nextLong());
 		}
 	}
 
@@ -213,9 +213,13 @@ public class ConcurrentBitSet extends BitSet {
 		}
 	}
 
+	protected void setWord(int wordIndex, long word) {
+		HANDLE.setVolatile(words, wordIndex, word);
+	}
+
 	/**
-	 * Atomically changes the integer word at <b>wordIndex</b> within {@link #words}
-	 * to the result of an {@code AND} operation between the current value at the
+	 * Atomically changes the long word at <b>wordIndex</b> within {@link #words} to
+	 * the result of an {@code AND} operation between the current value at the
 	 * specified <b>wordIndex</b> within {@link #words} and the specified
 	 * <b>mask</b>. <br>
 	 * {@code words[wordIndex] &= mask;}
@@ -225,13 +229,13 @@ public class ConcurrentBitSet extends BitSet {
 	 * @param mask      the mask to use in the {@code AND} operation on the current
 	 *                  value at the specified <b>wordIndex</b>.
 	 */
-	private void atomicAnd(int wordIndex, int mask) {
+	private void atomicAnd(int wordIndex, long mask) {
 		HANDLE.getAndBitwiseAnd(words, wordIndex, mask);
 	}
 
 	/**
-	 * Atomically changes the integer word at <b>wordIndex</b> within {@link #words}
-	 * to the result of an {@code OR} operation between the current value at the
+	 * Atomically changes the long word at <b>wordIndex</b> within {@link #words} to
+	 * the result of an {@code OR} operation between the current value at the
 	 * specified <b>wordIndex</b> within {@link #words} and the specified
 	 * <b>mask</b>. <br>
 	 * {@code words[wordIndex] |= mask;}
@@ -241,13 +245,13 @@ public class ConcurrentBitSet extends BitSet {
 	 * @param mask      the mask to use in the {@code OR} operation on the current
 	 *                  value at the specified <b>wordIndex</b>.
 	 */
-	private void atomicOr(int wordIndex, int mask) {
+	private void atomicOr(int wordIndex, long mask) {
 		HANDLE.getAndBitwiseOr(words, wordIndex, mask);
 	}
 
 	/**
-	 * Atomically changes the integer word at <b>wordIndex</b> within {@link #words}
-	 * to the result of an {@code XOR} operation between the current value at the
+	 * Atomically changes the long word at <b>wordIndex</b> within {@link #words} to
+	 * the result of an {@code XOR} operation between the current value at the
 	 * specified <b>wordIndex</b> within {@link #words} and the specified
 	 * <b>mask</b>. <br>
 	 * {@code words[wordIndex] ^= mask;}
@@ -257,7 +261,7 @@ public class ConcurrentBitSet extends BitSet {
 	 * @param mask      the mask to use in the {@code XOR} operation on the current
 	 *                  value at the specified <b>wordIndex</b>.
 	 */
-	private void atomicXOr(int wordIndex, int mask) {
+	private void atomicXOr(int wordIndex, long mask) {
 		HANDLE.getAndBitwiseXor(words, wordIndex, mask);
 	}
 

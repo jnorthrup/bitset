@@ -71,7 +71,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <tr class="altColor">
 <th class="colFirst" scope="row"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></th>
 <td class="colLast">
-<div class="block">Represents a fixed number of bits stored within an internal integer array,
+<div class="block">Represents a fixed number of bits stored within an internal long array,
  mapping positive integer indices to individual bits and facilitating the
  manipulation of those individual bits or ranges of bits, as well as
  retrieving their boolean values.</div>
@@ -80,15 +80,15 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <tr class="rowColor">
 <th class="colFirst" scope="row"><a href="BitSpliterator.html" title="class in com.shouldis.bitset">BitSpliterator</a></th>
 <td class="colLast">
-<div class="block">Implementation of <code>Spliterator</code> that is meant to be
- used in conjunction with <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s.</div>
+<div class="block">Implementation of <code>Spliterator</code> that is meant to be used in conjunction
+ with <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s.</div>
 </td>
 </tr>
 <tr class="altColor">
 <th class="colFirst" scope="row"><a href="BitSpliterator.Array.html" title="class in com.shouldis.bitset">BitSpliterator.Array</a></th>
 <td class="colLast">
-<div class="block">Implementation of <a href="BitSpliterator.html" title="class in com.shouldis.bitset"><code>BitSpliterator</code></a> used to stream all values within
- a specified integer array representing indices in an order appropriate to
+<div class="block">Implementation of <a href="BitSpliterator.html" title="class in com.shouldis.bitset"><code>BitSpliterator</code></a> used to stream all values within a
+ specified integer array representing indices in an order appropriate to
  manipulate a <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
 </td>
 </tr>
@@ -121,8 +121,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <td class="colLast">
 <div class="block">Implementation of <a href="BitSpliterator.html" title="class in com.shouldis.bitset"><code>BitSpliterator</code></a> that is creates a stream of indices
  that represents which bits will be <i>live</i> after performing a
- <a href="BitwiseSpliterator.html#bitwiseFunction(int,int)"><code>BitwiseSpliterator.bitwiseFunction(int, int)</code></a> between the words of 2 <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s at
- the same word index.</div>
+ <a href="BitwiseSpliterator.html#bitwiseFunction(long,long)"><code>BitwiseSpliterator.bitwiseFunction(long, long)</code></a> between the words of 2 <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
+ at the same word index.</div>
 </td>
 </tr>
 <tr class="rowColor">

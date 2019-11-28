@@ -119,7 +119,7 @@ extends <a href="BitwiseSpliterator.html" title="class in com.shouldis.bitset">B
  bits that result in the <i>live</i> state after the <code>OR</code> operation,
  splitting at appropriate indices to manipulate a <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.
  Words are cached as they are encountered, so any modifications after
- iteration begins may not be included.</div>
+ iteration begins are not accounted for.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="BitwiseSpliterator.html" title="class in com.shouldis.bitset"><code>BitwiseSpliterator</code></a></dd>
@@ -242,9 +242,9 @@ extends <a href="BitwiseSpliterator.html" title="class in com.shouldis.bitset">B
 </tr>
 <tbody>
 <tr class="altColor" id="i0">
-<td class="colFirst"><code>protected int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#bitwiseFunction(int,int)">bitwiseFunction</a></span>&#8203;(int&nbsp;word1,
-               int&nbsp;word2)</code></th>
+<td class="colFirst"><code>protected long</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#bitwiseFunction(long,long)">bitwiseFunction</a></span>&#8203;(long&nbsp;word1,
+               long&nbsp;word2)</code></th>
 <td class="colLast">
 <div class="block">Calculates the result of the bitwise operation represented by this
  <a href="BitwiseSpliterator.html" title="class in com.shouldis.bitset"><code>BitwiseSpliterator</code></a> between the specified words from <a href="BitwiseSpliterator.html#set1"><code>BitwiseSpliterator.set1</code></a> and
@@ -277,7 +277,7 @@ extends <a href="BitwiseSpliterator.html" title="class in com.shouldis.bitset">B
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;com.shouldis.bitset.<a href="BitSpliterator.html" title="class in com.shouldis.bitset">BitSpliterator</a></h3>
-<code><a href="BitSpliterator.html#characteristics()">characteristics</a>, <a href="BitSpliterator.html#middle()">middle</a>, <a href="BitSpliterator.html#nextLiveBit(int,int)">nextLiveBit</a>, <a href="BitSpliterator.html#splitIndex()">splitIndex</a>, <a href="BitSpliterator.html#stream()">stream</a></code></li>
+<code><a href="BitSpliterator.html#characteristics()">characteristics</a>, <a href="BitSpliterator.html#middle()">middle</a>, <a href="BitSpliterator.html#nextLiveBit(long,int)">nextLiveBit</a>, <a href="BitSpliterator.html#splitIndex()">splitIndex</a>, <a href="BitSpliterator.html#stream()">stream</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
@@ -379,25 +379,25 @@ extends <a href="BitwiseSpliterator.html" title="class in com.shouldis.bitset">B
 <pre class="methodSignature">public&nbsp;java.util.Spliterator.OfInt&nbsp;trySplit()</pre>
 </li>
 </ul>
-<a id="bitwiseFunction(int,int)">
+<a id="bitwiseFunction(long,long)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>bitwiseFunction</h4>
-<pre class="methodSignature">protected&nbsp;int&nbsp;bitwiseFunction&#8203;(int&nbsp;word1,
-                              int&nbsp;word2)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="BitwiseSpliterator.html#bitwiseFunction(int,int)">BitwiseSpliterator</a></code></span></div>
+<pre class="methodSignature">protected&nbsp;long&nbsp;bitwiseFunction&#8203;(long&nbsp;word1,
+                               long&nbsp;word2)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="BitwiseSpliterator.html#bitwiseFunction(long,long)">BitwiseSpliterator</a></code></span></div>
 <div class="block">Calculates the result of the bitwise operation represented by this
  <a href="BitwiseSpliterator.html" title="class in com.shouldis.bitset"><code>BitwiseSpliterator</code></a> between the specified words from <a href="BitwiseSpliterator.html#set1"><code>BitwiseSpliterator.set1</code></a> and
  <a href="BitwiseSpliterator.html#set2"><code>BitwiseSpliterator.set2</code></a>.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="BitwiseSpliterator.html#bitwiseFunction(int,int)">bitwiseFunction</a></code>&nbsp;in class&nbsp;<code><a href="BitwiseSpliterator.html" title="class in com.shouldis.bitset">BitwiseSpliterator</a></code></dd>
+<dd><code><a href="BitwiseSpliterator.html#bitwiseFunction(long,long)">bitwiseFunction</a></code>&nbsp;in class&nbsp;<code><a href="BitwiseSpliterator.html" title="class in com.shouldis.bitset">BitwiseSpliterator</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>word1</code> - the integer word from <a href="BitwiseSpliterator.html#set1"><code>BitwiseSpliterator.set1</code></a> to be operated against
+<dd><code>word1</code> - the long word from <a href="BitwiseSpliterator.html#set1"><code>BitwiseSpliterator.set1</code></a> to be operated against
               <b>word2</b>.</dd>
-<dd><code>word2</code> - the integer word from <a href="BitwiseSpliterator.html#set2"><code>BitwiseSpliterator.set2</code></a> to be operated against
+<dd><code>word2</code> - the long word from <a href="BitwiseSpliterator.html#set2"><code>BitwiseSpliterator.set2</code></a> to be operated against
               <b>word1</b>.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the result of the bitwise operation between <b>word1</b> and

@@ -106,16 +106,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <pre>public abstract class <span class="typeNameLabel">BitSpliterator</span>
 extends java.lang.Object
 implements java.util.Spliterator.OfInt</pre>
-<div class="block">Implementation of <code>Spliterator</code> that is meant to be
- used in conjunction with <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s. This class allows for parallel
- processing on the indices of a <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> such that those operations will
- never enter race conditions on the underlying integers in
- <a href="BitSet.html#words"><code>BitSet.words</code></a>. This behavior can only be guaranteed if the indices
- returned by the <a href="BitSpliterator.html" title="class in com.shouldis.bitset"><code>BitSpliterator</code></a> are manipulated, and not some offset
- or translation. This bounding of indices to specific threads is needed
- because of the non-atomic nature of modifying integers. Using a generic
- parallel <code>IntStream</code> would cause changes to the underlying integer
- words of a <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> to be potentially overridden by other threads.
+<div class="block">Implementation of <code>Spliterator</code> that is meant to be used in conjunction
+ with <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s. This class allows for parallel processing on the
+ indices of a <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> such that those operations will never enter race
+ conditions on the underlying longs within <a href="BitSet.html#words"><code>BitSet.words</code></a>. This behavior
+ can only be guaranteed if the indices returned by the <a href="BitSpliterator.html" title="class in com.shouldis.bitset"><code>BitSpliterator</code></a>
+ are manipulated, and not some offset or translation. This bounding of indices
+ to specific threads is needed because of the non-atomic nature of modifying
+ long. Using a generic parallel <code>IntStream</code> would cause changes to the
+ underlying long words of a <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> to be potentially overridden by
+ other threads.
  <p>
  This class offers 4 implementations:
  <ul>
@@ -156,8 +156,8 @@ implements java.util.Spliterator.OfInt</pre>
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="BitSpliterator.Array.html" title="class in com.shouldis.bitset">BitSpliterator.Array</a></span></code></th>
 <td class="colLast">
-<div class="block">Implementation of <a href="BitSpliterator.html" title="class in com.shouldis.bitset"><code>BitSpliterator</code></a> used to stream all values within
- a specified integer array representing indices in an order appropriate to
+<div class="block">Implementation of <a href="BitSpliterator.html" title="class in com.shouldis.bitset"><code>BitSpliterator</code></a> used to stream all values within a
+ specified integer array representing indices in an order appropriate to
  manipulate a <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
 </td>
 </tr>
@@ -320,7 +320,7 @@ implements java.util.Spliterator.OfInt</pre>
 </tr>
 <tr class="rowColor" id="i3">
 <td class="colFirst"><code>protected int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextLiveBit(int,int)">nextLiveBit</a></span>&#8203;(int&nbsp;word,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextLiveBit(long,int)">nextLiveBit</a></span>&#8203;(long&nbsp;word,
            int&nbsp;wordIndex)</code></th>
 <td class="colLast">
 <div class="block">Calculates the index of the next <i>live</i> bit within a specified
@@ -506,21 +506,21 @@ implements java.util.Spliterator.OfInt</pre>
 </dl>
 </li>
 </ul>
-<a id="nextLiveBit(int,int)">
+<a id="nextLiveBit(long,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>nextLiveBit</h4>
-<pre class="methodSignature">protected&nbsp;int&nbsp;nextLiveBit&#8203;(int&nbsp;word,
+<pre class="methodSignature">protected&nbsp;int&nbsp;nextLiveBit&#8203;(long&nbsp;word,
                           int&nbsp;wordIndex)</pre>
 <div class="block">Calculates the index of the next <i>live</i> bit within a specified
  <b>word</b> that is at the specified <b>wordIndex</b> within
  <a href="BitSet.html#words"><code>BitSet.words</code></a>. This index will represent its bit index in the
- underlying integer array as well as the offset within the integer word.</div>
+ underlying long array as well as the offset within the integer <b>word</b>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>word</code> - the integer word to be checked for a <i>live</i> bit.</dd>
+<dd><code>word</code> - the long word to be checked for a <i>live</i> bit.</dd>
 <dd><code>wordIndex</code> - the index of the word within <a href="BitSet.html#words"><code>BitSet.words</code></a>.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the index of the next <i>live</i> bit within the specified word, or

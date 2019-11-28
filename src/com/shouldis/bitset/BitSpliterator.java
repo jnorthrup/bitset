@@ -8,16 +8,16 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 /**
- * Implementation of {@link Spliterator} that is meant to be
- * used in conjunction with {@link BitSet}s. This class allows for parallel
- * processing on the indices of a {@link BitSet} such that those operations will
- * never enter race conditions on the underlying integers in
- * {@link BitSet#words}. This behavior can only be guaranteed if the indices
- * returned by the {@link BitSpliterator} are manipulated, and not some offset
- * or translation. This bounding of indices to specific threads is needed
- * because of the non-atomic nature of modifying integers. Using a generic
- * parallel {@link IntStream} would cause changes to the underlying integer
- * words of a {@link BitSet} to be potentially overridden by other threads.
+ * Implementation of {@link Spliterator} that is meant to be used in conjunction
+ * with {@link BitSet}s. This class allows for parallel processing on the
+ * indices of a {@link BitSet} such that those operations will never enter race
+ * conditions on the underlying longs within {@link BitSet#words}. This behavior
+ * can only be guaranteed if the indices returned by the {@link BitSpliterator}
+ * are manipulated, and not some offset or translation. This bounding of indices
+ * to specific threads is needed because of the non-atomic nature of modifying
+ * long. Using a generic parallel {@link IntStream} would cause changes to the
+ * underlying long words of a {@link BitSet} to be potentially overridden by
+ * other threads.
  * <p>
  * This class offers 4 implementations:
  * <ul>
@@ -36,7 +36,7 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 	 * The minimum threshold of remaining indices for which a {@link BitSpliterator}
 	 * will refuse a call to {@link Spliterator#trySplit()}.
 	 */
-	protected static final int THRESHOLD = BitSet.WORD_SIZE << 2;
+	protected static final int THRESHOLD = Long.SIZE << 2;
 
 	/**
 	 * The next index this {@link BitSpliterator} will produce.
@@ -47,7 +47,7 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 	 * The boundary index that this {@link BitSpliterator} will stop upon reaching.
 	 */
 	protected final int end;
-	
+
 	/**
 	 * Creates a {@link BitSpliterator} with the specified starting and ending
 	 * position.
@@ -105,15 +105,15 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 	 * Calculates the index of the next <i>live</i> bit within a specified
 	 * <b>word</b> that is at the specified <b>wordIndex</b> within
 	 * {@link BitSet#words}. This index will represent its bit index in the
-	 * underlying integer array as well as the offset within the integer word.
+	 * underlying long array as well as the offset within the integer <b>word</b>.
 	 * 
-	 * @param word      the integer word to be checked for a <i>live</i> bit.
+	 * @param word      the long word to be checked for a <i>live</i> bit.
 	 * @param wordIndex the index of the word within {@link BitSet#words}.
 	 * @return the index of the next <i>live</i> bit within the specified word, or
 	 *         {@link #end} if none are found.
 	 */
-	protected int nextLiveBit(int word, int wordIndex) {
-		int index = BitSet.wordStart(wordIndex) + Integer.numberOfTrailingZeros(word);
+	protected int nextLiveBit(long word, int wordIndex) {
+		int index = BitSet.wordStart(wordIndex) + Long.numberOfTrailingZeros(word);
 		return index < end ? index : end;
 	}
 
@@ -128,8 +128,8 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 	}
 
 	/**
-	 * Implementation of {@link BitSpliterator} used to stream all values within
-	 * a specified integer array representing indices in an order appropriate to
+	 * Implementation of {@link BitSpliterator} used to stream all values within a
+	 * specified integer array representing indices in an order appropriate to
 	 * manipulate a {@link BitSet} in parallel. The contents of that specified
 	 * arrays must be in ascending order; behavior is undefined otherwise.
 	 * 
@@ -329,11 +329,11 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 			}
 			int wordIndex = BitSet.wordIndex(position);
 			int lastWordIndex = BitSet.wordIndex(end - 1);
-			int word = set.words[wordIndex] & (BitSet.MASK << position);
+			long word = set.words[wordIndex] & (BitSet.MASK << position);
 			do {
 				action.accept(position);
-				word ^= Integer.lowestOneBit(word);
-				while (word == 0) {
+				word ^= Long.lowestOneBit(word);
+				while (word == 0L) {
 					if (wordIndex == lastWordIndex) {
 						position = end;
 						return;
@@ -360,13 +360,13 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 			if (index >= end) {
 				return end;
 			}
-			int word = set.words[wordIndex] & (BitSet.MASK << index);
-			if (word != 0) {
+			long word = set.words[wordIndex] & (BitSet.MASK << index);
+			if (word != 0L) {
 				return nextLiveBit(word, wordIndex);
 			}
 			while (++wordIndex <= lastWordIndex) {
 				word = set.words[wordIndex];
-				if (word != 0) {
+				if (word != 0L) {
 					return nextLiveBit(word, wordIndex);
 				}
 			}
@@ -451,11 +451,11 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 			}
 			int wordIndex = BitSet.wordIndex(position);
 			int lastWordIndex = BitSet.wordIndex(end - 1);
-			int word = ~set.words[wordIndex] & (BitSet.MASK << position);
+			long word = ~set.words[wordIndex] & (BitSet.MASK << position);
 			do {
 				action.accept(position);
-				word ^= Integer.lowestOneBit(word);
-				while (word == 0) {
+				word ^= Long.lowestOneBit(word);
+				while (word == 0L) {
 					if (wordIndex == lastWordIndex) {
 						position = end;
 						return;
@@ -482,13 +482,13 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 			if (index >= end) {
 				return end;
 			}
-			int word = ~set.words[wordIndex] & (BitSet.MASK << index);
-			if (word != 0) {
+			long word = ~set.words[wordIndex] & (BitSet.MASK << index);
+			if (word != 0L) {
 				return nextLiveBit(word, wordIndex);
 			}
 			while (++wordIndex <= lastWordIndex) {
 				word = ~set.words[wordIndex];
-				if (word != 0) {
+				if (word != 0L) {
 					return nextLiveBit(word, wordIndex);
 				}
 			}

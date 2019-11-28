@@ -5,8 +5,8 @@ import java.util.function.IntConsumer;
 /**
  * Implementation of {@link BitSpliterator} that is creates a stream of indices
  * that represents which bits will be <i>live</i> after performing a
- * {@link #bitwiseFunction(int, int)} between the words of 2 {@link BitSet}s at
- * the same word index. The three traditional operations: {@link And},
+ * {@link #bitwiseFunction(long, long)} between the words of 2 {@link BitSet}s
+ * at the same word index. The three traditional operations: {@link And},
  * {@link Or}, and {@link XOr} are provided by this class. The two
  * {@link BitSet}s being compared must be of equal size.
  * 
@@ -55,14 +55,14 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 	 * {@link BitwiseSpliterator} between the specified words from {@link #set1} and
 	 * {@link #set2}.
 	 * 
-	 * @param word1 the integer word from {@link #set1} to be operated against
+	 * @param word1 the long word from {@link #set1} to be operated against
 	 *              <b>word2</b>.
-	 * @param word2 the integer word from {@link #set2} to be operated against
+	 * @param word2 the long word from {@link #set2} to be operated against
 	 *              <b>word1</b>.
 	 * @return the result of the bitwise operation between <b>word1</b> and
 	 *         <b>word2</b>
 	 */
-	protected abstract int bitwiseFunction(int word1, int word2);
+	protected abstract long bitwiseFunction(long word1, long word2);
 
 	@Override
 	public long getExactSizeIfKnown() {
@@ -71,17 +71,17 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 		}
 		int positionWord = BitSet.wordIndex(position);
 		int endWord = BitSet.wordIndex(end - 1);
-		int positionMask = BitSet.MASK << position;
-		int endMask = BitSet.MASK >>> -end;
+		long positionMask = BitSet.MASK << position;
+		long endMask = BitSet.MASK >>> -end;
 		int sum = 0;
 		if (positionWord == endWord) {
-			sum += Integer.bitCount(bitwiseWord(positionWord) & positionMask & endMask);
+			sum += Long.bitCount(bitwiseWord(positionWord) & positionMask & endMask);
 		} else {
-			sum += Integer.bitCount(bitwiseWord(positionWord) & positionMask);
+			sum += Long.bitCount(bitwiseWord(positionWord) & positionMask);
 			for (int i = positionWord + 1; i < endWord; i++) {
-				sum += Integer.bitCount(bitwiseWord(i));
+				sum += Long.bitCount(bitwiseWord(i));
 			}
-			sum += Integer.bitCount(bitwiseWord(endWord) & endMask);
+			sum += Long.bitCount(bitwiseWord(endWord) & endMask);
 		}
 		return sum;
 	}
@@ -105,11 +105,11 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 		}
 		int wordIndex = BitSet.wordIndex(position);
 		int lastWordIndex = BitSet.wordIndex(end - 1);
-		int word = bitwiseWord(wordIndex) & (BitSet.MASK << position);
+		long word = bitwiseWord(wordIndex) & (BitSet.MASK << position);
 		do {
 			action.accept(position);
-			word ^= Integer.lowestOneBit(word);
-			while (word == 0) {
+			word ^= Long.lowestOneBit(word);
+			while (word == 0L) {
 				if (wordIndex == lastWordIndex) {
 					position = end;
 					return;
@@ -136,13 +136,13 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 		if (index >= end) {
 			return end;
 		}
-		int word = bitwiseWord(wordIndex) & (BitSet.MASK << index);
-		if (word != 0) {
+		long word = bitwiseWord(wordIndex) & (BitSet.MASK << index);
+		if (word != 0L) {
 			return nextLiveBit(word, wordIndex);
 		}
 		while (++wordIndex <= lastWordIndex) {
 			word = bitwiseWord(wordIndex);
-			if (word != 0) {
+			if (word != 0L) {
 				return nextLiveBit(word, wordIndex);
 			}
 		}
@@ -150,15 +150,15 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 	}
 
 	/**
-	 * Calculates the result of {@link #bitwiseFunction(int, int)} on the words at
+	 * Calculates the result of {@link #bitwiseFunction(long, long)} on the words at
 	 * the specified <b>wordIndex</b>.
 	 * 
 	 * @param wordIndex the word index in {@link #set1} and {@link #set2} to
 	 *                  process.
-	 * @return the result of {@link #bitwiseFunction(int, int)} on the words at the
-	 *         specified word index.
+	 * @return the result of {@link #bitwiseFunction(long, long)} on the words at
+	 *         the specified word index.
 	 */
-	private final int bitwiseWord(int wordIndex) {
+	private final long bitwiseWord(int wordIndex) {
 		return bitwiseFunction(set1.words[wordIndex], set2.words[wordIndex]);
 	}
 
@@ -209,7 +209,7 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 		}
 
 		@Override
-		protected int bitwiseFunction(int word1, int word2) {
+		protected long bitwiseFunction(long word1, long word2) {
 			return word1 & word2;
 		}
 
@@ -220,7 +220,7 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 	 * bits that result in the <i>live</i> state after the {@code OR} operation,
 	 * splitting at appropriate indices to manipulate a {@link BitSet} in parallel.
 	 * Words are cached as they are encountered, so any modifications after
-	 * iteration begins may not be included.
+	 * iteration begins are not accounted for.
 	 * 
 	 * @see BitwiseSpliterator
 	 */
@@ -262,7 +262,7 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 		}
 
 		@Override
-		protected int bitwiseFunction(int word1, int word2) {
+		protected long bitwiseFunction(long word1, long word2) {
 			return word1 | word2;
 		}
 
@@ -315,7 +315,7 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 		}
 
 		@Override
-		protected int bitwiseFunction(int word1, int word2) {
+		protected long bitwiseFunction(long word1, long word2) {
 			return word1 ^ word2;
 		}
 

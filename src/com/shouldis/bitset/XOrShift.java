@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class XOrShift {
 
 	/**
-	 * Magic number value used to deterministically add entropy to seeds.
+	 * Magic number value used to generate and randomize seeds.
 	 */
 	private static final long MAGIC_NUMBER = 0xA33AA9B7ACAB7991L;
 
@@ -113,7 +113,7 @@ public class XOrShift {
 	 * @return the next randomly generated integer.
 	 */
 	private final int nextRawInt() {
-		return (int) (nextRawLong() >>> BitSet.WORD_SIZE);
+		return (int) (nextRawLong() >>> Integer.SIZE);
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class XOrShift {
 	 * @return the next randomly generated integer.
 	 */
 	public final int nextPositiveInt() {
-		return (int) (nextRawLong() >>> BitSet.WORD_SIZE + 1);
+		return (int) (nextRawLong() >>> Integer.SIZE + 1);
 	}
 
 	/**
@@ -195,7 +195,7 @@ public class XOrShift {
 
 	/**
 	 * Generates a {@link BitSet} with the specified <b>size</b>, with each word
-	 * filled with {@link #nextInt()}.
+	 * filled with {@link #nextLong()}.
 	 * 
 	 * @param size the size of generated {@link BitSet}.
 	 * @return a randomly generated {@link BitSet} with the specified <b>size</b>.
@@ -203,14 +203,14 @@ public class XOrShift {
 	public final BitSet nextBitSet(int size) {
 		BitSet set = new BitSet(size);
 		for (int i = 0; i < set.words.length; i++) {
-			set.words[i] = nextInt();
+			set.words[i] = nextLong();
 		}
 		return set;
 	}
 
 	/**
 	 * Generates a {@link ConcurrentBitSet} with the specified <b>size</b>, with
-	 * each word filled with {@link #nextInt()}.
+	 * each word filled with {@link #nextLong()}.
 	 * <p>
 	 * This is more efficient than initializing a {@link ConcurrentBitSet} with
 	 * {@link ConcurrentBitSet#randomize(XOrShift)}.
@@ -222,7 +222,7 @@ public class XOrShift {
 	public final ConcurrentBitSet nextConcurrentBitSet(int size) {
 		ConcurrentBitSet set = new ConcurrentBitSet(size);
 		for (int i = 0; i < set.words.length; i++) {
-			set.words[i] = nextInt();
+			set.words[i] = nextLong();
 		}
 		return set;
 	}

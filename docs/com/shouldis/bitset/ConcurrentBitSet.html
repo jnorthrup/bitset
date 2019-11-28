@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -140,7 +140,7 @@ extends <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></p
 <td class="colFirst"><code>private static java.lang.invoke.VarHandle</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#HANDLE">HANDLE</a></span></code></th>
 <td class="colLast">
-<div class="block">A handle on the integer array methods for direct atomic operations.</div>
+<div class="block">A handle on the long array methods for direct, atomic operations.</div>
 </td>
 </tr>
 </tbody>
@@ -151,7 +151,7 @@ extends <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></p
 <!--   -->
 </a>
 <h3>Fields inherited from class&nbsp;com.shouldis.bitset.<a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></h3>
-<code><a href="BitSet.html#LOG_2_SIZE">LOG_2_SIZE</a>, <a href="BitSet.html#MASK">MASK</a>, <a href="BitSet.html#MOD_SIZE_MASK">MOD_SIZE_MASK</a>, <a href="BitSet.html#size">size</a>, <a href="BitSet.html#WORD_SIZE">WORD_SIZE</a>, <a href="BitSet.html#words">words</a></code></li>
+<code><a href="BitSet.html#LOG_2_SIZE">LOG_2_SIZE</a>, <a href="BitSet.html#MASK">MASK</a>, <a href="BitSet.html#MOD_SIZE_MASK">MOD_SIZE_MASK</a>, <a href="BitSet.html#size">size</a>, <a href="BitSet.html#words">words</a></code></li>
 </ul>
 </li>
 </ul>
@@ -225,21 +225,21 @@ extends <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></p
 </tr>
 <tr class="altColor" id="i2">
 <td class="colFirst"><code>private void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#atomicAnd(int,int)">atomicAnd</a></span>&#8203;(int&nbsp;wordIndex,
-         int&nbsp;mask)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#atomicAnd(int,long)">atomicAnd</a></span>&#8203;(int&nbsp;wordIndex,
+         long&nbsp;mask)</code></th>
 <td class="colLast">
-<div class="block">Atomically changes the integer word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a>
- to the result of an <code>AND</code> operation between the current value at the
+<div class="block">Atomically changes the long word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> to
+ the result of an <code>AND</code> operation between the current value at the
  specified <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> and the specified
  <b>mask</b>.</div>
 </td>
 </tr>
 <tr class="rowColor" id="i3">
 <td class="colFirst"><code>private void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#atomicOr(int,int)">atomicOr</a></span>&#8203;(int&nbsp;wordIndex,
-        int&nbsp;mask)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#atomicOr(int,long)">atomicOr</a></span>&#8203;(int&nbsp;wordIndex,
+        long&nbsp;mask)</code></th>
 <td class="colLast">
-<div class="block">Atomically changes the integer word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a>
+<div class="block">Atomically changes the long word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a>
  to the result of an <code>OR</code> operation between the current value at the
  specified <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> and the specified
  <b>mask</b>.</div>
@@ -247,10 +247,10 @@ extends <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></p
 </tr>
 <tr class="altColor" id="i4">
 <td class="colFirst"><code>private void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#atomicXOr(int,int)">atomicXOr</a></span>&#8203;(int&nbsp;wordIndex,
-         int&nbsp;mask)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#atomicXOr(int,long)">atomicXOr</a></span>&#8203;(int&nbsp;wordIndex,
+         long&nbsp;mask)</code></th>
 <td class="colLast">
-<div class="block">Atomically changes the integer word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a>
+<div class="block">Atomically changes the long word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a>
  to the result of an <code>XOR</code> operation between the current value at the
  specified <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> and the specified
  <b>mask</b>.</div>
@@ -338,6 +338,12 @@ extends <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></p
 </td>
 </tr>
 <tr class="rowColor" id="i15">
+<td class="colFirst"><code>protected void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setWord(int,long)">setWord</a></span>&#8203;(int&nbsp;wordIndex,
+       long&nbsp;word)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor" id="i16">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toggle(int)">toggle</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
@@ -345,7 +351,7 @@ extends <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></p
  through an <code>XOR</code> operation.</div>
 </td>
 </tr>
-<tr class="altColor" id="i16">
+<tr class="rowColor" id="i17">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toggle(int,int)">toggle</a></span>&#8203;(int&nbsp;from,
       int&nbsp;to)</code></th>
@@ -354,7 +360,7 @@ extends <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></p
  opposites through an <code>XOR</code> operation.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i17">
+<tr class="altColor" id="i18">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#xor(com.shouldis.bitset.BitSet)">xor</a></span>&#8203;(<a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
 <td class="colLast">
@@ -403,7 +409,7 @@ extends <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></p
 <li class="blockList">
 <h4>HANDLE</h4>
 <pre>private static final&nbsp;java.lang.invoke.VarHandle HANDLE</pre>
-<div class="block">A handle on the integer array methods for direct atomic operations.</div>
+<div class="block">A handle on the long array methods for direct, atomic operations.</div>
 </li>
 </ul>
 </li>
@@ -746,16 +752,26 @@ extends <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></p
 </dl>
 </li>
 </ul>
-<a id="atomicAnd(int,int)">
+<a id="setWord(int,long)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setWord</h4>
+<pre class="methodSignature">protected&nbsp;void&nbsp;setWord&#8203;(int&nbsp;wordIndex,
+                       long&nbsp;word)</pre>
+</li>
+</ul>
+<a id="atomicAnd(int,long)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>atomicAnd</h4>
 <pre class="methodSignature">private&nbsp;void&nbsp;atomicAnd&#8203;(int&nbsp;wordIndex,
-                       int&nbsp;mask)</pre>
-<div class="block">Atomically changes the integer word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a>
- to the result of an <code>AND</code> operation between the current value at the
+                       long&nbsp;mask)</pre>
+<div class="block">Atomically changes the long word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> to
+ the result of an <code>AND</code> operation between the current value at the
  specified <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> and the specified
  <b>mask</b>. <br>
  <code>words[wordIndex] &amp;= mask;</code></div>
@@ -768,15 +784,15 @@ extends <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></p
 </dl>
 </li>
 </ul>
-<a id="atomicOr(int,int)">
+<a id="atomicOr(int,long)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>atomicOr</h4>
 <pre class="methodSignature">private&nbsp;void&nbsp;atomicOr&#8203;(int&nbsp;wordIndex,
-                      int&nbsp;mask)</pre>
-<div class="block">Atomically changes the integer word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a>
+                      long&nbsp;mask)</pre>
+<div class="block">Atomically changes the long word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a>
  to the result of an <code>OR</code> operation between the current value at the
  specified <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> and the specified
  <b>mask</b>. <br>
@@ -790,15 +806,15 @@ extends <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></p
 </dl>
 </li>
 </ul>
-<a id="atomicXOr(int,int)">
+<a id="atomicXOr(int,long)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>atomicXOr</h4>
 <pre class="methodSignature">private&nbsp;void&nbsp;atomicXOr&#8203;(int&nbsp;wordIndex,
-                       int&nbsp;mask)</pre>
-<div class="block">Atomically changes the integer word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a>
+                       long&nbsp;mask)</pre>
+<div class="block">Atomically changes the long word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a>
  to the result of an <code>XOR</code> operation between the current value at the
  specified <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> and the specified
  <b>mask</b>. <br>

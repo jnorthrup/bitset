@@ -203,7 +203,7 @@ public class DensityXOrShift extends XOrShift {
 
 	@Override
 	public final int nextInt() {
-		return (int) (nextLong() >>> BitSet.WORD_SIZE);
+		return (int) (nextLong() >>> Integer.SIZE);
 	}
 
 	@Override

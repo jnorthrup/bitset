@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.stream.IntStream;
 
 /**
- * Represents a fixed number of bits stored within an internal integer array,
+ * Represents a fixed number of bits stored within an internal long array,
  * mapping positive integer indices to individual bits and facilitating the
  * manipulation of those individual bits or ranges of bits, as well as
  * retrieving their boolean values. Using this memory structure, this class
  * allows grouping of multiple bitwise operations into fewer operations on the
- * underlying integer words.
+ * underlying long words.
  * <p>
  * The bits represented by this {@link BitSet} will either be in the <i>live</i>
  * state ({@code 1, true}), or the <i>dead</i> state ({@code 0, false}).
@@ -20,12 +20,12 @@ import java.util.stream.IntStream;
  * {@link ConcurrentBitSet} may be used to make all operations thread-safe,
  * requiring no external synchronization at the cost of performance.
  * <p>
- * If {@link #size} isn't a multiple of {@link #WORD_SIZE}, there will be
- * "hanging" bits that exist on the end of the last integer within
- * {@link #words}, which are not accounted for by {@link #size}. No exception
- * will be thrown when these bit indices are manipulated or read, and in
- * aggregating functions ({@link #population()}, {@link #hashCode()}, etc.), any
- * hanging bits will have their effect on those functions made consistent by
+ * If {@link #size} isn't a multiple of 64, there will be "hanging" bits that
+ * exist on the end of the last long within {@link #words}, which are not
+ * accounted for by {@link #size}. No exception will be thrown when these bit
+ * indices are manipulated or read, and in aggregating functions
+ * ({@link #population()}, {@link #hashCode()}, etc.), any hanging bits will
+ * have their effect on those functions made consistent by
  * {@link #cleanLastWord()}.
  * <p>
  * Otherwise, accessing a negative index, or any index greater than or equal to
@@ -37,28 +37,22 @@ import java.util.stream.IntStream;
 public class BitSet {
 
 	/**
-	 * Number of bits in each integer word (32).
-	 */
-	public static final int WORD_SIZE = Integer.SIZE;
-
-	/**
 	 * Mask used to compute potentially faster modulo operations. {@code n % m} is
 	 * equivalent to {@code n & (m -1)} if n is positive, and m = 2<sup>k</sup>.
 	 */
-	protected static final int MOD_SIZE_MASK = WORD_SIZE - 1;
+	protected static final int MOD_SIZE_MASK = Long.SIZE - 1;
 
 	/**
-	 * log<sub>2</sub>({@link #WORD_SIZE}). Used to relate bit indices to word
-	 * indices through bit-shifting as an alternative to division or multiplication
-	 * by {@link #WORD_SIZE}.
+	 * log<sub>2</sub>64. Used to relate bit indices to word indices through
+	 * bit-shifting as an alternative to division or multiplication by 64.
 	 */
-	protected static final int LOG_2_SIZE = 5;
+	protected static final int LOG_2_SIZE = 6;
 
 	/**
-	 * Integer mask with all bits set. Used to isolate portions of words.
-	 * (0xFFFFFFFF)
+	 * Long mask with all bits set. Used to isolate portions of words.
+	 * (0xFFFFFFFFFFFFFFFF)
 	 */
-	protected static final int MASK = -1;
+	protected static final long MASK = -1L;
 
 	/**
 	 * The number of indices accessible by this {@link BitSet}. Indices <b>0</b>
@@ -67,10 +61,10 @@ public class BitSet {
 	public final int size;
 
 	/**
-	 * Array holding the integer words whose bits are manipulated. Has length
-	 * ceiling({@link #size} / {@link #WORD_SIZE}).
+	 * Array holding the long words whose bits are manipulated. Has length
+	 * ceiling({@link #size} / 64).
 	 */
-	protected final int[] words;
+	protected final long[] words;
 
 	/**
 	 * Creates a {@link BitSet} with the specified number of bits indices. Indices 0
@@ -89,7 +83,7 @@ public class BitSet {
 		if (wordCount < 0) {
 			throw new IllegalArgumentException(Integer.toString(size));
 		}
-		words = new int[wordCount];
+		words = new long[wordCount];
 	}
 
 	/**
@@ -117,8 +111,8 @@ public class BitSet {
 	 */
 	public boolean add(int index) {
 		int wordIndex = wordIndex(index);
-		int mask = bitMask(index);
-		if ((words[wordIndex] & mask) != 0) {
+		long mask = bitMask(index);
+		if ((words[wordIndex] & mask) != 0L) {
 			return false;
 		}
 		words[wordIndex] |= mask;
@@ -137,8 +131,8 @@ public class BitSet {
 	 */
 	public boolean remove(int index) {
 		int wordIndex = wordIndex(index);
-		int mask = bitMask(index);
-		if ((words[wordIndex] & mask) == 0) {
+		long mask = bitMask(index);
+		if ((words[wordIndex] & mask) == 0L) {
 			return false;
 		}
 		words[wordIndex] &= ~mask;
@@ -150,13 +144,14 @@ public class BitSet {
 	 * {@code true} if the bit is in the <i>live</i> state, and {@code false} if it
 	 * is not.
 	 * 
-	 * @param index the bit to examine.
-	 * @return the state of the specified bit.
+	 * @param index the index of the bit to examine.
+	 * @return whether the bit at the specified <b>index</b> is in the <i>live</i>
+	 *         state.
 	 * @throws ArrayIndexOutOfBoundsException if <b>index</b> is negative or greater
 	 *                                        than or equal to {@link #size}.
 	 */
 	public final boolean get(int index) {
-		return (words[wordIndex(index)] & bitMask(index)) != 0;
+		return (words[wordIndex(index)] & bitMask(index)) != 0L;
 	}
 
 	/**
@@ -175,17 +170,17 @@ public class BitSet {
 		}
 		int start = wordIndex(from);
 		int end = wordIndex(to - 1);
-		int startMask = MASK << from;
-		int endMask = MASK >>> -to;
+		long startMask = MASK << from;
+		long endMask = MASK >>> -to;
 		int sum = 0;
 		if (start == end) {
-			sum += Integer.bitCount(words[start] & startMask & endMask);
+			sum += Long.bitCount(words[start] & startMask & endMask);
 		} else {
-			sum += Integer.bitCount(words[start] & startMask);
+			sum += Long.bitCount(words[start] & startMask);
 			for (int i = start + 1; i < end; i++) {
-				sum += Integer.bitCount(words[i]);
+				sum += Long.bitCount(words[i]);
 			}
-			sum += Integer.bitCount(words[end] & endMask);
+			sum += Long.bitCount(words[end] & endMask);
 		}
 		return sum;
 	}
@@ -195,8 +190,9 @@ public class BitSet {
 	 * state.
 	 * 
 	 * @param index the index of the bit to change to the <i>live</i> state.
-	 * @throws ArrayIndexOutOfBoundsException if <b>index</b> is negative or greater
-	 *                                        than or equal to {@link #size}.
+	 * @throws ArrayIndexOutOfBoundsException if <b>index</b> is negative, or
+	 *                                        greater than or equal to
+	 *                                        {@link #size}.
 	 */
 	public void set(int index) {
 		words[wordIndex(index)] |= bitMask(index);
@@ -212,7 +208,7 @@ public class BitSet {
 	 *             <i>live</i> state.
 	 * @throws ArrayIndexOutOfBoundsException if <b>from</b> or <b>to</b> are
 	 *                                        outside of the range 0 to
-	 *                                        {@link #size},
+	 *                                        {@link #size}.
 	 */
 	public void set(int from, int to) {
 		if (from >= to) {
@@ -220,8 +216,8 @@ public class BitSet {
 		}
 		int start = wordIndex(from);
 		int end = wordIndex(to - 1);
-		int startMask = MASK << from;
-		int endMask = MASK >>> -to;
+		long startMask = MASK << from;
+		long endMask = MASK >>> -to;
 		if (start == end) {
 			words[start] |= startMask & endMask;
 		} else {
@@ -253,7 +249,7 @@ public class BitSet {
 	 * @param to   (exclusive) the end of the range of bits to be cleared.
 	 * @throws ArrayIndexOutOfBoundsException if <b>from</b> or <b>to</b> are
 	 *                                        outside of the range 0 to
-	 *                                        {@link #size},
+	 *                                        {@link #size}.
 	 */
 	public void clear(int from, int to) {
 		if (from >= to) {
@@ -261,14 +257,14 @@ public class BitSet {
 		}
 		int start = wordIndex(from);
 		int end = wordIndex(to - 1);
-		int startMask = MASK << from;
-		int endMask = MASK >>> -to;
+		long startMask = MASK << from;
+		long endMask = MASK >>> -to;
 		if (start == end) {
 			words[start] &= ~(startMask & endMask);
 		} else {
 			words[start] &= ~startMask;
 			for (int i = start + 1; i < end; i++) {
-				words[i] = 0;
+				words[i] = 0L;
 			}
 			words[end] &= ~endMask;
 		}
@@ -294,7 +290,7 @@ public class BitSet {
 	 * @param to   (exclusive) the end of the range of bits to be toggled.
 	 * @throws ArrayIndexOutOfBoundsException if <b>from</b> or <b>to</b> are
 	 *                                        outside of the range 0 to
-	 *                                        {@link #size},
+	 *                                        {@link #size}.
 	 */
 	public void toggle(int from, int to) {
 		if (from >= to) {
@@ -302,8 +298,8 @@ public class BitSet {
 		}
 		int start = wordIndex(from);
 		int end = wordIndex(to - 1);
-		int startMask = MASK << from;
-		int endMask = MASK >>> -to;
+		long startMask = MASK << from;
+		long endMask = MASK >>> -to;
 		if (start == end) {
 			words[start] ^= startMask & endMask;
 		} else {
@@ -332,16 +328,16 @@ public class BitSet {
 		}
 		int start = wordIndex(from);
 		int end = wordIndex(to - 1);
-		int startMask = MASK << from;
-		int endMask = MASK >>> -to;
+		long startMask = MASK << from;
+		long endMask = MASK >>> -to;
 		if (start == end) {
-			words[start] ^= startMask & endMask & random.nextInt();
+			words[start] ^= startMask & endMask & random.nextLong();
 		} else {
-			words[start] ^= startMask & random.nextInt();
+			words[start] ^= startMask & random.nextLong();
 			for (int i = start + 1; i < end; i++) {
-				words[i] = random.nextInt();
+				words[i] = random.nextLong();
 			}
-			words[end] ^= endMask & random.nextInt();
+			words[end] ^= endMask & random.nextLong();
 		}
 	}
 
@@ -353,7 +349,7 @@ public class BitSet {
 	 */
 	public void randomize(XOrShift random) {
 		for (int i = 0; i < words.length; i++) {
-			words[i] ^= random.nextInt();
+			words[i] ^= random.nextLong();
 		}
 	}
 
@@ -371,13 +367,13 @@ public class BitSet {
 		if (wordIndex >= words.length || wordIndex < 0) {
 			return -1;
 		}
-		int word = words[wordIndex] & (MASK << index);
-		if (word != 0) {
+		long word = words[wordIndex] & (MASK << index);
+		if (word != 0L) {
 			return nextLiveBit(word, wordIndex);
 		}
 		while (++wordIndex < words.length) {
 			word = words[wordIndex];
-			if (word != 0) {
+			if (word != 0L) {
 				return nextLiveBit(word, wordIndex);
 			}
 		}
@@ -398,13 +394,13 @@ public class BitSet {
 		if (wordIndex >= words.length || wordIndex < 0) {
 			return -1;
 		}
-		int word = ~words[wordIndex] & (MASK << index);
-		if (word != 0) {
+		long word = ~words[wordIndex] & (MASK << index);
+		if (word != 0L) {
 			return nextLiveBit(word, wordIndex);
 		}
 		while (++wordIndex < words.length) {
 			word = ~words[wordIndex];
-			if (word != 0) {
+			if (word != 0L) {
 				return nextLiveBit(word, wordIndex);
 			}
 		}
@@ -423,13 +419,13 @@ public class BitSet {
 		if (wordIndex >= words.length || wordIndex < 0) {
 			return -1;
 		}
-		int word = words[wordIndex] & (MASK >>> -(index + 1));
-		if (word != 0) {
+		long word = words[wordIndex] & (MASK >>> -(index + 1));
+		if (word != 0L) {
 			return lastLiveBit(word, wordIndex);
 		}
 		while (wordIndex-- > 0) {
 			word = words[wordIndex];
-			if (word != 0) {
+			if (word != 0L) {
 				return lastLiveBit(word, wordIndex);
 			}
 		}
@@ -448,13 +444,13 @@ public class BitSet {
 		if (wordIndex >= words.length || wordIndex < 0) {
 			return -1;
 		}
-		int word = ~words[wordIndex] & (MASK >>> -(index + 1));
-		if (word != 0) {
+		long word = ~words[wordIndex] & (MASK >>> -(index + 1));
+		if (word != 0L) {
 			return lastLiveBit(word, wordIndex);
 		}
 		while (wordIndex-- > 0) {
 			word = ~words[wordIndex];
-			if (word != 0) {
+			if (word != 0L) {
 				return lastLiveBit(word, wordIndex);
 			}
 		}
@@ -581,7 +577,7 @@ public class BitSet {
 	 */
 	public final void empty() {
 		for (int i = 0; i < words.length; i++) {
-			words[i] = 0;
+			words[i] = 0L;
 		}
 	}
 
@@ -604,7 +600,7 @@ public class BitSet {
 		int population = 0;
 		cleanLastWord();
 		for (int i = 0; i < words.length; i++) {
-			population += Integer.bitCount(words[i]);
+			population += Long.bitCount(words[i]);
 		}
 		return population;
 	}
@@ -641,7 +637,7 @@ public class BitSet {
 	 * @return the unique identifying code.
 	 */
 	public final long identifier() {
-		return ((long) hashCode() << WORD_SIZE) + population();
+		return ((long) hashCode() << Long.SIZE) + population();
 	}
 
 	/**
@@ -657,18 +653,18 @@ public class BitSet {
 
 	/**
 	 * Calculates a mask to represent the bit at which a specific index will be
-	 * stored within an integer word.
+	 * stored within a long word.
 	 * 
 	 * @param index the index to represent as a bit.
 	 * @return the bit that represents the position of an index within a word.
 	 */
-	protected static final int bitMask(int index) {
-		return 1 << index;
+	protected static final long bitMask(int index) {
+		return 1L << index;
 	}
 
 	/**
-	 * Equivalent to {@code index % WORD_SIZE} for positive numbers, and modulo of
-	 * positive numbers faster.
+	 * Equivalent to {@code index % 64} for positive numbers, and modulo of positive
+	 * numbers faster.
 	 * 
 	 * @param index the index to perform the modulo operation upon.
 	 * @return the result of the modulo operation.
@@ -703,32 +699,32 @@ public class BitSet {
 	/**
 	 * Calculates the index of the next <i>live</i> bit within a specified
 	 * <b>word</b> that is at the specified <b>wordIndex</b> within {@link #words}.
-	 * This index will represent its bit index in the underlying integer array as
-	 * well as the offset within the integer word.
+	 * This index will represent its bit index in the underlying long array as well
+	 * as the offset within the long <b>word</b>.
 	 * 
-	 * @param word      the integer word to be checked for a <i>live</i> bit.
+	 * @param word      the long word to be checked for a <i>live</i> bit.
 	 * @param wordIndex the index of the word within {@link #words}.
 	 * @return the index of the next <i>live</i> bit within the specified word, or
 	 *         -1 if none is found.
 	 */
-	private int nextLiveBit(int word, int wordIndex) {
-		int index = wordStart(wordIndex) + Integer.numberOfTrailingZeros(word);
+	private int nextLiveBit(long word, int wordIndex) {
+		int index = wordStart(wordIndex) + Long.numberOfTrailingZeros(word);
 		return index < size ? index : -1;
 	}
 
 	/**
 	 * Calculates the index of the recent-most <i>live</i> bit within a specified
 	 * <b>word</b> that is at the specified <b>wordIndex</b> within {@link #words}.
-	 * This index will represent its bit index in the underlying integer array as
-	 * well as the offset within the integer word.
+	 * This index will represent its bit index in the underlying long array as well
+	 * as the offset within the long <b>word</b>.
 	 * 
-	 * @param word      the integer word to be checked for a <i>live</i> bit.
+	 * @param word      the long word to be checked for a <i>live</i> bit.
 	 * @param wordIndex the index of the word within {@link #words}.
 	 * @return the index of the recent-most <i>live</i> bit within the specified
 	 *         word.
 	 */
-	private int lastLiveBit(int word, int wordIndex) {
-		int index = ((wordIndex + 1) << LOG_2_SIZE) - Integer.numberOfLeadingZeros(word) - 1;
+	private int lastLiveBit(long word, int wordIndex) {
+		int index = ((wordIndex + 1) << LOG_2_SIZE) - Long.numberOfLeadingZeros(word) - 1;
 		return index < size ? index : -1;
 	}
 

@@ -101,12 +101,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">BitSet</span>
 extends java.lang.Object</pre>
-<div class="block">Represents a fixed number of bits stored within an internal integer array,
+<div class="block">Represents a fixed number of bits stored within an internal long array,
  mapping positive integer indices to individual bits and facilitating the
  manipulation of those individual bits or ranges of bits, as well as
  retrieving their boolean values. Using this memory structure, this class
  allows grouping of multiple bitwise operations into fewer operations on the
- underlying integer words.
+ underlying long words.
  <p>
  The bits represented by this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> will either be in the <i>live</i>
  state (<code>1, true</code>), or the <i>dead</i> state (<code>0, false</code>).
@@ -117,12 +117,12 @@ extends java.lang.Object</pre>
  <a href="ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> may be used to make all operations thread-safe,
  requiring no external synchronization at the cost of performance.
  <p>
- If <a href="#size"><code>size</code></a> isn't a multiple of <a href="#WORD_SIZE"><code>WORD_SIZE</code></a>, there will be
- "hanging" bits that exist on the end of the last integer within
- <a href="#words"><code>words</code></a>, which are not accounted for by <a href="#size"><code>size</code></a>. No exception
- will be thrown when these bit indices are manipulated or read, and in
- aggregating functions (<a href="#population()"><code>population()</code></a>, <a href="#hashCode()"><code>hashCode()</code></a>, etc.), any
- hanging bits will have their effect on those functions made consistent by
+ If <a href="#size"><code>size</code></a> isn't a multiple of 64, there will be "hanging" bits that
+ exist on the end of the last long within <a href="#words"><code>words</code></a>, which are not
+ accounted for by <a href="#size"><code>size</code></a>. No exception will be thrown when these bit
+ indices are manipulated or read, and in aggregating functions
+ (<a href="#population()"><code>population()</code></a>, <a href="#hashCode()"><code>hashCode()</code></a>, etc.), any hanging bits will
+ have their effect on those functions made consistent by
  <a href="#cleanLastWord()"><code>cleanLastWord()</code></a>.
  <p>
  Otherwise, accessing a negative index, or any index greater than or equal to
@@ -159,14 +159,14 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>protected static int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#LOG_2_SIZE">LOG_2_SIZE</a></span></code></th>
 <td class="colLast">
-<div class="block">log<sub>2</sub>(<a href="#WORD_SIZE"><code>WORD_SIZE</code></a>).</div>
+<div class="block">log<sub>2</sub>64.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected static int</code></td>
+<td class="colFirst"><code>protected static long</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#MASK">MASK</a></span></code></th>
 <td class="colLast">
-<div class="block">Integer mask with all bits set.</div>
+<div class="block">Long mask with all bits set.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -184,17 +184,10 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>static int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#WORD_SIZE">WORD_SIZE</a></span></code></th>
-<td class="colLast">
-<div class="block">Number of bits in each integer word (32).</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected int[]</code></td>
+<td class="colFirst"><code>protected long[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#words">words</a></span></code></th>
 <td class="colLast">
-<div class="block">Array holding the integer words whose bits are manipulated.</div>
+<div class="block">Array holding the long words whose bits are manipulated.</div>
 </td>
 </tr>
 </tbody>
@@ -271,11 +264,11 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="altColor" id="i2">
-<td class="colFirst"><code>protected static int</code></td>
+<td class="colFirst"><code>protected static long</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#bitMask(int)">bitMask</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
 <div class="block">Calculates a mask to represent the bit at which a specific index will be
- stored within an integer word.</div>
+ stored within a long word.</div>
 </td>
 </tr>
 <tr class="rowColor" id="i3">
@@ -410,7 +403,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor" id="i20">
 <td class="colFirst"><code>private int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#lastLiveBit(int,int)">lastLiveBit</a></span>&#8203;(int&nbsp;word,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#lastLiveBit(long,int)">lastLiveBit</a></span>&#8203;(long&nbsp;word,
            int&nbsp;wordIndex)</code></th>
 <td class="colLast">
 <div class="block">Calculates the index of the recent-most <i>live</i> bit within a specified
@@ -430,8 +423,8 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>protected static int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#modSize(int)">modSize</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
-<div class="block">Equivalent to <code>index % WORD_SIZE</code> for positive numbers, and modulo of
- positive numbers faster.</div>
+<div class="block">Equivalent to <code>index % 64</code> for positive numbers, and modulo of positive
+ numbers faster.</div>
 </td>
 </tr>
 <tr class="rowColor" id="i23">
@@ -452,7 +445,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor" id="i25">
 <td class="colFirst"><code>private int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextLiveBit(int,int)">nextLiveBit</a></span>&#8203;(int&nbsp;word,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextLiveBit(long,int)">nextLiveBit</a></span>&#8203;(long&nbsp;word,
            int&nbsp;wordIndex)</code></th>
 <td class="colLast">
 <div class="block">Calculates the index of the next <i>live</i> bit within a specified
@@ -602,20 +595,6 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Field Detail</h3>
-<a id="WORD_SIZE">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>WORD_SIZE</h4>
-<pre>public static final&nbsp;int WORD_SIZE</pre>
-<div class="block">Number of bits in each integer word (32).</div>
-<dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../constant-values.html#com.shouldis.bitset.BitSet.WORD_SIZE">Constant Field Values</a></dd>
-</dl>
-</li>
-</ul>
 <a id="MOD_SIZE_MASK">
 <!--   -->
 </a>
@@ -638,9 +617,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>LOG_2_SIZE</h4>
 <pre>protected static final&nbsp;int LOG_2_SIZE</pre>
-<div class="block">log<sub>2</sub>(<a href="#WORD_SIZE"><code>WORD_SIZE</code></a>). Used to relate bit indices to word
- indices through bit-shifting as an alternative to division or multiplication
- by <a href="#WORD_SIZE"><code>WORD_SIZE</code></a>.</div>
+<div class="block">log<sub>2</sub>64. Used to relate bit indices to word indices through
+ bit-shifting as an alternative to division or multiplication by 64.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../constant-values.html#com.shouldis.bitset.BitSet.LOG_2_SIZE">Constant Field Values</a></dd>
@@ -653,9 +631,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>MASK</h4>
-<pre>protected static final&nbsp;int MASK</pre>
-<div class="block">Integer mask with all bits set. Used to isolate portions of words.
- (0xFFFFFFFF)</div>
+<pre>protected static final&nbsp;long MASK</pre>
+<div class="block">Long mask with all bits set. Used to isolate portions of words.
+ (0xFFFFFFFFFFFFFFFF)</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../constant-values.html#com.shouldis.bitset.BitSet.MASK">Constant Field Values</a></dd>
@@ -679,9 +657,9 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>words</h4>
-<pre>protected final&nbsp;int[] words</pre>
-<div class="block">Array holding the integer words whose bits are manipulated. Has length
- ceiling(<a href="#size"><code>size</code></a> / <a href="#WORD_SIZE"><code>WORD_SIZE</code></a>).</div>
+<pre>protected final&nbsp;long[] words</pre>
+<div class="block">Array holding the long words whose bits are manipulated. Has length
+ ceiling(<a href="#size"><code>size</code></a> / 64).</div>
 </li>
 </ul>
 </li>
@@ -794,9 +772,10 @@ extends java.lang.Object</pre>
  is not.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>index</code> - the bit to examine.</dd>
+<dd><code>index</code> - the index of the bit to examine.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the state of the specified bit.</dd>
+<dd>whether the bit at the specified <b>index</b> is in the <i>live</i>
+         state.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>index</b> is negative or greater
                                         than or equal to <a href="#size"><code>size</code></a>.</dd>
@@ -838,8 +817,9 @@ extends java.lang.Object</pre>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>index</code> - the index of the bit to change to the <i>live</i> state.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>index</b> is negative or greater
-                                        than or equal to <a href="#size"><code>size</code></a>.</dd>
+<dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>index</b> is negative, or
+                                        greater than or equal to
+                                        <a href="#size"><code>size</code></a>.</dd>
 </dl>
 </li>
 </ul>
@@ -862,7 +842,7 @@ extends java.lang.Object</pre>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>from</b> or <b>to</b> are
                                         outside of the range 0 to
-                                        <a href="#size"><code>size</code></a>,</dd>
+                                        <a href="#size"><code>size</code></a>.</dd>
 </dl>
 </li>
 </ul>
@@ -901,7 +881,7 @@ extends java.lang.Object</pre>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>from</b> or <b>to</b> are
                                         outside of the range 0 to
-                                        <a href="#size"><code>size</code></a>,</dd>
+                                        <a href="#size"><code>size</code></a>.</dd>
 </dl>
 </li>
 </ul>
@@ -940,7 +920,7 @@ extends java.lang.Object</pre>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>from</b> or <b>to</b> are
                                         outside of the range 0 to
-                                        <a href="#size"><code>size</code></a>,</dd>
+                                        <a href="#size"><code>size</code></a>.</dd>
 </dl>
 </li>
 </ul>
@@ -1300,9 +1280,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>bitMask</h4>
-<pre class="methodSignature">protected static final&nbsp;int&nbsp;bitMask&#8203;(int&nbsp;index)</pre>
+<pre class="methodSignature">protected static final&nbsp;long&nbsp;bitMask&#8203;(int&nbsp;index)</pre>
 <div class="block">Calculates a mask to represent the bit at which a specific index will be
- stored within an integer word.</div>
+ stored within a long word.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>index</code> - the index to represent as a bit.</dd>
@@ -1318,8 +1298,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>modSize</h4>
 <pre class="methodSignature">protected static final&nbsp;int&nbsp;modSize&#8203;(int&nbsp;index)</pre>
-<div class="block">Equivalent to <code>index % WORD_SIZE</code> for positive numbers, and modulo of
- positive numbers faster.</div>
+<div class="block">Equivalent to <code>index % 64</code> for positive numbers, and modulo of positive
+ numbers faster.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>index</code> - the index to perform the modulo operation upon.</dd>
@@ -1364,21 +1344,21 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="nextLiveBit(int,int)">
+<a id="nextLiveBit(long,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>nextLiveBit</h4>
-<pre class="methodSignature">private&nbsp;int&nbsp;nextLiveBit&#8203;(int&nbsp;word,
+<pre class="methodSignature">private&nbsp;int&nbsp;nextLiveBit&#8203;(long&nbsp;word,
                         int&nbsp;wordIndex)</pre>
 <div class="block">Calculates the index of the next <i>live</i> bit within a specified
  <b>word</b> that is at the specified <b>wordIndex</b> within <a href="#words"><code>words</code></a>.
- This index will represent its bit index in the underlying integer array as
- well as the offset within the integer word.</div>
+ This index will represent its bit index in the underlying long array as well
+ as the offset within the long <b>word</b>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>word</code> - the integer word to be checked for a <i>live</i> bit.</dd>
+<dd><code>word</code> - the long word to be checked for a <i>live</i> bit.</dd>
 <dd><code>wordIndex</code> - the index of the word within <a href="#words"><code>words</code></a>.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the index of the next <i>live</i> bit within the specified word, or
@@ -1386,21 +1366,21 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="lastLiveBit(int,int)">
+<a id="lastLiveBit(long,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>lastLiveBit</h4>
-<pre class="methodSignature">private&nbsp;int&nbsp;lastLiveBit&#8203;(int&nbsp;word,
+<pre class="methodSignature">private&nbsp;int&nbsp;lastLiveBit&#8203;(long&nbsp;word,
                         int&nbsp;wordIndex)</pre>
 <div class="block">Calculates the index of the recent-most <i>live</i> bit within a specified
  <b>word</b> that is at the specified <b>wordIndex</b> within <a href="#words"><code>words</code></a>.
- This index will represent its bit index in the underlying integer array as
- well as the offset within the integer word.</div>
+ This index will represent its bit index in the underlying long array as well
+ as the offset within the long <b>word</b>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>word</code> - the integer word to be checked for a <i>live</i> bit.</dd>
+<dd><code>word</code> - the long word to be checked for a <i>live</i> bit.</dd>
 <dd><code>wordIndex</code> - the index of the word within <a href="#words"><code>words</code></a>.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the index of the recent-most <i>live</i> bit within the specified
