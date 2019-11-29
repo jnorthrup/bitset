@@ -256,7 +256,7 @@ public class XOrShift {
 		} while (!SEED_ENTROPY.compareAndSet(current, next));
 		do {
 			next ^= MAGIC_NUMBER ^ System.nanoTime();
-		} while (next == 0);
+		} while (next == 0L);
 		return next;
 	}
 
