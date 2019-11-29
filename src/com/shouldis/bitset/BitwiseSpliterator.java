@@ -28,6 +28,12 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 	protected final BitSet set2;
 
 	/**
+	 * Estimation of the density of bits which will be in the <i>live</i> state in
+	 * the resulting words of {@link #bitwiseFunction(long, long)}.
+	 */
+	private final double density;
+
+	/**
 	 * Creates a {@link BitwiseSpliterator} with the specified starting and ending
 	 * position. This {@link BitwiseSpliterator} will perform bitwise operations on
 	 * the words of the specified {@link BitSet}s.
@@ -48,6 +54,7 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 		set1.compareSize(set2);
 		this.set1 = set1;
 		this.set2 = set2;
+		density = density();
 	}
 
 	/**
@@ -63,6 +70,29 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 	 *         <b>word2</b>
 	 */
 	protected abstract long bitwiseFunction(long word1, long word2);
+
+	/**
+	 * Calculates an estimation of the density of bits which will be in the
+	 * <i>live</i> state in the resulting words of
+	 * {@link #bitwiseFunction(long, long)}.
+	 * <ul>
+	 * <li>{@code density(a & b) = density(a) * density(b)}</li>
+	 * <li>{@code density(a | b) = density(a) + density(b) - (density(a) * density(b))}</li>
+	 * <li>{@code density(a ^ b) = density(a) + density(b) - (2 * density(a) * density(b))}</li>
+	 * </ul>
+	 * This percentage is calculated on creation of each {@link BitwiseSpliterator},
+	 * then used in all subsequent calls to {@link #estimateSize()}.
+	 * 
+	 * @return an estimation of the density of words returned by the
+	 *         {@link #bitwiseFunction(long, long)} of this
+	 *         {@link BitwiseSpliterator}.
+	 */
+	protected abstract double density();
+
+	@Override
+	public long estimateSize() {
+		return Math.round((end - position) * density);
+	}
 
 	@Override
 	public long getExactSizeIfKnown() {
@@ -194,13 +224,6 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 		}
 
 		@Override
-		public long estimateSize() {
-			double density1 = set1.density(position, end);
-			double density2 = set2.density(position, end);
-			return Math.round((end - position) * density1 * density2);
-		}
-
-		@Override
 		public OfInt trySplit() {
 			if (estimateSize() < THRESHOLD) {
 				return null;
@@ -211,6 +234,11 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 		@Override
 		protected long bitwiseFunction(long word1, long word2) {
 			return word1 & word2;
+		}
+
+		@Override
+		protected double density() {
+			return set1.density(position, end) * set2.density(position, end);
 		}
 
 	}
@@ -247,13 +275,6 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 		}
 
 		@Override
-		public long estimateSize() {
-			double density1 = set1.density(position, end);
-			double density2 = set2.density(position, end);
-			return Math.round((end - position) * (density1 + density2 - (density1 * density2)));
-		}
-
-		@Override
 		public OfInt trySplit() {
 			if (estimateSize() < THRESHOLD) {
 				return null;
@@ -264,6 +285,13 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 		@Override
 		protected long bitwiseFunction(long word1, long word2) {
 			return word1 | word2;
+		}
+
+		@Override
+		protected double density() {
+			double density1 = set1.density(position, end);
+			double density2 = set2.density(position, end);
+			return density1 + density2 - (density1 * density2);
 		}
 
 	}
@@ -300,13 +328,6 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 		}
 
 		@Override
-		public long estimateSize() {
-			double density1 = set1.density(position, end);
-			double density2 = set2.density(position, end);
-			return Math.round((end - position) * (density1 + density2 - (2.0f * density1 * density2)));
-		}
-
-		@Override
 		public OfInt trySplit() {
 			if (estimateSize() < THRESHOLD) {
 				return null;
@@ -317,6 +338,13 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 		@Override
 		protected long bitwiseFunction(long word1, long word2) {
 			return word1 ^ word2;
+		}
+
+		@Override
+		protected double density() {
+			double density1 = set1.density(position, end);
+			double density2 = set2.density(position, end);
+			return density1 + density2 - (2.0f * density1 * density2);
 		}
 
 	}

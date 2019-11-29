@@ -252,9 +252,13 @@ extends <a href="BitwiseSpliterator.html" title="class in com.shouldis.bitset">B
 </td>
 </tr>
 <tr class="rowColor" id="i1">
-<td class="colFirst"><code>long</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#estimateSize()">estimateSize</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code>protected double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#density()">density</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Calculates an estimation of the density of bits which will be in the
+ <i>live</i> state in the resulting words of
+ <a href="BitwiseSpliterator.html#bitwiseFunction(long,long)"><code>BitwiseSpliterator.bitwiseFunction(long, long)</code></a>.</div>
+</td>
 </tr>
 <tr class="altColor" id="i2">
 <td class="colFirst"><code>java.util.Spliterator.OfInt</code></td>
@@ -270,7 +274,7 @@ extends <a href="BitwiseSpliterator.html" title="class in com.shouldis.bitset">B
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;com.shouldis.bitset.<a href="BitwiseSpliterator.html" title="class in com.shouldis.bitset">BitwiseSpliterator</a></h3>
-<code><a href="BitwiseSpliterator.html#forEachRemaining(java.util.function.IntConsumer)">forEachRemaining</a>, <a href="BitwiseSpliterator.html#getExactSizeIfKnown()">getExactSizeIfKnown</a>, <a href="BitwiseSpliterator.html#tryAdvance(java.util.function.IntConsumer)">tryAdvance</a></code></li>
+<code><a href="BitwiseSpliterator.html#estimateSize()">estimateSize</a>, <a href="BitwiseSpliterator.html#forEachRemaining(java.util.function.IntConsumer)">forEachRemaining</a>, <a href="BitwiseSpliterator.html#getExactSizeIfKnown()">getExactSizeIfKnown</a>, <a href="BitwiseSpliterator.html#tryAdvance(java.util.function.IntConsumer)">tryAdvance</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.com.shouldis.bitset.BitSpliterator">
@@ -355,15 +359,6 @@ extends <a href="BitwiseSpliterator.html" title="class in com.shouldis.bitset">B
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="estimateSize()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>estimateSize</h4>
-<pre class="methodSignature">public&nbsp;long&nbsp;estimateSize()</pre>
-</li>
-</ul>
 <a id="trySplit()">
 <!--   -->
 </a>
@@ -376,7 +371,7 @@ extends <a href="BitwiseSpliterator.html" title="class in com.shouldis.bitset">B
 <a id="bitwiseFunction(long,long)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>bitwiseFunction</h4>
 <pre class="methodSignature">protected&nbsp;long&nbsp;bitwiseFunction&#8203;(long&nbsp;word1,
@@ -396,6 +391,34 @@ extends <a href="BitwiseSpliterator.html" title="class in com.shouldis.bitset">B
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the result of the bitwise operation between <b>word1</b> and
          <b>word2</b></dd>
+</dl>
+</li>
+</ul>
+<a id="density()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>density</h4>
+<pre class="methodSignature">protected&nbsp;double&nbsp;density()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="BitwiseSpliterator.html#density()">BitwiseSpliterator</a></code></span></div>
+<div class="block">Calculates an estimation of the density of bits which will be in the
+ <i>live</i> state in the resulting words of
+ <a href="BitwiseSpliterator.html#bitwiseFunction(long,long)"><code>BitwiseSpliterator.bitwiseFunction(long, long)</code></a>.
+ <ul>
+ <li><code>density(a &amp; b) = density(a) * density(b)</code></li>
+ <li><code>density(a | b) = density(a) + density(b) - (density(a) * density(b))</code></li>
+ <li><code>density(a ^ b) = density(a) + density(b) - (2 * density(a) * density(b))</code></li>
+ </ul>
+ This percentage is calculated on creation of each <a href="BitwiseSpliterator.html" title="class in com.shouldis.bitset"><code>BitwiseSpliterator</code></a>,
+ then used in all subsequent calls to <a href="BitwiseSpliterator.html#estimateSize()"><code>BitwiseSpliterator.estimateSize()</code></a>.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="BitwiseSpliterator.html#density()">density</a></code>&nbsp;in class&nbsp;<code><a href="BitwiseSpliterator.html" title="class in com.shouldis.bitset">BitwiseSpliterator</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>an estimation of the density of words returned by the
+         <a href="BitwiseSpliterator.html#bitwiseFunction(long,long)"><code>BitwiseSpliterator.bitwiseFunction(long, long)</code></a> of this
+         <a href="BitwiseSpliterator.html" title="class in com.shouldis.bitset"><code>BitwiseSpliterator</code></a>.</dd>
 </dl>
 </li>
 </ul>
