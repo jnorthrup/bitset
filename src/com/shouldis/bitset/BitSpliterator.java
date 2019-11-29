@@ -34,7 +34,9 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 
 	/**
 	 * The minimum threshold of remaining indices for which a {@link BitSpliterator}
-	 * will refuse a call to {@link Spliterator#trySplit()}.
+	 * will refuse a call to {@link Spliterator#trySplit()}. Equal to the size of 4
+	 * long words to ensure splitting is worthwhile, and leaves each process with at
+	 * least 1 word to process.
 	 */
 	protected static final int THRESHOLD = Long.SIZE << 2;
 
@@ -118,11 +120,6 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 	}
 
 	@Override
-	public long estimateSize() {
-		return end - position;
-	}
-
-	@Override
 	public int characteristics() {
 		return SIZED | SUBSIZED | DISTINCT | ORDERED | IMMUTABLE | NONNULL;
 	}
@@ -168,6 +165,11 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 		 */
 		public Array(int[] items) {
 			this(items, 0, items.length);
+		}
+
+		@Override
+		public long estimateSize() {
+			return end - position;
 		}
 
 		@Override
@@ -228,6 +230,11 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 		}
 
 		@Override
+		public long estimateSize() {
+			return end - position;
+		}
+
+		@Override
 		public Spliterator.OfInt trySplit() {
 			if (estimateSize() < THRESHOLD) {
 				return null;
@@ -268,6 +275,12 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 		private final BitSet set;
 
 		/**
+		 * Estimation of the density of <i>live</i> indices in the range represented by
+		 * this {@link BitSpliterator.Live}.
+		 */
+		private final double density;
+
+		/**
 		 * Creates a {@link BitSpliterator.Live} that will cover all <i>live</i> bits
 		 * within <b>set</b> in the specified starting and ending indices
 		 * <b>position</b> and <b>end</b>.
@@ -282,7 +295,8 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 		 */
 		public Live(BitSet set, int position, int end) {
 			super(position, end);
-			this.set = Objects.requireNonNull(set);
+			this.set = set;
+			density = set.density(position, end);
 		}
 
 		/**
@@ -298,8 +312,13 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 		}
 
 		@Override
-		public long estimateSize() {
+		public long getExactSizeIfKnown() {
 			return set.get(position, end);
+		}
+
+		@Override
+		public long estimateSize() {
+			return Math.round((end - position) * density);
 		}
 
 		@Override
@@ -390,6 +409,12 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 		private final BitSet set;
 
 		/**
+		 * Estimation of the density of <i>dead</i> indices in the range represented by
+		 * this {@link BitSpliterator.Dead}.
+		 */
+		private final double density;
+
+		/**
 		 * Creates a {@link BitSpliterator.Dead} that will cover all <i>dead</i> bits
 		 * within the specified starting and ending indices <b>position</b> and
 		 * <b>end</b>.
@@ -405,6 +430,7 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 		public Dead(BitSet set, int position, int end) {
 			super(position, end);
 			this.set = Objects.requireNonNull(set);
+			density = 1.0 - set.density(position, end);
 		}
 
 		/**
@@ -420,8 +446,13 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 		}
 
 		@Override
+		public long getExactSizeIfKnown() {
+			return (end - position) - set.get(position, end);
+		}
+
+		@Override
 		public long estimateSize() {
-			return super.estimateSize() - set.get(position, end);
+			return Math.round((end - position) * density);
 		}
 
 		@Override

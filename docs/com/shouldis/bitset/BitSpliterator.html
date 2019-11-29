@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -306,11 +306,6 @@ implements java.util.Spliterator.OfInt</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor" id="i1">
-<td class="colFirst"><code>long</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#estimateSize()">estimateSize</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor" id="i2">
 <td class="colFirst"><code>protected int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#middle()">middle</a></span>()</code></th>
 <td class="colLast">
@@ -318,7 +313,7 @@ implements java.util.Spliterator.OfInt</pre>
  the current <a href="#position"><code>position</code></a> and <a href="#end"><code>end</code></a>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i3">
+<tr class="altColor" id="i2">
 <td class="colFirst"><code>protected int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextLiveBit(long,int)">nextLiveBit</a></span>&#8203;(long&nbsp;word,
            int&nbsp;wordIndex)</code></th>
@@ -328,7 +323,7 @@ implements java.util.Spliterator.OfInt</pre>
  <a href="BitSet.html#words"><code>BitSet.words</code></a>.</div>
 </td>
 </tr>
-<tr class="altColor" id="i4">
+<tr class="rowColor" id="i3">
 <td class="colFirst"><code>protected int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#splitIndex()">splitIndex</a></span>()</code></th>
 <td class="colLast">
@@ -336,7 +331,7 @@ implements java.util.Spliterator.OfInt</pre>
  considering the current <a href="#position"><code>position</code></a> and <a href="#end"><code>end</code></a>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i5">
+<tr class="altColor" id="i4">
 <td class="colFirst"><code>java.util.stream.IntStream</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#stream()">stream</a></span>()</code></th>
 <td class="colLast">
@@ -359,7 +354,7 @@ implements java.util.Spliterator.OfInt</pre>
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;java.util.Spliterator</h3>
-<code>getComparator, getExactSizeIfKnown, hasCharacteristics</code></li>
+<code>estimateSize, getComparator, getExactSizeIfKnown, hasCharacteristics</code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.util.Spliterator.OfInt">
@@ -392,7 +387,9 @@ implements java.util.Spliterator.OfInt</pre>
 <h4>THRESHOLD</h4>
 <pre>protected static final&nbsp;int THRESHOLD</pre>
 <div class="block">The minimum threshold of remaining indices for which a <a href="BitSpliterator.html" title="class in com.shouldis.bitset"><code>BitSpliterator</code></a>
- will refuse a call to <code>Spliterator.trySplit()</code>.</div>
+ will refuse a call to <code>Spliterator.trySplit()</code>. Equal to the size of 4
+ long words to ensure splitting is worthwhile, and leaves each process with at
+ least 1 word to process.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../constant-values.html#com.shouldis.bitset.BitSpliterator.THRESHOLD">Constant Field Values</a></dd>
@@ -525,19 +522,6 @@ implements java.util.Spliterator.OfInt</pre>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the index of the next <i>live</i> bit within the specified word, or
          <a href="#end"><code>end</code></a> if none are found.</dd>
-</dl>
-</li>
-</ul>
-<a id="estimateSize()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>estimateSize</h4>
-<pre class="methodSignature">public&nbsp;long&nbsp;estimateSize()</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code>estimateSize</code>&nbsp;in interface&nbsp;<code>java.util.Spliterator&lt;java.lang.Integer&gt;</code></dd>
 </dl>
 </li>
 </ul>

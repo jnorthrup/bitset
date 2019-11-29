@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -165,6 +165,14 @@ extends <a href="BitSpliterator.html" title="class in com.shouldis.bitset">BitSp
 </tr>
 <tbody>
 <tr class="altColor">
+<td class="colFirst"><code>private double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#density">density</a></span></code></th>
+<td class="colLast">
+<div class="block">Estimation of the density of <i>dead</i> indices in the range represented by
+ this <a href="BitSpliterator.Dead.html" title="class in com.shouldis.bitset"><code>BitSpliterator.Dead</code></a>.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>private <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#set">set</a></span></code></th>
 <td class="colLast">
@@ -257,6 +265,11 @@ extends <a href="BitSpliterator.html" title="class in com.shouldis.bitset">BitSp
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="altColor" id="i2">
+<td class="colFirst"><code>long</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getExactSizeIfKnown()">getExactSizeIfKnown</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor" id="i3">
 <td class="colFirst"><code>private int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#next(int)">next</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
@@ -264,12 +277,12 @@ extends <a href="BitSpliterator.html" title="class in com.shouldis.bitset">BitSp
  <b>index</b>, including that <b>index</b>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i3">
+<tr class="altColor" id="i4">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#tryAdvance(java.util.function.IntConsumer)">tryAdvance</a></span>&#8203;(java.util.function.IntConsumer&nbsp;action)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor" id="i4">
+<tr class="rowColor" id="i5">
 <td class="colFirst"><code>java.util.Spliterator.OfInt</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#trySplit()">trySplit</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
@@ -297,7 +310,7 @@ extends <a href="BitSpliterator.html" title="class in com.shouldis.bitset">BitSp
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;java.util.Spliterator</h3>
-<code>getComparator, getExactSizeIfKnown, hasCharacteristics</code></li>
+<code>getComparator, hasCharacteristics</code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.util.Spliterator.OfInt">
@@ -325,11 +338,22 @@ extends <a href="BitSpliterator.html" title="class in com.shouldis.bitset">BitSp
 <a id="set">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>set</h4>
 <pre>private final&nbsp;<a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a> set</pre>
 <div class="block">The <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> that the <i>dead</i> bit indices will be calculated from.</div>
+</li>
+</ul>
+<a id="density">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>density</h4>
+<pre>private final&nbsp;double density</pre>
+<div class="block">Estimation of the density of <i>dead</i> indices in the range represented by
+ this <a href="BitSpliterator.Dead.html" title="class in com.shouldis.bitset"><code>BitSpliterator.Dead</code></a>.</div>
 </li>
 </ul>
 </li>
@@ -395,6 +419,15 @@ extends <a href="BitSpliterator.html" title="class in com.shouldis.bitset">BitSp
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="getExactSizeIfKnown()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getExactSizeIfKnown</h4>
+<pre class="methodSignature">public&nbsp;long&nbsp;getExactSizeIfKnown()</pre>
+</li>
+</ul>
 <a id="estimateSize()">
 <!--   -->
 </a>
@@ -402,12 +435,6 @@ extends <a href="BitSpliterator.html" title="class in com.shouldis.bitset">BitSp
 <li class="blockList">
 <h4>estimateSize</h4>
 <pre class="methodSignature">public&nbsp;long&nbsp;estimateSize()</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code>estimateSize</code>&nbsp;in interface&nbsp;<code>java.util.Spliterator&lt;java.lang.Integer&gt;</code></dd>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="BitSpliterator.html#estimateSize()">estimateSize</a></code>&nbsp;in class&nbsp;<code><a href="BitSpliterator.html" title="class in com.shouldis.bitset">BitSpliterator</a></code></dd>
-</dl>
 </li>
 </ul>
 <a id="trySplit()">
