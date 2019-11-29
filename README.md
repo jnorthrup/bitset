@@ -28,4 +28,4 @@ BitSet implementation that can be safely operated upon by any number of threads 
 Implementation of the XOrShift64 pseudo-random number generation algorithm providing means to randomize BitSets efficiently.
 
 ### DensityXOrShift
-Variant of XOrShift whose generated bits have a specified chance of being in the live state.
+Variant of XOrShift whose generated bits have a specified chance of being in the live state, or "density".
