@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":9,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":9,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":9,"i39":9,"i40":10};
+var data = {"i0":10,"i1":10,"i2":9,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":9,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":9,"i25":9,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -120,10 +120,9 @@ extends java.lang.Object</pre>
  If <a href="#size"><code>size</code></a> isn't a multiple of 64, there will be "hanging" bits that
  exist on the end of the last long within <a href="#words"><code>words</code></a>, which are not
  accounted for by <a href="#size"><code>size</code></a>. No exception will be thrown when these bit
- indices are manipulated or read, and in aggregating functions
- (<a href="#population()"><code>population()</code></a>, <a href="#hashCode()"><code>hashCode()</code></a>, etc.), any hanging bits will
- have their effect on those functions made consistent by
- <a href="#cleanLastWord()"><code>cleanLastWord()</code></a>.
+ indices are manipulated or read, and in the aggregating functions
+ <a href="#population()"><code>population()</code></a>, <a href="#hashCode()"><code>hashCode()</code></a>, etc., any hanging bits will have
+ their effect on those functions made consistent by <a href="#cleanLastWord()"><code>cleanLastWord()</code></a>.
  <p>
  Otherwise, accessing a negative index, or any index greater than or equal to
  <a href="#size"><code>size</code></a> will cause an <code>IndexOutOfBoundsException</code> to be thrown.</div>
@@ -339,32 +338,39 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="rowColor" id="i11">
+<td class="colFirst"><code>protected static int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#divideSize(int)">divideSize</a></span>&#8203;(int&nbsp;index)</code></th>
+<td class="colLast">
+<div class="block">Calculates <b>index</b> divided by 64.</div>
+</td>
+</tr>
+<tr class="altColor" id="i12">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#empty()">empty</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Transforms each bit in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> to the <i>dead</i> state.</div>
 </td>
 </tr>
-<tr class="altColor" id="i12">
+<tr class="rowColor" id="i13">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#equals(java.lang.Object)">equals</a></span>&#8203;(java.lang.Object&nbsp;obj)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="rowColor" id="i13">
+<tr class="altColor" id="i14">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#fill()">fill</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Transforms each bit in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> to the <i>live</i> state.</div>
 </td>
 </tr>
-<tr class="altColor" id="i14">
+<tr class="rowColor" id="i15">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#get(int)">get</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
-<div class="block">Checks the current state of a bit at the specified <b>index</b>.</div>
+<div class="block">Checks the current state of the bit at the specified <b>index</b>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i15">
+<tr class="altColor" id="i16">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#get(int,int)">get</a></span>&#8203;(int&nbsp;from,
    int&nbsp;to)</code></th>
@@ -372,12 +378,20 @@ extends java.lang.Object</pre>
 <div class="block">Calculates the number of <i>live</i> bits in the specified range.</div>
 </td>
 </tr>
-<tr class="altColor" id="i16">
+<tr class="rowColor" id="i17">
+<td class="colFirst"><code>long</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getWord(int)">getWord</a></span>&#8203;(int&nbsp;wordIndex)</code></th>
+<td class="colLast">
+<div class="block">Returns the raw long word at the specified <b>wordIndex</b> within
+ <a href="#words"><code>words</code></a>.</div>
+</td>
+</tr>
+<tr class="altColor" id="i18">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hashCode()">hashCode</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="rowColor" id="i17">
+<tr class="rowColor" id="i19">
 <td class="colFirst"><code>long</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#identifier()">identifier</a></span>()</code></th>
 <td class="colLast">
@@ -385,7 +399,7 @@ extends java.lang.Object</pre>
  <a href="#hashCode()"><code>hashCode()</code></a> and <a href="#population()"><code>population()</code></a>.</div>
 </td>
 </tr>
-<tr class="altColor" id="i18">
+<tr class="altColor" id="i20">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#lastDead(int)">lastDead</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
@@ -393,7 +407,7 @@ extends java.lang.Object</pre>
  <b>index</b>, including that <b>index</b>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i19">
+<tr class="rowColor" id="i21">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#lastLive(int)">lastLive</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
@@ -401,7 +415,7 @@ extends java.lang.Object</pre>
  <b>index</b>, including that <b>index</b>.</div>
 </td>
 </tr>
-<tr class="altColor" id="i20">
+<tr class="altColor" id="i22">
 <td class="colFirst"><code>private int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#lastLiveBit(long,int)">lastLiveBit</a></span>&#8203;(long&nbsp;word,
            int&nbsp;wordIndex)</code></th>
@@ -410,7 +424,7 @@ extends java.lang.Object</pre>
  <b>word</b> that is at the specified <b>wordIndex</b> within <a href="#words"><code>words</code></a>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i21">
+<tr class="rowColor" id="i23">
 <td class="colFirst"><code>java.util.stream.IntStream</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#live()">live</a></span>()</code></th>
 <td class="colLast">
@@ -419,7 +433,7 @@ extends java.lang.Object</pre>
  <a href="BitSpliterator.Live.html" title="class in com.shouldis.bitset"><code>BitSpliterator.Live</code></a>.</div>
 </td>
 </tr>
-<tr class="altColor" id="i22">
+<tr class="altColor" id="i24">
 <td class="colFirst"><code>protected static int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#modSize(int)">modSize</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
@@ -427,7 +441,14 @@ extends java.lang.Object</pre>
  numbers faster.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i23">
+<tr class="rowColor" id="i25">
+<td class="colFirst"><code>protected static int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#multiplySize(int)">multiplySize</a></span>&#8203;(int&nbsp;wordIndex)</code></th>
+<td class="colLast">
+<div class="block">Calculates <b>wordIndex</b> multiplied by 64.</div>
+</td>
+</tr>
+<tr class="altColor" id="i26">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextDead(int)">nextDead</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
@@ -435,7 +456,7 @@ extends java.lang.Object</pre>
  <b>index</b>, including that <b>index</b>.</div>
 </td>
 </tr>
-<tr class="altColor" id="i24">
+<tr class="rowColor" id="i27">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextLive(int)">nextLive</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
@@ -443,7 +464,7 @@ extends java.lang.Object</pre>
  <b>index</b>, including that <b>index</b>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i25">
+<tr class="altColor" id="i28">
 <td class="colFirst"><code>private int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextLiveBit(long,int)">nextLiveBit</a></span>&#8203;(long&nbsp;word,
            int&nbsp;wordIndex)</code></th>
@@ -452,7 +473,7 @@ extends java.lang.Object</pre>
  <b>word</b> that is at the specified <b>wordIndex</b> within <a href="#words"><code>words</code></a>.</div>
 </td>
 </tr>
-<tr class="altColor" id="i26">
+<tr class="rowColor" id="i29">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#not()">not</a></span>()</code></th>
 <td class="colLast">
@@ -460,7 +481,7 @@ extends java.lang.Object</pre>
  state.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i27">
+<tr class="altColor" id="i30">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#not(com.shouldis.bitset.BitSet)">not</a></span>&#8203;(<a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
 <td class="colLast">
@@ -468,7 +489,7 @@ extends java.lang.Object</pre>
  <b>set</b>.</div>
 </td>
 </tr>
-<tr class="altColor" id="i28">
+<tr class="rowColor" id="i31">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#or(com.shouldis.bitset.BitSet)">or</a></span>&#8203;(<a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
 <td class="colLast">
@@ -476,21 +497,21 @@ extends java.lang.Object</pre>
  with those in the specified <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i29">
+<tr class="altColor" id="i32">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#population()">population</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Calculates the number of <i>live</i> bits within this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>.</div>
 </td>
 </tr>
-<tr class="altColor" id="i30">
+<tr class="rowColor" id="i33">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#randomize(com.shouldis.bitset.XOrShift)">randomize</a></span>&#8203;(<a href="XOrShift.html" title="class in com.shouldis.bitset">XOrShift</a>&nbsp;random)</code></th>
 <td class="colLast">
 <div class="block">Changes the state of all bits randomly.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i31">
+<tr class="altColor" id="i34">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#randomize(com.shouldis.bitset.XOrShift,int,int)">randomize</a></span>&#8203;(<a href="XOrShift.html" title="class in com.shouldis.bitset">XOrShift</a>&nbsp;random,
          int&nbsp;from,
@@ -499,14 +520,14 @@ extends java.lang.Object</pre>
 <div class="block">Changes the state of all bits in the specified range randomly.</div>
 </td>
 </tr>
-<tr class="altColor" id="i32">
+<tr class="rowColor" id="i35">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove(int)">remove</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
 <div class="block">Ensures that the bit at the specified <b>index</b> is the <i>dead</i> state.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i33">
+<tr class="altColor" id="i36">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#set(int)">set</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
@@ -514,7 +535,7 @@ extends java.lang.Object</pre>
  state.</div>
 </td>
 </tr>
-<tr class="altColor" id="i34">
+<tr class="rowColor" id="i37">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#set(int,int)">set</a></span>&#8203;(int&nbsp;from,
    int&nbsp;to)</code></th>
@@ -523,7 +544,16 @@ extends java.lang.Object</pre>
  state.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i35">
+<tr class="altColor" id="i38">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setWord(int,long)">setWord</a></span>&#8203;(int&nbsp;wordIndex,
+       long&nbsp;word)</code></th>
+<td class="colLast">
+<div class="block">Modifies the raw long word at the specified <b>wordIndex</b> within
+ <a href="#words"><code>words</code></a>, setting it to <b>word</b>.</div>
+</td>
+</tr>
+<tr class="rowColor" id="i39">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toggle(int)">toggle</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
@@ -531,7 +561,7 @@ extends java.lang.Object</pre>
  through an <code>XOR</code> operation.</div>
 </td>
 </tr>
-<tr class="altColor" id="i36">
+<tr class="altColor" id="i40">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toggle(int,int)">toggle</a></span>&#8203;(int&nbsp;from,
       int&nbsp;to)</code></th>
@@ -540,27 +570,12 @@ extends java.lang.Object</pre>
  opposites through an <code>XOR</code> operation.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i37">
+<tr class="rowColor" id="i41">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor" id="i38">
-<td class="colFirst"><code>protected static int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#wordIndex(int)">wordIndex</a></span>&#8203;(int&nbsp;index)</code></th>
-<td class="colLast">
-<div class="block">Calculates the index of the word corresponding to the specified <b>index</b>.</div>
-</td>
-</tr>
-<tr class="rowColor" id="i39">
-<td class="colFirst"><code>protected static int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#wordStart(int)">wordStart</a></span>&#8203;(int&nbsp;wordIndex)</code></th>
-<td class="colLast">
-<div class="block">Calculates the first <i>live</i> bit index within a word at the specified
- <b>wordIndex</b>.</div>
-</td>
-</tr>
-<tr class="altColor" id="i40">
+<tr class="altColor" id="i42">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#xor(com.shouldis.bitset.BitSet)">xor</a></span>&#8203;(<a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
 <td class="colLast">
@@ -699,7 +714,7 @@ extends java.lang.Object</pre>
 <pre>public&nbsp;BitSet&#8203;(<a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</pre>
 <div class="block">Creates a <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> which is a clone of the specified <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>
  <b>set</b>. The copy will have an identical <a href="#size"><code>size</code></a>, and will copy the
- contents of <b>set</b>'s <a href="#words"><code>words</code></a>.</div>
+ contents of <b>set</b>'s <a href="#words"><code>words</code></a> through <a href="#copy(com.shouldis.bitset.BitSet)"><code>copy(BitSet)</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>set</code> - the <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> to copy.</dd>
@@ -767,7 +782,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>get</h4>
 <pre class="methodSignature">public final&nbsp;boolean&nbsp;get&#8203;(int&nbsp;index)</pre>
-<div class="block">Checks the current state of a bit at the specified <b>index</b>. Returns
+<div class="block">Checks the current state of the bit at the specified <b>index</b>. Returns
  <code>true</code> if the bit is in the <i>live</i> state, and <code>false</code> if it
  is not.</div>
 <dl>
@@ -924,6 +939,49 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
+<a id="getWord(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getWord</h4>
+<pre class="methodSignature">public final&nbsp;long&nbsp;getWord&#8203;(int&nbsp;wordIndex)</pre>
+<div class="block">Returns the raw long word at the specified <b>wordIndex</b> within
+ <a href="#words"><code>words</code></a>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>wordIndex</code> - the index within <a href="#words"><code>words</code></a> to read.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the raw contents of <a href="#words"><code>words</code></a> at the specified <b>wordIndex</b>.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
+                                        range 0 to ceiling(<a href="#size"><code>size</code></a> /
+                                        64).</dd>
+</dl>
+</li>
+</ul>
+<a id="setWord(int,long)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setWord</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setWord&#8203;(int&nbsp;wordIndex,
+                    long&nbsp;word)</pre>
+<div class="block">Modifies the raw long word at the specified <b>wordIndex</b> within
+ <a href="#words"><code>words</code></a>, setting it to <b>word</b>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>wordIndex</code> - the index within <a href="#words"><code>words</code></a> to set.</dd>
+<dd><code>word</code> - the raw long value to be set to <a href="#words"><code>words</code></a> at
+                  <b>wordIndex</b>.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
+                                        range 0 to ceiling(<a href="#size"><code>size</code></a> /
+                                        64).</dd>
+</dl>
+</li>
+</ul>
 <a id="randomize(com.shouldis.bitset.XOrShift,int,int)">
 <!--   -->
 </a>
@@ -943,6 +1001,7 @@ extends java.lang.Object</pre>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>from</b> or <b>to</b> are
                                         outside of the range 0 to
                                         <a href="#size"><code>size</code></a>.</dd>
+<dd><code>java.lang.NullPointerException</code> - if <b>random</b> is null.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="DensityXOrShift.html" title="class in com.shouldis.bitset"><code>DensityXOrShift</code></a></dd>
 </dl>
@@ -959,6 +1018,8 @@ extends java.lang.Object</pre>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>random</code> - the instance of <a href="XOrShift.html" title="class in com.shouldis.bitset"><code>XOrShift</code></a> used to randomize.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.NullPointerException</code> - if <b>random</b> is null.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="DensityXOrShift.html" title="class in com.shouldis.bitset"><code>DensityXOrShift</code></a></dd>
 </dl>
@@ -1310,37 +1371,37 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="wordIndex(int)">
+<a id="divideSize(int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>wordIndex</h4>
-<pre class="methodSignature">protected static final&nbsp;int&nbsp;wordIndex&#8203;(int&nbsp;index)</pre>
-<div class="block">Calculates the index of the word corresponding to the specified <b>index</b>.</div>
+<h4>divideSize</h4>
+<pre class="methodSignature">protected static final&nbsp;int&nbsp;divideSize&#8203;(int&nbsp;index)</pre>
+<div class="block">Calculates <b>index</b> divided by 64. Equivalent to the index of the word
+ corresponding to the specified <b>index</b>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>index</code> - the position of the word containing the bit at the specified
-              index.</dd>
+<dd><code>index</code> - the index to divide by 64.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the index of the word within <a href="#words"><code>words</code></a>.</dd>
+<dd><b>wordIndex</b> / 64.</dd>
 </dl>
 </li>
 </ul>
-<a id="wordStart(int)">
+<a id="multiplySize(int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>wordStart</h4>
-<pre class="methodSignature">protected static final&nbsp;int&nbsp;wordStart&#8203;(int&nbsp;wordIndex)</pre>
-<div class="block">Calculates the first <i>live</i> bit index within a word at the specified
- <b>wordIndex</b>.</div>
+<h4>multiplySize</h4>
+<pre class="methodSignature">protected static final&nbsp;int&nbsp;multiplySize&#8203;(int&nbsp;wordIndex)</pre>
+<div class="block">Calculates <b>wordIndex</b> multiplied by 64. Equivalent to the first index
+ of the word at the specified <b>wordIndex</b>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>wordIndex</code> - the index of a word within <a href="#words"><code>words</code></a>.</dd>
+<dd><code>wordIndex</code> - the index to multiply by 64.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the index of the first bit contained by that word.</dd>
+<dd><b>wordIndex</b> * 64.</dd>
 </dl>
 </li>
 </ul>

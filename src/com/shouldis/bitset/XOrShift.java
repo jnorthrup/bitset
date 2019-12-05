@@ -199,6 +199,7 @@ public class XOrShift {
 	 * 
 	 * @param size the size of generated {@link BitSet}.
 	 * @return a randomly generated {@link BitSet} with the specified <b>size</b>.
+	 * @throws IllegalArgumentException if <b>size</b> is less than 0.
 	 */
 	public final BitSet nextBitSet(int size) {
 		BitSet set = new BitSet(size);
@@ -218,6 +219,7 @@ public class XOrShift {
 	 * @param size the size of the generated {@link ConcurrentBitSet}.
 	 * @return a randomly generated {@link ConcurrentBitSet} with the specified
 	 *         <b>size</b>.
+	 * @throws IllegalArgumentException if <b>size</b> is less than 0.
 	 */
 	public final ConcurrentBitSet nextConcurrentBitSet(int size) {
 		ConcurrentBitSet set = new ConcurrentBitSet(size);

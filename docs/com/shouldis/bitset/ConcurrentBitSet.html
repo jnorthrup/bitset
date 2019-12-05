@@ -100,7 +100,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <hr>
-<pre>public class <span class="typeNameLabel">ConcurrentBitSet</span>
+<pre>public final class <span class="typeNameLabel">ConcurrentBitSet</span>
 extends <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></pre>
 <div class="block">Implementation of <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in which all methods capable of modifying
  the state of bits are performed as atomic operations. The use of atomic
@@ -338,10 +338,13 @@ extends <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></p
 </td>
 </tr>
 <tr class="rowColor" id="i15">
-<td class="colFirst"><code>protected void</code></td>
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setWord(int,long)">setWord</a></span>&#8203;(int&nbsp;wordIndex,
        long&nbsp;word)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Modifies the raw long word at the specified <b>wordIndex</b> within
+ <a href="BitSet.html#words"><code>BitSet.words</code></a>, setting it to <b>word</b>.</div>
+</td>
 </tr>
 <tr class="altColor" id="i16">
 <td class="colFirst"><code>void</code></td>
@@ -377,7 +380,7 @@ extends <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></p
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;com.shouldis.bitset.<a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></h3>
-<code><a href="BitSet.html#bitMask(int)">bitMask</a>, <a href="BitSet.html#compareSize(com.shouldis.bitset.BitSet)">compareSize</a>, <a href="BitSet.html#copy(com.shouldis.bitset.BitSet)">copy</a>, <a href="BitSet.html#dead()">dead</a>, <a href="BitSet.html#density()">density</a>, <a href="BitSet.html#density(int,int)">density</a>, <a href="BitSet.html#empty()">empty</a>, <a href="BitSet.html#equals(java.lang.Object)">equals</a>, <a href="BitSet.html#fill()">fill</a>, <a href="BitSet.html#get(int)">get</a>, <a href="BitSet.html#get(int,int)">get</a>, <a href="BitSet.html#hashCode()">hashCode</a>, <a href="BitSet.html#identifier()">identifier</a>, <a href="BitSet.html#lastDead(int)">lastDead</a>, <a href="BitSet.html#lastLive(int)">lastLive</a>, <a href="BitSet.html#live()">live</a>, <a href="BitSet.html#modSize(int)">modSize</a>, <a href="BitSet.html#nextDead(int)">nextDead</a>, <a href="BitSet.html#nextLive(int)">nextLive</a>, <a href="BitSet.html#not(com.shouldis.bitset.BitSet)">not</a>, <a href="BitSet.html#population()">population</a>, <a href="BitSet.html#toString()">toString</a>, <a href="BitSet.html#wordIndex(int)">wordIndex</a>, <a href="BitSet.html#wordStart(int)">wordStart</a></code></li>
+<code><a href="BitSet.html#bitMask(int)">bitMask</a>, <a href="BitSet.html#compareSize(com.shouldis.bitset.BitSet)">compareSize</a>, <a href="BitSet.html#copy(com.shouldis.bitset.BitSet)">copy</a>, <a href="BitSet.html#dead()">dead</a>, <a href="BitSet.html#density()">density</a>, <a href="BitSet.html#density(int,int)">density</a>, <a href="BitSet.html#divideSize(int)">divideSize</a>, <a href="BitSet.html#empty()">empty</a>, <a href="BitSet.html#equals(java.lang.Object)">equals</a>, <a href="BitSet.html#fill()">fill</a>, <a href="BitSet.html#get(int)">get</a>, <a href="BitSet.html#get(int,int)">get</a>, <a href="BitSet.html#getWord(int)">getWord</a>, <a href="BitSet.html#hashCode()">hashCode</a>, <a href="BitSet.html#identifier()">identifier</a>, <a href="BitSet.html#lastDead(int)">lastDead</a>, <a href="BitSet.html#lastLive(int)">lastLive</a>, <a href="BitSet.html#live()">live</a>, <a href="BitSet.html#modSize(int)">modSize</a>, <a href="BitSet.html#multiplySize(int)">multiplySize</a>, <a href="BitSet.html#nextDead(int)">nextDead</a>, <a href="BitSet.html#nextLive(int)">nextLive</a>, <a href="BitSet.html#not(com.shouldis.bitset.BitSet)">not</a>, <a href="BitSet.html#population()">population</a>, <a href="BitSet.html#toString()">toString</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
@@ -621,6 +624,27 @@ extends <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></p
 </dl>
 </li>
 </ul>
+<a id="setWord(int,long)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setWord</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setWord&#8203;(int&nbsp;wordIndex,
+                    long&nbsp;word)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="BitSet.html#setWord(int,long)">BitSet</a></code></span></div>
+<div class="block">Modifies the raw long word at the specified <b>wordIndex</b> within
+ <a href="BitSet.html#words"><code>BitSet.words</code></a>, setting it to <b>word</b>.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="BitSet.html#setWord(int,long)">setWord</a></code>&nbsp;in class&nbsp;<code><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>wordIndex</code> - the index within <a href="BitSet.html#words"><code>BitSet.words</code></a> to set.</dd>
+<dd><code>word</code> - the raw long value to be set to <a href="BitSet.html#words"><code>BitSet.words</code></a> at
+                  <b>wordIndex</b>.</dd>
+</dl>
+</li>
+</ul>
 <a id="randomize(com.shouldis.bitset.XOrShift,int,int)">
 <!--   -->
 </a>
@@ -750,16 +774,6 @@ extends <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></p
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="BitSet.html#cleanLastWord()">cleanLastWord</a></code>&nbsp;in class&nbsp;<code><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></dd>
 </dl>
-</li>
-</ul>
-<a id="setWord(int,long)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setWord</h4>
-<pre class="methodSignature">protected&nbsp;void&nbsp;setWord&#8203;(int&nbsp;wordIndex,
-                       long&nbsp;word)</pre>
 </li>
 </ul>
 <a id="atomicAnd(int,long)">

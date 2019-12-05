@@ -23,10 +23,9 @@ import java.util.stream.IntStream;
  * If {@link #size} isn't a multiple of 64, there will be "hanging" bits that
  * exist on the end of the last long within {@link #words}, which are not
  * accounted for by {@link #size}. No exception will be thrown when these bit
- * indices are manipulated or read, and in aggregating functions
- * ({@link #population()}, {@link #hashCode()}, etc.), any hanging bits will
- * have their effect on those functions made consistent by
- * {@link #cleanLastWord()}.
+ * indices are manipulated or read, and in the aggregating functions
+ * {@link #population()}, {@link #hashCode()}, etc., any hanging bits will have
+ * their effect on those functions made consistent by {@link #cleanLastWord()}.
  * <p>
  * Otherwise, accessing a negative index, or any index greater than or equal to
  * {@link #size} will cause an {@link IndexOutOfBoundsException} to be thrown.
@@ -88,7 +87,7 @@ public class BitSet {
 	/**
 	 * Creates a {@link BitSet} which is a clone of the specified {@link BitSet}
 	 * <b>set</b>. The copy will have an identical {@link #size}, and will copy the
-	 * contents of <b>set</b>'s {@link #words}.
+	 * contents of <b>set</b>'s {@link #words} through {@link #copy(BitSet)}.
 	 * 
 	 * @param set the {@link BitSet} to copy.
 	 * @throws NullPointerException if <b>set</b> is null.
@@ -139,7 +138,7 @@ public class BitSet {
 	}
 
 	/**
-	 * Checks the current state of a bit at the specified <b>index</b>. Returns
+	 * Checks the current state of the bit at the specified <b>index</b>. Returns
 	 * {@code true} if the bit is in the <i>live</i> state, and {@code false} if it
 	 * is not.
 	 * 
@@ -316,6 +315,9 @@ public class BitSet {
 	 * 
 	 * @param wordIndex the index within {@link #words} to read.
 	 * @return the raw contents of {@link #words} at the specified <b>wordIndex</b>.
+	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
+	 *                                        range 0 to ceiling({@link #size} /
+	 *                                        64).
 	 */
 	public final long getWord(int wordIndex) {
 		return words[wordIndex];
@@ -327,7 +329,10 @@ public class BitSet {
 	 * 
 	 * @param wordIndex the index within {@link #words} to set.
 	 * @param word      the raw long value to be set to {@link #words} at
-	 *                  <b>wordIndex<b>.
+	 *                  <b>wordIndex</b>.
+	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
+	 *                                        range 0 to ceiling({@link #size} /
+	 *                                        64).
 	 */
 	public void setWord(int wordIndex, long word) {
 		words[wordIndex] = word;
@@ -342,6 +347,7 @@ public class BitSet {
 	 * @throws ArrayIndexOutOfBoundsException if <b>from</b> or <b>to</b> are
 	 *                                        outside of the range 0 to
 	 *                                        {@link #size}.
+	 * @throws NullPointerException           if <b>random</b> is null.
 	 * @see DensityXOrShift
 	 */
 	public void randomize(XOrShift random, int from, int to) {
@@ -368,6 +374,7 @@ public class BitSet {
 	 * 
 	 * @param random the instance of {@link XOrShift} used to randomize.
 	 * @see DensityXOrShift
+	 * @throws NullPointerException if <b>random</b> is null.
 	 */
 	public void randomize(XOrShift random) {
 		for (int i = 0; i < words.length; i++) {
@@ -700,9 +707,8 @@ public class BitSet {
 	 * Calculates <b>index</b> divided by 64. Equivalent to the index of the word
 	 * corresponding to the specified <b>index</b>.
 	 * 
-	 * @param index the position of the word containing the bit at the specified
-	 *              index.
-	 * @return the index of the word within {@link #words}.
+	 * @param index the index to divide by 64.
+	 * @return <b>wordIndex</b> / 64.
 	 */
 	protected static final int divideSize(int index) {
 		return index >> LOG_2_SIZE;
@@ -712,9 +718,8 @@ public class BitSet {
 	 * Calculates <b>wordIndex</b> multiplied by 64. Equivalent to the first index
 	 * of the word at the specified <b>wordIndex</b>.
 	 * 
-	 * @param index the position of the word containing the bit at the specified
-	 *              index.
-	 * @return the index of the word within {@link #words}.
+	 * @param wordIndex the index to multiply by 64.
+	 * @return <b>wordIndex</b> * 64.
 	 */
 	protected static final int multiplySize(int wordIndex) {
 		return wordIndex << LOG_2_SIZE;
