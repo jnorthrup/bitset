@@ -60,9 +60,7 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 	 *                                  to <b>end</b>.
 	 */
 	protected BitSpliterator(int position, int end) {
-		this.position = position;
-		this.end = end;
-		if (position >= end) {
+		if ((this.position = position) >= (this.end = end)) {
 			StringBuilder builder = new StringBuilder();
 			builder.append(position).append(" >= ").append(end);
 			throw new IllegalArgumentException(builder.toString());
@@ -115,7 +113,7 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 	 *         {@link #end} if none are found.
 	 */
 	protected int nextLiveBit(long word, int wordIndex) {
-		int index = BitSet.wordStart(wordIndex) + Long.numberOfTrailingZeros(word);
+		int index = BitSet.multiplySize(wordIndex) + Long.numberOfTrailingZeros(word);
 		return index < end ? index : end;
 	}
 
@@ -199,8 +197,8 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 		@Override
 		protected int splitIndex() {
 			int middle = middle();
-			int wordIndex = BitSet.wordIndex(items[middle++]);
-			while (BitSet.wordIndex(items[middle]) <= wordIndex) {
+			int wordIndex = BitSet.divideSize(items[middle++]);
+			while (BitSet.divideSize(items[middle]) <= wordIndex) {
 				middle++;
 			}
 			return middle;
@@ -346,8 +344,8 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 				position = end;
 				return;
 			}
-			int wordIndex = BitSet.wordIndex(position);
-			int lastWordIndex = BitSet.wordIndex(end - 1);
+			int wordIndex = BitSet.divideSize(position);
+			int lastWordIndex = BitSet.divideSize(end - 1);
 			long word = set.words[wordIndex] & (BitSet.MASK << position);
 			do {
 				action.accept(position);
@@ -374,8 +372,8 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 		 *         found.
 		 */
 		private int next(int index) {
-			int wordIndex = BitSet.wordIndex(index);
-			int lastWordIndex = BitSet.wordIndex(end - 1);
+			int wordIndex = BitSet.divideSize(index);
+			int lastWordIndex = BitSet.divideSize(end - 1);
 			if (index >= end) {
 				return end;
 			}
@@ -480,8 +478,8 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 				position = end;
 				return;
 			}
-			int wordIndex = BitSet.wordIndex(position);
-			int lastWordIndex = BitSet.wordIndex(end - 1);
+			int wordIndex = BitSet.divideSize(position);
+			int lastWordIndex = BitSet.divideSize(end - 1);
 			long word = ~set.words[wordIndex] & (BitSet.MASK << position);
 			do {
 				action.accept(position);
@@ -508,8 +506,8 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 		 *         found.
 		 */
 		private int next(int index) {
-			int wordIndex = BitSet.wordIndex(index);
-			int lastWordIndex = BitSet.wordIndex(end - 1);
+			int wordIndex = BitSet.divideSize(index);
+			int lastWordIndex = BitSet.divideSize(end - 1);
 			if (index >= end) {
 				return end;
 			}

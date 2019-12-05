@@ -51,9 +51,7 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 	 */
 	protected BitwiseSpliterator(BitSet set1, BitSet set2, int position, int end) {
 		super(position, end);
-		set1.compareSize(set2);
-		this.set1 = set1;
-		this.set2 = set2;
+		(this.set1 = set1).compareSize(this.set2 = set2);
 		density = density();
 	}
 
@@ -99,8 +97,8 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 		if (position >= end) {
 			return 0;
 		}
-		int positionWord = BitSet.wordIndex(position);
-		int endWord = BitSet.wordIndex(end - 1);
+		int positionWord = BitSet.divideSize(position);
+		int endWord = BitSet.divideSize(end - 1);
 		long positionMask = BitSet.MASK << position;
 		long endMask = BitSet.MASK >>> -end;
 		int sum = 0;
@@ -133,8 +131,8 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 			position = end;
 			return;
 		}
-		int wordIndex = BitSet.wordIndex(position);
-		int lastWordIndex = BitSet.wordIndex(end - 1);
+		int wordIndex = BitSet.divideSize(position);
+		int lastWordIndex = BitSet.divideSize(end - 1);
 		long word = bitwiseWord(wordIndex) & (BitSet.MASK << position);
 		do {
 			action.accept(position);
@@ -161,8 +159,8 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 	 *         found.
 	 */
 	private final int next(int index) {
-		int wordIndex = BitSet.wordIndex(index);
-		int lastWordIndex = BitSet.wordIndex(end - 1);
+		int wordIndex = BitSet.divideSize(index);
+		int lastWordIndex = BitSet.divideSize(end - 1);
 		if (index >= end) {
 			return end;
 		}

@@ -75,8 +75,7 @@ public class BitSet {
 	 * @throws IllegalArgumentException if <b>size</b> is less than 0.
 	 */
 	public BitSet(int size) {
-		this.size = size;
-		int wordCount = wordIndex(size);
+		int wordCount = divideSize(this.size = size);
 		if (wordCount >= 0 && modSize(size) > 0) {
 			wordCount++;
 		}
@@ -110,7 +109,7 @@ public class BitSet {
 	 *                                        {@link #size}.
 	 */
 	public boolean add(int index) {
-		int wordIndex = wordIndex(index);
+		int wordIndex = divideSize(index);
 		long mask = bitMask(index);
 		if ((words[wordIndex] & mask) != 0L) {
 			return false;
@@ -130,7 +129,7 @@ public class BitSet {
 	 *                                        {@link #size}.
 	 */
 	public boolean remove(int index) {
-		int wordIndex = wordIndex(index);
+		int wordIndex = divideSize(index);
 		long mask = bitMask(index);
 		if ((words[wordIndex] & mask) == 0L) {
 			return false;
@@ -151,7 +150,7 @@ public class BitSet {
 	 *                                        than or equal to {@link #size}.
 	 */
 	public final boolean get(int index) {
-		return (words[wordIndex(index)] & bitMask(index)) != 0L;
+		return (words[divideSize(index)] & bitMask(index)) != 0L;
 	}
 
 	/**
@@ -168,8 +167,8 @@ public class BitSet {
 		if (from >= to) {
 			return 0;
 		}
-		int start = wordIndex(from);
-		int end = wordIndex(to - 1);
+		int start = divideSize(from);
+		int end = divideSize(to - 1);
 		long startMask = MASK << from;
 		long endMask = MASK >>> -to;
 		int sum = 0;
@@ -195,7 +194,7 @@ public class BitSet {
 	 *                                        {@link #size}.
 	 */
 	public void set(int index) {
-		words[wordIndex(index)] |= bitMask(index);
+		words[divideSize(index)] |= bitMask(index);
 	}
 
 	/**
@@ -214,8 +213,8 @@ public class BitSet {
 		if (from >= to) {
 			return;
 		}
-		int start = wordIndex(from);
-		int end = wordIndex(to - 1);
+		int start = divideSize(from);
+		int end = divideSize(to - 1);
 		long startMask = MASK << from;
 		long endMask = MASK >>> -to;
 		if (start == end) {
@@ -238,7 +237,7 @@ public class BitSet {
 	 *                                        than or equal to {@link #size}.
 	 */
 	public void clear(int index) {
-		words[wordIndex(index)] &= ~bitMask(index);
+		words[divideSize(index)] &= ~bitMask(index);
 	}
 
 	/**
@@ -255,8 +254,8 @@ public class BitSet {
 		if (from >= to) {
 			return;
 		}
-		int start = wordIndex(from);
-		int end = wordIndex(to - 1);
+		int start = divideSize(from);
+		int end = divideSize(to - 1);
 		long startMask = MASK << from;
 		long endMask = MASK >>> -to;
 		if (start == end) {
@@ -279,7 +278,7 @@ public class BitSet {
 	 *                                        than or equal to {@link #size}.
 	 */
 	public void toggle(int index) {
-		words[wordIndex(index)] ^= bitMask(index);
+		words[divideSize(index)] ^= bitMask(index);
 	}
 
 	/**
@@ -296,8 +295,8 @@ public class BitSet {
 		if (from >= to) {
 			return;
 		}
-		int start = wordIndex(from);
-		int end = wordIndex(to - 1);
+		int start = divideSize(from);
+		int end = divideSize(to - 1);
 		long startMask = MASK << from;
 		long endMask = MASK >>> -to;
 		if (start == end) {
@@ -309,6 +308,29 @@ public class BitSet {
 			}
 			words[end] ^= endMask;
 		}
+	}
+
+	/**
+	 * Returns the raw long word at the specified <b>wordIndex</b> within
+	 * {@link #words}.
+	 * 
+	 * @param wordIndex the index within {@link #words} to read.
+	 * @return the raw contents of {@link #words} at the specified <b>wordIndex</b>.
+	 */
+	public final long getWord(int wordIndex) {
+		return words[wordIndex];
+	}
+
+	/**
+	 * Modifies the raw long word at the specified <b>wordIndex</b> within
+	 * {@link #words}, setting it to <b>word</b>.
+	 * 
+	 * @param wordIndex the index within {@link #words} to set.
+	 * @param word      the raw long value to be set to {@link #words} at
+	 *                  <b>wordIndex<b>.
+	 */
+	public void setWord(int wordIndex, long word) {
+		words[wordIndex] = word;
 	}
 
 	/**
@@ -326,8 +348,8 @@ public class BitSet {
 		if (from >= to) {
 			return;
 		}
-		int start = wordIndex(from);
-		int end = wordIndex(to - 1);
+		int start = divideSize(from);
+		int end = divideSize(to - 1);
 		long startMask = MASK << from;
 		long endMask = MASK >>> -to;
 		if (start == end) {
@@ -363,7 +385,7 @@ public class BitSet {
 	 * @return the index of the next <i>live</i> bit, or -1 if none were found.
 	 */
 	public final int nextLive(int index) {
-		int wordIndex = wordIndex(index);
+		int wordIndex = divideSize(index);
 		if (wordIndex >= words.length || wordIndex < 0) {
 			return -1;
 		}
@@ -390,7 +412,7 @@ public class BitSet {
 	 * @return the index of the next <i>dead</i> bit, or -1 if none were found.
 	 */
 	public final int nextDead(int index) {
-		int wordIndex = wordIndex(index);
+		int wordIndex = divideSize(index);
 		if (wordIndex >= words.length || wordIndex < 0) {
 			return -1;
 		}
@@ -415,7 +437,7 @@ public class BitSet {
 	 * @return the index of the next <i>live</i> bit, or -1 if none were found.
 	 */
 	public final int lastLive(int index) {
-		int wordIndex = wordIndex(index);
+		int wordIndex = divideSize(index);
 		if (wordIndex >= words.length || wordIndex < 0) {
 			return -1;
 		}
@@ -440,7 +462,7 @@ public class BitSet {
 	 * @return the index of the next <i>dead</i> bit, or -1 if none were found.
 	 */
 	public final int lastDead(int index) {
-		int wordIndex = wordIndex(index);
+		int wordIndex = divideSize(index);
 		if (wordIndex >= words.length || wordIndex < 0) {
 			return -1;
 		}
@@ -568,7 +590,7 @@ public class BitSet {
 	 */
 	public final void fill() {
 		for (int i = 0; i < words.length; i++) {
-			words[i] = MASK;
+			setWord(i, MASK);
 		}
 	}
 
@@ -577,7 +599,7 @@ public class BitSet {
 	 */
 	public final void empty() {
 		for (int i = 0; i < words.length; i++) {
-			words[i] = 0L;
+			setWord(i, 0L);
 		}
 	}
 
@@ -675,24 +697,26 @@ public class BitSet {
 	}
 
 	/**
-	 * Calculates the index of the word corresponding to the specified <b>index</b>.
+	 * Calculates <b>index</b> divided by 64. Equivalent to the index of the word
+	 * corresponding to the specified <b>index</b>.
 	 * 
 	 * @param index the position of the word containing the bit at the specified
 	 *              index.
 	 * @return the index of the word within {@link #words}.
 	 */
-	protected static final int wordIndex(int index) {
+	protected static final int divideSize(int index) {
 		return index >> LOG_2_SIZE;
 	}
 
 	/**
-	 * Calculates the first <i>live</i> bit index within a word at the specified
-	 * <b>wordIndex</b>.
+	 * Calculates <b>wordIndex</b> multiplied by 64. Equivalent to the first index
+	 * of the word at the specified <b>wordIndex</b>.
 	 * 
-	 * @param wordIndex the index of a word within {@link #words}.
-	 * @return the index of the first bit contained by that word.
+	 * @param index the position of the word containing the bit at the specified
+	 *              index.
+	 * @return the index of the word within {@link #words}.
 	 */
-	protected static final int wordStart(int wordIndex) {
+	protected static final int multiplySize(int wordIndex) {
 		return wordIndex << LOG_2_SIZE;
 	}
 
@@ -708,7 +732,7 @@ public class BitSet {
 	 *         -1 if none is found.
 	 */
 	private int nextLiveBit(long word, int wordIndex) {
-		int index = wordStart(wordIndex) + Long.numberOfTrailingZeros(word);
+		int index = multiplySize(wordIndex) + Long.numberOfTrailingZeros(word);
 		return index < size ? index : -1;
 	}
 

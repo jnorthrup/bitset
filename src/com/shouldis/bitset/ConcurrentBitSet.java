@@ -44,7 +44,7 @@ public class ConcurrentBitSet extends BitSet {
 
 	@Override
 	public boolean add(int index) {
-		int wordIndex = wordIndex(index);
+		int wordIndex = divideSize(index);
 		long mask = bitMask(index);
 		long expected, word;
 		do {
@@ -59,7 +59,7 @@ public class ConcurrentBitSet extends BitSet {
 
 	@Override
 	public boolean remove(int index) {
-		int wordIndex = wordIndex(index);
+		int wordIndex = divideSize(index);
 		long mask = bitMask(index);
 		long expected, word;
 		do {
@@ -74,7 +74,7 @@ public class ConcurrentBitSet extends BitSet {
 
 	@Override
 	public void set(int index) {
-		atomicOr(wordIndex(index), bitMask(index));
+		atomicOr(divideSize(index), bitMask(index));
 	}
 
 	@Override
@@ -82,8 +82,8 @@ public class ConcurrentBitSet extends BitSet {
 		if (from >= to) {
 			return;
 		}
-		int start = wordIndex(from);
-		int end = wordIndex(to - 1);
+		int start = divideSize(from);
+		int end = divideSize(to - 1);
 		long startMask = MASK << from;
 		long endMask = MASK >>> -to;
 		if (start == end) {
@@ -99,7 +99,7 @@ public class ConcurrentBitSet extends BitSet {
 
 	@Override
 	public void clear(int index) {
-		atomicAnd(wordIndex(index), ~bitMask(index));
+		atomicAnd(divideSize(index), ~bitMask(index));
 	}
 
 	@Override
@@ -107,8 +107,8 @@ public class ConcurrentBitSet extends BitSet {
 		if (from >= to) {
 			return;
 		}
-		int start = wordIndex(from);
-		int end = wordIndex(to - 1);
+		int start = divideSize(from);
+		int end = divideSize(to - 1);
 		long startMask = MASK << from;
 		long endMask = MASK >>> -to;
 		if (start == end) {
@@ -124,7 +124,7 @@ public class ConcurrentBitSet extends BitSet {
 
 	@Override
 	public void toggle(int index) {
-		atomicXOr(wordIndex(index), bitMask(index));
+		atomicXOr(divideSize(index), bitMask(index));
 	}
 
 	@Override
@@ -132,8 +132,8 @@ public class ConcurrentBitSet extends BitSet {
 		if (from >= to) {
 			return;
 		}
-		int start = wordIndex(from);
-		int end = wordIndex(to - 1);
+		int start = divideSize(from);
+		int end = divideSize(to - 1);
 		long startMask = MASK << from;
 		long endMask = MASK >>> -to;
 		if (start == end) {
@@ -148,12 +148,17 @@ public class ConcurrentBitSet extends BitSet {
 	}
 
 	@Override
+	public void setWord(int wordIndex, long word) {
+		HANDLE.setVolatile(words, wordIndex, word);
+	}
+
+	@Override
 	public void randomize(XOrShift random, int from, int to) {
 		if (from >= to) {
 			return;
 		}
-		int start = wordIndex(from);
-		int end = wordIndex(to - 1);
+		int start = divideSize(from);
+		int end = divideSize(to - 1);
 		long startMask = MASK << from;
 		long endMask = MASK >>> -to;
 		if (start == end) {
@@ -211,10 +216,6 @@ public class ConcurrentBitSet extends BitSet {
 		if (hangingBits > 0 && words.length > 0) {
 			atomicAnd(words.length - 1, MASK >>> hangingBits);
 		}
-	}
-
-	protected void setWord(int wordIndex, long word) {
-		HANDLE.setVolatile(words, wordIndex, word);
 	}
 
 	/**
