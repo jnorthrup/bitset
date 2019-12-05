@@ -14,7 +14,7 @@ import java.lang.invoke.VarHandle;
  * @author Aaron Shouldis
  * @see BitSet
  */
-public class ConcurrentBitSet extends BitSet {
+public final class ConcurrentBitSet extends BitSet {
 
 	/**
 	 * A handle on the long array methods for direct, atomic operations.
