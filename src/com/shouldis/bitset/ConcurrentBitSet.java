@@ -161,6 +161,47 @@ public final class ConcurrentBitSet extends BitSet {
 		int end = divideSize(to - 1);
 		long startMask = MASK << from;
 		long endMask = MASK >>> -to;
+		long expected, word, randomized;
+		if (start == end) {
+			long combinedMask = startMask & endMask;
+			randomized = random.nextLong();
+			do {
+				expected = words[start];
+				word = (randomized & combinedMask) | (words[start] & ~combinedMask);
+			} while (!HANDLE.compareAndSet(words, start, expected, word));
+		} else {
+			randomized = random.nextLong();
+			do {
+				expected = words[start];
+				word = (randomized & startMask) | (words[start] & ~startMask);
+			} while (!HANDLE.compareAndSet(words, start, expected, word));
+			for (int i = start + 1; i < end; i++) {
+				setWord(i, random.nextLong());
+			}
+			randomized = random.nextLong();
+			do {
+				expected = words[end];
+				word = (randomized & endMask) | (words[end] & ~endMask);
+			} while (!HANDLE.compareAndSet(words, end, expected, word));
+		}
+	}
+
+	@Override
+	public void randomize(XOrShift random) {
+		for (int i = 0; i < words.length; i++) {
+			setWord(i, random.nextLong());
+		}
+	}
+
+	@Override
+	public void xOrRandomize(XOrShift random, int from, int to) {
+		if (from >= to) {
+			return;
+		}
+		int start = divideSize(from);
+		int end = divideSize(to - 1);
+		long startMask = MASK << from;
+		long endMask = MASK >>> -to;
 		if (start == end) {
 			atomicXOr(start, startMask & endMask & random.nextLong());
 		} else {
@@ -173,7 +214,7 @@ public final class ConcurrentBitSet extends BitSet {
 	}
 
 	@Override
-	public void randomize(XOrShift random) {
+	public void xOrRandomize(XOrShift random) {
 		for (int i = 0; i < words.length; i++) {
 			atomicXOr(i, random.nextLong());
 		}
