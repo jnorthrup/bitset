@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * {@link java.util.Random}'s linear congruent generator. This generator has a
  * period of 2<sup>64</sup> -1.
  * 
+ * @author Aaron Shouldis
  * @see DensityXOrShift
  */
 public class XOrShift {
@@ -47,7 +48,8 @@ public class XOrShift {
 
 	/**
 	 * Returns the next pseudo-random, uniformly distributed long value from this
-	 * random number generator's sequence.
+	 * random number generator's sequence using the "XORShift" algorithm designed by
+	 * George Marsaglia.
 	 * 
 	 * @return the next randomly generated long.
 	 */
