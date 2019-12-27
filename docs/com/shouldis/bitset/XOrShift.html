@@ -106,6 +106,8 @@ extends java.lang.Object</pre>
  <code>Random</code>'s linear congruent generator. This generator has a
  period of 2<sup>64</sup> -1.</div>
 <dl>
+<dt><span class="simpleTagLabel">Author:</span></dt>
+<dd>Aaron Shouldis</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="DensityXOrShift.html" title="class in com.shouldis.bitset"><code>DensityXOrShift</code></a></dd>
 </dl>
@@ -323,7 +325,8 @@ extends java.lang.Object</pre>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextRawLong()">nextRawLong</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the next pseudo-random, uniformly distributed long value from this
- random number generator's sequence.</div>
+ random number generator's sequence using the "XORShift" algorithm designed by
+ George Marsaglia.</div>
 </td>
 </tr>
 <tr class="altColor" id="i14">
@@ -448,7 +451,8 @@ extends java.lang.Object</pre>
 <h4>nextRawLong</h4>
 <pre class="methodSignature">private final&nbsp;long&nbsp;nextRawLong()</pre>
 <div class="block">Returns the next pseudo-random, uniformly distributed long value from this
- random number generator's sequence.</div>
+ random number generator's sequence using the "XORShift" algorithm designed by
+ George Marsaglia.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the next randomly generated long.</dd>
