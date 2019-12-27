@@ -77,22 +77,22 @@ bitSet.randomize(random33, 0, bitSet.size / 2);
 ```
 
 ## Benchmark
-![Reading](https://github.com/ashouldis/BitSet/blob/master/benchmark/benchmark_read.png "\Benchmark_Read")  
 Benchmark of the time to read the state of all bits. Easily parallelized using a **BitSpliterator**. Made faster than **java.util.BitSet** in all cases by avoiding range and invariant checks.  
+![Reading](https://github.com/ashouldis/BitSet/blob/master/benchmark/benchmark_read.png "\Benchmark_Read")  
 
-![Streaming](https://github.com/ashouldis/BitSet/blob/master/benchmark/benchmark_stream.png "\Benchmark_Stream")  
 Benchmark of the time to stream the indices of all bits in the *live* state. Easily parallelized using **BitSpliterator.Live**. Non-parallel implementations also benefit from **BitSpliterator.Live** by reducing the number of lookup/read operations.  
+![Streaming](https://github.com/ashouldis/BitSet/blob/master/benchmark/benchmark_stream.png "\Benchmark_Stream")  
 
-![Manipulating](https://github.com/ashouldis/BitSet/blob/master/benchmark/benchmark_bit.png "\Benchmark_Bit")  6
 Benchmark of the time to manipulate the state of each bit individually. Easily parallelized using a **BitSpliterator**. **ConcurrentBitSet** heavily taxed by extreme number of write operations. Again, made innately faster than **java.util.BitSet** by avoiding range and invariant checks.  
+![Manipulating](https://github.com/ashouldis/BitSet/blob/master/benchmark/benchmark_bit.png "\Benchmark_Bit")  
 
-![Range Manipulating](https://github.com/ashouldis/BitSet/blob/master/benchmark/benchmark_range.png "\Benchmark_Range")  
 Benchmark of the time to manipulate the state of bits in a range sequentially. Does not benefit from being parallelized, and each implementation operates the same except **ConcurrentBitSet**.  
+![Range Manipulating](https://github.com/ashouldis/BitSet/blob/master/benchmark/benchmark_range.png "\Benchmark_Range")  
 
-![Random Initialization](https://github.com/ashouldis/BitSet/blob/master/benchmark/benchmark_random_init.png "\Benchmark_Random_Init")  
 Benchmark of the time to create a randomized BitSet with each bit having a 50% chance of being in the *live* state.  
+![Random Initialization](https://github.com/ashouldis/BitSet/blob/master/benchmark/benchmark_random_init.png "\Benchmark_Random_Init")  
 
-![Randomization](https://github.com/ashouldis/BitSet/blob/master/benchmark/benchmark_randomize.png "\Benchmark_Randomize")  
 Benchmark of the time to randomize the state of all bits. **java.util.BitSet** provides no way to do this other than performing a random test for each bit.  
+![Randomization](https://github.com/ashouldis/BitSet/blob/master/benchmark/benchmark_randomize.png "\Benchmark_Randomize")  
 
 <center>Tested on i5-8250U with BitSets of the maximum size: 2^31 -1</center>
