@@ -26,13 +26,13 @@ Variant of XOrShift whose generated bits have a specified chance of being in the
 
 ## Example Usage
 
-Create a BitSet of size 100,000,000:
+Create a **BitSet** of size 100,000,000:
 
 ```java
 BitSet bitSet = new BitSet(100000000);
 ```
 
-Stream live indices:
+Stream *live* indices:
 
 ```java
 bitSet.live().forEach(i -> {
@@ -40,7 +40,7 @@ bitSet.live().forEach(i -> {
 });
 ```
 
-Stream dead indices in parallel:
+Stream *dead* indices in parallel:
 
 ```java
 bitSet.dead().parallel().forEach(i -> {
@@ -55,21 +55,21 @@ BitSpliterator array = new BitSpliterator.Array([1, 2, 3, 5, 8, 13, ...]);
 array.stream().parallel().forEach(bitSet::toggle);
 ```
 
-Randomize a BitSet such that each bit has a 50% chance of being in the *live* state.
+Randomize a **BitSet** such that each bit has a 50% chance of being in the *live* state.
 
 ```java
 XOrShift random = new XOrShift();
 bitSet.randomize(random);
 ```
 
-Create a ConcurrentBitSet with each bit having a 22% chance of being in the *live* state.
+Create a **ConcurrentBitSet** with each bit having a 22% chance of being in the *live* state.
 
 ```java
 DensityXOrShift random22 = new DensityXOrShift(0.22, 0.001);
 ConcurrentBitSet dense = random.nextConcurrentBitSet();
 ```
 
-Randomize a BitSet such that each bit in first half has a 33% chance of being in the *live* state.
+Randomize a **BitSet** such that each bit in first half has a 33% chance of being in the *live* state.
 
 ```java
 DensityXOrShift random33 = new DensityXOrShift(0.33, 0.001);
