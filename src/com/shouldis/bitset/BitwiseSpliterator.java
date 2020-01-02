@@ -49,7 +49,7 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 	 *                                  and <b>set2</b> differ.
 	 * @throws NullPointerException     if <b>set1</b> or <b>set2</b> are null.
 	 */
-	protected BitwiseSpliterator(BitSet set1, BitSet set2, int position, int end) {
+	protected BitwiseSpliterator(final BitSet set1, final BitSet set2, final int position, final int end) {
 		super(position, end);
 		(this.set1 = set1).compareSize(this.set2 = set2);
 		density = density();
@@ -67,7 +67,7 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 	 * @return the result of the bitwise operation between <b>word1</b> and
 	 *         <b>word2</b>
 	 */
-	protected abstract long bitwiseFunction(long word1, long word2);
+	protected abstract long bitwiseFunction(final long word1, final long word2);
 
 	/**
 	 * Calculates an estimation of the density of bits which will be in the
@@ -97,10 +97,10 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 		if (position >= end) {
 			return 0;
 		}
-		int positionWord = BitSet.divideSize(position);
-		int endWord = BitSet.divideSize(end - 1);
-		long positionMask = BitSet.MASK << position;
-		long endMask = BitSet.MASK >>> -end;
+		final int positionWord = BitSet.divideSize(position);
+		final int endWord = BitSet.divideSize(end - 1);
+		final long positionMask = BitSet.MASK << position;
+		final long endMask = BitSet.MASK >>> -end;
 		int sum = 0;
 		if (positionWord == endWord) {
 			sum += Long.bitCount(bitwiseWord(positionWord) & positionMask & endMask);
@@ -115,7 +115,7 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 	}
 
 	@Override
-	public boolean tryAdvance(IntConsumer action) {
+	public boolean tryAdvance(final IntConsumer action) {
 		position = next(position);
 		if (position < end) {
 			action.accept(position++);
@@ -125,14 +125,14 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 	}
 
 	@Override
-	public void forEachRemaining(IntConsumer action) {
+	public void forEachRemaining(final IntConsumer action) {
 		position = next(position);
 		if (position >= end) {
 			position = end;
 			return;
 		}
 		int wordIndex = BitSet.divideSize(position);
-		int lastWordIndex = BitSet.divideSize(end - 1);
+		final int lastWordIndex = BitSet.divideSize(end - 1);
 		long word = bitwiseWord(wordIndex) & (BitSet.MASK << position);
 		do {
 			action.accept(position);
@@ -158,9 +158,9 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 	 * @return the index of the next <i>live</i> bit, or {@link #end} if none were
 	 *         found.
 	 */
-	private final int next(int index) {
+	private final int next(final int index) {
 		int wordIndex = BitSet.divideSize(index);
-		int lastWordIndex = BitSet.divideSize(end - 1);
+		final int lastWordIndex = BitSet.divideSize(end - 1);
 		if (index >= end) {
 			return end;
 		}
@@ -186,7 +186,7 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 	 * @return the result of {@link #bitwiseFunction(long, long)} on the words at
 	 *         the specified word index.
 	 */
-	private final long bitwiseWord(int wordIndex) {
+	private final long bitwiseWord(final int wordIndex) {
 		return bitwiseFunction(set1.words[wordIndex], set2.words[wordIndex]);
 	}
 
@@ -217,7 +217,7 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 		 *                                  to <b>end</b>, or the sizes of <b>set1</b>
 		 *                                  and <b>set2</b> differ.
 		 */
-		public And(BitSet set1, BitSet set2, int position, int end) {
+		public And(final BitSet set1, final BitSet set2, final int position, final int end) {
 			super(set1, set2, position, end);
 		}
 
@@ -230,7 +230,7 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 		}
 
 		@Override
-		protected long bitwiseFunction(long word1, long word2) {
+		protected long bitwiseFunction(final long word1, final long word2) {
 			return word1 & word2;
 		}
 
@@ -268,7 +268,7 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 		 *                                  to <b>end</b>, or the sizes of <b>set1</b>
 		 *                                  and <b>set2</b> differ.
 		 */
-		public Or(BitSet set1, BitSet set2, int position, int end) {
+		public Or(final BitSet set1, final BitSet set2, final int position, final int end) {
 			super(set1, set2, position, end);
 		}
 
@@ -281,14 +281,14 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 		}
 
 		@Override
-		protected long bitwiseFunction(long word1, long word2) {
+		protected long bitwiseFunction(final long word1, final long word2) {
 			return word1 | word2;
 		}
 
 		@Override
 		protected double density() {
-			double density1 = set1.density(position, end);
-			double density2 = set2.density(position, end);
+			final double density1 = set1.density(position, end);
+			final double density2 = set2.density(position, end);
 			return density1 + density2 - (density1 * density2);
 		}
 
@@ -321,7 +321,7 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 		 *                                  to <b>end</b>, or the sizes of <b>set1</b>
 		 *                                  and <b>set2</b> differ.
 		 */
-		public XOr(BitSet set1, BitSet set2, int position, int end) {
+		public XOr(final BitSet set1, final BitSet set2, final int position, final int end) {
 			super(set1, set2, position, end);
 		}
 
@@ -334,14 +334,14 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 		}
 
 		@Override
-		protected long bitwiseFunction(long word1, long word2) {
+		protected long bitwiseFunction(final long word1, final long word2) {
 			return word1 ^ word2;
 		}
 
 		@Override
 		protected double density() {
-			double density1 = set1.density(position, end);
-			double density2 = set2.density(position, end);
+			final double density1 = set1.density(position, end);
+			final double density2 = set2.density(position, end);
 			return density1 + density2 - (2.0f * density1 * density2);
 		}
 

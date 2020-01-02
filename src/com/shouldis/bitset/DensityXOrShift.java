@@ -107,7 +107,7 @@ public class DensityXOrShift extends XOrShift {
 	 * @param seed    the value to initialize the sequence of pseudo-random numbers
 	 *                with.
 	 */
-	public DensityXOrShift(double density, int depth, long seed) {
+	public DensityXOrShift(double density, int depth, final long seed) {
 		super(seed);
 		depth = boundDepth(depth);
 		density = boundDensity(density, depth);
@@ -136,7 +136,7 @@ public class DensityXOrShift extends XOrShift {
 	 * @param depth   how many operations to perform in order to estimate the
 	 *                desired <b>density</b>.
 	 */
-	public DensityXOrShift(double density, int depth) {
+	public DensityXOrShift(final double density, final int depth) {
 		this(density, depth, generateSeed());
 	}
 
@@ -161,7 +161,7 @@ public class DensityXOrShift extends XOrShift {
 	 * @param seed      the value to initialize the sequence of pseudo-random
 	 *                  numbers with.
 	 */
-	public DensityXOrShift(double density, double tolerance, long seed) {
+	public DensityXOrShift(final double density, final double tolerance, final long seed) {
 		this(density, toleranceDepth(tolerance), seed);
 	}
 
@@ -184,7 +184,7 @@ public class DensityXOrShift extends XOrShift {
 	 *                  acceptable to have between <b>density</b>, and the value it
 	 *                  is estimated to.
 	 */
-	public DensityXOrShift(double density, double tolerance) {
+	public DensityXOrShift(final double density, final double tolerance) {
 		this(density, toleranceDepth(tolerance), generateSeed());
 	}
 
@@ -226,7 +226,7 @@ public class DensityXOrShift extends XOrShift {
 	 *         <b>tolerance</b> of the specified density when creating a
 	 *         {@link DensityXOrShift}
 	 */
-	public static final int toleranceDepth(double tolerance) {
+	public static final int toleranceDepth(final double tolerance) {
 		return -Math.getExponent(boundPercentage(tolerance));
 	}
 
@@ -236,7 +236,7 @@ public class DensityXOrShift extends XOrShift {
 	 * @param power the desired power of the resulting double.
 	 * @return a double representation of 2<sup>-<b>power</b></sup>.
 	 */
-	private static final double powerInverse(int power) {
+	private static final double powerInverse(final int power) {
 		return Double.longBitsToDouble((long) (Double.MAX_EXPONENT - power) << 52);
 	}
 
@@ -251,8 +251,8 @@ public class DensityXOrShift extends XOrShift {
 	 * @return <b>density</b> bounded within [2<sup>-<b>depth</b></sup>, 1
 	 *         -2<sup>-<b>depth</b></sup>].
 	 */
-	private static final double boundDensity(double density, int depth) {
-		double inverse = powerInverse(depth);
+	private static final double boundDensity(final double density, final int depth) {
+		final double inverse = powerInverse(depth);
 		return Math.min(Math.max(density, inverse), 1.0 - inverse);
 	}
 
@@ -263,7 +263,7 @@ public class DensityXOrShift extends XOrShift {
 	 *                <i>live</i> bits to <i>dead</i> bits.
 	 * @return <b>density</b> bounded within [0, 1].
 	 */
-	private static final double boundPercentage(double density) {
+	private static final double boundPercentage(final double density) {
 		return Math.min(Math.max(density, 0.0), 1.0);
 	}
 
@@ -273,7 +273,7 @@ public class DensityXOrShift extends XOrShift {
 	 * @param depth the value to bound, representing the max number of operations.
 	 * @return <b>depth</b> bounded within [1, 63].
 	 */
-	private static final int boundDepth(int depth) {
+	private static final int boundDepth(final int depth) {
 		return Math.min(Math.max(depth, 1), Long.SIZE - 1);
 	}
 

@@ -35,7 +35,7 @@ public class XOrShift {
 	 * 
 	 * @param state the value used to initialize the state of this generator.
 	 */
-	public XOrShift(long state) {
+	public XOrShift(final long state) {
 		setSeed(state);
 	}
 
@@ -91,12 +91,12 @@ public class XOrShift {
 	 * @return the next long between 0 and <b>bound</b>.
 	 * @throws IllegalArgumentException if <b>bound</b> is less than 1;
 	 */
-	public final long nextLong(long bound) {
+	public final long nextLong(final long bound) {
 		if (bound < 1L) {
 			throw new IllegalArgumentException(Long.toString(bound));
 		}
 		long random = nextRawLong();
-		long mask = bound - 1L;
+		final long mask = bound - 1L;
 		if ((bound & mask) == 0L) {
 			random &= mask;
 		} else {
@@ -148,12 +148,12 @@ public class XOrShift {
 	 * @return the next integer between 0 and <b>bound</b>.
 	 * @throws IllegalArgumentException if <b>bound</b> is less than 1;
 	 */
-	public final int nextInt(int bound) {
+	public final int nextInt(final int bound) {
 		if (bound < 1) {
 			throw new IllegalArgumentException(Integer.toString(bound));
 		}
 		int random = nextRawInt();
-		int mask = bound - 1;
+		final int mask = bound - 1;
 		if ((bound & mask) == 0) {
 			random &= mask;
 		} else {
@@ -203,8 +203,8 @@ public class XOrShift {
 	 * @return a randomly generated {@link BitSet} with the specified <b>size</b>.
 	 * @throws IllegalArgumentException if <b>size</b> is less than 0.
 	 */
-	public final BitSet nextBitSet(int size) {
-		BitSet set = new BitSet(size);
+	public final BitSet nextBitSet(final int size) {
+		final BitSet set = new BitSet(size);
 		for (int i = 0; i < set.words.length; i++) {
 			set.words[i] = nextLong();
 		}
@@ -223,8 +223,8 @@ public class XOrShift {
 	 *         <b>size</b>.
 	 * @throws IllegalArgumentException if <b>size</b> is less than 0.
 	 */
-	public final ConcurrentBitSet nextConcurrentBitSet(int size) {
-		ConcurrentBitSet set = new ConcurrentBitSet(size);
+	public final ConcurrentBitSet nextConcurrentBitSet(final int size) {
+		final ConcurrentBitSet set = new ConcurrentBitSet(size);
 		for (int i = 0; i < set.words.length; i++) {
 			set.words[i] = nextLong();
 		}

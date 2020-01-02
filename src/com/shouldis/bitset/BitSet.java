@@ -73,7 +73,7 @@ public class BitSet {
 	 * @param size the number of bit indices that this {@link BitSet} will hold.
 	 * @throws IllegalArgumentException if <b>size</b> is less than 0.
 	 */
-	public BitSet(int size) {
+	public BitSet(final int size) {
 		int wordCount = divideSize(this.size = size);
 		if (wordCount >= 0 && modSize(size) > 0) {
 			wordCount++;
@@ -92,7 +92,7 @@ public class BitSet {
 	 * @param set the {@link BitSet} to copy.
 	 * @throws NullPointerException if <b>set</b> is null.
 	 */
-	public BitSet(BitSet set) {
+	public BitSet(final BitSet set) {
 		this(set.size);
 		copy(set);
 	}
@@ -107,9 +107,9 @@ public class BitSet {
 	 *                                        greater than or equal to
 	 *                                        {@link #size}.
 	 */
-	public boolean add(int index) {
-		int wordIndex = divideSize(index);
-		long mask = bitMask(index);
+	public boolean add(final int index) {
+		final int wordIndex = divideSize(index);
+		final long mask = bitMask(index);
 		if ((words[wordIndex] & mask) != 0L) {
 			return false;
 		}
@@ -127,9 +127,9 @@ public class BitSet {
 	 *                                        greater than or equal to
 	 *                                        {@link #size}.
 	 */
-	public boolean remove(int index) {
-		int wordIndex = divideSize(index);
-		long mask = bitMask(index);
+	public boolean remove(final int index) {
+		final int wordIndex = divideSize(index);
+		final long mask = bitMask(index);
 		if ((words[wordIndex] & mask) == 0L) {
 			return false;
 		}
@@ -148,7 +148,7 @@ public class BitSet {
 	 * @throws ArrayIndexOutOfBoundsException if <b>index</b> is negative or greater
 	 *                                        than or equal to {@link #size}.
 	 */
-	public final boolean get(int index) {
+	public final boolean get(final int index) {
 		return (words[divideSize(index)] & bitMask(index)) != 0L;
 	}
 
@@ -162,14 +162,14 @@ public class BitSet {
 	 *                                        outside of the range 0 to
 	 *                                        {@link #size},
 	 */
-	public final int get(int from, int to) {
+	public final int get(final int from, final int to) {
 		if (from >= to) {
 			return 0;
 		}
-		int start = divideSize(from);
-		int end = divideSize(to - 1);
-		long startMask = MASK << from;
-		long endMask = MASK >>> -to;
+		final int start = divideSize(from);
+		final int end = divideSize(to - 1);
+		final long startMask = MASK << from;
+		final long endMask = MASK >>> -to;
 		int sum = 0;
 		if (start == end) {
 			sum += Long.bitCount(words[start] & startMask & endMask);
@@ -192,7 +192,7 @@ public class BitSet {
 	 *                                        greater than or equal to
 	 *                                        {@link #size}.
 	 */
-	public void set(int index) {
+	public void set(final int index) {
 		words[divideSize(index)] |= bitMask(index);
 	}
 
@@ -208,14 +208,14 @@ public class BitSet {
 	 *                                        outside of the range 0 to
 	 *                                        {@link #size}.
 	 */
-	public void set(int from, int to) {
+	public void set(final int from, final int to) {
 		if (from >= to) {
 			return;
 		}
-		int start = divideSize(from);
-		int end = divideSize(to - 1);
-		long startMask = MASK << from;
-		long endMask = MASK >>> -to;
+		final int start = divideSize(from);
+		final int end = divideSize(to - 1);
+		final long startMask = MASK << from;
+		final long endMask = MASK >>> -to;
 		if (start == end) {
 			words[start] |= startMask & endMask;
 		} else {
@@ -235,7 +235,7 @@ public class BitSet {
 	 * @throws ArrayIndexOutOfBoundsException if <b>index</b> is negative or greater
 	 *                                        than or equal to {@link #size}.
 	 */
-	public void clear(int index) {
+	public void clear(final int index) {
 		words[divideSize(index)] &= ~bitMask(index);
 	}
 
@@ -249,14 +249,14 @@ public class BitSet {
 	 *                                        outside of the range 0 to
 	 *                                        {@link #size}.
 	 */
-	public void clear(int from, int to) {
+	public void clear(final int from, final int to) {
 		if (from >= to) {
 			return;
 		}
-		int start = divideSize(from);
-		int end = divideSize(to - 1);
-		long startMask = MASK << from;
-		long endMask = MASK >>> -to;
+		final int start = divideSize(from);
+		final int end = divideSize(to - 1);
+		final long startMask = MASK << from;
+		final long endMask = MASK >>> -to;
 		if (start == end) {
 			words[start] &= ~(startMask & endMask);
 		} else {
@@ -276,7 +276,7 @@ public class BitSet {
 	 * @throws ArrayIndexOutOfBoundsException if <b>index</b> is negative or greater
 	 *                                        than or equal to {@link #size}.
 	 */
-	public void toggle(int index) {
+	public void toggle(final int index) {
 		words[divideSize(index)] ^= bitMask(index);
 	}
 
@@ -290,14 +290,14 @@ public class BitSet {
 	 *                                        outside of the range 0 to
 	 *                                        {@link #size}.
 	 */
-	public void toggle(int from, int to) {
+	public void toggle(final int from, final int to) {
 		if (from >= to) {
 			return;
 		}
-		int start = divideSize(from);
-		int end = divideSize(to - 1);
-		long startMask = MASK << from;
-		long endMask = MASK >>> -to;
+		final int start = divideSize(from);
+		final int end = divideSize(to - 1);
+		final long startMask = MASK << from;
+		final long endMask = MASK >>> -to;
 		if (start == end) {
 			words[start] ^= startMask & endMask;
 		} else {
@@ -319,7 +319,7 @@ public class BitSet {
 	 *                                        range 0 to ceiling({@link #size} /
 	 *                                        64).
 	 */
-	public final long getWord(int wordIndex) {
+	public final long getWord(final int wordIndex) {
 		return words[wordIndex];
 	}
 
@@ -334,7 +334,7 @@ public class BitSet {
 	 *                                        range 0 to ceiling({@link #size} /
 	 *                                        64).
 	 */
-	public void setWord(int wordIndex, long word) {
+	public void setWord(final int wordIndex, final long word) {
 		words[wordIndex] = word;
 	}
 
@@ -355,14 +355,14 @@ public class BitSet {
 	 * @throws NullPointerException           if <b>random</b> is null.
 	 * @see DensityXOrShift
 	 */
-	public void randomize(XOrShift random, int from, int to) {
+	public void randomize(final XOrShift random, final int from, final int to) {
 		if (from >= to) {
 			return;
 		}
-		int start = divideSize(from);
-		int end = divideSize(to - 1);
-		long startMask = MASK << from;
-		long endMask = MASK >>> -to;
+		final int start = divideSize(from);
+		final int end = divideSize(to - 1);
+		final long startMask = MASK << from;
+		final long endMask = MASK >>> -to;
 		if (start == end) {
 			long combinedMask = startMask & endMask;
 			words[start] = (random.nextLong() & combinedMask) | (words[start] & ~combinedMask);
@@ -388,7 +388,7 @@ public class BitSet {
 	 * @throws NullPointerException if <b>random</b> is null.
 	 * @see DensityXOrShift
 	 */
-	public void randomize(XOrShift random) {
+	public void randomize(final XOrShift random) {
 		for (int i = 0; i < words.length; i++) {
 			words[i] = random.nextLong();
 		}
@@ -411,14 +411,14 @@ public class BitSet {
 	 * @throws NullPointerException           if <b>random</b> is null.
 	 * @see DensityXOrShift
 	 */
-	public void xOrRandomize(XOrShift random, int from, int to) {
+	public void xOrRandomize(final XOrShift random, final int from, final int to) {
 		if (from >= to) {
 			return;
 		}
-		int start = divideSize(from);
-		int end = divideSize(to - 1);
-		long startMask = MASK << from;
-		long endMask = MASK >>> -to;
+		final int start = divideSize(from);
+		final int end = divideSize(to - 1);
+		final long startMask = MASK << from;
+		final long endMask = MASK >>> -to;
 		if (start == end) {
 			words[start] ^= random.nextLong() & startMask & endMask;
 		} else {
@@ -441,7 +441,7 @@ public class BitSet {
 	 * @throws NullPointerException if <b>random</b> is null.
 	 * @see DensityXOrShift
 	 */
-	public void xOrRandomize(XOrShift random) {
+	public void xOrRandomize(final XOrShift random) {
 		for (int i = 0; i < words.length; i++) {
 			words[i] ^= random.nextLong();
 		}
@@ -456,7 +456,7 @@ public class BitSet {
 	 * @param index (inclusive) the first index to check.
 	 * @return the index of the next <i>live</i> bit, or -1 if none were found.
 	 */
-	public final int nextLive(int index) {
+	public final int nextLive(final int index) {
 		int wordIndex = divideSize(index);
 		if (wordIndex >= words.length || wordIndex < 0) {
 			return -1;
@@ -508,7 +508,7 @@ public class BitSet {
 	 * @param index (inclusive) the first index to check.
 	 * @return the index of the next <i>live</i> bit, or -1 if none were found.
 	 */
-	public final int lastLive(int index) {
+	public final int lastLive(final int index) {
 		int wordIndex = divideSize(index);
 		if (wordIndex >= words.length || wordIndex < 0) {
 			return -1;
@@ -533,7 +533,7 @@ public class BitSet {
 	 * @param index (inclusive) the first index to check.
 	 * @return the index of the next <i>dead</i> bit, or -1 if none were found.
 	 */
-	public final int lastDead(int index) {
+	public final int lastDead(final int index) {
 		int wordIndex = divideSize(index);
 		if (wordIndex >= words.length || wordIndex < 0) {
 			return -1;
@@ -585,7 +585,7 @@ public class BitSet {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public void or(BitSet set) {
+	public void or(final BitSet set) {
 		compareSize(set);
 		for (int i = 0; i < words.length; i++) {
 			words[i] |= set.words[i];
@@ -602,7 +602,7 @@ public class BitSet {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public void xor(BitSet set) {
+	public void xor(final BitSet set) {
 		compareSize(set);
 		for (int i = 0; i < words.length; i++) {
 			words[i] ^= set.words[i];
@@ -619,7 +619,7 @@ public class BitSet {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public void and(BitSet set) {
+	public void and(final BitSet set) {
 		compareSize(set);
 		for (int i = 0; i < words.length; i++) {
 			words[i] &= set.words[i];
@@ -636,7 +636,7 @@ public class BitSet {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public void not(BitSet set) {
+	public void not(final BitSet set) {
 		compareSize(set);
 		for (int i = 0; i < words.length; i++) {
 			words[i] = ~set.words[i];
@@ -652,7 +652,7 @@ public class BitSet {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public final void copy(BitSet set) {
+	public final void copy(final BitSet set) {
 		compareSize(set);
 		System.arraycopy(set.words, 0, words, 0, words.length);
 	}
@@ -707,7 +707,7 @@ public class BitSet {
 	 * @param to   (exclusive) the end of the range of bits to be checked.
 	 * @return the percentage of <i>live</i> bits.
 	 */
-	public final double density(int from, int to) {
+	public final double density(final int from, final int to) {
 		if (from >= to) {
 			return 0.0;
 		}
@@ -739,7 +739,7 @@ public class BitSet {
 	 * maintain their effect on aggregating functions ({@link #population()}, etc).
 	 */
 	protected void cleanLastWord() {
-		int hangingBits = modSize(-size);
+		final int hangingBits = modSize(-size);
 		if (hangingBits > 0) {
 			words[words.length - 1] &= (MASK >>> hangingBits);
 		}
@@ -752,7 +752,7 @@ public class BitSet {
 	 * @param index the index to represent as a bit.
 	 * @return the bit that represents the position of an index within a word.
 	 */
-	protected static final long bitMask(int index) {
+	protected static final long bitMask(final int index) {
 		return 1L << index;
 	}
 
@@ -764,7 +764,7 @@ public class BitSet {
 	 * @return the result of the modulo operation.
 	 * @see #MOD_SIZE_MASK
 	 */
-	protected static final int modSize(int index) {
+	protected static final int modSize(final int index) {
 		return index & MOD_SIZE_MASK;
 	}
 
@@ -775,7 +775,7 @@ public class BitSet {
 	 * @param index the index to divide by 64.
 	 * @return <b>wordIndex</b> / 64.
 	 */
-	protected static final int divideSize(int index) {
+	protected static final int divideSize(final int index) {
 		return index >> LOG_2_SIZE;
 	}
 
@@ -786,7 +786,7 @@ public class BitSet {
 	 * @param wordIndex the index to multiply by 64.
 	 * @return <b>wordIndex</b> * 64.
 	 */
-	protected static final int multiplySize(int wordIndex) {
+	protected static final int multiplySize(final int wordIndex) {
 		return wordIndex << LOG_2_SIZE;
 	}
 
@@ -801,8 +801,8 @@ public class BitSet {
 	 * @return the index of the next <i>live</i> bit within the specified word, or
 	 *         -1 if none is found.
 	 */
-	private int nextLiveBit(long word, int wordIndex) {
-		int index = multiplySize(wordIndex) + Long.numberOfTrailingZeros(word);
+	private int nextLiveBit(final long word, final int wordIndex) {
+		final int index = multiplySize(wordIndex) + Long.numberOfTrailingZeros(word);
 		return index < size ? index : -1;
 	}
 
@@ -817,8 +817,8 @@ public class BitSet {
 	 * @return the index of the recent-most <i>live</i> bit within the specified
 	 *         word.
 	 */
-	private int lastLiveBit(long word, int wordIndex) {
-		int index = ((wordIndex + 1) << LOG_2_SIZE) - Long.numberOfLeadingZeros(word) - 1;
+	private int lastLiveBit(final long word, final int wordIndex) {
+		final int index = ((wordIndex + 1) << LOG_2_SIZE) - Long.numberOfLeadingZeros(word) - 1;
 		return index < size ? index : -1;
 	}
 
@@ -831,7 +831,7 @@ public class BitSet {
 	 * @throws NullPointerException           if <b>set</b> is null.
 	 * @throws ArrayIndexOutOfBoundsException if the {@link #size}s are different.
 	 */
-	protected final void compareSize(BitSet set) {
+	protected final void compareSize(final BitSet set) {
 		if (set.size != size) {
 			throw new ArrayIndexOutOfBoundsException(Math.min(set.words.length, words.length) - 1);
 		}
@@ -839,7 +839,7 @@ public class BitSet {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
+		final StringBuilder builder = new StringBuilder();
 		builder.append("Size: [").append(size).append("] Population: [").append(population()).append(']');
 		return builder.toString();
 	}
@@ -851,7 +851,7 @@ public class BitSet {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (obj == null) {
 			return false;
 		}
