@@ -157,7 +157,8 @@ public class BitSet {
 	 * 
 	 * @param from (inclusive) the index of the first bit to be checked.
 	 * @param to   (exclusive) the end of the range of bits to be checked.
-	 * @return the number of <i>live</i> bits inside the specified range.
+	 * @return the number of <i>live</i> bits inside the specified range, or 0 if
+	 *         <b>from</b> is greater than or equal to <b>to</b>.
 	 * @throws ArrayIndexOutOfBoundsException if <b>from</b> or <b>to</b> are
 	 *                                        outside of the range 0 to
 	 *                                        {@link #size},
@@ -198,7 +199,8 @@ public class BitSet {
 
 	/**
 	 * Changes the state of all bits in the specified range to the <i>live</i>
-	 * state.
+	 * state. No action is taken if <b>from</b> is greater than or equal to
+	 * <b>to</b>.
 	 * 
 	 * @param from (inclusive) the index of the first bit to be changed to the
 	 *             <i>live</i> state.
@@ -241,7 +243,8 @@ public class BitSet {
 
 	/**
 	 * Changes the state of all bits in the specified range to the <i>dead</i>
-	 * state.
+	 * state. No action is taken if <b>from</b> is greater than or equal to
+	 * <b>to</b>.
 	 * 
 	 * @param from (inclusive) the index of the first bit to be cleared.
 	 * @param to   (exclusive) the end of the range of bits to be cleared.
@@ -282,7 +285,8 @@ public class BitSet {
 
 	/**
 	 * Changes the state of all bits in the specified range to their respective
-	 * opposites through an {@code XOR} operation.
+	 * opposites through an {@code XOR} operation. No action is taken if <b>from</b>
+	 * is greater than or equal to <b>to</b>.
 	 * 
 	 * @param from (inclusive) the index of the first bit to be toggled.
 	 * @param to   (exclusive) the end of the range of bits to be toggled.
@@ -344,7 +348,8 @@ public class BitSet {
 	 * {@link #xOrRandomize(XOrShift)} and
 	 * {@link #xOrRandomize(XOrShift, int, int)}, this method preserves that
 	 * density. When using a uniformly distributed {@link XOrShift} (as opposed to
-	 * {@link DensityXOrShift}), this is unnecessary.
+	 * {@link DensityXOrShift}), this is unnecessary. No action is taken if
+	 * <b>from</b> is greater than or equal to <b>to</b>.
 	 * 
 	 * @param random the instance of {@link XOrShift} used to randomize.
 	 * @param from   (inclusive) the index of the first bit to be randomized.
@@ -400,7 +405,8 @@ public class BitSet {
 	 * using a non-uniformly distributed {@link XOrShift}, namely
 	 * {@link DensityXOrShift}, the resulting density of this {@link BitSet} can be
 	 * estimated with the function: <br>
-	 * {@code density(a) + density(b) - (2 * density(a) * density(b))}
+	 * {@code density(a) + density(b) - (2 * density(a) * density(b))} <br>
+	 * No action is taken if <b>from</b> is greater than or equal to <b>to</b>.
 	 * 
 	 * @param random the instance of {@link XOrShift} used to randomize.
 	 * @param from   (inclusive) the index of the first bit to be randomized.
@@ -701,7 +707,8 @@ public class BitSet {
 
 	/**
 	 * Calculates what percentage of bits in this {@link BitSet} are in the
-	 * <i>live</i> state in the specified range.
+	 * <i>live</i> state in the specified range. No action is taken if <b>from</b>
+	 * is greater than or equal to <b>to</b>.
 	 * 
 	 * @param from (inclusive) the index of the first bit to be checked.
 	 * @param to   (exclusive) the end of the range of bits to be checked.

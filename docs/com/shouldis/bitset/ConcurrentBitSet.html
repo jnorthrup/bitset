@@ -521,7 +521,8 @@ int&nbsp;to)</code></th>
 int&nbsp;to)</span></div>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="BitSet.html#set(int,int)">BitSet</a></code></span></div>
 <div class="block">Changes the state of all bits in the specified range to the <i>live</i>
- state.</div>
+ state. No action is taken if <b>from</b> is greater than or equal to
+ <b>to</b>.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="BitSet.html#set(int,int)">set</a></code>&nbsp;in class&nbsp;<code><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></dd>
@@ -555,7 +556,8 @@ int&nbsp;to)</span></div>
 int&nbsp;to)</span></div>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="BitSet.html#clear(int,int)">BitSet</a></code></span></div>
 <div class="block">Changes the state of all bits in the specified range to the <i>dead</i>
- state.</div>
+ state. No action is taken if <b>from</b> is greater than or equal to
+ <b>to</b>.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="BitSet.html#clear(int,int)">clear</a></code>&nbsp;in class&nbsp;<code><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></dd>
@@ -587,7 +589,8 @@ int&nbsp;to)</span></div>
 int&nbsp;to)</span></div>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="BitSet.html#toggle(int,int)">BitSet</a></code></span></div>
 <div class="block">Changes the state of all bits in the specified range to their respective
- opposites through an <code>XOR</code> operation.</div>
+ opposites through an <code>XOR</code> operation. No action is taken if <b>from</b>
+ is greater than or equal to <b>to</b>.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="BitSet.html#toggle(int,int)">toggle</a></code>&nbsp;in class&nbsp;<code><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></dd>
@@ -627,7 +630,8 @@ int&nbsp;to)</span></div>
  <a href="BitSet.html#xOrRandomize(com.shouldis.bitset.XOrShift)"><code>BitSet.xOrRandomize(XOrShift)</code></a> and
  <a href="BitSet.html#xOrRandomize(com.shouldis.bitset.XOrShift,int,int)"><code>BitSet.xOrRandomize(XOrShift, int, int)</code></a>, this method preserves that
  density. When using a uniformly distributed <a href="XOrShift.html" title="class in com.shouldis.bitset"><code>XOrShift</code></a> (as opposed to
- <a href="DensityXOrShift.html" title="class in com.shouldis.bitset"><code>DensityXOrShift</code></a>), this is unnecessary.</div>
+ <a href="DensityXOrShift.html" title="class in com.shouldis.bitset"><code>DensityXOrShift</code></a>), this is unnecessary. No action is taken if
+ <b>from</b> is greater than or equal to <b>to</b>.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="BitSet.html#randomize(com.shouldis.bitset.XOrShift,int,int)">randomize</a></code>&nbsp;in class&nbsp;<code><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></dd>
@@ -674,7 +678,8 @@ int&nbsp;to)</span></div>
  using a non-uniformly distributed <a href="XOrShift.html" title="class in com.shouldis.bitset"><code>XOrShift</code></a>, namely
  <a href="DensityXOrShift.html" title="class in com.shouldis.bitset"><code>DensityXOrShift</code></a>, the resulting density of this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> can be
  estimated with the function: <br>
- <code>density(a) + density(b) - (2 * density(a) * density(b))</code></div>
+ <code>density(a) + density(b) - (2 * density(a) * density(b))</code> <br>
+ No action is taken if <b>from</b> is greater than or equal to <b>to</b>.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="BitSet.html#xOrRandomize(com.shouldis.bitset.XOrShift,int,int)">xOrRandomize</a></code>&nbsp;in class&nbsp;<code><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></dd>

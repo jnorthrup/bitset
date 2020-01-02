@@ -791,7 +791,8 @@ int&nbsp;to)</span></div>
 <dd><code>from</code> - (inclusive) the index of the first bit to be checked.</dd>
 <dd><code>to</code> - (exclusive) the end of the range of bits to be checked.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the number of <i>live</i> bits inside the specified range.</dd>
+<dd>the number of <i>live</i> bits inside the specified range, or 0 if
+         <b>from</b> is greater than or equal to <b>to</b>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>from</b> or <b>to</b> are
                                         outside of the range 0 to
@@ -821,7 +822,8 @@ int&nbsp;to)</span></div>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">set</span>&#8203;(<span class="arguments">int&nbsp;from,
 int&nbsp;to)</span></div>
 <div class="block">Changes the state of all bits in the specified range to the <i>live</i>
- state.</div>
+ state. No action is taken if <b>from</b> is greater than or equal to
+ <b>to</b>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>from</code> - (inclusive) the index of the first bit to be changed to the
@@ -856,7 +858,8 @@ int&nbsp;to)</span></div>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">clear</span>&#8203;(<span class="arguments">int&nbsp;from,
 int&nbsp;to)</span></div>
 <div class="block">Changes the state of all bits in the specified range to the <i>dead</i>
- state.</div>
+ state. No action is taken if <b>from</b> is greater than or equal to
+ <b>to</b>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>from</code> - (inclusive) the index of the first bit to be cleared.</dd>
@@ -889,7 +892,8 @@ int&nbsp;to)</span></div>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">toggle</span>&#8203;(<span class="arguments">int&nbsp;from,
 int&nbsp;to)</span></div>
 <div class="block">Changes the state of all bits in the specified range to their respective
- opposites through an <code>XOR</code> operation.</div>
+ opposites through an <code>XOR</code> operation. No action is taken if <b>from</b>
+ is greater than or equal to <b>to</b>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>from</code> - (inclusive) the index of the first bit to be toggled.</dd>
@@ -949,7 +953,8 @@ int&nbsp;to)</span></div>
  <a href="#xOrRandomize(com.shouldis.bitset.XOrShift)"><code>xOrRandomize(XOrShift)</code></a> and
  <a href="#xOrRandomize(com.shouldis.bitset.XOrShift,int,int)"><code>xOrRandomize(XOrShift, int, int)</code></a>, this method preserves that
  density. When using a uniformly distributed <a href="XOrShift.html" title="class in com.shouldis.bitset"><code>XOrShift</code></a> (as opposed to
- <a href="DensityXOrShift.html" title="class in com.shouldis.bitset"><code>DensityXOrShift</code></a>), this is unnecessary.</div>
+ <a href="DensityXOrShift.html" title="class in com.shouldis.bitset"><code>DensityXOrShift</code></a>), this is unnecessary. No action is taken if
+ <b>from</b> is greater than or equal to <b>to</b>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>random</code> - the instance of <a href="XOrShift.html" title="class in com.shouldis.bitset"><code>XOrShift</code></a> used to randomize.</dd>
@@ -997,7 +1002,8 @@ int&nbsp;to)</span></div>
  using a non-uniformly distributed <a href="XOrShift.html" title="class in com.shouldis.bitset"><code>XOrShift</code></a>, namely
  <a href="DensityXOrShift.html" title="class in com.shouldis.bitset"><code>DensityXOrShift</code></a>, the resulting density of this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> can be
  estimated with the function: <br>
- <code>density(a) + density(b) - (2 * density(a) * density(b))</code></div>
+ <code>density(a) + density(b) - (2 * density(a) * density(b))</code> <br>
+ No action is taken if <b>from</b> is greater than or equal to <b>to</b>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>random</code> - the instance of <a href="XOrShift.html" title="class in com.shouldis.bitset"><code>XOrShift</code></a> used to randomize.</dd>
@@ -1243,7 +1249,8 @@ int&nbsp;to)</span></div>
 <div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">double</span>&nbsp;<span class="memberName">density</span>&#8203;(<span class="arguments">int&nbsp;from,
 int&nbsp;to)</span></div>
 <div class="block">Calculates what percentage of bits in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> are in the
- <i>live</i> state in the specified range.</div>
+ <i>live</i> state in the specified range. No action is taken if <b>from</b>
+ is greater than or equal to <b>to</b>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>from</code> - (inclusive) the index of the first bit to be checked.</dd>
