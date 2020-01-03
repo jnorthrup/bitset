@@ -19,7 +19,7 @@
 <script type="text/javascript" src="../../../script-dir/jquery-ui.js"></script>
 </head>
 <body class="class-declaration">
-<script type="text/javascript">var data = {"i0":10,"i1":10,"i2":9,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":9,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":9,"i25":9,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10,"i43":10,"i44":10};
+<script type="text/javascript">var data = {"i0":10,"i1":10,"i2":10,"i3":9,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":9,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":9,"i26":9,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10,"i43":10,"i44":10,"i45":10,"i46":10,"i47":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -261,6 +261,16 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="altColor" id="i2">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#andWord(int,long)">andWord</a></span>&#8203;(int&nbsp;wordIndex,
+long&nbsp;mask)</code></th>
+<td class="colLast">
+<div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the result
+ of an <code>AND</code> operation between the current value at the specified
+ <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified <b>mask</b>.</div>
+</td>
+</tr>
+<tr class="rowColor" id="i3">
 <td class="colFirst"><code>protected static long</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#bitMask(int)">bitMask</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
@@ -268,7 +278,7 @@ extends java.lang.Object</pre>
  stored within a long word.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i3">
+<tr class="altColor" id="i4">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#cleanLastWord()">cleanLastWord</a></span>()</code></th>
 <td class="colLast">
@@ -276,7 +286,7 @@ extends java.lang.Object</pre>
  maintain their effect on aggregating functions (<a href="#population()"><code>population()</code></a>, etc).</div>
 </td>
 </tr>
-<tr class="altColor" id="i4">
+<tr class="rowColor" id="i5">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#clear(int)">clear</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
@@ -284,7 +294,7 @@ extends java.lang.Object</pre>
  state.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i5">
+<tr class="altColor" id="i6">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#clear(int,int)">clear</a></span>&#8203;(int&nbsp;from,
 int&nbsp;to)</code></th>
@@ -293,7 +303,7 @@ int&nbsp;to)</code></th>
  state.</div>
 </td>
 </tr>
-<tr class="altColor" id="i6">
+<tr class="rowColor" id="i7">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#compareSize(com.shouldis.bitset.BitSet)">compareSize</a></span>&#8203;(<a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
 <td class="colLast">
@@ -301,7 +311,7 @@ int&nbsp;to)</code></th>
  specified <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i7">
+<tr class="altColor" id="i8">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#copy(com.shouldis.bitset.BitSet)">copy</a></span>&#8203;(<a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
 <td class="colLast">
@@ -309,7 +319,7 @@ int&nbsp;to)</code></th>
  the give <b>set</b>.</div>
 </td>
 </tr>
-<tr class="altColor" id="i8">
+<tr class="rowColor" id="i9">
 <td class="colFirst"><code>java.util.stream.IntStream</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#dead()">dead</a></span>()</code></th>
 <td class="colLast">
@@ -318,7 +328,7 @@ int&nbsp;to)</code></th>
  <a href="BitSpliterator.Dead.html" title="class in com.shouldis.bitset"><code>BitSpliterator.Dead</code></a>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i9">
+<tr class="altColor" id="i10">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#density()">density</a></span>()</code></th>
 <td class="colLast">
@@ -326,7 +336,7 @@ int&nbsp;to)</code></th>
  <i>live</i> state.</div>
 </td>
 </tr>
-<tr class="altColor" id="i10">
+<tr class="rowColor" id="i11">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#density(int,int)">density</a></span>&#8203;(int&nbsp;from,
 int&nbsp;to)</code></th>
@@ -335,40 +345,40 @@ int&nbsp;to)</code></th>
  <i>live</i> state in the specified range.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i11">
+<tr class="altColor" id="i12">
 <td class="colFirst"><code>protected static int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#divideSize(int)">divideSize</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
 <div class="block">Calculates <b>index</b> divided by 64.</div>
 </td>
 </tr>
-<tr class="altColor" id="i12">
+<tr class="rowColor" id="i13">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#empty()">empty</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Transforms each bit in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> to the <i>dead</i> state.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i13">
+<tr class="altColor" id="i14">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#equals(java.lang.Object)">equals</a></span>&#8203;(java.lang.Object&nbsp;obj)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor" id="i14">
+<tr class="rowColor" id="i15">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#fill()">fill</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Transforms each bit in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> to the <i>live</i> state.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i15">
+<tr class="altColor" id="i16">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#get(int)">get</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
 <div class="block">Checks the current state of the bit at the specified <b>index</b>.</div>
 </td>
 </tr>
-<tr class="altColor" id="i16">
+<tr class="rowColor" id="i17">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#get(int,int)">get</a></span>&#8203;(int&nbsp;from,
 int&nbsp;to)</code></th>
@@ -376,7 +386,7 @@ int&nbsp;to)</code></th>
 <div class="block">Calculates the number of <i>live</i> bits in the specified range.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i17">
+<tr class="altColor" id="i18">
 <td class="colFirst"><code>long</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getWord(int)">getWord</a></span>&#8203;(int&nbsp;wordIndex)</code></th>
 <td class="colLast">
@@ -384,12 +394,12 @@ int&nbsp;to)</code></th>
  <a href="#words"><code>words</code></a>.</div>
 </td>
 </tr>
-<tr class="altColor" id="i18">
+<tr class="rowColor" id="i19">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hashCode()">hashCode</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="rowColor" id="i19">
+<tr class="altColor" id="i20">
 <td class="colFirst"><code>long</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#identifier()">identifier</a></span>()</code></th>
 <td class="colLast">
@@ -397,7 +407,7 @@ int&nbsp;to)</code></th>
  <a href="#hashCode()"><code>hashCode()</code></a> and <a href="#population()"><code>population()</code></a>.</div>
 </td>
 </tr>
-<tr class="altColor" id="i20">
+<tr class="rowColor" id="i21">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#lastDead(int)">lastDead</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
@@ -405,7 +415,7 @@ int&nbsp;to)</code></th>
  <b>index</b>, including that <b>index</b>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i21">
+<tr class="altColor" id="i22">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#lastLive(int)">lastLive</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
@@ -413,7 +423,7 @@ int&nbsp;to)</code></th>
  <b>index</b>, including that <b>index</b>.</div>
 </td>
 </tr>
-<tr class="altColor" id="i22">
+<tr class="rowColor" id="i23">
 <td class="colFirst"><code>private int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#lastLiveBit(long,int)">lastLiveBit</a></span>&#8203;(long&nbsp;word,
 int&nbsp;wordIndex)</code></th>
@@ -422,7 +432,7 @@ int&nbsp;wordIndex)</code></th>
  <b>word</b> that is at the specified <b>wordIndex</b> within <a href="#words"><code>words</code></a>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i23">
+<tr class="altColor" id="i24">
 <td class="colFirst"><code>java.util.stream.IntStream</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#live()">live</a></span>()</code></th>
 <td class="colLast">
@@ -431,7 +441,7 @@ int&nbsp;wordIndex)</code></th>
  <a href="BitSpliterator.Live.html" title="class in com.shouldis.bitset"><code>BitSpliterator.Live</code></a>.</div>
 </td>
 </tr>
-<tr class="altColor" id="i24">
+<tr class="rowColor" id="i25">
 <td class="colFirst"><code>protected static int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#modSize(int)">modSize</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
@@ -439,14 +449,14 @@ int&nbsp;wordIndex)</code></th>
  numbers faster.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i25">
+<tr class="altColor" id="i26">
 <td class="colFirst"><code>protected static int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#multiplySize(int)">multiplySize</a></span>&#8203;(int&nbsp;wordIndex)</code></th>
 <td class="colLast">
 <div class="block">Calculates <b>wordIndex</b> multiplied by 64.</div>
 </td>
 </tr>
-<tr class="altColor" id="i26">
+<tr class="rowColor" id="i27">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextDead(int)">nextDead</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
@@ -454,7 +464,7 @@ int&nbsp;wordIndex)</code></th>
  <b>index</b>, including that <b>index</b>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i27">
+<tr class="altColor" id="i28">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextLive(int)">nextLive</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
@@ -462,7 +472,7 @@ int&nbsp;wordIndex)</code></th>
  <b>index</b>, including that <b>index</b>.</div>
 </td>
 </tr>
-<tr class="altColor" id="i28">
+<tr class="rowColor" id="i29">
 <td class="colFirst"><code>private int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextLiveBit(long,int)">nextLiveBit</a></span>&#8203;(long&nbsp;word,
 int&nbsp;wordIndex)</code></th>
@@ -471,7 +481,7 @@ int&nbsp;wordIndex)</code></th>
  <b>word</b> that is at the specified <b>wordIndex</b> within <a href="#words"><code>words</code></a>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i29">
+<tr class="altColor" id="i30">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#not()">not</a></span>()</code></th>
 <td class="colLast">
@@ -479,7 +489,7 @@ int&nbsp;wordIndex)</code></th>
  state.</div>
 </td>
 </tr>
-<tr class="altColor" id="i30">
+<tr class="rowColor" id="i31">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#not(com.shouldis.bitset.BitSet)">not</a></span>&#8203;(<a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
 <td class="colLast">
@@ -487,7 +497,7 @@ int&nbsp;wordIndex)</code></th>
  <b>set</b>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i31">
+<tr class="altColor" id="i32">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#or(com.shouldis.bitset.BitSet)">or</a></span>&#8203;(<a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
 <td class="colLast">
@@ -495,14 +505,24 @@ int&nbsp;wordIndex)</code></th>
  with those in the specified <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 </td>
 </tr>
-<tr class="altColor" id="i32">
+<tr class="rowColor" id="i33">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#orWord(int,long)">orWord</a></span>&#8203;(int&nbsp;wordIndex,
+long&nbsp;mask)</code></th>
+<td class="colLast">
+<div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the result
+ of an <code>OR</code> operation between the current value at the specified
+ <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified <b>mask</b>.</div>
+</td>
+</tr>
+<tr class="altColor" id="i34">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#population()">population</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Calculates the number of <i>live</i> bits within this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i33">
+<tr class="rowColor" id="i35">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#randomize(com.shouldis.bitset.XOrShift)">randomize</a></span>&#8203;(<a href="XOrShift.html" title="class in com.shouldis.bitset">XOrShift</a>&nbsp;random)</code></th>
 <td class="colLast">
@@ -510,7 +530,7 @@ int&nbsp;wordIndex)</code></th>
  <a href="XOrShift.html" title="class in com.shouldis.bitset"><code>XOrShift</code></a> <b>random</b>.</div>
 </td>
 </tr>
-<tr class="altColor" id="i34">
+<tr class="altColor" id="i36">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#randomize(com.shouldis.bitset.XOrShift,int,int)">randomize</a></span>&#8203;(<a href="XOrShift.html" title="class in com.shouldis.bitset">XOrShift</a>&nbsp;random,
 int&nbsp;from,
@@ -520,14 +540,14 @@ int&nbsp;to)</code></th>
  the density of the <a href="XOrShift.html" title="class in com.shouldis.bitset"><code>XOrShift</code></a> <b>random</b>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i35">
+<tr class="rowColor" id="i37">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove(int)">remove</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
 <div class="block">Ensures that the bit at the specified <b>index</b> is the <i>dead</i> state.</div>
 </td>
 </tr>
-<tr class="altColor" id="i36">
+<tr class="altColor" id="i38">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#set(int)">set</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
@@ -535,7 +555,7 @@ int&nbsp;to)</code></th>
  state.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i37">
+<tr class="rowColor" id="i39">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#set(int,int)">set</a></span>&#8203;(int&nbsp;from,
 int&nbsp;to)</code></th>
@@ -544,7 +564,7 @@ int&nbsp;to)</code></th>
  state.</div>
 </td>
 </tr>
-<tr class="altColor" id="i38">
+<tr class="altColor" id="i40">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setWord(int,long)">setWord</a></span>&#8203;(int&nbsp;wordIndex,
 long&nbsp;word)</code></th>
@@ -553,7 +573,7 @@ long&nbsp;word)</code></th>
  <a href="#words"><code>words</code></a>, setting it to <b>word</b>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i39">
+<tr class="rowColor" id="i41">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toggle(int)">toggle</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
@@ -561,7 +581,7 @@ long&nbsp;word)</code></th>
  through an <code>XOR</code> operation.</div>
 </td>
 </tr>
-<tr class="altColor" id="i40">
+<tr class="altColor" id="i42">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toggle(int,int)">toggle</a></span>&#8203;(int&nbsp;from,
 int&nbsp;to)</code></th>
@@ -570,12 +590,12 @@ int&nbsp;to)</code></th>
  opposites through an <code>XOR</code> operation.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i41">
+<tr class="rowColor" id="i43">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor" id="i42">
+<tr class="altColor" id="i44">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#xor(com.shouldis.bitset.BitSet)">xor</a></span>&#8203;(<a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
 <td class="colLast">
@@ -583,7 +603,7 @@ int&nbsp;to)</code></th>
  with those in the specified <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i43">
+<tr class="rowColor" id="i45">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#xOrRandomize(com.shouldis.bitset.XOrShift)">xOrRandomize</a></span>&#8203;(<a href="XOrShift.html" title="class in com.shouldis.bitset">XOrShift</a>&nbsp;random)</code></th>
 <td class="colLast">
@@ -591,7 +611,7 @@ int&nbsp;to)</code></th>
  by the specified <a href="XOrShift.html" title="class in com.shouldis.bitset"><code>XOrShift</code></a> <b>random</b>.</div>
 </td>
 </tr>
-<tr class="altColor" id="i44">
+<tr class="altColor" id="i46">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#xOrRandomize(com.shouldis.bitset.XOrShift,int,int)">xOrRandomize</a></span>&#8203;(<a href="XOrShift.html" title="class in com.shouldis.bitset">XOrShift</a>&nbsp;random,
 int&nbsp;from,
@@ -599,6 +619,16 @@ int&nbsp;to)</code></th>
 <td class="colLast">
 <div class="block">Performs an <code>XOR</code> operation on all bits in the specified range against
  random bits generated by the specified <a href="XOrShift.html" title="class in com.shouldis.bitset"><code>XOrShift</code></a> <b>random</b>.</div>
+</td>
+</tr>
+<tr class="rowColor" id="i47">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#xorWord(int,long)">xorWord</a></span>&#8203;(int&nbsp;wordIndex,
+long&nbsp;mask)</code></th>
+<td class="colLast">
+<div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the result
+ of an <code>XOR</code> operation between the current value at the specified
+ <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified <b>mask</b>.</div>
 </td>
 </tr>
 </tbody>
@@ -944,6 +974,60 @@ long&nbsp;word)</span></div>
 </li>
 <li class="blockList">
 <section class="detail">
+<h3><a id="andWord(int,long)">andWord</a></h3>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">andWord</span>&#8203;(<span class="arguments">int&nbsp;wordIndex,
+long&nbsp;mask)</span></div>
+<div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the result
+ of an <code>AND</code> operation between the current value at the specified
+ <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified <b>mask</b>. <br>
+ <code>words[wordIndex] &amp;= mask;</code></div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>wordIndex</code> - the index within <a href="#words"><code>words</code></a> to perform the <code>AND</code>
+                  operation upon.</dd>
+<dd><code>mask</code> - the mask to use in the <code>AND</code> operation on the current
+                  value at the specified <b>wordIndex</b>.</dd>
+</dl>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="orWord(int,long)">orWord</a></h3>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">orWord</span>&#8203;(<span class="arguments">int&nbsp;wordIndex,
+long&nbsp;mask)</span></div>
+<div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the result
+ of an <code>OR</code> operation between the current value at the specified
+ <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified <b>mask</b>. <br>
+ <code>words[wordIndex] |= mask;</code></div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>wordIndex</code> - the index within <a href="#words"><code>words</code></a> to perform the <code>OR</code>
+                  operation upon.</dd>
+<dd><code>mask</code> - the mask to use in the <code>OR</code> operation on the current
+                  value at the specified <b>wordIndex</b>.</dd>
+</dl>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="xorWord(int,long)">xorWord</a></h3>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">xorWord</span>&#8203;(<span class="arguments">int&nbsp;wordIndex,
+long&nbsp;mask)</span></div>
+<div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the result
+ of an <code>XOR</code> operation between the current value at the specified
+ <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified <b>mask</b>. <br>
+ <code>words[wordIndex] ^= mask;</code></div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>wordIndex</code> - the index within <a href="#words"><code>words</code></a> to perform the <code>XOR</code>
+                  operation upon.</dd>
+<dd><code>mask</code> - the mask to use in the <code>XOR</code> operation on the current
+                  value at the specified <b>wordIndex</b>.</dd>
+</dl>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
 <h3><a id="randomize(com.shouldis.bitset.XOrShift,int,int)">randomize</a></h3>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">randomize</span>&#8203;(<span class="arguments"><a href="XOrShift.html" title="class in com.shouldis.bitset">XOrShift</a>&nbsp;random,
 int&nbsp;from,
@@ -1128,8 +1212,25 @@ int&nbsp;to)</span></div>
 </li>
 <li class="blockList">
 <section class="detail">
+<h3><a id="and(com.shouldis.bitset.BitSet)">and</a></h3>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">and</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
+<div class="block">Performs a global <code>AND</code> operation on all bits in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>
+ with those in the specified <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>set</code> - the other <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> from which to perform the <code>AND</code>
+            operation.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.IllegalArgumentException</code> - if the <a href="#size"><code>size</code></a>s of both
+                                  <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s are not equal.</dd>
+<dd><code>java.lang.NullPointerException</code> - if <b>set</b> is null.</dd>
+</dl>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
 <h3><a id="or(com.shouldis.bitset.BitSet)">or</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">or</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">or</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
 <div class="block">Performs a global <code>OR</code> operation on all bits in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>
  with those in the specified <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 <dl>
@@ -1146,7 +1247,7 @@ int&nbsp;to)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="xor(com.shouldis.bitset.BitSet)">xor</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">xor</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">xor</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
 <div class="block">Performs a global <code>XOR</code> operation on all bits in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>
  with those in the specified <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 <dl>
@@ -1162,25 +1263,8 @@ int&nbsp;to)</span></div>
 </li>
 <li class="blockList">
 <section class="detail">
-<h3><a id="and(com.shouldis.bitset.BitSet)">and</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">and</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
-<div class="block">Performs a global <code>AND</code> operation on all bits in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>
- with those in the specified <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>set</code> - the other <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> from which to perform the <code>AND</code>
-            operation.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.IllegalArgumentException</code> - if the <a href="#size"><code>size</code></a>s of both
-                                  <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s are not equal.</dd>
-<dd><code>java.lang.NullPointerException</code> - if <b>set</b> is null.</dd>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
 <h3><a id="not(com.shouldis.bitset.BitSet)">not</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">not</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">not</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
 <div class="block">Transforms this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> into the complement of the specified
  <b>set</b>.</div>
 <dl>
@@ -1196,18 +1280,10 @@ int&nbsp;to)</span></div>
 </li>
 <li class="blockList">
 <section class="detail">
-<h3><a id="copy(com.shouldis.bitset.BitSet)">copy</a></h3>
-<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">copy</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
-<div class="block">Transforms this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> so that each bit matches the state of that in
- the give <b>set</b>.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>set</code> - the other <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> from which to copy.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.IllegalArgumentException</code> - if the <a href="#size"><code>size</code></a>s of both
-                                  <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s are not equal.</dd>
-<dd><code>java.lang.NullPointerException</code> - if <b>set</b> is null.</dd>
-</dl>
+<h3><a id="not()">not</a></h3>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">not</span>()</div>
+<div class="block">Transforms each bit in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> into the complement of its current
+ state.</div>
 </section>
 </li>
 <li class="blockList">
@@ -1226,10 +1302,18 @@ int&nbsp;to)</span></div>
 </li>
 <li class="blockList">
 <section class="detail">
-<h3><a id="not()">not</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">not</span>()</div>
-<div class="block">Transforms each bit in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> into the complement of its current
- state.</div>
+<h3><a id="copy(com.shouldis.bitset.BitSet)">copy</a></h3>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">copy</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
+<div class="block">Transforms this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> so that each bit matches the state of that in
+ the give <b>set</b>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>set</code> - the other <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> from which to copy.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.IllegalArgumentException</code> - if the <a href="#size"><code>size</code></a>s of both
+                                  <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s are not equal.</dd>
+<dd><code>java.lang.NullPointerException</code> - if <b>set</b> is null.</dd>
+</dl>
 </section>
 </li>
 <li class="blockList">
@@ -1287,7 +1371,7 @@ int&nbsp;to)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="cleanLastWord()">cleanLastWord</a></h3>
-<div class="memberSignature"><span class="modifiers">protected</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">cleanLastWord</span>()</div>
+<div class="memberSignature"><span class="modifiers">protected final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">cleanLastWord</span>()</div>
 <div class="block">Changes the state of any "hanging bits" to the <i>dead</i> state in order to
  maintain their effect on aggregating functions (<a href="#population()"><code>population()</code></a>, etc).</div>
 </section>
@@ -1353,7 +1437,7 @@ int&nbsp;to)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="nextLiveBit(long,int)">nextLiveBit</a></h3>
-<div class="memberSignature"><span class="modifiers">private</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">nextLiveBit</span>&#8203;(<span class="arguments">long&nbsp;word,
+<div class="memberSignature"><span class="modifiers">private final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">nextLiveBit</span>&#8203;(<span class="arguments">long&nbsp;word,
 int&nbsp;wordIndex)</span></div>
 <div class="block">Calculates the index of the next <i>live</i> bit within a specified
  <b>word</b> that is at the specified <b>wordIndex</b> within <a href="#words"><code>words</code></a>.
@@ -1372,7 +1456,7 @@ int&nbsp;wordIndex)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="lastLiveBit(long,int)">lastLiveBit</a></h3>
-<div class="memberSignature"><span class="modifiers">private</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">lastLiveBit</span>&#8203;(<span class="arguments">long&nbsp;word,
+<div class="memberSignature"><span class="modifiers">private final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">lastLiveBit</span>&#8203;(<span class="arguments">long&nbsp;word,
 int&nbsp;wordIndex)</span></div>
 <div class="block">Calculates the index of the recent-most <i>live</i> bit within a specified
  <b>word</b> that is at the specified <b>wordIndex</b> within <a href="#words"><code>words</code></a>.

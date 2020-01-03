@@ -96,7 +96,7 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 	 * 
 	 * @return the middle index of this {@link BitSpliterator}.
 	 */
-	protected int middle() {
+	protected final int middle() {
 		final int middle = (position >> 1) + (end >> 1);
 		return middle + (((position % 2) + (end % 2)) >> 1);
 	}

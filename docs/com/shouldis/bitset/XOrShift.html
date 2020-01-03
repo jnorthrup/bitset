@@ -323,8 +323,8 @@ extends java.lang.Object</pre>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextRawLong()">nextRawLong</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the next pseudo-random, uniformly distributed long value from this
- random number generator's sequence using the "XORShift" algorithm designed by
- George Marsaglia.</div>
+ random number generator's sequence using the "XORShift64" algorithm designed
+ by George Marsaglia.</div>
 </td>
 </tr>
 <tr class="altColor" id="i14">
@@ -426,8 +426,8 @@ extends java.lang.Object</pre>
 <h3><a id="nextRawLong()">nextRawLong</a></h3>
 <div class="memberSignature"><span class="modifiers">private final</span>&nbsp;<span class="returnType">long</span>&nbsp;<span class="memberName">nextRawLong</span>()</div>
 <div class="block">Returns the next pseudo-random, uniformly distributed long value from this
- random number generator's sequence using the "XORShift" algorithm designed by
- George Marsaglia.</div>
+ random number generator's sequence using the "XORShift64" algorithm designed
+ by George Marsaglia.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the next randomly generated long.</dd>
@@ -590,7 +590,7 @@ extends java.lang.Object</pre>
  each word filled with <a href="#nextLong()"><code>nextLong()</code></a>.
  <p>
  This is more efficient than initializing a <a href="ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> with
- <a href="ConcurrentBitSet.html#randomize(com.shouldis.bitset.XOrShift)"><code>ConcurrentBitSet.randomize(XOrShift)</code></a>.</div>
+ <a href="BitSet.html#randomize(com.shouldis.bitset.XOrShift)"><code>BitSet.randomize(XOrShift)</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>size</code> - the size of the generated <a href="ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a>.</dd>

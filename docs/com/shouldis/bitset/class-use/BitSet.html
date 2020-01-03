@@ -90,7 +90,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../ConcurrentBitSet.html" title="class in com.shouldis.bitset">ConcurrentBitSet</a></span></code></th>
 <td class="colLast">
 <div class="block">Implementation of <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in which all methods capable of modifying
- the state of bits are performed as atomic operations.</div>
+ the state of bits such as <a href="../ConcurrentBitSet.html#setWord(int,long)"><code>ConcurrentBitSet.setWord(int, long)</code></a>,
+ <a href="../ConcurrentBitSet.html#andWord(int,long)"><code>ConcurrentBitSet.andWord(int, long)</code></a>, <a href="../ConcurrentBitSet.html#orWord(int,long)"><code>ConcurrentBitSet.orWord(int, long)</code></a>,
+ <a href="../ConcurrentBitSet.html#xorWord(int,long)"><code>ConcurrentBitSet.xorWord(int, long)</code></a> are delegated to atomic-operations.</div>
 </td>
 </tr>
 </tbody>
@@ -182,11 +184,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><span class="typeNameLabel">ConcurrentBitSet.</span><code><span class="memberNameLink"><a href="../ConcurrentBitSet.html#and(com.shouldis.bitset.BitSet)">and</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><span class="typeNameLabel">BitSet.</span><code><span class="memberNameLink"><a href="../BitSet.html#compareSize(com.shouldis.bitset.BitSet)">compareSize</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
 <td class="colLast">
@@ -194,7 +191,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  specified <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><span class="typeNameLabel">BitSet.</span><code><span class="memberNameLink"><a href="../BitSet.html#copy(com.shouldis.bitset.BitSet)">copy</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
 <td class="colLast">
@@ -202,7 +199,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  the give <b>set</b>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><span class="typeNameLabel">BitSet.</span><code><span class="memberNameLink"><a href="../BitSet.html#not(com.shouldis.bitset.BitSet)">not</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
 <td class="colLast">
@@ -210,18 +207,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  <b>set</b>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><span class="typeNameLabel">BitSet.</span><code><span class="memberNameLink"><a href="../BitSet.html#or(com.shouldis.bitset.BitSet)">or</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
 <td class="colLast">
 <div class="block">Performs a global <code>OR</code> operation on all bits in this <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>
  with those in the specified <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 </td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><span class="typeNameLabel">ConcurrentBitSet.</span><code><span class="memberNameLink"><a href="../ConcurrentBitSet.html#or(com.shouldis.bitset.BitSet)">or</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
-<td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
@@ -230,11 +222,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Performs a global <code>XOR</code> operation on all bits in this <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>
  with those in the specified <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 </td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><span class="typeNameLabel">ConcurrentBitSet.</span><code><span class="memberNameLink"><a href="../ConcurrentBitSet.html#xor(com.shouldis.bitset.BitSet)">xor</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
-<td class="colLast">&nbsp;</td>
 </tr>
 </tbody>
 </table>

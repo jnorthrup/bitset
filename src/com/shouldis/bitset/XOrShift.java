@@ -48,8 +48,8 @@ public class XOrShift {
 
 	/**
 	 * Returns the next pseudo-random, uniformly distributed long value from this
-	 * random number generator's sequence using the "XORShift" algorithm designed by
-	 * George Marsaglia.
+	 * random number generator's sequence using the "XORShift64" algorithm designed
+	 * by George Marsaglia.
 	 * 
 	 * @return the next randomly generated long.
 	 */
@@ -259,7 +259,7 @@ public class XOrShift {
 			next = current * MAGIC_NUMBER;
 		} while (!SEED_ENTROPY.compareAndSet(current, next));
 		do {
-			next ^= MAGIC_NUMBER ^ System.nanoTime();
+			next ^= System.nanoTime();
 		} while (next == 0L);
 		return next;
 	}

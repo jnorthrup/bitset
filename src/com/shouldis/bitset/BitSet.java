@@ -194,7 +194,7 @@ public class BitSet {
 	 *                                        {@link #size}.
 	 */
 	public void set(final int index) {
-		words[divideSize(index)] |= bitMask(index);
+		orWord(divideSize(index), bitMask(index));
 	}
 
 	/**
@@ -219,13 +219,13 @@ public class BitSet {
 		final long startMask = MASK << from;
 		final long endMask = MASK >>> -to;
 		if (start == end) {
-			words[start] |= startMask & endMask;
+			orWord(start, startMask & endMask);
 		} else {
-			words[start] |= startMask;
+			orWord(start, startMask);
 			for (int i = start + 1; i < end; i++) {
-				words[i] = MASK;
+				setWord(i, MASK);
 			}
-			words[end] |= endMask;
+			orWord(end, endMask);
 		}
 	}
 
@@ -238,7 +238,7 @@ public class BitSet {
 	 *                                        than or equal to {@link #size}.
 	 */
 	public void clear(final int index) {
-		words[divideSize(index)] &= ~bitMask(index);
+		andWord(divideSize(index), ~bitMask(index));
 	}
 
 	/**
@@ -261,13 +261,13 @@ public class BitSet {
 		final long startMask = MASK << from;
 		final long endMask = MASK >>> -to;
 		if (start == end) {
-			words[start] &= ~(startMask & endMask);
+			andWord(start, ~(startMask & endMask));
 		} else {
-			words[start] &= ~startMask;
+			andWord(start, ~startMask);
 			for (int i = start + 1; i < end; i++) {
-				words[i] = 0L;
+				setWord(i, 0L);
 			}
-			words[end] &= ~endMask;
+			andWord(end, ~endMask);
 		}
 	}
 
@@ -280,7 +280,7 @@ public class BitSet {
 	 *                                        than or equal to {@link #size}.
 	 */
 	public void toggle(final int index) {
-		words[divideSize(index)] ^= bitMask(index);
+		xorWord(divideSize(index), bitMask(index));
 	}
 
 	/**
@@ -303,13 +303,13 @@ public class BitSet {
 		final long startMask = MASK << from;
 		final long endMask = MASK >>> -to;
 		if (start == end) {
-			words[start] ^= startMask & endMask;
+			xorWord(start, startMask & endMask);
 		} else {
-			words[start] ^= startMask;
+			xorWord(start, startMask);
 			for (int i = start + 1; i < end; i++) {
-				words[i] = ~words[i];
+				setWord(i, ~words[i]);
 			}
-			words[end] ^= endMask;
+			xorWord(end, endMask);
 		}
 	}
 
@@ -343,6 +343,51 @@ public class BitSet {
 	}
 
 	/**
+	 * Changes the long word at <b>wordIndex</b> within {@link #words} to the result
+	 * of an {@code AND} operation between the current value at the specified
+	 * <b>wordIndex</b> within {@link #words} and the specified <b>mask</b>. <br>
+	 * {@code words[wordIndex] &= mask;}
+	 * 
+	 * @param wordIndex the index within {@link #words} to perform the {@code AND}
+	 *                  operation upon.
+	 * @param mask      the mask to use in the {@code AND} operation on the current
+	 *                  value at the specified <b>wordIndex</b>.
+	 */
+	public void andWord(final int wordIndex, final long mask) {
+		words[wordIndex] &= mask;
+	}
+
+	/**
+	 * Changes the long word at <b>wordIndex</b> within {@link #words} to the result
+	 * of an {@code OR} operation between the current value at the specified
+	 * <b>wordIndex</b> within {@link #words} and the specified <b>mask</b>. <br>
+	 * {@code words[wordIndex] |= mask;}
+	 * 
+	 * @param wordIndex the index within {@link #words} to perform the {@code OR}
+	 *                  operation upon.
+	 * @param mask      the mask to use in the {@code OR} operation on the current
+	 *                  value at the specified <b>wordIndex</b>.
+	 */
+	public void orWord(final int wordIndex, final long mask) {
+		words[wordIndex] |= mask;
+	}
+
+	/**
+	 * Changes the long word at <b>wordIndex</b> within {@link #words} to the result
+	 * of an {@code XOR} operation between the current value at the specified
+	 * <b>wordIndex</b> within {@link #words} and the specified <b>mask</b>. <br>
+	 * {@code words[wordIndex] ^= mask;}
+	 * 
+	 * @param wordIndex the index within {@link #words} to perform the {@code XOR}
+	 *                  operation upon.
+	 * @param mask      the mask to use in the {@code XOR} operation on the current
+	 *                  value at the specified <b>wordIndex</b>.
+	 */
+	public void xorWord(final int wordIndex, final long mask) {
+		words[wordIndex] ^= mask;
+	}
+
+	/**
 	 * Changes the state of all bits in the specified range randomly according to
 	 * the density of the {@link XOrShift} <b>random</b>. In contrast to
 	 * {@link #xOrRandomize(XOrShift)} and
@@ -369,7 +414,7 @@ public class BitSet {
 		final long startMask = MASK << from;
 		final long endMask = MASK >>> -to;
 		if (start == end) {
-			long combinedMask = startMask & endMask;
+			final long combinedMask = startMask & endMask;
 			words[start] = (random.nextLong() & combinedMask) | (words[start] & ~combinedMask);
 		} else {
 			words[start] = (random.nextLong() & startMask) | (words[start] & ~startMask);
@@ -395,7 +440,7 @@ public class BitSet {
 	 */
 	public void randomize(final XOrShift random) {
 		for (int i = 0; i < words.length; i++) {
-			words[i] = random.nextLong();
+			setWord(i, random.nextLong());
 		}
 	}
 
@@ -426,13 +471,13 @@ public class BitSet {
 		final long startMask = MASK << from;
 		final long endMask = MASK >>> -to;
 		if (start == end) {
-			words[start] ^= random.nextLong() & startMask & endMask;
+			xorWord(start, random.nextLong() & startMask & endMask);
 		} else {
-			words[start] ^= random.nextLong() & startMask;
+			xorWord(start, random.nextLong() & startMask);
 			for (int i = start + 1; i < end; i++) {
-				words[i] ^= random.nextLong();
+				xorWord(i, random.nextLong());
 			}
-			words[end] ^= random.nextLong() & endMask;
+			xorWord(end, random.nextLong() & endMask);
 		}
 	}
 
@@ -449,7 +494,7 @@ public class BitSet {
 	 */
 	public void xOrRandomize(final XOrShift random) {
 		for (int i = 0; i < words.length; i++) {
-			words[i] ^= random.nextLong();
+			xorWord(i, random.nextLong());
 		}
 	}
 
@@ -489,7 +534,7 @@ public class BitSet {
 	 * @param index (inclusive) the first index to check.
 	 * @return the index of the next <i>dead</i> bit, or -1 if none were found.
 	 */
-	public final int nextDead(int index) {
+	public final int nextDead(final int index) {
 		int wordIndex = divideSize(index);
 		if (wordIndex >= words.length || wordIndex < 0) {
 			return -1;
@@ -582,6 +627,23 @@ public class BitSet {
 	}
 
 	/**
+	 * Performs a global {@code AND} operation on all bits in this {@link BitSet}
+	 * with those in the specified {@link BitSet} <b>set</b>.
+	 * 
+	 * @param set the other {@link BitSet} from which to perform the {@code AND}
+	 *            operation.
+	 * @throws IllegalArgumentException if the {@link #size}s of both
+	 *                                  {@link BitSet}s are not equal.
+	 * @throws NullPointerException     if <b>set</b> is null.
+	 */
+	public final void and(final BitSet set) {
+		compareSize(set);
+		for (int i = 0; i < words.length; i++) {
+			andWord(i, set.words[i]);
+		}
+	}
+
+	/**
 	 * Performs a global {@code OR} operation on all bits in this {@link BitSet}
 	 * with those in the specified {@link BitSet} <b>set</b>.
 	 * 
@@ -591,10 +653,10 @@ public class BitSet {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public void or(final BitSet set) {
+	public final void or(final BitSet set) {
 		compareSize(set);
 		for (int i = 0; i < words.length; i++) {
-			words[i] |= set.words[i];
+			orWord(i, set.words[i]);
 		}
 	}
 
@@ -608,27 +670,10 @@ public class BitSet {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public void xor(final BitSet set) {
+	public final void xor(final BitSet set) {
 		compareSize(set);
 		for (int i = 0; i < words.length; i++) {
-			words[i] ^= set.words[i];
-		}
-	}
-
-	/**
-	 * Performs a global {@code AND} operation on all bits in this {@link BitSet}
-	 * with those in the specified {@link BitSet} <b>set</b>.
-	 * 
-	 * @param set the other {@link BitSet} from which to perform the {@code AND}
-	 *            operation.
-	 * @throws IllegalArgumentException if the {@link #size}s of both
-	 *                                  {@link BitSet}s are not equal.
-	 * @throws NullPointerException     if <b>set</b> is null.
-	 */
-	public void and(final BitSet set) {
-		compareSize(set);
-		for (int i = 0; i < words.length; i++) {
-			words[i] &= set.words[i];
+			xorWord(i, set.words[i]);
 		}
 	}
 
@@ -642,25 +687,21 @@ public class BitSet {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public void not(final BitSet set) {
+	public final void not(final BitSet set) {
 		compareSize(set);
 		for (int i = 0; i < words.length; i++) {
-			words[i] = ~set.words[i];
+			setWord(i, ~set.words[i]);
 		}
 	}
 
 	/**
-	 * Transforms this {@link BitSet} so that each bit matches the state of that in
-	 * the give <b>set</b>.
-	 * 
-	 * @param set the other {@link BitSet} from which to copy.
-	 * @throws IllegalArgumentException if the {@link #size}s of both
-	 *                                  {@link BitSet}s are not equal.
-	 * @throws NullPointerException     if <b>set</b> is null.
+	 * Transforms each bit in this {@link BitSet} into the complement of its current
+	 * state.
 	 */
-	public final void copy(final BitSet set) {
-		compareSize(set);
-		System.arraycopy(set.words, 0, words, 0, words.length);
+	public void not() {
+		for (int i = 0; i < words.length; i++) {
+			words[i] = ~words[i];
+		}
 	}
 
 	/**
@@ -682,13 +723,17 @@ public class BitSet {
 	}
 
 	/**
-	 * Transforms each bit in this {@link BitSet} into the complement of its current
-	 * state.
+	 * Transforms this {@link BitSet} so that each bit matches the state of that in
+	 * the give <b>set</b>.
+	 * 
+	 * @param set the other {@link BitSet} from which to copy.
+	 * @throws IllegalArgumentException if the {@link #size}s of both
+	 *                                  {@link BitSet}s are not equal.
+	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public void not() {
-		for (int i = 0; i < words.length; i++) {
-			words[i] = ~words[i];
-		}
+	public final void copy(final BitSet set) {
+		compareSize(set);
+		System.arraycopy(set.words, 0, words, 0, words.length);
 	}
 
 	/**
@@ -745,10 +790,10 @@ public class BitSet {
 	 * Changes the state of any "hanging bits" to the <i>dead</i> state in order to
 	 * maintain their effect on aggregating functions ({@link #population()}, etc).
 	 */
-	protected void cleanLastWord() {
+	protected final void cleanLastWord() {
 		final int hangingBits = modSize(-size);
 		if (hangingBits > 0) {
-			words[words.length - 1] &= (MASK >>> hangingBits);
+			andWord(words.length - 1, MASK >>> hangingBits);
 		}
 	}
 
@@ -808,7 +853,7 @@ public class BitSet {
 	 * @return the index of the next <i>live</i> bit within the specified word, or
 	 *         -1 if none is found.
 	 */
-	private int nextLiveBit(final long word, final int wordIndex) {
+	private final int nextLiveBit(final long word, final int wordIndex) {
 		final int index = multiplySize(wordIndex) + Long.numberOfTrailingZeros(word);
 		return index < size ? index : -1;
 	}
@@ -824,7 +869,7 @@ public class BitSet {
 	 * @return the index of the recent-most <i>live</i> bit within the specified
 	 *         word.
 	 */
-	private int lastLiveBit(final long word, final int wordIndex) {
+	private final int lastLiveBit(final long word, final int wordIndex) {
 		final int index = ((wordIndex + 1) << LOG_2_SIZE) - Long.numberOfLeadingZeros(word) - 1;
 		return index < size ? index : -1;
 	}
@@ -867,7 +912,7 @@ public class BitSet {
 		}
 		boolean equal = obj instanceof BitSet;
 		if (equal) {
-			BitSet other = (BitSet) obj;
+			final BitSet other = (BitSet) obj;
 			cleanLastWord();
 			other.cleanLastWord();
 			equal = Arrays.equals(words, other.words);

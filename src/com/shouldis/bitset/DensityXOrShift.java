@@ -76,9 +76,9 @@ public class DensityXOrShift extends XOrShift {
 
 	/**
 	 * The field of bits used by {@link #nextBoolean()} to more efficiently produce
-	 * boolean values which are true at the rate determined by {@link #density}.
-	 * This field is refreshed with {@link #nextLong()} after all bits have been
-	 * consumed.
+	 * boolean values which are {@code true} at the rate determined by
+	 * {@link #density}. This field is refreshed with {@link #nextLong()} after all
+	 * bits have been consumed.
 	 */
 	private long booleanWord;
 
