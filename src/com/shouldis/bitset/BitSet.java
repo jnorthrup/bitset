@@ -783,7 +783,7 @@ public class BitSet {
 	 * @return the unique identifying code.
 	 */
 	public final long identifier() {
-		return ((long) hashCode() << Long.SIZE) + population();
+		return ((long) hashCode() << Integer.SIZE) + population();
 	}
 
 	/**
