@@ -37,10 +37,4 @@ Benchmark of the time to manipulate the state of each bit individually. Easily p
 Benchmark of the time to manipulate the state of bits in a range sequentially. Does not benefit from being parallelized, and each implementation operates the same except **ConcurrentBitSet**.  
 ![Range Manipulating](https://github.com/ashouldis/BitSet/blob/master/benchmark/benchmark_range.png "\Benchmark_Range")  
 
-Benchmark of the time to create a randomized BitSet with each bit having a 50% chance of being in the *live* state.  
-![Random Initialization](https://github.com/ashouldis/BitSet/blob/master/benchmark/benchmark_random_init.png "\Benchmark_Random_Init")  
-
-Benchmark of the time to randomize the state of all bits. **java.util.BitSet** provides no way to do this other than performing a random test for each bit.  
-![Randomization](https://github.com/ashouldis/BitSet/blob/master/benchmark/benchmark_randomize.png "\Benchmark_Randomize")  
-
 <center>Tested on i5-8250U with BitSets of the maximum size: 2^31 -1</center>
