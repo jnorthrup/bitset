@@ -12,7 +12,7 @@ import java.lang.invoke.VarHandle;
  * <p>
  * The use of atomic operations allows concurrent modification of this
  * {@link ConcurrentBitSet} without any external synchronization at the cost of
- * processing time. These opperations are done by the semantics of
+ * processing time. These operations are done by the semantics of
  * {@link VarHandle#setVolatile(Object...)}.
  * <p>
  * All methods have behavior as specified by {@link BitSet}.
