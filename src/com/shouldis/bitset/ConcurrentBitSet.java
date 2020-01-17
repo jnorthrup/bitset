@@ -99,7 +99,7 @@ public final class ConcurrentBitSet extends BitSet {
 	}
 
 	@Override
-	public long getWord(int wordIndex) {
+	public long getWord(final int wordIndex) {
 		return (long) HANDLE.getVolatile(words, wordIndex);
 	}
 
