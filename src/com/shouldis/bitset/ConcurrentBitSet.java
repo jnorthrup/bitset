@@ -79,26 +79,6 @@ public final class ConcurrentBitSet extends BitSet {
 	}
 
 	@Override
-	public void toggle(final int from, final int to) {
-		if (from >= to) {
-			return;
-		}
-		final int start = divideSize(from);
-		final int end = divideSize(to - 1);
-		final long startMask = MASK << from;
-		final long endMask = MASK >>> -to;
-		if (start == end) {
-			xorWord(start, startMask & endMask);
-		} else {
-			xorWord(start, startMask);
-			for (int i = start + 1; i < end; i++) {
-				xorWord(i, MASK);
-			}
-			xorWord(end, endMask);
-		}
-	}
-
-	@Override
 	public long getWord(final int wordIndex) {
 		return (long) HANDLE.getVolatile(words, wordIndex);
 	}
@@ -133,10 +113,18 @@ public final class ConcurrentBitSet extends BitSet {
 	}
 
 	@Override
-	public void not() {
-		for (int i = 0; i < words.length; i++) {
-			xorWord(i, MASK);
-		}
+	public void toggleWord(int wordIndex) {
+		xorWord(wordIndex, MASK);
+	}
+
+	@Override
+	public void fillWord(int wordIndex) {
+		setWord(wordIndex, MASK);
+	}
+
+	@Override
+	public void emptyWord(int wordIndex) {
+		setWord(wordIndex, 0);
 	}
 
 }

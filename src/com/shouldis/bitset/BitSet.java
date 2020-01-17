@@ -280,7 +280,7 @@ public class BitSet {
 	 * @throws ArrayIndexOutOfBoundsException if <b>index</b> is negative or greater
 	 *                                        than or equal to {@link #size}.
 	 */
-	public void toggle(final int index) {
+	public final void toggle(final int index) {
 		xorWord(divideSize(index), bitMask(index));
 	}
 
@@ -295,7 +295,7 @@ public class BitSet {
 	 *                                        outside of the range 0 to
 	 *                                        {@link #size}.
 	 */
-	public void toggle(final int from, final int to) {
+	public final void toggle(final int from, final int to) {
 		if (from >= to) {
 			return;
 		}
@@ -308,7 +308,7 @@ public class BitSet {
 		} else {
 			xorWord(start, startMask);
 			for (int i = start + 1; i < end; i++) {
-				setWord(i, ~getWord(i));
+				toggleWord(i);
 			}
 			xorWord(end, endMask);
 		}
@@ -353,7 +353,6 @@ public class BitSet {
 	 * @param word      the new long value to be set to {@link #words}.
 	 * @param mask      the mask used to determine which bits from <b>word</b> will
 	 *                  be applied.
-	 * 
 	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
 	 *                                        range 0 to ceiling({@link #size} /
 	 *                                        64).
@@ -372,6 +371,9 @@ public class BitSet {
 	 *                  operation upon.
 	 * @param mask      the mask to use in the {@code AND} operation on the current
 	 *                  value at the specified <b>wordIndex</b>.
+	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
+	 *                                        range 0 to ceiling({@link #size} /
+	 *                                        64).
 	 */
 	public void andWord(final int wordIndex, final long mask) {
 		words[wordIndex] &= mask;
@@ -387,6 +389,9 @@ public class BitSet {
 	 *                  operation upon.
 	 * @param mask      the mask to use in the {@code OR} operation on the current
 	 *                  value at the specified <b>wordIndex</b>.
+	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
+	 *                                        range 0 to ceiling({@link #size} /
+	 *                                        64).
 	 */
 	public void orWord(final int wordIndex, final long mask) {
 		words[wordIndex] |= mask;
@@ -402,9 +407,54 @@ public class BitSet {
 	 *                  operation upon.
 	 * @param mask      the mask to use in the {@code XOR} operation on the current
 	 *                  value at the specified <b>wordIndex</b>.
+	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
+	 *                                        range 0 to ceiling({@link #size} /
+	 *                                        64).
 	 */
 	public void xorWord(final int wordIndex, final long mask) {
 		words[wordIndex] ^= mask;
+	}
+
+	/**
+	 * Changes the long word at <b>wordIndex</b> within {@link #words} to the
+	 * complement of its current state.
+	 * 
+	 * @param wordIndex the index within {@link #words} to perform the toggle
+	 *                  operation upon.
+	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
+	 *                                        range 0 to ceiling({@link #size} /
+	 *                                        64).
+	 */
+	public void toggleWord(final int wordIndex) {
+		setWord(wordIndex, ~getWord(wordIndex));
+	}
+
+	/**
+	 * Changes the long word at <b>wordIndex</b> within {@link #words} to
+	 * {@link #MASK}, setting all bits to the <i>live</i> state.
+	 * 
+	 * @param wordIndex the index within {@link #words} to perform the fill
+	 *                  operation upon.
+	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
+	 *                                        range 0 to ceiling({@link #size} /
+	 *                                        64).
+	 */
+	public void fillWord(final int wordIndex) {
+		setWord(wordIndex, MASK);
+	}
+
+	/**
+	 * Changes the long word at <b>wordIndex</b> within {@link #words} to 0,
+	 * removing all bits in the <i>live</i> state.
+	 * 
+	 * @param wordIndex the index within {@link #words} to perform the empty
+	 *                  operation upon.
+	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
+	 *                                        range 0 to ceiling({@link #size} /
+	 *                                        64).
+	 */
+	public void emptyWord(final int wordIndex) {
+		setWord(wordIndex, 0);
 	}
 
 	/**
@@ -425,7 +475,7 @@ public class BitSet {
 	 * @throws NullPointerException           if <b>random</b> is null.
 	 * @see DensityXOrShift
 	 */
-	public void randomize(final XOrShift random, final int from, final int to) {
+	public final void randomize(final XOrShift random, final int from, final int to) {
 		if (from >= to) {
 			return;
 		}
@@ -457,7 +507,7 @@ public class BitSet {
 	 * @throws NullPointerException if <b>random</b> is null.
 	 * @see DensityXOrShift
 	 */
-	public void randomize(final XOrShift random) {
+	public final void randomize(final XOrShift random) {
 		for (int i = 0; i < words.length; i++) {
 			setWord(i, random.nextLong());
 		}
@@ -481,7 +531,7 @@ public class BitSet {
 	 * @throws NullPointerException           if <b>random</b> is null.
 	 * @see DensityXOrShift
 	 */
-	public void xOrRandomize(final XOrShift random, final int from, final int to) {
+	public final void xOrRandomize(final XOrShift random, final int from, final int to) {
 		if (from >= to) {
 			return;
 		}
@@ -511,7 +561,7 @@ public class BitSet {
 	 * @throws NullPointerException if <b>random</b> is null.
 	 * @see DensityXOrShift
 	 */
-	public void xOrRandomize(final XOrShift random) {
+	public final void xOrRandomize(final XOrShift random) {
 		for (int i = 0; i < words.length; i++) {
 			xorWord(i, random.nextLong());
 		}
@@ -717,9 +767,9 @@ public class BitSet {
 	 * Transforms each bit in this {@link BitSet} into the complement of its current
 	 * state.
 	 */
-	public void not() {
+	public final void not() {
 		for (int i = 0; i < words.length; i++) {
-			setWord(i, ~getWord(i));
+			toggleWord(i);
 		}
 	}
 
@@ -728,7 +778,7 @@ public class BitSet {
 	 */
 	public final void fill() {
 		for (int i = 0; i < words.length; i++) {
-			setWord(i, MASK);
+			fillWord(i);
 		}
 	}
 
@@ -737,7 +787,7 @@ public class BitSet {
 	 */
 	public final void empty() {
 		for (int i = 0; i < words.length; i++) {
-			setWord(i, 0L);
+			emptyWord(i);
 		}
 	}
 
@@ -753,6 +803,64 @@ public class BitSet {
 	public final void copy(final BitSet set) {
 		compareSize(set);
 		System.arraycopy(set.words, 0, words, 0, words.length);
+	}
+
+	/**
+	 * Changes the state of any "hanging bits" to the <i>dead</i> state in order to
+	 * maintain their effect on aggregating functions ({@link #population()}, etc).
+	 */
+	protected final void cleanLastWord() {
+		final int hangingBits = modSize(-size);
+		if (hangingBits > 0) {
+			andWord(words.length - 1, MASK >>> hangingBits);
+		}
+	}
+
+	/**
+	 * Calculates the index of the next <i>live</i> bit within a specified
+	 * <b>word</b> that is at the specified <b>wordIndex</b> within {@link #words}.
+	 * This index will represent its bit index in the underlying long array as well
+	 * as the offset within the long <b>word</b>.
+	 * 
+	 * @param word      the long word to be checked for a <i>live</i> bit.
+	 * @param wordIndex the index of the word within {@link #words}.
+	 * @return the index of the next <i>live</i> bit within the specified word, or
+	 *         -1 if none is found.
+	 */
+	private final int nextLiveBit(final long word, final int wordIndex) {
+		final int index = multiplySize(wordIndex) + Long.numberOfTrailingZeros(word);
+		return index < size ? index : -1;
+	}
+
+	/**
+	 * Calculates the index of the recent-most <i>live</i> bit within a specified
+	 * <b>word</b> that is at the specified <b>wordIndex</b> within {@link #words}.
+	 * This index will represent its bit index in the underlying long array as well
+	 * as the offset within the long <b>word</b>.
+	 * 
+	 * @param word      the long word to be checked for a <i>live</i> bit.
+	 * @param wordIndex the index of the word within {@link #words}.
+	 * @return the index of the recent-most <i>live</i> bit within the specified
+	 *         word.
+	 */
+	private final int lastLiveBit(final long word, final int wordIndex) {
+		final int index = multiplySize(wordIndex + 1) - Long.numberOfLeadingZeros(word) - 1;
+		return index < size ? index : -1;
+	}
+
+	/**
+	 * Compares the {@link #size} of this {@link BitSet} with that of the other
+	 * specified {@link BitSet} <b>set</b>. Enforces that they are equal, throwing a
+	 * {@link IllegalArgumentException} otherwise.
+	 * 
+	 * @param set the {@link BitSet} to compare {@link #size}s with.
+	 * @throws NullPointerException           if <b>set</b> is null.
+	 * @throws ArrayIndexOutOfBoundsException if the {@link #size}s are different.
+	 */
+	protected final void compareSize(final BitSet set) {
+		if (set.size != size) {
+			throw new ArrayIndexOutOfBoundsException(Math.min(set.words.length, words.length) - 1);
+		}
 	}
 
 	/**
@@ -806,17 +914,6 @@ public class BitSet {
 	}
 
 	/**
-	 * Changes the state of any "hanging bits" to the <i>dead</i> state in order to
-	 * maintain their effect on aggregating functions ({@link #population()}, etc).
-	 */
-	protected final void cleanLastWord() {
-		final int hangingBits = modSize(-size);
-		if (hangingBits > 0) {
-			andWord(words.length - 1, MASK >>> hangingBits);
-		}
-	}
-
-	/**
 	 * Calculates <b>index</b> divided by 64. Equivalent to the index of the word
 	 * corresponding to the specified <b>index</b>.
 	 * 
@@ -859,53 +956,6 @@ public class BitSet {
 	 */
 	protected static final int modSize(final int index) {
 		return index & MOD_SIZE_MASK;
-	}
-
-	/**
-	 * Calculates the index of the next <i>live</i> bit within a specified
-	 * <b>word</b> that is at the specified <b>wordIndex</b> within {@link #words}.
-	 * This index will represent its bit index in the underlying long array as well
-	 * as the offset within the long <b>word</b>.
-	 * 
-	 * @param word      the long word to be checked for a <i>live</i> bit.
-	 * @param wordIndex the index of the word within {@link #words}.
-	 * @return the index of the next <i>live</i> bit within the specified word, or
-	 *         -1 if none is found.
-	 */
-	private final int nextLiveBit(final long word, final int wordIndex) {
-		final int index = multiplySize(wordIndex) + Long.numberOfTrailingZeros(word);
-		return index < size ? index : -1;
-	}
-
-	/**
-	 * Calculates the index of the recent-most <i>live</i> bit within a specified
-	 * <b>word</b> that is at the specified <b>wordIndex</b> within {@link #words}.
-	 * This index will represent its bit index in the underlying long array as well
-	 * as the offset within the long <b>word</b>.
-	 * 
-	 * @param word      the long word to be checked for a <i>live</i> bit.
-	 * @param wordIndex the index of the word within {@link #words}.
-	 * @return the index of the recent-most <i>live</i> bit within the specified
-	 *         word.
-	 */
-	private final int lastLiveBit(final long word, final int wordIndex) {
-		final int index = multiplySize(wordIndex + 1) - Long.numberOfLeadingZeros(word) - 1;
-		return index < size ? index : -1;
-	}
-
-	/**
-	 * Compares the {@link #size} of this {@link BitSet} with that of the other
-	 * specified {@link BitSet} <b>set</b>. Enforces that they are equal, throwing a
-	 * {@link IllegalArgumentException} otherwise.
-	 * 
-	 * @param set the {@link BitSet} to compare {@link #size}s with.
-	 * @throws NullPointerException           if <b>set</b> is null.
-	 * @throws ArrayIndexOutOfBoundsException if the {@link #size}s are different.
-	 */
-	protected final void compareSize(final BitSet set) {
-		if (set.size != size) {
-			throw new ArrayIndexOutOfBoundsException(Math.min(set.words.length, words.length) - 1);
-		}
 	}
 
 	@Override
