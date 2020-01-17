@@ -5,7 +5,7 @@ import java.lang.invoke.VarHandle;
 
 /**
  * Implementation of {@link BitSet} in which all methods capable of reading or
- * modifying the state of bits such as @{@link #getWord(int)},
+ * writing the state of bits such as {@link #getWord(int)},
  * {@link #setWord(int, long)}, {@link #andWord(int, long)},
  * {@link #orWord(int, long)}, {@link #xorWord(int, long)} are delegated to
  * atomic-operations.
@@ -109,6 +109,15 @@ public final class ConcurrentBitSet extends BitSet {
 	}
 
 	@Override
+	public void setWordSegment(int wordIndex, long word, long mask) {
+		long newWord, expected;
+		do {
+			expected = getWord(wordIndex);
+			newWord = (mask & word) | (~mask & expected);
+		} while (!HANDLE.compareAndSet(words, wordIndex, expected, newWord));
+	}
+
+	@Override
 	public void andWord(final int wordIndex, final long mask) {
 		HANDLE.getAndBitwiseAnd(words, wordIndex, mask);
 	}
@@ -121,40 +130,6 @@ public final class ConcurrentBitSet extends BitSet {
 	@Override
 	public void xorWord(final int wordIndex, final long mask) {
 		HANDLE.getAndBitwiseXor(words, wordIndex, mask);
-	}
-
-	@Override
-	public void randomize(final XOrShift random, final int from, final int to) {
-		if (from >= to) {
-			return;
-		}
-		final int start = divideSize(from);
-		final int end = divideSize(to - 1);
-		final long startMask = MASK << from;
-		final long endMask = MASK >>> -to;
-		long expected, word, randomized;
-		if (start == end) {
-			final long combinedMask = startMask & endMask;
-			randomized = random.nextLong();
-			do {
-				expected = getWord(start);
-				word = (randomized & combinedMask) | (getWord(start) & ~combinedMask);
-			} while (!HANDLE.compareAndSet(words, start, expected, word));
-		} else {
-			randomized = random.nextLong();
-			do {
-				expected = getWord(start);
-				word = (randomized & startMask) | (getWord(start) & ~startMask);
-			} while (!HANDLE.compareAndSet(words, start, expected, word));
-			for (int i = start + 1; i < end; i++) {
-				setWord(i, random.nextLong());
-			}
-			randomized = random.nextLong();
-			do {
-				expected = getWord(end);
-				word = (randomized & endMask) | (getWord(end) & ~endMask);
-			} while (!HANDLE.compareAndSet(words, end, expected, word));
-		}
 	}
 
 	@Override

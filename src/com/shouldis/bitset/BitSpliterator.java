@@ -14,7 +14,7 @@ import java.util.stream.StreamSupport;
  * conditions on the underlying longs within {@link BitSet#words}. This behavior
  * can only be guaranteed if the indices returned by the {@link BitSpliterator}
  * are manipulated, and not some offset or translation. This bounding of indices
- * to specific threads is needed because of the non-atomic nature of modifying
+ * to specific threads is needed because of the non-atomic nature of modifying a
  * long. Using a generic parallel {@link IntStream} would cause changes to the
  * underlying long words of a {@link BitSet} to be potentially overridden by
  * other threads.

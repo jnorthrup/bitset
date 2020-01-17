@@ -112,7 +112,7 @@ implements java.util.Spliterator.OfInt</pre>
  conditions on the underlying longs within <a href="BitSet.html#words"><code>BitSet.words</code></a>. This behavior
  can only be guaranteed if the indices returned by the <a href="BitSpliterator.html" title="class in com.shouldis.bitset"><code>BitSpliterator</code></a>
  are manipulated, and not some offset or translation. This bounding of indices
- to specific threads is needed because of the non-atomic nature of modifying
+ to specific threads is needed because of the non-atomic nature of modifying a
  long. Using a generic parallel <code>IntStream</code> would cause changes to the
  underlying long words of a <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> to be potentially overridden by
  other threads.

@@ -315,7 +315,7 @@ public class BitSet {
 	}
 
 	/**
-	 * Returns the raw long word at the specified <b>wordIndex</b> within
+	 * Returns the long word at the specified <b>wordIndex</b> within
 	 * {@link #words}.
 	 * 
 	 * @param wordIndex the index within {@link #words} to read.
@@ -329,11 +329,11 @@ public class BitSet {
 	}
 
 	/**
-	 * Modifies the raw long word at the specified <b>wordIndex</b> within
+	 * Changes the long word at the specified <b>wordIndex</b> within
 	 * {@link #words}, setting it to <b>word</b>.
 	 * 
 	 * @param wordIndex the index within {@link #words} to set.
-	 * @param word      the raw long value to be set to {@link #words} at
+	 * @param word      the long value to be set to {@link #words} at
 	 *                  <b>wordIndex</b>.
 	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
 	 *                                        range 0 to ceiling({@link #size} /
@@ -341,6 +341,25 @@ public class BitSet {
 	 */
 	public void setWord(final int wordIndex, final long word) {
 		words[wordIndex] = word;
+	}
+
+	/**
+	 * Changes the long word at the specified <b>wordIndex</b> within {@link #words}
+	 * such that it retains the previous state of bits where the bits of <b>mask</b>
+	 * are in the <i>dead</i> state, and takes on the value of bits in <b>word</b>
+	 * where <b>mask</b> has bits in the <i>live</i> state.
+	 * 
+	 * @param wordIndex the index within {@link #words} to change.
+	 * @param word      the new long value to be set to {@link #words}.
+	 * @param mask      the mask used to determine which bits from <b>word</b> will
+	 *                  be applied.
+	 * 
+	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
+	 *                                        range 0 to ceiling({@link #size} /
+	 *                                        64).
+	 */
+	public void setWordSegment(final int wordIndex, final long word, final long mask) {
+		setWord(wordIndex, (mask & word) | (~mask & getWord(wordIndex)));
 	}
 
 	/**
@@ -415,14 +434,13 @@ public class BitSet {
 		final long startMask = MASK << from;
 		final long endMask = MASK >>> -to;
 		if (start == end) {
-			final long combinedMask = startMask & endMask;
-			setWord(start, (random.nextLong() & combinedMask) | (getWord(start) & ~combinedMask));
+			setWordSegment(start, random.nextLong(), startMask & endMask);
 		} else {
-			setWord(start, (random.nextLong() & startMask) | (getWord(start) & ~startMask));
+			setWordSegment(start, random.nextLong(), startMask);
 			for (int i = start + 1; i < end; i++) {
 				setWord(i, random.nextLong());
 			}
-			setWord(end, (random.nextLong() & endMask) | (getWord(end) & ~endMask));
+			setWordSegment(end, random.nextLong(), endMask);
 		}
 	}
 

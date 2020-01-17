@@ -19,7 +19,7 @@
 <script type="text/javascript" src="../../../script-dir/jquery-ui.js"></script>
 </head>
 <body class="class-declaration">
-<script type="text/javascript">var data = {"i0":10,"i1":10,"i2":10,"i3":9,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":9,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":9,"i26":9,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10,"i43":10,"i44":10,"i45":10,"i46":10,"i47":10};
+<script type="text/javascript">var data = {"i0":10,"i1":10,"i2":10,"i3":9,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":9,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":9,"i26":9,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10,"i43":10,"i44":10,"i45":10,"i46":10,"i47":10,"i48":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -390,7 +390,7 @@ int&nbsp;to)</code></th>
 <td class="colFirst"><code>long</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getWord(int)">getWord</a></span>&#8203;(int&nbsp;wordIndex)</code></th>
 <td class="colLast">
-<div class="block">Returns the raw long word at the specified <b>wordIndex</b> within
+<div class="block">Returns the long word at the specified <b>wordIndex</b> within
  <a href="#words"><code>words</code></a>.</div>
 </td>
 </tr>
@@ -569,11 +569,23 @@ int&nbsp;to)</code></th>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setWord(int,long)">setWord</a></span>&#8203;(int&nbsp;wordIndex,
 long&nbsp;word)</code></th>
 <td class="colLast">
-<div class="block">Modifies the raw long word at the specified <b>wordIndex</b> within
+<div class="block">Changes the long word at the specified <b>wordIndex</b> within
  <a href="#words"><code>words</code></a>, setting it to <b>word</b>.</div>
 </td>
 </tr>
 <tr class="rowColor" id="i41">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setWordSegment(int,long,long)">setWordSegment</a></span>&#8203;(int&nbsp;wordIndex,
+long&nbsp;word,
+long&nbsp;mask)</code></th>
+<td class="colLast">
+<div class="block">Changes the long word at the specified <b>wordIndex</b> within <a href="#words"><code>words</code></a>
+ such that it retains the previous state of bits where the bits of <b>mask</b>
+ are in the <i>dead</i> state, and takes on the value of bits in <b>word</b>
+ where <b>mask</b> has bits in the <i>live</i> state.</div>
+</td>
+</tr>
+<tr class="altColor" id="i42">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toggle(int)">toggle</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
@@ -581,7 +593,7 @@ long&nbsp;word)</code></th>
  through an <code>XOR</code> operation.</div>
 </td>
 </tr>
-<tr class="altColor" id="i42">
+<tr class="rowColor" id="i43">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toggle(int,int)">toggle</a></span>&#8203;(int&nbsp;from,
 int&nbsp;to)</code></th>
@@ -590,12 +602,12 @@ int&nbsp;to)</code></th>
  opposites through an <code>XOR</code> operation.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i43">
+<tr class="altColor" id="i44">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor" id="i44">
+<tr class="rowColor" id="i45">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#xor(com.shouldis.bitset.BitSet)">xor</a></span>&#8203;(<a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
 <td class="colLast">
@@ -603,7 +615,7 @@ int&nbsp;to)</code></th>
  with those in the specified <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i45">
+<tr class="altColor" id="i46">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#xOrRandomize(com.shouldis.bitset.XOrShift)">xOrRandomize</a></span>&#8203;(<a href="XOrShift.html" title="class in com.shouldis.bitset">XOrShift</a>&nbsp;random)</code></th>
 <td class="colLast">
@@ -611,7 +623,7 @@ int&nbsp;to)</code></th>
  by the specified <a href="XOrShift.html" title="class in com.shouldis.bitset"><code>XOrShift</code></a> <b>random</b>.</div>
 </td>
 </tr>
-<tr class="altColor" id="i46">
+<tr class="rowColor" id="i47">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#xOrRandomize(com.shouldis.bitset.XOrShift,int,int)">xOrRandomize</a></span>&#8203;(<a href="XOrShift.html" title="class in com.shouldis.bitset">XOrShift</a>&nbsp;random,
 int&nbsp;from,
@@ -621,7 +633,7 @@ int&nbsp;to)</code></th>
  random bits generated by the specified <a href="XOrShift.html" title="class in com.shouldis.bitset"><code>XOrShift</code></a> <b>random</b>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i47">
+<tr class="altColor" id="i48">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#xorWord(int,long)">xorWord</a></span>&#8203;(int&nbsp;wordIndex,
 long&nbsp;mask)</code></th>
@@ -940,7 +952,7 @@ int&nbsp;to)</span></div>
 <section class="detail">
 <h3><a id="getWord(int)">getWord</a></h3>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">long</span>&nbsp;<span class="memberName">getWord</span>&#8203;(<span class="arguments">int&nbsp;wordIndex)</span></div>
-<div class="block">Returns the raw long word at the specified <b>wordIndex</b> within
+<div class="block">Returns the long word at the specified <b>wordIndex</b> within
  <a href="#words"><code>words</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -959,13 +971,36 @@ int&nbsp;to)</span></div>
 <h3><a id="setWord(int,long)">setWord</a></h3>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">setWord</span>&#8203;(<span class="arguments">int&nbsp;wordIndex,
 long&nbsp;word)</span></div>
-<div class="block">Modifies the raw long word at the specified <b>wordIndex</b> within
+<div class="block">Changes the long word at the specified <b>wordIndex</b> within
  <a href="#words"><code>words</code></a>, setting it to <b>word</b>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>wordIndex</code> - the index within <a href="#words"><code>words</code></a> to set.</dd>
-<dd><code>word</code> - the raw long value to be set to <a href="#words"><code>words</code></a> at
+<dd><code>word</code> - the long value to be set to <a href="#words"><code>words</code></a> at
                   <b>wordIndex</b>.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
+                                        range 0 to ceiling(<a href="#size"><code>size</code></a> /
+                                        64).</dd>
+</dl>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="setWordSegment(int,long,long)">setWordSegment</a></h3>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">setWordSegment</span>&#8203;(<span class="arguments">int&nbsp;wordIndex,
+long&nbsp;word,
+long&nbsp;mask)</span></div>
+<div class="block">Changes the long word at the specified <b>wordIndex</b> within <a href="#words"><code>words</code></a>
+ such that it retains the previous state of bits where the bits of <b>mask</b>
+ are in the <i>dead</i> state, and takes on the value of bits in <b>word</b>
+ where <b>mask</b> has bits in the <i>live</i> state.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>wordIndex</code> - the index within <a href="#words"><code>words</code></a> to change.</dd>
+<dd><code>word</code> - the new long value to be set to <a href="#words"><code>words</code></a>.</dd>
+<dd><code>mask</code> - the mask used to determine which bits from <b>word</b> will
+                  be applied.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
                                         range 0 to ceiling(<a href="#size"><code>size</code></a> /

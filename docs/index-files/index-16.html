@@ -115,10 +115,19 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/BitSet.html#setWord(int,long)">setWord(int, long)</a></span> - Method in class com.shouldis.bitset.<a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset">BitSet</a></dt>
 <dd>
-<div class="block">Modifies the raw long word at the specified <b>wordIndex</b> within
+<div class="block">Changes the long word at the specified <b>wordIndex</b> within
  <a href="../com/shouldis/bitset/BitSet.html#words"><code>BitSet.words</code></a>, setting it to <b>word</b>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/ConcurrentBitSet.html#setWord(int,long)">setWord(int, long)</a></span> - Method in class com.shouldis.bitset.<a href="../com/shouldis/bitset/ConcurrentBitSet.html" title="class in com.shouldis.bitset">ConcurrentBitSet</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/BitSet.html#setWordSegment(int,long,long)">setWordSegment(int, long, long)</a></span> - Method in class com.shouldis.bitset.<a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset">BitSet</a></dt>
+<dd>
+<div class="block">Changes the long word at the specified <b>wordIndex</b> within <a href="../com/shouldis/bitset/BitSet.html#words"><code>BitSet.words</code></a>
+ such that it retains the previous state of bits where the bits of <b>mask</b>
+ are in the <i>dead</i> state, and takes on the value of bits in <b>word</b>
+ where <b>mask</b> has bits in the <i>live</i> state.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/ConcurrentBitSet.html#setWordSegment(int,long,long)">setWordSegment(int, long, long)</a></span> - Method in class com.shouldis.bitset.<a href="../com/shouldis/bitset/ConcurrentBitSet.html" title="class in com.shouldis.bitset">ConcurrentBitSet</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/BitSet.html#size">size</a></span> - Variable in class com.shouldis.bitset.<a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset">BitSet</a></dt>
 <dd>
