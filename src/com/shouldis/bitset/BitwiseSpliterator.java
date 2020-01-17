@@ -187,7 +187,7 @@ public abstract class BitwiseSpliterator extends BitSpliterator {
 	 *         the specified word index.
 	 */
 	private final long bitwiseWord(final int wordIndex) {
-		return bitwiseFunction(set1.words[wordIndex], set2.words[wordIndex]);
+		return bitwiseFunction(set1.getWord(wordIndex), set2.getWord(wordIndex));
 	}
 
 	/**

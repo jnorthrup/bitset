@@ -346,7 +346,7 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 			}
 			int wordIndex = BitSet.divideSize(position);
 			final int lastWordIndex = BitSet.divideSize(end - 1);
-			long word = set.words[wordIndex] & (BitSet.MASK << position);
+			long word = set.getWord(wordIndex) & (BitSet.MASK << position);
 			do {
 				action.accept(position);
 				word ^= Long.lowestOneBit(word);
@@ -355,7 +355,7 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 						position = end;
 						return;
 					}
-					word = set.words[++wordIndex];
+					word = set.getWord(++wordIndex);
 				}
 				position = nextLiveBit(word, wordIndex);
 			} while (position < end);
@@ -377,12 +377,12 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 			if (index >= end) {
 				return end;
 			}
-			long word = set.words[wordIndex] & (BitSet.MASK << index);
+			long word = set.getWord(wordIndex) & (BitSet.MASK << index);
 			if (word != 0L) {
 				return nextLiveBit(word, wordIndex);
 			}
 			while (++wordIndex <= lastWordIndex) {
-				word = set.words[wordIndex];
+				word = set.getWord(wordIndex);
 				if (word != 0L) {
 					return nextLiveBit(word, wordIndex);
 				}
@@ -480,7 +480,7 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 			}
 			int wordIndex = BitSet.divideSize(position);
 			final int lastWordIndex = BitSet.divideSize(end - 1);
-			long word = ~set.words[wordIndex] & (BitSet.MASK << position);
+			long word = ~set.getWord(wordIndex) & (BitSet.MASK << position);
 			do {
 				action.accept(position);
 				word ^= Long.lowestOneBit(word);
@@ -489,7 +489,7 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 						position = end;
 						return;
 					}
-					word = ~set.words[++wordIndex];
+					word = ~set.getWord(++wordIndex);
 				}
 				position = nextLiveBit(word, wordIndex);
 			} while (position < end);
@@ -511,12 +511,12 @@ public abstract class BitSpliterator implements Spliterator.OfInt {
 			if (index >= end) {
 				return end;
 			}
-			long word = ~set.words[wordIndex] & (BitSet.MASK << index);
+			long word = ~set.getWord(wordIndex) & (BitSet.MASK << index);
 			if (word != 0L) {
 				return nextLiveBit(word, wordIndex);
 			}
 			while (++wordIndex <= lastWordIndex) {
-				word = ~set.words[wordIndex];
+				word = ~set.getWord(wordIndex);
 				if (word != 0L) {
 					return nextLiveBit(word, wordIndex);
 				}

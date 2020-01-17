@@ -4,10 +4,11 @@ import java.lang.invoke.MethodHandles;
 import java.lang.invoke.VarHandle;
 
 /**
- * Implementation of {@link BitSet} in which all methods capable of modifying
- * the state of bits such as {@link #setWord(int, long)},
- * {@link #andWord(int, long)}, {@link #orWord(int, long)},
- * {@link #xorWord(int, long)} are delegated to atomic-operations.
+ * Implementation of {@link BitSet} in which all methods capable of reading or
+ * modifying the state of bits such as @{@link #getWord(int)},
+ * {@link #setWord(int, long)}, {@link #andWord(int, long)},
+ * {@link #orWord(int, long)}, {@link #xorWord(int, long)} are delegated to
+ * atomic-operations.
  * <p>
  * The use of atomic operations allows concurrent modification of this
  * {@link ConcurrentBitSet} without any external synchronization at the cost of
@@ -53,7 +54,7 @@ public final class ConcurrentBitSet extends BitSet {
 		final long mask = bitMask(index);
 		long expected, word;
 		do {
-			expected = words[wordIndex];
+			expected = getWord(wordIndex);
 			if ((expected & mask) != 0L) {
 				return false;
 			}
@@ -68,7 +69,7 @@ public final class ConcurrentBitSet extends BitSet {
 		final long mask = bitMask(index);
 		long expected, word;
 		do {
-			expected = words[wordIndex];
+			expected = getWord(wordIndex);
 			if ((expected & mask) == 0L) {
 				return false;
 			}
@@ -95,6 +96,11 @@ public final class ConcurrentBitSet extends BitSet {
 			}
 			xorWord(end, endMask);
 		}
+	}
+
+	@Override
+	public long getWord(int wordIndex) {
+		return (long) HANDLE.getVolatile(words, wordIndex);
 	}
 
 	@Override
@@ -131,22 +137,22 @@ public final class ConcurrentBitSet extends BitSet {
 			final long combinedMask = startMask & endMask;
 			randomized = random.nextLong();
 			do {
-				expected = words[start];
-				word = (randomized & combinedMask) | (words[start] & ~combinedMask);
+				expected = getWord(start);
+				word = (randomized & combinedMask) | (getWord(start) & ~combinedMask);
 			} while (!HANDLE.compareAndSet(words, start, expected, word));
 		} else {
 			randomized = random.nextLong();
 			do {
-				expected = words[start];
-				word = (randomized & startMask) | (words[start] & ~startMask);
+				expected = getWord(start);
+				word = (randomized & startMask) | (getWord(start) & ~startMask);
 			} while (!HANDLE.compareAndSet(words, start, expected, word));
 			for (int i = start + 1; i < end; i++) {
 				setWord(i, random.nextLong());
 			}
 			randomized = random.nextLong();
 			do {
-				expected = words[end];
-				word = (randomized & endMask) | (words[end] & ~endMask);
+				expected = getWord(end);
+				word = (randomized & endMask) | (getWord(end) & ~endMask);
 			} while (!HANDLE.compareAndSet(words, end, expected, word));
 		}
 	}

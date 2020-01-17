@@ -36,22 +36,21 @@ import java.util.stream.IntStream;
 public class BitSet {
 
 	/**
+	 * Long mask with all bits set. (0xFFFFFFFFFFFFFFFF)
+	 */
+	public static final long MASK = -1L;
+
+	/**
 	 * Mask used to compute potentially faster modulo operations. {@code n % m} is
 	 * equivalent to {@code n & (m -1)} if n is positive, and m = 2<sup>k</sup>.
 	 */
-	protected static final int MOD_SIZE_MASK = Long.SIZE - 1;
+	private static final int MOD_SIZE_MASK = Long.SIZE - 1;
 
 	/**
 	 * log<sub>2</sub>64. Used to relate bit indices to word indices through
 	 * bit-shifting as an alternative to division or multiplication by 64.
 	 */
-	protected static final int LOG_2_SIZE = 6;
-
-	/**
-	 * Long mask with all bits set. Used to isolate portions of words.
-	 * (0xFFFFFFFFFFFFFFFF)
-	 */
-	protected static final long MASK = -1L;
+	private static final int LOG_2_SIZE = 6;
 
 	/**
 	 * The number of indices accessible by this {@link BitSet}. Indices <b>0</b>
@@ -61,7 +60,9 @@ public class BitSet {
 
 	/**
 	 * Array holding the long words whose bits are manipulated. Has length
-	 * ceiling({@link #size} / 64).
+	 * ceiling({@link #size} / 64). Though this has protected visibility, using
+	 * methods such as {@link #getWord(int)}, {@link #setWord(int, long)},
+	 * {@link #andWord(int, long)} is preferred over direct access.
 	 */
 	protected final long[] words;
 
@@ -110,10 +111,10 @@ public class BitSet {
 	public boolean add(final int index) {
 		final int wordIndex = divideSize(index);
 		final long mask = bitMask(index);
-		if ((words[wordIndex] & mask) != 0L) {
+		if ((getWord(wordIndex) & mask) != 0L) {
 			return false;
 		}
-		words[wordIndex] |= mask;
+		orWord(wordIndex, mask);
 		return true;
 	}
 
@@ -130,10 +131,10 @@ public class BitSet {
 	public boolean remove(final int index) {
 		final int wordIndex = divideSize(index);
 		final long mask = bitMask(index);
-		if ((words[wordIndex] & mask) == 0L) {
+		if ((getWord(wordIndex) & mask) == 0L) {
 			return false;
 		}
-		words[wordIndex] &= ~mask;
+		andWord(wordIndex, ~mask);
 		return true;
 	}
 
@@ -149,7 +150,7 @@ public class BitSet {
 	 *                                        than or equal to {@link #size}.
 	 */
 	public final boolean get(final int index) {
-		return (words[divideSize(index)] & bitMask(index)) != 0L;
+		return (getWord(divideSize(index)) & bitMask(index)) != 0L;
 	}
 
 	/**
@@ -173,13 +174,13 @@ public class BitSet {
 		final long endMask = MASK >>> -to;
 		int sum = 0;
 		if (start == end) {
-			sum += Long.bitCount(words[start] & startMask & endMask);
+			sum += Long.bitCount(getWord(start) & startMask & endMask);
 		} else {
-			sum += Long.bitCount(words[start] & startMask);
+			sum += Long.bitCount(getWord(start) & startMask);
 			for (int i = start + 1; i < end; i++) {
-				sum += Long.bitCount(words[i]);
+				sum += Long.bitCount(getWord(i));
 			}
-			sum += Long.bitCount(words[end] & endMask);
+			sum += Long.bitCount(getWord(end) & endMask);
 		}
 		return sum;
 	}
@@ -307,7 +308,7 @@ public class BitSet {
 		} else {
 			xorWord(start, startMask);
 			for (int i = start + 1; i < end; i++) {
-				setWord(i, ~words[i]);
+				setWord(i, ~getWord(i));
 			}
 			xorWord(end, endMask);
 		}
@@ -323,7 +324,7 @@ public class BitSet {
 	 *                                        range 0 to ceiling({@link #size} /
 	 *                                        64).
 	 */
-	public final long getWord(final int wordIndex) {
+	public long getWord(final int wordIndex) {
 		return words[wordIndex];
 	}
 
@@ -415,13 +416,13 @@ public class BitSet {
 		final long endMask = MASK >>> -to;
 		if (start == end) {
 			final long combinedMask = startMask & endMask;
-			words[start] = (random.nextLong() & combinedMask) | (words[start] & ~combinedMask);
+			setWord(start, (random.nextLong() & combinedMask) | (getWord(start) & ~combinedMask));
 		} else {
-			words[start] = (random.nextLong() & startMask) | (words[start] & ~startMask);
+			setWord(start, (random.nextLong() & startMask) | (getWord(start) & ~startMask));
 			for (int i = start + 1; i < end; i++) {
-				words[i] = random.nextLong();
+				setWord(i, random.nextLong());
 			}
-			words[end] = (random.nextLong() & endMask) | (words[end] & ~endMask);
+			setWord(end, (random.nextLong() & endMask) | (getWord(end) & ~endMask));
 		}
 	}
 
@@ -512,12 +513,12 @@ public class BitSet {
 		if (wordIndex >= words.length || wordIndex < 0) {
 			return -1;
 		}
-		long word = words[wordIndex] & (MASK << index);
+		long word = getWord(wordIndex) & (MASK << index);
 		if (word != 0L) {
 			return nextLiveBit(word, wordIndex);
 		}
 		while (++wordIndex < words.length) {
-			word = words[wordIndex];
+			word = getWord(wordIndex);
 			if (word != 0L) {
 				return nextLiveBit(word, wordIndex);
 			}
@@ -539,12 +540,12 @@ public class BitSet {
 		if (wordIndex >= words.length || wordIndex < 0) {
 			return -1;
 		}
-		long word = ~words[wordIndex] & (MASK << index);
+		long word = ~getWord(wordIndex) & (MASK << index);
 		if (word != 0L) {
 			return nextLiveBit(word, wordIndex);
 		}
 		while (++wordIndex < words.length) {
-			word = ~words[wordIndex];
+			word = ~getWord(wordIndex);
 			if (word != 0L) {
 				return nextLiveBit(word, wordIndex);
 			}
@@ -564,12 +565,12 @@ public class BitSet {
 		if (wordIndex >= words.length || wordIndex < 0) {
 			return -1;
 		}
-		long word = words[wordIndex] & (MASK >>> -(index + 1));
+		long word = getWord(wordIndex) & (MASK >>> -(index + 1));
 		if (word != 0L) {
 			return lastLiveBit(word, wordIndex);
 		}
 		while (wordIndex-- > 0) {
-			word = words[wordIndex];
+			word = getWord(wordIndex);
 			if (word != 0L) {
 				return lastLiveBit(word, wordIndex);
 			}
@@ -589,12 +590,12 @@ public class BitSet {
 		if (wordIndex >= words.length || wordIndex < 0) {
 			return -1;
 		}
-		long word = ~words[wordIndex] & (MASK >>> -(index + 1));
+		long word = ~getWord(wordIndex) & (MASK >>> -(index + 1));
 		if (word != 0L) {
 			return lastLiveBit(word, wordIndex);
 		}
 		while (wordIndex-- > 0) {
-			word = ~words[wordIndex];
+			word = ~getWord(wordIndex);
 			if (word != 0L) {
 				return lastLiveBit(word, wordIndex);
 			}
@@ -639,7 +640,7 @@ public class BitSet {
 	public final void and(final BitSet set) {
 		compareSize(set);
 		for (int i = 0; i < words.length; i++) {
-			andWord(i, set.words[i]);
+			andWord(i, set.getWord(i));
 		}
 	}
 
@@ -656,7 +657,7 @@ public class BitSet {
 	public final void or(final BitSet set) {
 		compareSize(set);
 		for (int i = 0; i < words.length; i++) {
-			orWord(i, set.words[i]);
+			orWord(i, set.getWord(i));
 		}
 	}
 
@@ -673,7 +674,7 @@ public class BitSet {
 	public final void xor(final BitSet set) {
 		compareSize(set);
 		for (int i = 0; i < words.length; i++) {
-			xorWord(i, set.words[i]);
+			xorWord(i, set.getWord(i));
 		}
 	}
 
@@ -690,7 +691,7 @@ public class BitSet {
 	public final void not(final BitSet set) {
 		compareSize(set);
 		for (int i = 0; i < words.length; i++) {
-			setWord(i, ~set.words[i]);
+			setWord(i, ~set.getWord(i));
 		}
 	}
 
@@ -700,7 +701,7 @@ public class BitSet {
 	 */
 	public void not() {
 		for (int i = 0; i < words.length; i++) {
-			words[i] = ~words[i];
+			setWord(i, ~getWord(i));
 		}
 	}
 
@@ -745,7 +746,7 @@ public class BitSet {
 		int population = 0;
 		cleanLastWord();
 		for (int i = 0; i < words.length; i++) {
-			population += Long.bitCount(words[i]);
+			population += Long.bitCount(getWord(i));
 		}
 		return population;
 	}
@@ -798,6 +799,28 @@ public class BitSet {
 	}
 
 	/**
+	 * Calculates <b>index</b> divided by 64. Equivalent to the index of the word
+	 * corresponding to the specified <b>index</b>.
+	 * 
+	 * @param index the index to divide by 64.
+	 * @return <b>wordIndex</b> / 64.
+	 */
+	public static final int divideSize(final int index) {
+		return index >> LOG_2_SIZE;
+	}
+
+	/**
+	 * Calculates <b>wordIndex</b> multiplied by 64. Equivalent to the first index
+	 * of the word at the specified <b>wordIndex</b>.
+	 * 
+	 * @param wordIndex the index to multiply by 64.
+	 * @return <b>wordIndex</b> * 64.
+	 */
+	public static final int multiplySize(final int wordIndex) {
+		return wordIndex << LOG_2_SIZE;
+	}
+
+	/**
 	 * Calculates a mask to represent the bit at which a specific index will be
 	 * stored within a long word.
 	 * 
@@ -818,28 +841,6 @@ public class BitSet {
 	 */
 	protected static final int modSize(final int index) {
 		return index & MOD_SIZE_MASK;
-	}
-
-	/**
-	 * Calculates <b>index</b> divided by 64. Equivalent to the index of the word
-	 * corresponding to the specified <b>index</b>.
-	 * 
-	 * @param index the index to divide by 64.
-	 * @return <b>wordIndex</b> / 64.
-	 */
-	protected static final int divideSize(final int index) {
-		return index >> LOG_2_SIZE;
-	}
-
-	/**
-	 * Calculates <b>wordIndex</b> multiplied by 64. Equivalent to the first index
-	 * of the word at the specified <b>wordIndex</b>.
-	 * 
-	 * @param wordIndex the index to multiply by 64.
-	 * @return <b>wordIndex</b> * 64.
-	 */
-	protected static final int multiplySize(final int wordIndex) {
-		return wordIndex << LOG_2_SIZE;
 	}
 
 	/**
@@ -870,7 +871,7 @@ public class BitSet {
 	 *         word.
 	 */
 	private final int lastLiveBit(final long word, final int wordIndex) {
-		final int index = ((wordIndex + 1) << LOG_2_SIZE) - Long.numberOfLeadingZeros(word) - 1;
+		final int index = multiplySize(wordIndex + 1) - Long.numberOfLeadingZeros(word) - 1;
 		return index < size ? index : -1;
 	}
 
