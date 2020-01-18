@@ -4,9 +4,13 @@ import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Pseudo-random number generator using a modified version of the XORShift64
- * algorithm to generate random values at a faster rate than
- * {@link java.util.Random}'s linear congruent generator. This generator has a
- * period of 2<sup>64</sup> -1.
+ * algorithm to generate uniform random numbers. This generator has a period of
+ * 2<sup>64</sup> -1.
+ * <p>
+ * This class can be used to generate and randomize {@link BitSet}s, such that
+ * each bit has equal chance of being in the <i>live</i> or <i>dead</i> state.
+ * {@link DensityXOrShift} can be used to generate bits efficiently with a
+ * non-uniform chance of being in the <i>live</i> or <i>dead</i> state.
  * 
  * @author Aaron Shouldis
  * @see DensityXOrShift
@@ -20,7 +24,8 @@ public class XOrShift {
 
 	/**
 	 * Atomic value used to ensure that seeds generated at similar times are
-	 * sufficiently different.
+	 * sufficiently different. This value is changed each time a seed is generated
+	 * and consumed.
 	 **/
 	private static final AtomicLong SEED_ENTROPY = new AtomicLong(MAGIC_NUMBER);
 
@@ -31,7 +36,8 @@ public class XOrShift {
 
 	/**
 	 * Creates an instance of {@link XOrShift} initialized by the specified
-	 * <b>seed</b>. The effect of this is described by {@link #setSeed(long)}.
+	 * <b>seed</b> such that generators with the same seed produce the same
+	 * sequence. The effect of this is described by {@link #setSeed(long)}.
 	 * 
 	 * @param state the value used to initialize the state of this generator.
 	 */
@@ -40,7 +46,9 @@ public class XOrShift {
 	}
 
 	/**
-	 * Creates an instance of {@link XOrShift} with a randomly generated seed.
+	 * Creates an instance of {@link XOrShift} with a randomly generated seed. This
+	 * seed will be drawn from the current value of {@link #MAGIC_NUMBER} and
+	 * {@link System#nanoTime()}.
 	 */
 	public XOrShift() {
 		this(generateSeed());
@@ -48,10 +56,9 @@ public class XOrShift {
 
 	/**
 	 * Returns the next pseudo-random, uniformly distributed long value from this
-	 * random number generator's sequence using the "XORShift64" algorithm designed
-	 * by George Marsaglia.
+	 * random number generator's sequence using the XORShift64 algorithm.
 	 * 
-	 * @return the next randomly generated long.
+	 * @return the next randomly generated long in the sequence.
 	 */
 	private final long nextRawLong() {
 		long word = state;
@@ -120,8 +127,7 @@ public class XOrShift {
 
 	/**
 	 * Returns the next pseudo-random, uniformly distributed integer value from this
-	 * random number generator's sequence, but shifted to ensure it is always
-	 * positive.
+	 * random number generator's sequence shifted to ensure its always positive.
 	 * 
 	 * @return the next randomly generated integer.
 	 */

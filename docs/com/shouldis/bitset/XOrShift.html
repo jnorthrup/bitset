@@ -102,9 +102,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <pre>public class <span class="typeNameLabel">XOrShift</span>
 extends java.lang.Object</pre>
 <div class="block">Pseudo-random number generator using a modified version of the XORShift64
- algorithm to generate random values at a faster rate than
- <code>Random</code>'s linear congruent generator. This generator has a
- period of 2<sup>64</sup> -1.</div>
+ algorithm to generate uniform random numbers. This generator has a period of
+ 2<sup>64</sup> -1.
+ <p>
+ This class can be used to generate and randomize <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s, such that
+ each bit has equal chance of being in the <i>live</i> or <i>dead</i> state.
+ <a href="DensityXOrShift.html" title="class in com.shouldis.bitset"><code>DensityXOrShift</code></a> can be used to generate bits efficiently with a
+ non-uniform chance of being in the <i>live</i> or <i>dead</i> state.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>Aaron Shouldis</dd>
@@ -184,7 +188,8 @@ extends java.lang.Object</pre>
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(long)">XOrShift</a></span>&#8203;(long&nbsp;state)</code></th>
 <td class="colLast">
 <div class="block">Creates an instance of <a href="XOrShift.html" title="class in com.shouldis.bitset"><code>XOrShift</code></a> initialized by the specified
- <b>seed</b>.</div>
+ <b>seed</b> such that generators with the same seed produce the same
+ sequence.</div>
 </td>
 </tr>
 </tbody>
@@ -297,8 +302,7 @@ extends java.lang.Object</pre>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextPositiveInt()">nextPositiveInt</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the next pseudo-random, uniformly distributed integer value from this
- random number generator's sequence, but shifted to ensure it is always
- positive.</div>
+ random number generator's sequence shifted to ensure its always positive.</div>
 </td>
 </tr>
 <tr class="rowColor" id="i11">
@@ -323,8 +327,7 @@ extends java.lang.Object</pre>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextRawLong()">nextRawLong</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the next pseudo-random, uniformly distributed long value from this
- random number generator's sequence using the "XORShift64" algorithm designed
- by George Marsaglia.</div>
+ random number generator's sequence using the XORShift64 algorithm.</div>
 </td>
 </tr>
 <tr class="altColor" id="i14">
@@ -372,7 +375,8 @@ extends java.lang.Object</pre>
 <h3><a id="SEED_ENTROPY">SEED_ENTROPY</a></h3>
 <div class="memberSignature"><span class="modifiers">private static final</span>&nbsp;<span class="returnType">java.util.concurrent.atomic.AtomicLong</span>&nbsp;<span class="memberName">SEED_ENTROPY</span></div>
 <div class="block">Atomic value used to ensure that seeds generated at similar times are
- sufficiently different.</div>
+ sufficiently different. This value is changed each time a seed is generated
+ and consumed.</div>
 </section>
 </li>
 <li class="blockList">
@@ -397,7 +401,8 @@ extends java.lang.Object</pre>
 <h3><a id="&lt;init&gt;(long)">XOrShift</a></h3>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="memberName">XOrShift</span>&#8203;(<span class="arguments">long&nbsp;state)</span></div>
 <div class="block">Creates an instance of <a href="XOrShift.html" title="class in com.shouldis.bitset"><code>XOrShift</code></a> initialized by the specified
- <b>seed</b>. The effect of this is described by <a href="#setSeed(long)"><code>setSeed(long)</code></a>.</div>
+ <b>seed</b> such that generators with the same seed produce the same
+ sequence. The effect of this is described by <a href="#setSeed(long)"><code>setSeed(long)</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>state</code> - the value used to initialize the state of this generator.</dd>
@@ -408,7 +413,9 @@ extends java.lang.Object</pre>
 <section class="detail">
 <h3><a id="&lt;init&gt;()">XOrShift</a></h3>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="memberName">XOrShift</span>()</div>
-<div class="block">Creates an instance of <a href="XOrShift.html" title="class in com.shouldis.bitset"><code>XOrShift</code></a> with a randomly generated seed.</div>
+<div class="block">Creates an instance of <a href="XOrShift.html" title="class in com.shouldis.bitset"><code>XOrShift</code></a> with a randomly generated seed. This
+ seed will be drawn from the current value of <a href="#MAGIC_NUMBER"><code>MAGIC_NUMBER</code></a> and
+ <code>System.nanoTime()</code>.</div>
 </section>
 </li>
 </ul>
@@ -426,11 +433,10 @@ extends java.lang.Object</pre>
 <h3><a id="nextRawLong()">nextRawLong</a></h3>
 <div class="memberSignature"><span class="modifiers">private final</span>&nbsp;<span class="returnType">long</span>&nbsp;<span class="memberName">nextRawLong</span>()</div>
 <div class="block">Returns the next pseudo-random, uniformly distributed long value from this
- random number generator's sequence using the "XORShift64" algorithm designed
- by George Marsaglia.</div>
+ random number generator's sequence using the XORShift64 algorithm.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the next randomly generated long.</dd>
+<dd>the next randomly generated long in the sequence.</dd>
 </dl>
 </section>
 </li>
@@ -493,8 +499,7 @@ extends java.lang.Object</pre>
 <h3><a id="nextPositiveInt()">nextPositiveInt</a></h3>
 <div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">nextPositiveInt</span>()</div>
 <div class="block">Returns the next pseudo-random, uniformly distributed integer value from this
- random number generator's sequence, but shifted to ensure it is always
- positive.</div>
+ random number generator's sequence shifted to ensure its always positive.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the next randomly generated integer.</dd>
