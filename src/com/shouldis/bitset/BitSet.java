@@ -224,7 +224,7 @@ public class BitSet {
 		} else {
 			orWord(start, startMask);
 			for (int i = start + 1; i < end; i++) {
-				setWord(i, MASK);
+				fillWord(i);
 			}
 			orWord(end, endMask);
 		}
@@ -266,7 +266,7 @@ public class BitSet {
 		} else {
 			andWord(start, ~startMask);
 			for (int i = start + 1; i < end; i++) {
-				setWord(i, 0L);
+				emptyWord(i);
 			}
 			andWord(end, ~endMask);
 		}
