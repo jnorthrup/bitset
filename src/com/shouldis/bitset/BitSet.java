@@ -59,6 +59,12 @@ public class BitSet {
 	public final int size;
 
 	/**
+	 * The number of long words contained by this {@link BitSet}. Equal to
+	 * ceiling({@link #size} / 64) and {@link #words}.length.
+	 */
+	public final int wordCount;
+
+	/**
 	 * Array holding the long words whose bits are manipulated. Has length
 	 * ceiling({@link #size} / 64). Though this has protected visibility, using
 	 * methods such as {@link #getWord(int)}, {@link #setWord(int, long)},
@@ -82,7 +88,7 @@ public class BitSet {
 		if (wordCount < 0) {
 			throw new IllegalArgumentException(Integer.toString(size));
 		}
-		words = new long[wordCount];
+		words = new long[this.wordCount = wordCount];
 	}
 
 	/**
@@ -508,7 +514,7 @@ public class BitSet {
 	 * @see DensityXOrShift
 	 */
 	public final void randomize(final XOrShift random) {
-		for (int i = 0; i < words.length; i++) {
+		for (int i = 0; i < wordCount; i++) {
 			setWord(i, random.nextLong());
 		}
 	}
@@ -562,7 +568,7 @@ public class BitSet {
 	 * @see DensityXOrShift
 	 */
 	public final void xOrRandomize(final XOrShift random) {
-		for (int i = 0; i < words.length; i++) {
+		for (int i = 0; i < wordCount; i++) {
 			xorWord(i, random.nextLong());
 		}
 	}
@@ -578,14 +584,14 @@ public class BitSet {
 	 */
 	public final int nextLive(final int index) {
 		int wordIndex = divideSize(index);
-		if (wordIndex >= words.length || wordIndex < 0) {
+		if (wordIndex >= wordCount || wordIndex < 0) {
 			return -1;
 		}
 		long word = getWord(wordIndex) & (MASK << index);
 		if (word != 0L) {
 			return nextLiveBit(word, wordIndex);
 		}
-		while (++wordIndex < words.length) {
+		while (++wordIndex < wordCount) {
 			word = getWord(wordIndex);
 			if (word != 0L) {
 				return nextLiveBit(word, wordIndex);
@@ -605,14 +611,14 @@ public class BitSet {
 	 */
 	public final int nextDead(final int index) {
 		int wordIndex = divideSize(index);
-		if (wordIndex >= words.length || wordIndex < 0) {
+		if (wordIndex >= wordCount || wordIndex < 0) {
 			return -1;
 		}
 		long word = ~getWord(wordIndex) & (MASK << index);
 		if (word != 0L) {
 			return nextLiveBit(word, wordIndex);
 		}
-		while (++wordIndex < words.length) {
+		while (++wordIndex < wordCount) {
 			word = ~getWord(wordIndex);
 			if (word != 0L) {
 				return nextLiveBit(word, wordIndex);
@@ -630,7 +636,7 @@ public class BitSet {
 	 */
 	public final int lastLive(final int index) {
 		int wordIndex = divideSize(index);
-		if (wordIndex >= words.length || wordIndex < 0) {
+		if (wordIndex >= wordCount || wordIndex < 0) {
 			return -1;
 		}
 		long word = getWord(wordIndex) & (MASK >>> -(index + 1));
@@ -655,7 +661,7 @@ public class BitSet {
 	 */
 	public final int lastDead(final int index) {
 		int wordIndex = divideSize(index);
-		if (wordIndex >= words.length || wordIndex < 0) {
+		if (wordIndex >= wordCount || wordIndex < 0) {
 			return -1;
 		}
 		long word = ~getWord(wordIndex) & (MASK >>> -(index + 1));
@@ -707,7 +713,7 @@ public class BitSet {
 	 */
 	public final void and(final BitSet set) {
 		compareSize(set);
-		for (int i = 0; i < words.length; i++) {
+		for (int i = 0; i < wordCount; i++) {
 			andWord(i, set.getWord(i));
 		}
 	}
@@ -724,7 +730,7 @@ public class BitSet {
 	 */
 	public final void or(final BitSet set) {
 		compareSize(set);
-		for (int i = 0; i < words.length; i++) {
+		for (int i = 0; i < wordCount; i++) {
 			orWord(i, set.getWord(i));
 		}
 	}
@@ -741,7 +747,7 @@ public class BitSet {
 	 */
 	public final void xor(final BitSet set) {
 		compareSize(set);
-		for (int i = 0; i < words.length; i++) {
+		for (int i = 0; i < wordCount; i++) {
 			xorWord(i, set.getWord(i));
 		}
 	}
@@ -758,7 +764,7 @@ public class BitSet {
 	 */
 	public final void not(final BitSet set) {
 		compareSize(set);
-		for (int i = 0; i < words.length; i++) {
+		for (int i = 0; i < wordCount; i++) {
 			setWord(i, ~set.getWord(i));
 		}
 	}
@@ -768,7 +774,7 @@ public class BitSet {
 	 * state.
 	 */
 	public final void not() {
-		for (int i = 0; i < words.length; i++) {
+		for (int i = 0; i < wordCount; i++) {
 			toggleWord(i);
 		}
 	}
@@ -777,7 +783,7 @@ public class BitSet {
 	 * Transforms each bit in this {@link BitSet} to the <i>live</i> state.
 	 */
 	public final void fill() {
-		for (int i = 0; i < words.length; i++) {
+		for (int i = 0; i < wordCount; i++) {
 			fillWord(i);
 		}
 	}
@@ -786,7 +792,7 @@ public class BitSet {
 	 * Transforms each bit in this {@link BitSet} to the <i>dead</i> state.
 	 */
 	public final void empty() {
-		for (int i = 0; i < words.length; i++) {
+		for (int i = 0; i < wordCount; i++) {
 			emptyWord(i);
 		}
 	}
@@ -802,7 +808,7 @@ public class BitSet {
 	 */
 	public final void copy(final BitSet set) {
 		compareSize(set);
-		System.arraycopy(set.words, 0, words, 0, words.length);
+		System.arraycopy(set.words, 0, words, 0, wordCount);
 	}
 
 	/**
@@ -812,7 +818,7 @@ public class BitSet {
 	protected final void cleanLastWord() {
 		final int hangingBits = modSize(-size);
 		if (hangingBits > 0) {
-			andWord(words.length - 1, MASK >>> hangingBits);
+			andWord(wordCount - 1, MASK >>> hangingBits);
 		}
 	}
 
@@ -859,7 +865,7 @@ public class BitSet {
 	 */
 	protected final void compareSize(final BitSet set) {
 		if (set.size != size) {
-			throw new ArrayIndexOutOfBoundsException(Math.min(set.words.length, words.length) - 1);
+			throw new ArrayIndexOutOfBoundsException(Math.min(set.wordCount, wordCount) - 1);
 		}
 	}
 
@@ -871,7 +877,7 @@ public class BitSet {
 	public final int population() {
 		int population = 0;
 		cleanLastWord();
-		for (int i = 0; i < words.length; i++) {
+		for (int i = 0; i < wordCount; i++) {
 			population += Long.bitCount(getWord(i));
 		}
 		return population;

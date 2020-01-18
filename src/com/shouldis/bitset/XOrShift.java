@@ -211,7 +211,7 @@ public class XOrShift {
 	 */
 	public final BitSet nextBitSet(final int size) {
 		final BitSet set = new BitSet(size);
-		for (int i = 0; i < set.words.length; i++) {
+		for (int i = 0; i < set.wordCount; i++) {
 			set.words[i] = nextLong();
 		}
 		return set;
@@ -231,7 +231,7 @@ public class XOrShift {
 	 */
 	public final ConcurrentBitSet nextConcurrentBitSet(final int size) {
 		final ConcurrentBitSet set = new ConcurrentBitSet(size);
-		for (int i = 0; i < set.words.length; i++) {
+		for (int i = 0; i < set.wordCount; i++) {
 			set.words[i] = nextLong();
 		}
 		return set;

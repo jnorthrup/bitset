@@ -181,6 +181,13 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#wordCount">wordCount</a></span></code></th>
+<td class="colLast">
+<div class="block">The number of long words contained by this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>protected long[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#words">words</a></span></code></th>
 <td class="colLast">
@@ -730,6 +737,14 @@ long&nbsp;mask)</code></th>
 <div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">size</span></div>
 <div class="block">The number of indices accessible by this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>. Indices <b>0</b>
  through <b>size -1</b> are accessible.</div>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="wordCount">wordCount</a></h3>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">wordCount</span></div>
+<div class="block">The number of long words contained by this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>. Equal to
+ ceiling(<a href="#size"><code>size</code></a> / 64) and <a href="#words"><code>words</code></a>.length.</div>
 </section>
 </li>
 <li class="blockList">
