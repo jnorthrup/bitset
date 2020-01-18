@@ -39,10 +39,10 @@ public class XOrShift {
 	 * <b>seed</b> such that generators with the same seed produce the same
 	 * sequence. The effect of this is described by {@link #setSeed(long)}.
 	 * 
-	 * @param state the value used to initialize the state of this generator.
+	 * @param seed the value used to initialize the state of this generator.
 	 */
-	public XOrShift(final long state) {
-		setSeed(state);
+	public XOrShift(final long seed) {
+		setSeed(seed);
 	}
 
 	/**
