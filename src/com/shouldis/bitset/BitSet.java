@@ -194,7 +194,7 @@ public class BitSet {
 	 *                                        greater than or equal to
 	 *                                        {@link #size}.
 	 */
-	public void set(final int index) {
+	public final void set(final int index) {
 		orWord(divideSize(index), bitMask(index));
 	}
 
@@ -211,7 +211,7 @@ public class BitSet {
 	 *                                        outside of the range 0 to
 	 *                                        {@link #size}.
 	 */
-	public void set(final int from, final int to) {
+	public final void set(final int from, final int to) {
 		if (from >= to) {
 			return;
 		}
@@ -238,7 +238,7 @@ public class BitSet {
 	 * @throws ArrayIndexOutOfBoundsException if <b>index</b> is negative or greater
 	 *                                        than or equal to {@link #size}.
 	 */
-	public void clear(final int index) {
+	public final void clear(final int index) {
 		andWord(divideSize(index), ~bitMask(index));
 	}
 
@@ -253,7 +253,7 @@ public class BitSet {
 	 *                                        outside of the range 0 to
 	 *                                        {@link #size}.
 	 */
-	public void clear(final int from, final int to) {
+	public final void clear(final int from, final int to) {
 		if (from >= to) {
 			return;
 		}
