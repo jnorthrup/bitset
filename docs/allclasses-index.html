@@ -36,10 +36,11 @@ loadScripts(document, 'script');</script>
 <!--   -->
 </a>
 <ul class="navList" title="Navigation">
-<li><a href="com/shouldis/bitset/package-summary.html">Package</a></li>
+<li><a href="index.html">Overview</a></li>
+<li>Package</li>
 <li>Class</li>
 <li>Use</li>
-<li><a href="com/shouldis/bitset/package-tree.html">Tree</a></li>
+<li><a href="overview-tree.html">Tree</a></li>
 <li><a href="index-files/index-1.html">Index</a></li>
 <li><a href="help-doc.html">Help</a></li>
 </ul>
@@ -78,6 +79,21 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </thead>
 <tbody>
 <tr class="altColor" id="i0">
+<td class="colFirst"><a href="com/shouldis/bitset/parallel/ArrayBiterator.html" title="class in com.shouldis.bitset.parallel">ArrayBiterator</a></td>
+<th class="colLast" scope="row">
+<div class="block">Implementation of <a href="com/shouldis/bitset/parallel/SizedBiterator.html" title="class in com.shouldis.bitset.parallel"><code>SizedBiterator</code></a> used to stream all values within a
+ specified integer array representing indices in an order appropriate to
+ manipulate a <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
+</th>
+</tr>
+<tr class="rowColor" id="i1">
+<td class="colFirst"><a href="com/shouldis/bitset/parallel/Biterator.html" title="class in com.shouldis.bitset.parallel">Biterator</a></td>
+<th class="colLast" scope="row">
+<div class="block">Implementation of <code>Spliterator</code> that is meant to be used in conjunction
+ with <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s.</div>
+</th>
+</tr>
+<tr class="altColor" id="i2">
 <td class="colFirst"><a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset">BitSet</a></td>
 <th class="colLast" scope="row">
 <div class="block">Represents a fixed number of bits stored within an internal long array,
@@ -86,79 +102,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  retrieving their boolean values.</div>
 </th>
 </tr>
-<tr class="rowColor" id="i1">
-<td class="colFirst"><a href="com/shouldis/bitset/BitSpliterator.html" title="class in com.shouldis.bitset">BitSpliterator</a></td>
-<th class="colLast" scope="row">
-<div class="block">Implementation of <code>Spliterator</code> that is meant to be used in conjunction
- with <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s.</div>
-</th>
-</tr>
-<tr class="altColor" id="i2">
-<td class="colFirst"><a href="com/shouldis/bitset/BitSpliterator.Array.html" title="class in com.shouldis.bitset">BitSpliterator.Array</a></td>
-<th class="colLast" scope="row">
-<div class="block">Implementation of <a href="com/shouldis/bitset/BitSpliterator.html" title="class in com.shouldis.bitset"><code>BitSpliterator</code></a> used to stream all values within a
- specified integer array representing indices in an order appropriate to
- manipulate a <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</th>
-</tr>
 <tr class="rowColor" id="i3">
-<td class="colFirst"><a href="com/shouldis/bitset/BitSpliterator.Dead.html" title="class in com.shouldis.bitset">BitSpliterator.Dead</a></td>
-<th class="colLast" scope="row">
-<div class="block">Implementation of <a href="com/shouldis/bitset/BitSpliterator.html" title="class in com.shouldis.bitset"><code>BitSpliterator</code></a> used to stream the indices of
- <i>dead</i> bits within a <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>, splitting at appropriate indices to
- manipulate a <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</th>
-</tr>
-<tr class="altColor" id="i4">
-<td class="colFirst"><a href="com/shouldis/bitset/BitSpliterator.Live.html" title="class in com.shouldis.bitset">BitSpliterator.Live</a></td>
-<th class="colLast" scope="row">
-<div class="block">Implementation of <a href="com/shouldis/bitset/BitSpliterator.html" title="class in com.shouldis.bitset"><code>BitSpliterator</code></a> used to stream the indices of
- <i>live</i> bits within a <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>, splitting at appropriate indices to
- manipulate a <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</th>
-</tr>
-<tr class="rowColor" id="i5">
-<td class="colFirst"><a href="com/shouldis/bitset/BitSpliterator.Range.html" title="class in com.shouldis.bitset">BitSpliterator.Range</a></td>
-<th class="colLast" scope="row">
-<div class="block">Implementation of <a href="com/shouldis/bitset/BitSpliterator.html" title="class in com.shouldis.bitset"><code>BitSpliterator</code></a> used to stream all indices of a
- specified range, splitting at appropriate indices to manipulate a
- <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</th>
-</tr>
-<tr class="altColor" id="i6">
-<td class="colFirst"><a href="com/shouldis/bitset/BitwiseSpliterator.html" title="class in com.shouldis.bitset">BitwiseSpliterator</a></td>
-<th class="colLast" scope="row">
-<div class="block">Implementation of <a href="com/shouldis/bitset/BitSpliterator.html" title="class in com.shouldis.bitset"><code>BitSpliterator</code></a> that is creates a stream of indices
- that represents which bits will be <i>live</i> after performing a
- <a href="com/shouldis/bitset/BitwiseSpliterator.html#bitwiseFunction(long,long)"><code>BitwiseSpliterator.bitwiseFunction(long, long)</code></a> between the words of 2 <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
- at the same word index.</div>
-</th>
-</tr>
-<tr class="rowColor" id="i7">
-<td class="colFirst"><a href="com/shouldis/bitset/BitwiseSpliterator.And.html" title="class in com.shouldis.bitset">BitwiseSpliterator.And</a></td>
-<th class="colLast" scope="row">
-<div class="block">Implementation of <a href="com/shouldis/bitset/BitwiseSpliterator.html" title="class in com.shouldis.bitset"><code>BitwiseSpliterator</code></a> used to stream the indices of
- bits that result in the <i>live</i> state after the <code>AND</code> operation,
- splitting at appropriate indices to manipulate a <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</th>
-</tr>
-<tr class="altColor" id="i8">
-<td class="colFirst"><a href="com/shouldis/bitset/BitwiseSpliterator.Or.html" title="class in com.shouldis.bitset">BitwiseSpliterator.Or</a></td>
-<th class="colLast" scope="row">
-<div class="block">Implementation of <a href="com/shouldis/bitset/BitwiseSpliterator.html" title="class in com.shouldis.bitset"><code>BitwiseSpliterator</code></a> used to stream the indices of
- bits that result in the <i>live</i> state after the <code>OR</code> operation,
- splitting at appropriate indices to manipulate a <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</th>
-</tr>
-<tr class="rowColor" id="i9">
-<td class="colFirst"><a href="com/shouldis/bitset/BitwiseSpliterator.XOr.html" title="class in com.shouldis.bitset">BitwiseSpliterator.XOr</a></td>
-<th class="colLast" scope="row">
-<div class="block">Implementation of <a href="com/shouldis/bitset/BitwiseSpliterator.html" title="class in com.shouldis.bitset"><code>BitwiseSpliterator</code></a> used to stream the indices of
- bits that result in the <i>live</i> state after the <code>XOR</code> operation,
- splitting at appropriate indices to manipulate a <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</th>
-</tr>
-<tr class="altColor" id="i10">
 <td class="colFirst"><a href="com/shouldis/bitset/ConcurrentBitSet.html" title="class in com.shouldis.bitset">ConcurrentBitSet</a></td>
 <th class="colLast" scope="row">
 <div class="block">Implementation of <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in which all methods capable of reading or
@@ -168,16 +112,88 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  atomic-operations.</div>
 </th>
 </tr>
-<tr class="rowColor" id="i11">
-<td class="colFirst"><a href="com/shouldis/bitset/DensityXOrShift.html" title="class in com.shouldis.bitset">DensityXOrShift</a></td>
+<tr class="altColor" id="i4">
+<td class="colFirst"><a href="com/shouldis/bitset/parallel/DeadBiterator.html" title="class in com.shouldis.bitset.parallel">DeadBiterator</a></td>
 <th class="colLast" scope="row">
-<div class="block">Implementation of <a href="com/shouldis/bitset/XOrShift.html" title="class in com.shouldis.bitset"><code>XOrShift</code></a> which generates bits with a specified
+<div class="block">Implementation of <a href="com/shouldis/bitset/parallel/DensityBiterator.html" title="class in com.shouldis.bitset.parallel"><code>DensityBiterator</code></a> used to stream the indices of
+ <i>dead</i> bits within a <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>, splitting at appropriate indices to
+ manipulate a <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
+</th>
+</tr>
+<tr class="rowColor" id="i5">
+<td class="colFirst"><a href="com/shouldis/bitset/parallel/DensityBiterator.html" title="class in com.shouldis.bitset.parallel">DensityBiterator</a></td>
+<th class="colLast" scope="row">
+<div class="block">Implementation of <a href="com/shouldis/bitset/parallel/Biterator.html" title="class in com.shouldis.bitset.parallel"><code>Biterator</code></a> used to allow parallel processing when
+ the number of live indices is expensive to compute, but the density of them
+ can be estimated in order to split efficiently.</div>
+</th>
+</tr>
+<tr class="altColor" id="i6">
+<td class="colFirst"><a href="com/shouldis/bitset/random/DensityXOrShift.html" title="class in com.shouldis.bitset.random">DensityXOrShift</a></td>
+<th class="colLast" scope="row">
+<div class="block">Implementation of <a href="com/shouldis/bitset/random/XOrShift.html" title="class in com.shouldis.bitset.random"><code>XOrShift</code></a> which generates bits with a specified
  Hamming-weight ratio using a sequence of bitwise <code>AND</code> and <code>OR</code>
  operations.</div>
 </th>
 </tr>
+<tr class="rowColor" id="i7">
+<td class="colFirst"><a href="com/shouldis/bitset/parallel/FunctionBiterator.html" title="class in com.shouldis.bitset.parallel">FunctionBiterator</a></td>
+<th class="colLast" scope="row">
+<div class="block">Implementation of <a href="com/shouldis/bitset/parallel/DensityBiterator.html" title="class in com.shouldis.bitset.parallel"><code>DensityBiterator</code></a> that creates a stream of indices
+ that represents which bits will be <i>live</i> after performing a
+ <a href="com/shouldis/bitset/parallel/FunctionBiterator.html#bitwiseFunction(long,long)"><code>FunctionBiterator.bitwiseFunction(long, long)</code></a> between the words of 2 <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
+ at the same word index.</div>
+</th>
+</tr>
+<tr class="altColor" id="i8">
+<td class="colFirst"><a href="com/shouldis/bitset/parallel/FunctionBiterator.And.html" title="class in com.shouldis.bitset.parallel">FunctionBiterator.And</a></td>
+<th class="colLast" scope="row">
+<div class="block">Implementation of <a href="com/shouldis/bitset/parallel/FunctionBiterator.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator</code></a> used to stream the indices of
+ bits that result in the <i>live</i> state after the <code>AND</code> operation,
+ splitting at appropriate indices to manipulate a <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
+</th>
+</tr>
+<tr class="rowColor" id="i9">
+<td class="colFirst"><a href="com/shouldis/bitset/parallel/FunctionBiterator.Or.html" title="class in com.shouldis.bitset.parallel">FunctionBiterator.Or</a></td>
+<th class="colLast" scope="row">
+<div class="block">Implementation of <a href="com/shouldis/bitset/parallel/FunctionBiterator.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator</code></a> used to stream the indices of
+ bits that result in the <i>live</i> state after the <code>OR</code> operation,
+ splitting at appropriate indices to manipulate a <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
+</th>
+</tr>
+<tr class="altColor" id="i10">
+<td class="colFirst"><a href="com/shouldis/bitset/parallel/FunctionBiterator.XOr.html" title="class in com.shouldis.bitset.parallel">FunctionBiterator.XOr</a></td>
+<th class="colLast" scope="row">
+<div class="block">Implementation of <a href="com/shouldis/bitset/parallel/FunctionBiterator.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator</code></a> used to stream the indices of
+ bits that result in the <i>live</i> state after the <code>XOR</code> operation,
+ splitting at appropriate indices to manipulate a <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
+</th>
+</tr>
+<tr class="rowColor" id="i11">
+<td class="colFirst"><a href="com/shouldis/bitset/parallel/LiveBiterator.html" title="class in com.shouldis.bitset.parallel">LiveBiterator</a></td>
+<th class="colLast" scope="row">
+<div class="block">Implementation of <a href="com/shouldis/bitset/parallel/DensityBiterator.html" title="class in com.shouldis.bitset.parallel"><code>DensityBiterator</code></a> used to stream the indices of
+ <i>live</i> bits within a <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>, splitting at appropriate indices to
+ manipulate a <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
+</th>
+</tr>
 <tr class="altColor" id="i12">
-<td class="colFirst"><a href="com/shouldis/bitset/XOrShift.html" title="class in com.shouldis.bitset">XOrShift</a></td>
+<td class="colFirst"><a href="com/shouldis/bitset/parallel/RangeBiterator.html" title="class in com.shouldis.bitset.parallel">RangeBiterator</a></td>
+<th class="colLast" scope="row">
+<div class="block">Implementation of <a href="com/shouldis/bitset/parallel/SizedBiterator.html" title="class in com.shouldis.bitset.parallel"><code>SizedBiterator</code></a> used to stream all indices of a
+ specified range, splitting at appropriate indices to manipulate a
+ <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
+</th>
+</tr>
+<tr class="rowColor" id="i13">
+<td class="colFirst"><a href="com/shouldis/bitset/parallel/SizedBiterator.html" title="class in com.shouldis.bitset.parallel">SizedBiterator</a></td>
+<th class="colLast" scope="row">
+<div class="block">Implementation of <a href="com/shouldis/bitset/parallel/Biterator.html" title="class in com.shouldis.bitset.parallel"><code>Biterator</code></a> that is meant to be used when streaming a
+ known number of indices.</div>
+</th>
+</tr>
+<tr class="altColor" id="i14">
+<td class="colFirst"><a href="com/shouldis/bitset/random/XOrShift.html" title="class in com.shouldis.bitset.random">XOrShift</a></td>
 <th class="colLast" scope="row">
 <div class="block">Pseudo-random number generator using a modified version of the XORShift64
  algorithm to generate uniform random numbers.</div>
@@ -199,10 +215,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!--   -->
 </a>
 <ul class="navList" title="Navigation">
-<li><a href="com/shouldis/bitset/package-summary.html">Package</a></li>
+<li><a href="index.html">Overview</a></li>
+<li>Package</li>
 <li>Class</li>
 <li>Use</li>
-<li><a href="com/shouldis/bitset/package-tree.html">Tree</a></li>
+<li><a href="overview-tree.html">Tree</a></li>
 <li><a href="index-files/index-1.html">Index</a></li>
 <li><a href="help-doc.html">Help</a></li>
 </ul>

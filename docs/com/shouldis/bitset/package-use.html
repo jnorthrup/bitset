@@ -36,6 +36,7 @@ loadScripts(document, 'script');</script>
 <!--   -->
 </a>
 <ul class="navList" title="Navigation">
+<li><a href="../../../index.html">Overview</a></li>
 <li><a href="package-summary.html">Package</a></li>
 <li>Class</li>
 <li class="navBarCell1Rev">Use</li>
@@ -67,6 +68,31 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <h1 title="Uses of Package com.shouldis.bitset" class="title">Uses of Package<br>com.shouldis.bitset</h1>
 </div>
 <div class="contentContainer">
+<div class="useSummary">
+<table>
+<caption><span>Packages that use <a href="package-summary.html">com.shouldis.bitset</a></span><span class="tabEnd">&nbsp;</span></caption>
+<thead>
+<tr>
+<th class="colFirst" scope="col">Package</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="altColor">
+<th class="colFirst" scope="row"><a href="#com.shouldis.bitset">com.shouldis.bitset</a></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<th class="colFirst" scope="row"><a href="#com.shouldis.bitset.parallel">com.shouldis.bitset.parallel</a></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<th class="colFirst" scope="row"><a href="#com.shouldis.bitset.random">com.shouldis.bitset.random</a></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
 <section class="packageUses">
 <ul class="blockList">
 <li class="blockList">
@@ -92,37 +118,70 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  retrieving their boolean values.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<th class="colFirst" scope="row"><a href="class-use/BitSpliterator.html#com.shouldis.bitset">BitSpliterator</a></th>
-<td class="colLast">
-<div class="block">Implementation of <code>Spliterator</code> that is meant to be used in conjunction
- with <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s.</div>
-</td>
+</tbody>
+</table>
+</div>
+</section>
+</li>
+<li class="blockList">
+<section class="detail"><a id="com.shouldis.bitset.parallel">
+<!--   -->
+</a>
+<div class="useSummary">
+<table>
+<caption><span>Classes in <a href="package-summary.html">com.shouldis.bitset</a> used by <a href="parallel/package-summary.html">com.shouldis.bitset.parallel</a></span><span class="tabEnd">&nbsp;</span></caption>
+<thead>
+<tr>
+<th class="colFirst" scope="col">Class</th>
+<th class="colLast" scope="col">Description</th>
 </tr>
+</thead>
+<tbody>
 <tr class="altColor">
-<th class="colFirst" scope="row"><a href="class-use/BitwiseSpliterator.html#com.shouldis.bitset">BitwiseSpliterator</a></th>
+<th class="colFirst" scope="row"><a href="class-use/BitSet.html#com.shouldis.bitset.parallel">BitSet</a></th>
 <td class="colLast">
-<div class="block">Implementation of <a href="BitSpliterator.html" title="class in com.shouldis.bitset"><code>BitSpliterator</code></a> that is creates a stream of indices
- that represents which bits will be <i>live</i> after performing a
- <a href="BitwiseSpliterator.html#bitwiseFunction(long,long)"><code>BitwiseSpliterator.bitwiseFunction(long, long)</code></a> between the words of 2 <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
- at the same word index.</div>
+<div class="block">Represents a fixed number of bits stored within an internal long array,
+ mapping positive integer indices to individual bits and facilitating the
+ manipulation of those individual bits or ranges of bits, as well as
+ retrieving their boolean values.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</li>
+<li class="blockList">
+<section class="detail"><a id="com.shouldis.bitset.random">
+<!--   -->
+</a>
+<div class="useSummary">
+<table>
+<caption><span>Classes in <a href="package-summary.html">com.shouldis.bitset</a> used by <a href="random/package-summary.html">com.shouldis.bitset.random</a></span><span class="tabEnd">&nbsp;</span></caption>
+<thead>
+<tr>
+<th class="colFirst" scope="col">Class</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="altColor">
+<th class="colFirst" scope="row"><a href="class-use/BitSet.html#com.shouldis.bitset.random">BitSet</a></th>
+<td class="colLast">
+<div class="block">Represents a fixed number of bits stored within an internal long array,
+ mapping positive integer indices to individual bits and facilitating the
+ manipulation of those individual bits or ranges of bits, as well as
+ retrieving their boolean values.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<th class="colFirst" scope="row"><a href="class-use/ConcurrentBitSet.html#com.shouldis.bitset">ConcurrentBitSet</a></th>
+<th class="colFirst" scope="row"><a href="class-use/ConcurrentBitSet.html#com.shouldis.bitset.random">ConcurrentBitSet</a></th>
 <td class="colLast">
 <div class="block">Implementation of <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in which all methods capable of reading or
  writing the state of bits such as <a href="ConcurrentBitSet.html#getWord(int)"><code>ConcurrentBitSet.getWord(int)</code></a>,
  <a href="ConcurrentBitSet.html#setWord(int,long)"><code>ConcurrentBitSet.setWord(int, long)</code></a>, <a href="ConcurrentBitSet.html#andWord(int,long)"><code>ConcurrentBitSet.andWord(int, long)</code></a>,
  <a href="ConcurrentBitSet.html#orWord(int,long)"><code>ConcurrentBitSet.orWord(int, long)</code></a>, <a href="ConcurrentBitSet.html#xorWord(int,long)"><code>ConcurrentBitSet.xorWord(int, long)</code></a> are delegated to
  atomic-operations.</div>
-</td>
-</tr>
-<tr class="altColor">
-<th class="colFirst" scope="row"><a href="class-use/XOrShift.html#com.shouldis.bitset">XOrShift</a></th>
-<td class="colLast">
-<div class="block">Pseudo-random number generator using a modified version of the XORShift64
- algorithm to generate uniform random numbers.</div>
 </td>
 </tr>
 </tbody>
@@ -145,6 +204,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!--   -->
 </a>
 <ul class="navList" title="Navigation">
+<li><a href="../../../index.html">Overview</a></li>
 <li><a href="package-summary.html">Package</a></li>
 <li>Class</li>
 <li class="navBarCell1Rev">Use</li>

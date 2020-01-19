@@ -36,10 +36,11 @@ loadScripts(document, 'script');</script>
 <!--   -->
 </a>
 <ul class="navList" title="Navigation">
-<li><a href="../com/shouldis/bitset/package-summary.html">Package</a></li>
+<li><a href="../index.html">Overview</a></li>
+<li>Package</li>
 <li>Class</li>
 <li>Use</li>
-<li><a href="../com/shouldis/bitset/package-tree.html">Tree</a></li>
+<li><a href="../overview-tree.html">Tree</a></li>
 <li class="navBarCell1Rev">Index</li>
 <li><a href="../help-doc.html">Help</a></li>
 </ul>
@@ -66,7 +67,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="header">
 <h1>Index</h1>
 </div>
-<div class="contentContainer"><a href="index-1.html">A</a>&nbsp;<a href="index-2.html">B</a>&nbsp;<a href="index-3.html">C</a>&nbsp;<a href="index-4.html">D</a>&nbsp;<a href="index-5.html">E</a>&nbsp;<a href="index-6.html">F</a>&nbsp;<a href="index-7.html">G</a>&nbsp;<a href="index-8.html">H</a>&nbsp;<a href="index-9.html">I</a>&nbsp;<a href="index-10.html">L</a>&nbsp;<a href="index-11.html">M</a>&nbsp;<a href="index-12.html">N</a>&nbsp;<a href="index-13.html">O</a>&nbsp;<a href="index-14.html">P</a>&nbsp;<a href="index-15.html">R</a>&nbsp;<a href="index-16.html">S</a>&nbsp;<a href="index-17.html">T</a>&nbsp;<a href="index-18.html">W</a>&nbsp;<a href="index-19.html">X</a>&nbsp;<br><a href="../allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="../allpackages-index.html">All&nbsp;Packages</a><a id="I:O">
+<div class="contentContainer"><a href="index-1.html">A</a>&nbsp;<a href="index-2.html">B</a>&nbsp;<a href="index-3.html">C</a>&nbsp;<a href="index-4.html">D</a>&nbsp;<a href="index-5.html">E</a>&nbsp;<a href="index-6.html">F</a>&nbsp;<a href="index-7.html">G</a>&nbsp;<a href="index-8.html">H</a>&nbsp;<a href="index-9.html">I</a>&nbsp;<a href="index-10.html">L</a>&nbsp;<a href="index-11.html">M</a>&nbsp;<a href="index-12.html">N</a>&nbsp;<a href="index-13.html">O</a>&nbsp;<a href="index-14.html">P</a>&nbsp;<a href="index-15.html">R</a>&nbsp;<a href="index-16.html">S</a>&nbsp;<a href="index-17.html">T</a>&nbsp;<a href="index-18.html">U</a>&nbsp;<a href="index-19.html">W</a>&nbsp;<a href="index-20.html">X</a>&nbsp;<br><a href="../allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="../allpackages-index.html">All&nbsp;Packages</a><a id="I:O">
 <!--   -->
 </a>
 <h2 class="title">O</h2>
@@ -76,11 +77,23 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Performs a global <code>OR</code> operation on all bits in this <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>
  with those in the specified <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/BitwiseSpliterator.Or.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">Or(BitSet, BitSet, int, int)</a></span> - Constructor for class com.shouldis.bitset.<a href="../com/shouldis/bitset/BitwiseSpliterator.Or.html" title="class in com.shouldis.bitset">BitwiseSpliterator.Or</a></dt>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/FunctionBiterator.Or.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet)">Or(BitSet, BitSet)</a></span> - Constructor for class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/FunctionBiterator.Or.html" title="class in com.shouldis.bitset.parallel">FunctionBiterator.Or</a></dt>
 <dd>
-<div class="block">Creates a <a href="../com/shouldis/bitset/BitwiseSpliterator.And.html" title="class in com.shouldis.bitset"><code>BitwiseSpliterator.And</code></a> that will cover indices of bits
+<div class="block">Creates a <a href="../com/shouldis/bitset/parallel/FunctionBiterator.Or.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator.Or</code></a> that will cover all indices of bits
+ resulting in the <i>live</i> state within the specified <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
+ <b>set1</b> and <b>set2</b> after an <code>OR</code> operation.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/FunctionBiterator.Or.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">Or(BitSet, BitSet, int, int)</a></span> - Constructor for class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/FunctionBiterator.Or.html" title="class in com.shouldis.bitset.parallel">FunctionBiterator.Or</a></dt>
+<dd>
+<div class="block">Creates a <a href="../com/shouldis/bitset/parallel/FunctionBiterator.Or.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator.Or</code></a> that will cover indices of bits
  resulting in the <i>live</i> state within the specified starting and ending
- indices <b>position</b> and <b>end</b> after an <code>OR</code> operation..</div>
+ indices <b>position</b> and <b>end</b> after an <code>OR</code> operation.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/FunctionBiterator.Or.html#%3Cinit%3E(com.shouldis.bitset.parallel.FunctionBiterator.Or,int,int)">Or(FunctionBiterator.Or, int, int)</a></span> - Constructor for class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/FunctionBiterator.Or.html" title="class in com.shouldis.bitset.parallel">FunctionBiterator.Or</a></dt>
+<dd>
+<div class="block">Creates a <a href="../com/shouldis/bitset/parallel/FunctionBiterator.Or.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator.Or</code></a> that will cover indices of bits
+ resulting in the <i>live</i> state within the specified starting and ending
+ indices <b>position</b> and <b>end</b> after an <code>OR</code> operation.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/BitSet.html#orWord(int,long)">orWord(int, long)</a></span> - Method in class com.shouldis.bitset.<a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset">BitSet</a></dt>
 <dd>
@@ -91,7 +104,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/ConcurrentBitSet.html#orWord(int,long)">orWord(int, long)</a></span> - Method in class com.shouldis.bitset.<a href="../com/shouldis/bitset/ConcurrentBitSet.html" title="class in com.shouldis.bitset">ConcurrentBitSet</a></dt>
 <dd>&nbsp;</dd>
 </dl>
-<a href="index-1.html">A</a>&nbsp;<a href="index-2.html">B</a>&nbsp;<a href="index-3.html">C</a>&nbsp;<a href="index-4.html">D</a>&nbsp;<a href="index-5.html">E</a>&nbsp;<a href="index-6.html">F</a>&nbsp;<a href="index-7.html">G</a>&nbsp;<a href="index-8.html">H</a>&nbsp;<a href="index-9.html">I</a>&nbsp;<a href="index-10.html">L</a>&nbsp;<a href="index-11.html">M</a>&nbsp;<a href="index-12.html">N</a>&nbsp;<a href="index-13.html">O</a>&nbsp;<a href="index-14.html">P</a>&nbsp;<a href="index-15.html">R</a>&nbsp;<a href="index-16.html">S</a>&nbsp;<a href="index-17.html">T</a>&nbsp;<a href="index-18.html">W</a>&nbsp;<a href="index-19.html">X</a>&nbsp;<br><a href="../allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="../allpackages-index.html">All&nbsp;Packages</a></div>
+<a href="index-1.html">A</a>&nbsp;<a href="index-2.html">B</a>&nbsp;<a href="index-3.html">C</a>&nbsp;<a href="index-4.html">D</a>&nbsp;<a href="index-5.html">E</a>&nbsp;<a href="index-6.html">F</a>&nbsp;<a href="index-7.html">G</a>&nbsp;<a href="index-8.html">H</a>&nbsp;<a href="index-9.html">I</a>&nbsp;<a href="index-10.html">L</a>&nbsp;<a href="index-11.html">M</a>&nbsp;<a href="index-12.html">N</a>&nbsp;<a href="index-13.html">O</a>&nbsp;<a href="index-14.html">P</a>&nbsp;<a href="index-15.html">R</a>&nbsp;<a href="index-16.html">S</a>&nbsp;<a href="index-17.html">T</a>&nbsp;<a href="index-18.html">U</a>&nbsp;<a href="index-19.html">W</a>&nbsp;<a href="index-20.html">X</a>&nbsp;<br><a href="../allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="../allpackages-index.html">All&nbsp;Packages</a></div>
 </main>
 <footer role="contentinfo">
 <nav role="navigation">
@@ -104,10 +117,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!--   -->
 </a>
 <ul class="navList" title="Navigation">
-<li><a href="../com/shouldis/bitset/package-summary.html">Package</a></li>
+<li><a href="../index.html">Overview</a></li>
+<li>Package</li>
 <li>Class</li>
 <li>Use</li>
-<li><a href="../com/shouldis/bitset/package-tree.html">Tree</a></li>
+<li><a href="../overview-tree.html">Tree</a></li>
 <li class="navBarCell1Rev">Index</li>
 <li><a href="../help-doc.html">Help</a></li>
 </ul>

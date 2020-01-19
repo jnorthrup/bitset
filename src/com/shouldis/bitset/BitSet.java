@@ -3,6 +3,11 @@ package com.shouldis.bitset;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
+import com.shouldis.bitset.parallel.DeadBiterator;
+import com.shouldis.bitset.parallel.LiveBiterator;
+import com.shouldis.bitset.random.DensityXOrShift;
+import com.shouldis.bitset.random.XOrShift;
+
 /**
  * Represents a fixed number of bits stored within an internal long array,
  * mapping positive integer indices to individual bits and facilitating the
@@ -15,10 +20,11 @@ import java.util.stream.IntStream;
  * state ({@code 1, true}), or the <i>dead</i> state ({@code 0, false}).
  * <p>
  * {@link BitSet} on its own is thread-safe only for read operations, although a
- * {@link BitSpliterator} may be used to stream indices in an order and grouping
- * appropriate for parallel manipulation of bits. Alternatively, a
- * {@link ConcurrentBitSet} may be used to make all operations thread-safe,
- * requiring no external synchronization at the cost of performance.
+ * {@link com.shouldis.bitset.parallel.Biterator} may be used to stream indices
+ * in an order and grouping appropriate for parallel manipulation of bits.
+ * Alternatively, a {@link ConcurrentBitSet} may be used to make all operations
+ * thread-safe, requiring no external synchronization at the cost of
+ * performance.
  * <p>
  * If {@link #size} isn't a multiple of 64, there will be "hanging" bits that
  * exist on the end of the last long within {@link #words}, which are not
@@ -679,26 +685,24 @@ public class BitSet {
 
 	/**
 	 * Creates a parallel-safe {@link IntStream} consisting of the indices of all
-	 * <i>live</i> bits within this {@link BitSet} using
-	 * {@link BitSpliterator.Live}.
+	 * <i>live</i> bits within this {@link BitSet} using {@link LiveBiterator}.
 	 * 
 	 * @return a parallel-safe {@link IntStream} representation of <i>live</i>
 	 *         indices.
 	 */
 	public final IntStream live() {
-		return new BitSpliterator.Live(this).stream();
+		return new LiveBiterator(this).stream();
 	}
 
 	/**
 	 * Creates a parallel-safe {@link IntStream} consisting of the indices of all
-	 * <i>dead</i> bits within this {@link BitSet} using
-	 * {@link BitSpliterator.Dead}.
+	 * <i>dead</i> bits within this {@link BitSet} using {@link DeadBiterator}.
 	 * 
 	 * @return a parallel-safe {@link IntStream} representation of <i>dead</i>
 	 *         indices.
 	 */
 	public final IntStream dead() {
-		return new BitSpliterator.Dead(this).stream();
+		return new DeadBiterator(this).stream();
 	}
 
 	/**
@@ -863,7 +867,7 @@ public class BitSet {
 	 * @throws NullPointerException           if <b>set</b> is null.
 	 * @throws ArrayIndexOutOfBoundsException if the {@link #size}s are different.
 	 */
-	protected final void compareSize(final BitSet set) {
+	public final void compareSize(final BitSet set) {
 		if (set.size != size) {
 			throw new ArrayIndexOutOfBoundsException(Math.min(set.wordCount, wordCount) - 1);
 		}
@@ -942,6 +946,18 @@ public class BitSet {
 	}
 
 	/**
+	 * Equivalent to {@code index % 64} for positive numbers, and modulo of positive
+	 * numbers faster.
+	 * 
+	 * @param index the index to perform the modulo operation upon.
+	 * @return the result of the modulo operation.
+	 * @see #MOD_SIZE_MASK
+	 */
+	public static final int modSize(final int index) {
+		return index & MOD_SIZE_MASK;
+	}
+
+	/**
 	 * Calculates a mask to represent the bit at which a specific index will be
 	 * stored within a long word.
 	 * 
@@ -950,18 +966,6 @@ public class BitSet {
 	 */
 	protected static final long bitMask(final int index) {
 		return 1L << index;
-	}
-
-	/**
-	 * Equivalent to {@code index % 64} for positive numbers, and modulo of positive
-	 * numbers faster.
-	 * 
-	 * @param index the index to perform the modulo operation upon.
-	 * @return the result of the modulo operation.
-	 * @see #MOD_SIZE_MASK
-	 */
-	protected static final int modSize(final int index) {
-		return index & MOD_SIZE_MASK;
 	}
 
 	@Override

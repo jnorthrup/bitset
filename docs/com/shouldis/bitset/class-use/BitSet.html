@@ -36,6 +36,7 @@ loadScripts(document, 'script');</script>
 <!--   -->
 </a>
 <ul class="navList" title="Navigation">
+<li><a href="../../../../index.html">Overview</a></li>
 <li><a href="../package-summary.html">Package</a></li>
 <li><a href="../BitSet.html" title="class in com.shouldis.bitset">Class</a></li>
 <li class="navBarCell1Rev">Use</li>
@@ -67,6 +68,31 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <h1 title="Uses of Class com.shouldis.bitset.BitSet" class="title">Uses of Class<br>com.shouldis.bitset.BitSet</h1>
 </div>
 <div class="classUseContainer">
+<div class="useSummary">
+<table>
+<caption><span>Packages that use <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a></span><span class="tabEnd">&nbsp;</span></caption>
+<thead>
+<tr>
+<th class="colFirst" scope="col">Package</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="altColor">
+<th class="colFirst" scope="row"><a href="#com.shouldis.bitset">com.shouldis.bitset</a></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<th class="colFirst" scope="row"><a href="#com.shouldis.bitset.parallel">com.shouldis.bitset.parallel</a></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<th class="colFirst" scope="row"><a href="#com.shouldis.bitset.random">com.shouldis.bitset.random</a></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
 <section class="classUses">
 <ul class="blockList">
 <li class="blockList">
@@ -101,72 +127,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </div>
 <div class="useSummary">
 <table>
-<caption><span>Fields in <a href="../package-summary.html">com.shouldis.bitset</a> declared as <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a></span><span class="tabEnd">&nbsp;</span></caption>
-<thead>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colSecond" scope="col">Field</th>
-<th class="colLast" scope="col">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>private <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></td>
-<th class="colSecond" scope="row"><span class="typeNameLabel">BitSpliterator.Dead.</span><code><span class="memberNameLink"><a href="../BitSpliterator.Dead.html#set">set</a></span></code></th>
-<td class="colLast">
-<div class="block">The <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> that the <i>dead</i> bit indices will be calculated from.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>private <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></td>
-<th class="colSecond" scope="row"><span class="typeNameLabel">BitSpliterator.Live.</span><code><span class="memberNameLink"><a href="../BitSpliterator.Live.html#set">set</a></span></code></th>
-<td class="colLast">
-<div class="block">The <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> that the <i>live</i> bit indices will be calculated from.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></td>
-<th class="colSecond" scope="row"><span class="typeNameLabel">BitwiseSpliterator.</span><code><span class="memberNameLink"><a href="../BitwiseSpliterator.html#set1">set1</a></span></code></th>
-<td class="colLast">
-<div class="block">The first <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> that will have its words operated on against those
- of <a href="../BitwiseSpliterator.html#set2"><code>BitwiseSpliterator.set2</code></a>.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></td>
-<th class="colSecond" scope="row"><span class="typeNameLabel">BitwiseSpliterator.</span><code><span class="memberNameLink"><a href="../BitwiseSpliterator.html#set2">set2</a></span></code></th>
-<td class="colLast">
-<div class="block">The second <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> that will have its words operated on against those
- of <a href="../BitwiseSpliterator.html#set1"><code>BitwiseSpliterator.set1</code></a>.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="useSummary">
-<table>
-<caption><span>Methods in <a href="../package-summary.html">com.shouldis.bitset</a> that return <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a></span><span class="tabEnd">&nbsp;</span></caption>
-<thead>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colSecond" scope="col">Method</th>
-<th class="colLast" scope="col">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></td>
-<th class="colSecond" scope="row"><span class="typeNameLabel">XOrShift.</span><code><span class="memberNameLink"><a href="../XOrShift.html#nextBitSet(int)">nextBitSet</a></span>&#8203;(int&nbsp;size)</code></th>
-<td class="colLast">
-<div class="block">Generates a <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> with the specified <b>size</b>, with each word
- filled with <a href="../XOrShift.html#nextLong()"><code>XOrShift.nextLong()</code></a>.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="useSummary">
-<table>
 <caption><span>Methods in <a href="../package-summary.html">com.shouldis.bitset</a> with parameters of type <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a></span><span class="tabEnd">&nbsp;</span></caption>
 <thead>
 <tr>
@@ -185,7 +145,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected void</code></td>
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><span class="typeNameLabel">BitSet.</span><code><span class="memberNameLink"><a href="../BitSet.html#compareSize(com.shouldis.bitset.BitSet)">compareSize</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
 <td class="colLast">
 <div class="block">Compares the <a href="../BitSet.html#size"><code>size</code></a> of this <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> with that of the other
@@ -238,31 +198,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </thead>
 <tbody>
 <tr class="altColor">
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../BitwiseSpliterator.And.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">And</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
-<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2,
-int&nbsp;position,
-int&nbsp;end)</code></th>
-<td class="colLast">
-<div class="block">Creates a <a href="../BitwiseSpliterator.And.html" title="class in com.shouldis.bitset"><code>BitwiseSpliterator.And</code></a> that will cover indices of bits
- resulting in the <i>live</i> state within the specified starting and ending
- indices <b>position</b> and <b>end</b> after an <code>AND</code> operation..</div>
-</td>
-</tr>
-<tr class="rowColor">
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../BitSet.html#%3Cinit%3E(com.shouldis.bitset.BitSet)">BitSet</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
 <td class="colLast">
 <div class="block">Creates a <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> which is a clone of the specified <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>
  <b>set</b>.</div>
-</td>
-</tr>
-<tr class="altColor">
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../BitwiseSpliterator.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">BitwiseSpliterator</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
-<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2,
-int&nbsp;position,
-int&nbsp;end)</code></th>
-<td class="colLast">
-<div class="block">Creates a <a href="../BitwiseSpliterator.html" title="class in com.shouldis.bitset"><code>BitwiseSpliterator</code></a> with the specified starting and ending
- position.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -272,60 +211,200 @@ int&nbsp;end)</code></th>
  <b>set</b>.</div>
 </td>
 </tr>
+</tbody>
+</table>
+</div>
+</section>
+</li>
+<li class="blockList">
+<section class="detail"><a id="com.shouldis.bitset.parallel">
+<!--   -->
+</a>
+<h2>Uses of <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a> in <a href="../parallel/package-summary.html">com.shouldis.bitset.parallel</a></h2>
+<div class="useSummary">
+<table>
+<caption><span>Fields in <a href="../parallel/package-summary.html">com.shouldis.bitset.parallel</a> declared as <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a></span><span class="tabEnd">&nbsp;</span></caption>
+<thead>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Field</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+</thead>
+<tbody>
 <tr class="altColor">
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../BitSpliterator.Dead.html#%3Cinit%3E(com.shouldis.bitset.BitSet)">Dead</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
+<td class="colFirst"><code>private <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">DeadBiterator.</span><code><span class="memberNameLink"><a href="../parallel/DeadBiterator.html#set">set</a></span></code></th>
 <td class="colLast">
-<div class="block">Creates a <a href="../BitSpliterator.Dead.html" title="class in com.shouldis.bitset"><code>BitSpliterator.Dead</code></a> that will cover all <i>dead</i> bits
- within the specified <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
+<div class="block">The <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> that the <i>dead</i> bit indices will be calculated from.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../BitSpliterator.Dead.html#%3Cinit%3E(com.shouldis.bitset.BitSet,int,int)">Dead</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set,
+<td class="colFirst"><code>private <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">LiveBiterator.</span><code><span class="memberNameLink"><a href="../parallel/LiveBiterator.html#set">set</a></span></code></th>
+<td class="colLast">
+<div class="block">The <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> that the <i>live</i> bit indices will be calculated from.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">FunctionBiterator.</span><code><span class="memberNameLink"><a href="../parallel/FunctionBiterator.html#set1">set1</a></span></code></th>
+<td class="colLast">
+<div class="block">The first <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> that will have its words operated on against those
+ of <a href="../parallel/FunctionBiterator.html#set2"><code>FunctionBiterator.set2</code></a>.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">FunctionBiterator.</span><code><span class="memberNameLink"><a href="../parallel/FunctionBiterator.html#set2">set2</a></span></code></th>
+<td class="colLast">
+<div class="block">The second <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> that will have its words operated on against those
+ of <a href="../parallel/FunctionBiterator.html#set1"><code>FunctionBiterator.set1</code></a>.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="useSummary">
+<table>
+<caption><span>Constructors in <a href="../parallel/package-summary.html">com.shouldis.bitset.parallel</a> with parameters of type <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a></span><span class="tabEnd">&nbsp;</span></caption>
+<thead>
+<tr>
+<th class="colFirst" scope="col">Constructor</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="altColor">
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/FunctionBiterator.And.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet)">And</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
+<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2)</code></th>
+<td class="colLast">
+<div class="block">Creates a <a href="../parallel/FunctionBiterator.And.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator.And</code></a> that will cover all indices of bits
+ resulting in the <i>live</i> state within the specified <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
+ <b>set1</b> and <b>set2</b> after an <code>AND</code> operation.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/FunctionBiterator.And.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">And</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
+<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2,
 int&nbsp;position,
 int&nbsp;end)</code></th>
 <td class="colLast">
-<div class="block">Creates a <a href="../BitSpliterator.Dead.html" title="class in com.shouldis.bitset"><code>BitSpliterator.Dead</code></a> that will cover all <i>dead</i> bits
- within the specified starting and ending indices <b>position</b> and
+<div class="block">Creates a <a href="../parallel/FunctionBiterator.And.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator.And</code></a> that will cover indices of bits
+ resulting in the <i>live</i> state within the specified starting and ending
+ indices <b>position</b> and <b>end</b> after an <code>AND</code> operation.</div>
+</td>
+</tr>
+<tr class="altColor">
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/DeadBiterator.html#%3Cinit%3E(com.shouldis.bitset.BitSet)">DeadBiterator</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
+<td class="colLast">
+<div class="block">Creates a <a href="../parallel/DeadBiterator.html" title="class in com.shouldis.bitset.parallel"><code>DeadBiterator</code></a> that will cover all <i>dead</i> bits within
+ the specified <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/DeadBiterator.html#%3Cinit%3E(com.shouldis.bitset.BitSet,int,int)">DeadBiterator</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set,
+int&nbsp;position,
+int&nbsp;end)</code></th>
+<td class="colLast">
+<div class="block">Creates a <a href="../parallel/DeadBiterator.html" title="class in com.shouldis.bitset.parallel"><code>DeadBiterator</code></a> that will cover all <i>dead</i> bits within
+ the specified starting and ending indices <b>position</b> and <b>end</b>.</div>
+</td>
+</tr>
+<tr class="altColor">
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/FunctionBiterator.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">FunctionBiterator</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
+<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2,
+int&nbsp;position,
+int&nbsp;end)</code></th>
+<td class="colLast">
+<div class="block">Creates a <a href="../parallel/FunctionBiterator.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator</code></a> with the specified starting and ending
+ position.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/LiveBiterator.html#%3Cinit%3E(com.shouldis.bitset.BitSet)">LiveBiterator</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
+<td class="colLast">
+<div class="block">Creates a <a href="../parallel/LiveBiterator.html" title="class in com.shouldis.bitset.parallel"><code>LiveBiterator</code></a> that will cover all <i>live</i> bits within
+ the specified <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
+</td>
+</tr>
+<tr class="altColor">
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/LiveBiterator.html#%3Cinit%3E(com.shouldis.bitset.BitSet,int,int)">LiveBiterator</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set,
+int&nbsp;position,
+int&nbsp;end)</code></th>
+<td class="colLast">
+<div class="block">Creates a <a href="../parallel/LiveBiterator.html" title="class in com.shouldis.bitset.parallel"><code>LiveBiterator</code></a> that will cover all <i>live</i> bits within
+ <b>set</b> in the specified starting and ending indices <b>position</b> and
  <b>end</b>.</div>
 </td>
 </tr>
-<tr class="altColor">
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../BitSpliterator.Live.html#%3Cinit%3E(com.shouldis.bitset.BitSet)">Live</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
-<td class="colLast">
-<div class="block">Creates a <a href="../BitSpliterator.Live.html" title="class in com.shouldis.bitset"><code>BitSpliterator.Live</code></a> that will cover all <i>live</i> bits
- within the specified <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
-</td>
-</tr>
 <tr class="rowColor">
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../BitSpliterator.Live.html#%3Cinit%3E(com.shouldis.bitset.BitSet,int,int)">Live</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set,
-int&nbsp;position,
-int&nbsp;end)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/FunctionBiterator.Or.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet)">Or</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
+<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2)</code></th>
 <td class="colLast">
-<div class="block">Creates a <a href="../BitSpliterator.Live.html" title="class in com.shouldis.bitset"><code>BitSpliterator.Live</code></a> that will cover all <i>live</i> bits
- within <b>set</b> in the specified starting and ending indices
- <b>position</b> and <b>end</b>.</div>
+<div class="block">Creates a <a href="../parallel/FunctionBiterator.Or.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator.Or</code></a> that will cover all indices of bits
+ resulting in the <i>live</i> state within the specified <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
+ <b>set1</b> and <b>set2</b> after an <code>OR</code> operation.</div>
 </td>
 </tr>
 <tr class="altColor">
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../BitwiseSpliterator.Or.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">Or</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/FunctionBiterator.Or.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">Or</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
 <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2,
 int&nbsp;position,
 int&nbsp;end)</code></th>
 <td class="colLast">
-<div class="block">Creates a <a href="../BitwiseSpliterator.And.html" title="class in com.shouldis.bitset"><code>BitwiseSpliterator.And</code></a> that will cover indices of bits
+<div class="block">Creates a <a href="../parallel/FunctionBiterator.Or.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator.Or</code></a> that will cover indices of bits
  resulting in the <i>live</i> state within the specified starting and ending
- indices <b>position</b> and <b>end</b> after an <code>OR</code> operation..</div>
+ indices <b>position</b> and <b>end</b> after an <code>OR</code> operation.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../BitwiseSpliterator.XOr.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">XOr</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/FunctionBiterator.XOr.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet)">XOr</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
+<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2)</code></th>
+<td class="colLast">
+<div class="block">Creates a <a href="../parallel/FunctionBiterator.XOr.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator.XOr</code></a> that will cover all indices of bits
+ resulting in the <i>live</i> state within the specified <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
+ <b>set1</b> and <b>set2</b> after an <code>XOR</code> operation.</div>
+</td>
+</tr>
+<tr class="altColor">
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/FunctionBiterator.XOr.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">XOr</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
 <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2,
 int&nbsp;position,
 int&nbsp;end)</code></th>
 <td class="colLast">
-<div class="block">Creates a <a href="../BitwiseSpliterator.And.html" title="class in com.shouldis.bitset"><code>BitwiseSpliterator.And</code></a> that will cover indices of bits
+<div class="block">Creates a <a href="../parallel/FunctionBiterator.And.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator.And</code></a> that will cover indices of bits
  resulting in the <i>live</i> state within the specified starting and ending
- indices <b>position</b> and <b>end</b> after an <code>XOR</code> operation..</div>
+ indices <b>position</b> and <b>end</b> after an <code>XOR</code> operation.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</li>
+<li class="blockList">
+<section class="detail"><a id="com.shouldis.bitset.random">
+<!--   -->
+</a>
+<h2>Uses of <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a> in <a href="../random/package-summary.html">com.shouldis.bitset.random</a></h2>
+<div class="useSummary">
+<table>
+<caption><span>Methods in <a href="../random/package-summary.html">com.shouldis.bitset.random</a> that return <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a></span><span class="tabEnd">&nbsp;</span></caption>
+<thead>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Method</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">XOrShift.</span><code><span class="memberNameLink"><a href="../random/XOrShift.html#nextBitSet(int)">nextBitSet</a></span>&#8203;(int&nbsp;size)</code></th>
+<td class="colLast">
+<div class="block">Generates a <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> with the specified <b>size</b>, with each word
+ filled with <a href="../random/XOrShift.html#nextLong()"><code>XOrShift.nextLong()</code></a>.</div>
 </td>
 </tr>
 </tbody>
@@ -348,6 +427,7 @@ int&nbsp;end)</code></th>
 <!--   -->
 </a>
 <ul class="navList" title="Navigation">
+<li><a href="../../../../index.html">Overview</a></li>
 <li><a href="../package-summary.html">Package</a></li>
 <li><a href="../BitSet.html" title="class in com.shouldis.bitset">Class</a></li>
 <li class="navBarCell1Rev">Use</li>
