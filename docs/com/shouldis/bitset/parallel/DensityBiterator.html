@@ -258,12 +258,18 @@ double&nbsp;density)</code></th>
 <tr class="rowColor" id="i3">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDensity()">getDensity</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">If the density of this <a href="DensityBiterator.html" title="class in com.shouldis.bitset.parallel"><code>DensityBiterator</code></a> is unknown, this method will
+ update it, otherwise, it will return the current value.</div>
+</td>
 </tr>
 <tr class="altColor" id="i4">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#updateDensity()">updateDensity</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Calculates the new density of this <a href="DensityBiterator.html" title="class in com.shouldis.bitset.parallel"><code>DensityBiterator</code></a> using
+ <a href="#calculateDensity()"><code>calculateDensity()</code></a> and updates <a href="#density"><code>density</code></a>.</div>
+</td>
 </tr>
 </tbody>
 </table>
@@ -403,12 +409,24 @@ double&nbsp;density)</span></div>
 <section class="detail">
 <h3><a id="updateDensity()">updateDensity</a></h3>
 <div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">double</span>&nbsp;<span class="memberName">updateDensity</span>()</div>
+<div class="block">Calculates the new density of this <a href="DensityBiterator.html" title="class in com.shouldis.bitset.parallel"><code>DensityBiterator</code></a> using
+ <a href="#calculateDensity()"><code>calculateDensity()</code></a> and updates <a href="#density"><code>density</code></a>.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the updated density.</dd>
+</dl>
 </section>
 </li>
 <li class="blockList">
 <section class="detail">
 <h3><a id="getDensity()">getDensity</a></h3>
 <div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">double</span>&nbsp;<span class="memberName">getDensity</span>()</div>
+<div class="block">If the density of this <a href="DensityBiterator.html" title="class in com.shouldis.bitset.parallel"><code>DensityBiterator</code></a> is unknown, this method will
+ update it, otherwise, it will return the current value.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the current <a href="#density"><code>density</code></a> of this <a href="DensityBiterator.html" title="class in com.shouldis.bitset.parallel"><code>DensityBiterator</code></a>.</dd>
+</dl>
 </section>
 </li>
 </ul>

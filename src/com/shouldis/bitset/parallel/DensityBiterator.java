@@ -79,10 +79,22 @@ public abstract class DensityBiterator extends Biterator {
 		return DISTINCT | ORDERED | NONNULL | IMMUTABLE;
 	}
 
+	/**
+	 * Calculates the new density of this {@link DensityBiterator} using
+	 * {@link #calculateDensity()} and updates {@link #density}.
+	 * 
+	 * @return the updated density.
+	 */
 	public final double updateDensity() {
 		return (density = calculateDensity());
 	}
 
+	/**
+	 * If the density of this {@link DensityBiterator} is unknown, this method will
+	 * update it, otherwise, it will return the current value.
+	 * 
+	 * @return the current {@link #density} of this {@link DensityBiterator}.
+	 */
 	public final double getDensity() {
 		if (Double.isNaN(density)) {
 			updateDensity();
