@@ -109,60 +109,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </td>
 </tr>
 <tr class="rowColor">
-<th class="colFirst" scope="row"><a href="class-use/DeadBiterator.html#com.shouldis.bitset.parallel">DeadBiterator</a></th>
-<td class="colLast">
-<div class="block">Implementation of <a href="DensityBiterator.html" title="class in com.shouldis.bitset.parallel"><code>DensityBiterator</code></a> used to stream the indices of
- <i>dead</i> bits within a <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>, splitting at appropriate indices to
- manipulate a <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</td>
-</tr>
-<tr class="altColor">
-<th class="colFirst" scope="row"><a href="class-use/DensityBiterator.html#com.shouldis.bitset.parallel">DensityBiterator</a></th>
-<td class="colLast">
-<div class="block">Implementation of <a href="Biterator.html" title="class in com.shouldis.bitset.parallel"><code>Biterator</code></a> used to allow parallel processing when
- the number of live indices is expensive to compute, but the density of them
- can be estimated in order to split efficiently.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <th class="colFirst" scope="row"><a href="class-use/FunctionBiterator.html#com.shouldis.bitset.parallel">FunctionBiterator</a></th>
 <td class="colLast">
-<div class="block">Implementation of <a href="DensityBiterator.html" title="class in com.shouldis.bitset.parallel"><code>DensityBiterator</code></a> that creates a stream of indices
- that represents which bits will be <i>live</i> after performing a
+<div class="block">Implementation of <a href="Biterator.html" title="class in com.shouldis.bitset.parallel"><code>Biterator</code></a> that creates a stream of indices that
+ represents which bits will be <i>live</i> after performing a
  <a href="FunctionBiterator.html#bitwiseFunction(long,long)"><code>FunctionBiterator.bitwiseFunction(long, long)</code></a> between the words of 2 <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
  at the same word index.</div>
-</td>
-</tr>
-<tr class="altColor">
-<th class="colFirst" scope="row"><a href="class-use/FunctionBiterator.And.html#com.shouldis.bitset.parallel">FunctionBiterator.And</a></th>
-<td class="colLast">
-<div class="block">Implementation of <a href="FunctionBiterator.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator</code></a> used to stream the indices of
- bits that result in the <i>live</i> state after the <code>AND</code> operation,
- splitting at appropriate indices to manipulate a <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<th class="colFirst" scope="row"><a href="class-use/FunctionBiterator.Or.html#com.shouldis.bitset.parallel">FunctionBiterator.Or</a></th>
-<td class="colLast">
-<div class="block">Implementation of <a href="FunctionBiterator.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator</code></a> used to stream the indices of
- bits that result in the <i>live</i> state after the <code>OR</code> operation,
- splitting at appropriate indices to manipulate a <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</td>
-</tr>
-<tr class="altColor">
-<th class="colFirst" scope="row"><a href="class-use/FunctionBiterator.XOr.html#com.shouldis.bitset.parallel">FunctionBiterator.XOr</a></th>
-<td class="colLast">
-<div class="block">Implementation of <a href="FunctionBiterator.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator</code></a> used to stream the indices of
- bits that result in the <i>live</i> state after the <code>XOR</code> operation,
- splitting at appropriate indices to manipulate a <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<th class="colFirst" scope="row"><a href="class-use/LiveBiterator.html#com.shouldis.bitset.parallel">LiveBiterator</a></th>
-<td class="colLast">
-<div class="block">Implementation of <a href="DensityBiterator.html" title="class in com.shouldis.bitset.parallel"><code>DensityBiterator</code></a> used to stream the indices of
- <i>live</i> bits within a <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>, splitting at appropriate indices to
- manipulate a <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
 </td>
 </tr>
 <tr class="altColor">

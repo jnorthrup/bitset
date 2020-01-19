@@ -3,19 +3,19 @@ package com.shouldis.bitset.parallel;
 import java.util.function.IntConsumer;
 
 import com.shouldis.bitset.BitSet;
+import com.shouldis.bitset.random.XOrShift;
 
 /**
- * Implementation of {@link DensityBiterator} that creates a stream of indices
- * that represents which bits will be <i>live</i> after performing a
+ * Implementation of {@link Biterator} that creates a stream of indices that
+ * represents which bits will be <i>live</i> after performing a
  * {@link #bitwiseFunction(long, long)} between the words of 2 {@link BitSet}s
  * at the same word index. The three main operations: {@link And}, {@link Or},
  * and {@link XOr} are provided by this class.
  * 
  * @author Aaron Shouldis
  * @see Biterator
- * @see DensityBiterator
  */
-public abstract class FunctionBiterator extends DensityBiterator {
+public abstract class FunctionBiterator extends Biterator {
 
 	/**
 	 * The first {@link BitSet} that will have its words operated on against those
@@ -48,24 +48,6 @@ public abstract class FunctionBiterator extends DensityBiterator {
 	protected FunctionBiterator(final BitSet set1, final BitSet set2, final int position, final int end) {
 		super(position, end);
 		(this.set1 = set1).compareSize(this.set2 = set2);
-	}
-
-	/**
-	 * Creates a {@link FunctionBiterator} with the specified starting and ending
-	 * position. This {@link FunctionBiterator} will perform bitwise operations on
-	 * the words of the specified {@link BitSet}s. This constructor uses the
-	 * {@link BitSet}s and density of the specified <b>parent</b> and should be used
-	 * when splitting an existing {@link DensityBiterator} with a known density. The
-	 * {@link BitSet}s and density will be derived from <b>parent</b>.
-	 * 
-	 * @param parent   the {@link FunctionBiterator} that this was split from.
-	 * @param position (inclusive) the first index to include.
-	 * @param end      (exclusive) index after the last index to include.
-	 * @throws NullPointerException if <b>parent</b> is null.
-	 */
-	protected FunctionBiterator(FunctionBiterator parent, final int position, final int end) {
-		super(position, end, parent.getDensity());
-		(this.set1 = parent.set1).compareSize(this.set2 = parent.set2);
 	}
 
 	/**
@@ -206,42 +188,17 @@ public abstract class FunctionBiterator extends DensityBiterator {
 			this(set1, set2, 0, set1.size);
 		}
 
-		/**
-		 * Creates a {@link FunctionBiterator.And} that will cover indices of bits
-		 * resulting in the <i>live</i> state within the specified starting and ending
-		 * indices <b>position</b> and <b>end</b> after an {@code AND} operation. This
-		 * constructor uses the {@link BitSet}s and density of the specified
-		 * <b>parent</b> and should be used when splitting an existing
-		 * {@link FunctionBiterator.And} with a known density.
-		 * 
-		 * @param parent   the {@link FunctionBiterator.And} that this instance's
-		 *                 {@link BitSet}s and density will be derived from.
-		 * @param position (inclusive) the first index to include.
-		 * @param end      (exclusive) the index after the last index to include.
-		 * @throws NullPointerException     if <b>parent</b> is null.
-		 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
-		 *                                  to <b>end</b>.
-		 */
-		private And(final FunctionBiterator.And parent, final int position, final int end) {
-			super(parent, position, end);
-		}
-
 		@Override
 		public OfInt trySplit() {
 			if (estimateSize() < THRESHOLD) {
 				return null;
 			}
-			return new FunctionBiterator.And(this, position, position = splitIndex());
+			return new FunctionBiterator.And(set1, set2, position, position = splitIndex());
 		}
 
 		@Override
 		protected long bitwiseFunction(final long word1, final long word2) {
 			return word1 & word2;
-		}
-
-		@Override
-		protected double calculateDensity() {
-			return set1.density(position, end) * set2.density(position, end);
 		}
 
 	}
@@ -294,44 +251,17 @@ public abstract class FunctionBiterator extends DensityBiterator {
 			this(set1, set2, 0, set1.size);
 		}
 
-		/**
-		 * Creates a {@link FunctionBiterator.Or} that will cover indices of bits
-		 * resulting in the <i>live</i> state within the specified starting and ending
-		 * indices <b>position</b> and <b>end</b> after an {@code OR} operation. This
-		 * constructor uses the {@link BitSet}s and density of the specified
-		 * <b>parent</b> and should be used when splitting an existing
-		 * {@link FunctionBiterator.Or} with a known density.
-		 * 
-		 * @param parent   the {@link FunctionBiterator.Or} that this instance's
-		 *                 {@link BitSet}s and density will be derived from.
-		 * @param position (inclusive) the first index to include.
-		 * @param end      (exclusive) the index after the last index to include.
-		 * @throws NullPointerException     if <b>parent</b> is null.
-		 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
-		 *                                  to <b>end</b>.
-		 */
-		private Or(final FunctionBiterator.Or parent, final int position, final int end) {
-			super(parent, position, end);
-		}
-
 		@Override
 		public OfInt trySplit() {
 			if (estimateSize() < THRESHOLD) {
 				return null;
 			}
-			return new FunctionBiterator.Or(this, position, position = splitIndex());
+			return new FunctionBiterator.Or(set1, set2, position, position = splitIndex());
 		}
 
 		@Override
 		protected long bitwiseFunction(final long word1, final long word2) {
 			return word1 | word2;
-		}
-
-		@Override
-		protected double calculateDensity() {
-			final double density1 = set1.density(position, end);
-			final double density2 = set2.density(position, end);
-			return density1 + density2 - (density1 * density2);
 		}
 
 	}
@@ -384,44 +314,17 @@ public abstract class FunctionBiterator extends DensityBiterator {
 			this(set1, set2, 0, set1.size);
 		}
 
-		/**
-		 * Creates a {@link FunctionBiterator.XOr} that will cover indices of bits
-		 * resulting in the <i>live</i> state within the specified starting and ending
-		 * indices <b>position</b> and <b>end</b> after an {@code XOR} operation. This
-		 * constructor uses the {@link BitSet}s and density of the specified
-		 * <b>parent</b> and should be used when splitting an existing
-		 * {@link FunctionBiterator.XOr} with a known density.
-		 * 
-		 * @param parent   the {@link FunctionBiterator.XOr} that this instance's
-		 *                 {@link BitSet}s and density will be derived from.
-		 * @param position (inclusive) the first index to include.
-		 * @param end      (exclusive) the index after the last index to include.
-		 * @throws NullPointerException     if <b>parent</b> is null.
-		 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
-		 *                                  to <b>end</b>.
-		 */
-		private XOr(final FunctionBiterator.XOr parent, final int position, final int end) {
-			super(parent, position, end);
-		}
-
 		@Override
 		public OfInt trySplit() {
 			if (estimateSize() < THRESHOLD) {
 				return null;
 			}
-			return new FunctionBiterator.XOr(this, position, position = splitIndex());
+			return new FunctionBiterator.XOr(set1, set2, position, position = splitIndex());
 		}
 
 		@Override
 		protected long bitwiseFunction(final long word1, final long word2) {
 			return word1 ^ word2;
-		}
-
-		@Override
-		protected double calculateDensity() {
-			final double density1 = set1.density(position, end);
-			final double density2 = set2.density(position, end);
-			return density1 + density2 - (2.0 * density1 * density2);
 		}
 	}
 

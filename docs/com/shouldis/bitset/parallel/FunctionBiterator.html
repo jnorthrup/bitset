@@ -93,9 +93,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="contentContainer">
 <div class="inheritance" title="Inheritance Tree">java.lang.Object
 <div class="inheritance"><a href="Biterator.html" title="class in com.shouldis.bitset.parallel">com.shouldis.bitset.parallel.Biterator</a>
-<div class="inheritance"><a href="DensityBiterator.html" title="class in com.shouldis.bitset.parallel">com.shouldis.bitset.parallel.DensityBiterator</a>
 <div class="inheritance">com.shouldis.bitset.parallel.FunctionBiterator</div>
-</div>
 </div>
 </div>
 <section class="description">
@@ -109,9 +107,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dl>
 <hr>
 <pre>public abstract class <span class="typeNameLabel">FunctionBiterator</span>
-extends <a href="DensityBiterator.html" title="class in com.shouldis.bitset.parallel">DensityBiterator</a></pre>
-<div class="block">Implementation of <a href="DensityBiterator.html" title="class in com.shouldis.bitset.parallel"><code>DensityBiterator</code></a> that creates a stream of indices
- that represents which bits will be <i>live</i> after performing a
+extends <a href="Biterator.html" title="class in com.shouldis.bitset.parallel">Biterator</a></pre>
+<div class="block">Implementation of <a href="Biterator.html" title="class in com.shouldis.bitset.parallel"><code>Biterator</code></a> that creates a stream of indices that
+ represents which bits will be <i>live</i> after performing a
  <a href="#bitwiseFunction(long,long)"><code>bitwiseFunction(long, long)</code></a> between the words of 2 <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
  at the same word index. The three main operations: <a href="FunctionBiterator.And.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator.And</code></a>, <a href="FunctionBiterator.Or.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator.Or</code></a>,
  and <a href="FunctionBiterator.XOr.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator.XOr</code></a> are provided by this class.</div>
@@ -119,8 +117,7 @@ extends <a href="DensityBiterator.html" title="class in com.shouldis.bitset.para
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>Aaron Shouldis</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="Biterator.html" title="class in com.shouldis.bitset.parallel"><code>Biterator</code></a>, 
-<a href="DensityBiterator.html" title="class in com.shouldis.bitset.parallel"><code>DensityBiterator</code></a></dd>
+<dd><a href="Biterator.html" title="class in com.shouldis.bitset.parallel"><code>Biterator</code></a></dd>
 </dl>
 </section>
 <section class="summary">
@@ -255,16 +252,6 @@ int&nbsp;end)</code></th>
  position.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected </code></td>
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.shouldis.bitset.parallel.FunctionBiterator,int,int)">FunctionBiterator</a></span>&#8203;(<a href="FunctionBiterator.html" title="class in com.shouldis.bitset.parallel">FunctionBiterator</a>&nbsp;parent,
-int&nbsp;position,
-int&nbsp;end)</code></th>
-<td class="colLast">
-<div class="block">Creates a <a href="FunctionBiterator.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator</code></a> with the specified starting and ending
- position.</div>
-</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -329,15 +316,10 @@ long&nbsp;word2)</code></th>
 </div>
 </div>
 <div class="inheritedList">
-<h3>Methods inherited from class&nbsp;com.shouldis.bitset.parallel.<a href="DensityBiterator.html" title="class in com.shouldis.bitset.parallel">DensityBiterator</a></h3>
-<a id="methods.inherited.from.class.com.shouldis.bitset.parallel.DensityBiterator">
-<!--   -->
-</a><code><a href="DensityBiterator.html#calculateDensity()">calculateDensity</a>, <a href="DensityBiterator.html#characteristics()">characteristics</a>, <a href="DensityBiterator.html#estimateSize()">estimateSize</a>, <a href="DensityBiterator.html#getDensity()">getDensity</a>, <a href="DensityBiterator.html#updateDensity()">updateDensity</a></code></div>
-<div class="inheritedList">
 <h3>Methods inherited from class&nbsp;com.shouldis.bitset.parallel.<a href="Biterator.html" title="class in com.shouldis.bitset.parallel">Biterator</a></h3>
 <a id="methods.inherited.from.class.com.shouldis.bitset.parallel.Biterator">
 <!--   -->
-</a><code><a href="Biterator.html#middle()">middle</a>, <a href="Biterator.html#nextLiveBit(long,int)">nextLiveBit</a>, <a href="Biterator.html#splitIndex()">splitIndex</a>, <a href="Biterator.html#stream()">stream</a></code></div>
+</a><code><a href="Biterator.html#characteristics()">characteristics</a>, <a href="Biterator.html#estimateSize()">estimateSize</a>, <a href="Biterator.html#middle()">middle</a>, <a href="Biterator.html#nextLiveBit(long,int)">nextLiveBit</a>, <a href="Biterator.html#splitIndex()">splitIndex</a>, <a href="Biterator.html#stream()">stream</a></code></div>
 <div class="inheritedList">
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
 <a id="methods.inherited.from.class.java.lang.Object">
@@ -415,28 +397,6 @@ int&nbsp;end)</span></div>
                                   to <b>end</b>, or the sizes of <b>set1</b>
                                   and <b>set2</b> differ.</dd>
 <dd><code>java.lang.NullPointerException</code> - if <b>set1</b> or <b>set2</b> are null.</dd>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
-<h3><a id="&lt;init&gt;(com.shouldis.bitset.parallel.FunctionBiterator,int,int)">FunctionBiterator</a></h3>
-<div class="memberSignature"><span class="modifiers">protected</span>&nbsp;<span class="memberName">FunctionBiterator</span>&#8203;(<span class="arguments"><a href="FunctionBiterator.html" title="class in com.shouldis.bitset.parallel">FunctionBiterator</a>&nbsp;parent,
-int&nbsp;position,
-int&nbsp;end)</span></div>
-<div class="block">Creates a <a href="FunctionBiterator.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator</code></a> with the specified starting and ending
- position. This <a href="FunctionBiterator.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator</code></a> will perform bitwise operations on
- the words of the specified <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s. This constructor uses the
- <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s and density of the specified <b>parent</b> and should be used
- when splitting an existing <a href="DensityBiterator.html" title="class in com.shouldis.bitset.parallel"><code>DensityBiterator</code></a> with a known density. The
- <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s and density will be derived from <b>parent</b>.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>parent</code> - the <a href="FunctionBiterator.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator</code></a> that this was split from.</dd>
-<dd><code>position</code> - (inclusive) the first index to include.</dd>
-<dd><code>end</code> - (exclusive) index after the last index to include.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.NullPointerException</code> - if <b>parent</b> is null.</dd>
 </dl>
 </section>
 </li>

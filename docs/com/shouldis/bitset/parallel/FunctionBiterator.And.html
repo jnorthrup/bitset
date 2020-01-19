@@ -19,7 +19,7 @@
 <script type="text/javascript" src="../../../../script-dir/jquery-ui.js"></script>
 </head>
 <body class="class-declaration">
-<script type="text/javascript">var data = {"i0":10,"i1":10,"i2":10};
+<script type="text/javascript">var data = {"i0":10,"i1":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -93,10 +93,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="contentContainer">
 <div class="inheritance" title="Inheritance Tree">java.lang.Object
 <div class="inheritance"><a href="Biterator.html" title="class in com.shouldis.bitset.parallel">com.shouldis.bitset.parallel.Biterator</a>
-<div class="inheritance"><a href="DensityBiterator.html" title="class in com.shouldis.bitset.parallel">com.shouldis.bitset.parallel.DensityBiterator</a>
 <div class="inheritance"><a href="FunctionBiterator.html" title="class in com.shouldis.bitset.parallel">com.shouldis.bitset.parallel.FunctionBiterator</a>
 <div class="inheritance">com.shouldis.bitset.parallel.FunctionBiterator.And</div>
-</div>
 </div>
 </div>
 </div>
@@ -176,14 +174,12 @@ extends <a href="FunctionBiterator.html" title="class in com.shouldis.bitset.par
 <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
 <thead>
 <tr>
-<th class="colFirst" scope="col">Modifier</th>
-<th class="colSecond" scope="col">Constructor</th>
+<th class="colFirst" scope="col">Constructor</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>&nbsp;</code></td>
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet)">And</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
 <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2)</code></th>
 <td class="colLast">
@@ -193,20 +189,8 @@ extends <a href="FunctionBiterator.html" title="class in com.shouldis.bitset.par
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>&nbsp;</code></td>
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">And</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
 <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2,
-int&nbsp;position,
-int&nbsp;end)</code></th>
-<td class="colLast">
-<div class="block">Creates a <a href="FunctionBiterator.And.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator.And</code></a> that will cover indices of bits
- resulting in the <i>live</i> state within the specified starting and ending
- indices <b>position</b> and <b>end</b> after an <code>AND</code> operation.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>private </code></td>
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.shouldis.bitset.parallel.FunctionBiterator.And,int,int)">And</a></span>&#8203;(<a href="FunctionBiterator.And.html" title="class in com.shouldis.bitset.parallel">FunctionBiterator.And</a>&nbsp;parent,
 int&nbsp;position,
 int&nbsp;end)</code></th>
 <td class="colLast">
@@ -249,14 +233,6 @@ long&nbsp;word2)</code></th>
 </td>
 </tr>
 <tr class="rowColor" id="i1">
-<td class="colFirst"><code>protected double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#calculateDensity()">calculateDensity</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Calculates an estimation of the density of bits which will be in the
- <i>live</i> state when encountered by this <a href="Biterator.html" title="class in com.shouldis.bitset.parallel"><code>Biterator</code></a>.</div>
-</td>
-</tr>
-<tr class="altColor" id="i2">
 <td class="colFirst"><code>java.util.Spliterator.OfInt</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#trySplit()">trySplit</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
@@ -271,15 +247,10 @@ long&nbsp;word2)</code></th>
 <!--   -->
 </a><code><a href="FunctionBiterator.html#forEachRemaining(java.util.function.IntConsumer)">forEachRemaining</a>, <a href="FunctionBiterator.html#tryAdvance(java.util.function.IntConsumer)">tryAdvance</a></code></div>
 <div class="inheritedList">
-<h3>Methods inherited from class&nbsp;com.shouldis.bitset.parallel.<a href="DensityBiterator.html" title="class in com.shouldis.bitset.parallel">DensityBiterator</a></h3>
-<a id="methods.inherited.from.class.com.shouldis.bitset.parallel.DensityBiterator">
-<!--   -->
-</a><code><a href="DensityBiterator.html#characteristics()">characteristics</a>, <a href="DensityBiterator.html#estimateSize()">estimateSize</a>, <a href="DensityBiterator.html#getDensity()">getDensity</a>, <a href="DensityBiterator.html#updateDensity()">updateDensity</a></code></div>
-<div class="inheritedList">
 <h3>Methods inherited from class&nbsp;com.shouldis.bitset.parallel.<a href="Biterator.html" title="class in com.shouldis.bitset.parallel">Biterator</a></h3>
 <a id="methods.inherited.from.class.com.shouldis.bitset.parallel.Biterator">
 <!--   -->
-</a><code><a href="Biterator.html#middle()">middle</a>, <a href="Biterator.html#nextLiveBit(long,int)">nextLiveBit</a>, <a href="Biterator.html#splitIndex()">splitIndex</a>, <a href="Biterator.html#stream()">stream</a></code></div>
+</a><code><a href="Biterator.html#characteristics()">characteristics</a>, <a href="Biterator.html#estimateSize()">estimateSize</a>, <a href="Biterator.html#middle()">middle</a>, <a href="Biterator.html#nextLiveBit(long,int)">nextLiveBit</a>, <a href="Biterator.html#splitIndex()">splitIndex</a>, <a href="Biterator.html#stream()">stream</a></code></div>
 <div class="inheritedList">
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
 <a id="methods.inherited.from.class.java.lang.Object">
@@ -355,31 +326,6 @@ int&nbsp;end)</span></div>
 </dl>
 </section>
 </li>
-<li class="blockList">
-<section class="detail">
-<h3><a id="&lt;init&gt;(com.shouldis.bitset.parallel.FunctionBiterator.And,int,int)">And</a></h3>
-<div class="memberSignature"><span class="modifiers">private</span>&nbsp;<span class="memberName">And</span>&#8203;(<span class="arguments"><a href="FunctionBiterator.And.html" title="class in com.shouldis.bitset.parallel">FunctionBiterator.And</a>&nbsp;parent,
-int&nbsp;position,
-int&nbsp;end)</span></div>
-<div class="block">Creates a <a href="FunctionBiterator.And.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator.And</code></a> that will cover indices of bits
- resulting in the <i>live</i> state within the specified starting and ending
- indices <b>position</b> and <b>end</b> after an <code>AND</code> operation. This
- constructor uses the <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s and density of the specified
- <b>parent</b> and should be used when splitting an existing
- <a href="FunctionBiterator.And.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator.And</code></a> with a known density.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>parent</code> - the <a href="FunctionBiterator.And.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator.And</code></a> that this instance's
-                 <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s and density will be derived from.</dd>
-<dd><code>position</code> - (inclusive) the first index to include.</dd>
-<dd><code>end</code> - (exclusive) the index after the last index to include.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.NullPointerException</code> - if <b>parent</b> is null.</dd>
-<dd><code>java.lang.IllegalArgumentException</code> - if <b>position</b> is greater than or equal
-                                  to <b>end</b>.</dd>
-</dl>
-</section>
-</li>
 </ul>
 </section>
 </li>
@@ -416,27 +362,6 @@ long&nbsp;word2)</span></div>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the result of the bitwise operation between <b>word1</b> and
          <b>word2</b></dd>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
-<h3><a id="calculateDensity()">calculateDensity</a></h3>
-<div class="memberSignature"><span class="modifiers">protected</span>&nbsp;<span class="returnType">double</span>&nbsp;<span class="memberName">calculateDensity</span>()</div>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="DensityBiterator.html#calculateDensity()">DensityBiterator</a></code></span></div>
-<div class="block">Calculates an estimation of the density of bits which will be in the
- <i>live</i> state when encountered by this <a href="Biterator.html" title="class in com.shouldis.bitset.parallel"><code>Biterator</code></a>. This should
- never be called by client code. This density is cached inside
- <a href="DensityBiterator.html#density"><code>DensityBiterator.density</code></a>, as it is typically an expensive to calculate.
- <a href="DensityBiterator.html#getDensity()"><code>DensityBiterator.getDensity()</code></a> should be used unless calculating and updating the
- density is necessary, in which case <a href="DensityBiterator.html#updateDensity()"><code>DensityBiterator.updateDensity()</code></a> should be used
- to store the new density.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="DensityBiterator.html#calculateDensity()">calculateDensity</a></code>&nbsp;in class&nbsp;<code><a href="DensityBiterator.html" title="class in com.shouldis.bitset.parallel">DensityBiterator</a></code></dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>an estimation of the density of words encountered by this
-         <a href="DensityBiterator.html" title="class in com.shouldis.bitset.parallel"><code>DensityBiterator</code></a>.</dd>
 </dl>
 </section>
 </li>

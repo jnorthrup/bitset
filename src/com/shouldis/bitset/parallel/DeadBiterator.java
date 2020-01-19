@@ -7,15 +7,14 @@ import java.util.function.IntConsumer;
 import com.shouldis.bitset.BitSet;
 
 /**
- * Implementation of {@link DensityBiterator} used to stream the indices of
- * <i>dead</i> bits within a {@link BitSet}, splitting at appropriate indices to
- * manipulate a {@link BitSet} in parallel. Words are cached as they are
- * encountered, so any modifications after iteration begins may not be included.
+ * Implementation of {@link Biterator} used to stream the indices of <i>dead</i>
+ * bits within a {@link BitSet}, splitting at appropriate indices to manipulate
+ * a {@link BitSet} in parallel. Words are cached as they are encountered, so
+ * any modifications after iteration begins may not be included.
  * 
  * @see Biterator
- * @see DensityBiterator
  */
-public class DeadBiterator extends DensityBiterator {
+public class DeadBiterator extends Biterator {
 
 	/**
 	 * The {@link BitSet} that the <i>dead</i> bit indices will be calculated from.
@@ -51,37 +50,12 @@ public class DeadBiterator extends DensityBiterator {
 		this(set, 0, set.size);
 	}
 
-	/**
-	 * Creates a {@link DeadBiterator} that will cover all <i>dead</i> bits within
-	 * the specified starting and ending indices <b>position</b> and <b>end</b>.
-	 * This constructor uses the {@link BitSet} and density of the specified
-	 * <b>parent</b> and should be used when splitting an existing
-	 * {@link DeadBiterator} with a known density.
-	 * 
-	 * @param parent   the {@link DeadBiterator} that this instance's {@link #set}
-	 *                 and density will be derived from.
-	 * @param position (inclusive) the first index to include.
-	 * @param end      (exclusive) the index after the last index to include.
-	 * @throws NullPointerException     if <b>parent</b> is null.
-	 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
-	 *                                  to <b>end</b>.
-	 */
-	private DeadBiterator(DeadBiterator parent, final int position, final int end) {
-		super(position, end, parent.getDensity());
-		this.set = Objects.requireNonNull(parent.set);
-	}
-
-	@Override
-	protected double calculateDensity() {
-		return 1.0 - set.density();
-	}
-
 	@Override
 	public Spliterator.OfInt trySplit() {
 		if (estimateSize() < THRESHOLD) {
 			return null;
 		}
-		return new DeadBiterator(this, position, position = splitIndex());
+		return new DeadBiterator(set, position, position = splitIndex());
 	}
 
 	@Override

@@ -116,31 +116,22 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <td class="colFirst"><code>class&nbsp;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../DeadBiterator.html" title="class in com.shouldis.bitset.parallel">DeadBiterator</a></span></code></th>
 <td class="colLast">
-<div class="block">Implementation of <a href="../DensityBiterator.html" title="class in com.shouldis.bitset.parallel"><code>DensityBiterator</code></a> used to stream the indices of
- <i>dead</i> bits within a <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>, splitting at appropriate indices to
- manipulate a <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
+<div class="block">Implementation of <a href="../Biterator.html" title="class in com.shouldis.bitset.parallel"><code>Biterator</code></a> used to stream the indices of <i>dead</i>
+ bits within a <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>, splitting at appropriate indices to manipulate
+ a <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../DensityBiterator.html" title="class in com.shouldis.bitset.parallel">DensityBiterator</a></span></code></th>
-<td class="colLast">
-<div class="block">Implementation of <a href="../Biterator.html" title="class in com.shouldis.bitset.parallel"><code>Biterator</code></a> used to allow parallel processing when
- the number of live indices is expensive to compute, but the density of them
- can be estimated in order to split efficiently.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../FunctionBiterator.html" title="class in com.shouldis.bitset.parallel">FunctionBiterator</a></span></code></th>
 <td class="colLast">
-<div class="block">Implementation of <a href="../DensityBiterator.html" title="class in com.shouldis.bitset.parallel"><code>DensityBiterator</code></a> that creates a stream of indices
- that represents which bits will be <i>live</i> after performing a
+<div class="block">Implementation of <a href="../Biterator.html" title="class in com.shouldis.bitset.parallel"><code>Biterator</code></a> that creates a stream of indices that
+ represents which bits will be <i>live</i> after performing a
  <a href="../FunctionBiterator.html#bitwiseFunction(long,long)"><code>FunctionBiterator.bitwiseFunction(long, long)</code></a> between the words of 2 <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
  at the same word index.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../FunctionBiterator.And.html" title="class in com.shouldis.bitset.parallel">FunctionBiterator.And</a></span></code></th>
 <td class="colLast">
@@ -149,7 +140,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  splitting at appropriate indices to manipulate a <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../FunctionBiterator.Or.html" title="class in com.shouldis.bitset.parallel">FunctionBiterator.Or</a></span></code></th>
 <td class="colLast">
@@ -158,7 +149,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  splitting at appropriate indices to manipulate a <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../FunctionBiterator.XOr.html" title="class in com.shouldis.bitset.parallel">FunctionBiterator.XOr</a></span></code></th>
 <td class="colLast">
@@ -167,16 +158,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  splitting at appropriate indices to manipulate a <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../LiveBiterator.html" title="class in com.shouldis.bitset.parallel">LiveBiterator</a></span></code></th>
 <td class="colLast">
-<div class="block">Implementation of <a href="../DensityBiterator.html" title="class in com.shouldis.bitset.parallel"><code>DensityBiterator</code></a> used to stream the indices of
- <i>live</i> bits within a <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>, splitting at appropriate indices to
- manipulate a <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
+<div class="block">Implementation of <a href="../Biterator.html" title="class in com.shouldis.bitset.parallel"><code>Biterator</code></a> used to stream the indices of <i>live</i>
+ bits within a <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>, splitting at appropriate indices to manipulate
+ a <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../RangeBiterator.html" title="class in com.shouldis.bitset.parallel">RangeBiterator</a></span></code></th>
 <td class="colLast">
@@ -185,7 +176,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../SizedBiterator.html" title="class in com.shouldis.bitset.parallel">SizedBiterator</a></span></code></th>
 <td class="colLast">

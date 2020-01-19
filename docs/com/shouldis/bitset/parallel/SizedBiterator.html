@@ -19,7 +19,7 @@
 <script type="text/javascript" src="../../../../script-dir/jquery-ui.js"></script>
 </head>
 <body class="class-declaration">
-<script type="text/javascript">var data = {"i0":10,"i1":10};
+<script type="text/javascript">var data = {"i0":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -205,11 +205,6 @@ int&nbsp;end)</code></th>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#characteristics()">characteristics</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="rowColor" id="i1">
-<td class="colFirst"><code>long</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#estimateSize()">estimateSize</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -218,7 +213,7 @@ int&nbsp;end)</code></th>
 <h3>Methods inherited from class&nbsp;com.shouldis.bitset.parallel.<a href="Biterator.html" title="class in com.shouldis.bitset.parallel">Biterator</a></h3>
 <a id="methods.inherited.from.class.com.shouldis.bitset.parallel.Biterator">
 <!--   -->
-</a><code><a href="Biterator.html#middle()">middle</a>, <a href="Biterator.html#nextLiveBit(long,int)">nextLiveBit</a>, <a href="Biterator.html#splitIndex()">splitIndex</a>, <a href="Biterator.html#stream()">stream</a></code></div>
+</a><code><a href="Biterator.html#estimateSize()">estimateSize</a>, <a href="Biterator.html#middle()">middle</a>, <a href="Biterator.html#nextLiveBit(long,int)">nextLiveBit</a>, <a href="Biterator.html#splitIndex()">splitIndex</a>, <a href="Biterator.html#stream()">stream</a></code></div>
 <div class="inheritedList">
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
 <a id="methods.inherited.from.class.java.lang.Object">
@@ -276,14 +271,14 @@ int&nbsp;end)</span></div>
 <ul class="blockList">
 <li class="blockList">
 <section class="detail">
-<h3><a id="estimateSize()">estimateSize</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">long</span>&nbsp;<span class="memberName">estimateSize</span>()</div>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
 <h3><a id="characteristics()">characteristics</a></h3>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">characteristics</span>()</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>characteristics</code>&nbsp;in interface&nbsp;<code>java.util.Spliterator&lt;java.lang.Integer&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="Biterator.html#characteristics()">characteristics</a></code>&nbsp;in class&nbsp;<code><a href="Biterator.html" title="class in com.shouldis.bitset.parallel">Biterator</a></code></dd>
+</dl>
 </section>
 </li>
 </ul>

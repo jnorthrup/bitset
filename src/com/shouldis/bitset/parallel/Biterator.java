@@ -22,7 +22,6 @@ import com.shouldis.bitset.BitSet;
  * @author Aaron Shouldis
  * @see BitSet
  * @see SizedBiterator
- * @see DensityBiterator
  */
 public abstract class Biterator implements Spliterator.OfInt {
 
@@ -108,6 +107,16 @@ public abstract class Biterator implements Spliterator.OfInt {
 	protected final int nextLiveBit(final long word, final int wordIndex) {
 		final int index = BitSet.multiplySize(wordIndex) + Long.numberOfTrailingZeros(word);
 		return index < end ? index : end;
+	}
+
+	@Override
+	public long estimateSize() {
+		return end - position;
+	}
+
+	@Override
+	public int characteristics() {
+		return DISTINCT | ORDERED | NONNULL | IMMUTABLE;
 	}
 
 }

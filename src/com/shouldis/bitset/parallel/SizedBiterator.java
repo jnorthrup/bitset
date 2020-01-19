@@ -25,11 +25,6 @@ public abstract class SizedBiterator extends Biterator {
 	}
 
 	@Override
-	public long estimateSize() {
-		return end - position;
-	}
-
-	@Override
 	public int characteristics() {
 		return SIZED | SUBSIZED | DISTINCT | ORDERED | NONNULL | IMMUTABLE;
 	}
