@@ -3,7 +3,6 @@ package com.shouldis.bitset.parallel;
 import java.util.function.IntConsumer;
 
 import com.shouldis.bitset.BitSet;
-import com.shouldis.bitset.random.XOrShift;
 
 /**
  * Implementation of {@link Biterator} that creates a stream of indices that
