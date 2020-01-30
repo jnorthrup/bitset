@@ -326,5 +326,193 @@ public abstract class FunctionBiterator extends Biterator {
 			return word1 ^ word2;
 		}
 	}
+	
+	/**
+	 * Implementation of {@link FunctionBiterator} used to stream the indices of
+	 * bits that result in the <i>dead</i> state after the {@code AND} operation,
+	 * splitting at appropriate indices to manipulate a {@link BitSet} in parallel.
+	 * Words are cached as they are encountered, so any modifications after
+	 * iteration begins may not be included.
+	 * 
+	 * @see FunctionBiterator
+	 */
+	public static final class NotAnd extends FunctionBiterator {
+
+		/**
+		 * Creates a {@link FunctionBiterator.NotAnd} that will cover indices of bits
+		 * resulting in the <i>dead</i> state within the specified starting and ending
+		 * indices <b>position</b> and <b>end</b> after an {@code AND} operation.
+		 * 
+		 * @param set1     The first {@link BitSet} that will be operated on against
+		 *                 <b>set2</b>.
+		 * @param set2     The second {@link BitSet} that will be operated on against
+		 *                 <b>set1</b>.
+		 * @param position (inclusive) the first index to include.
+		 * @param end      (exclusive) the index after the last index to include.
+		 * @throws NullPointerException     if <b>set1</b> or <b>set2</b> are null.
+		 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
+		 *                                  to <b>end</b>, or the sizes of <b>set1</b>
+		 *                                  and <b>set2</b> differ.
+		 */
+		public NotAnd(final BitSet set1, final BitSet set2, final int position, final int end) {
+			super(set1, set2, position, end);
+		}
+
+		/**
+		 * Creates a {@link FunctionBiterator.NotAnd} that will cover all indices of bits
+		 * resulting in the <i>dead</i> state within the specified {@link BitSet}s
+		 * <b>set1</b> and <b>set2</b> after an {@code AND} operation.
+		 * 
+		 * @param set1 The first {@link BitSet} that will be operated on against
+		 *             <b>set2</b>.
+		 * @param set2 The second {@link BitSet} that will be operated on against
+		 *             <b>set1</b>.
+		 * @throws NullPointerException     if <b>set1</b> or <b>set2</b> are null.
+		 * @throws IllegalArgumentException if the sizes of <b>set1</b> and <b>set2</b>
+		 *                                  differ.
+		 */
+		public NotAnd(final BitSet set1, final BitSet set2) {
+			this(set1, set2, 0, set1.size);
+		}
+
+		@Override
+		public OfInt trySplit() {
+			if (estimateSize() < THRESHOLD) {
+				return null;
+			}
+			return new FunctionBiterator.NotAnd(set1, set2, position, position = splitIndex());
+		}
+
+		@Override
+		protected long bitwiseFunction(final long word1, final long word2) {
+			return ~(word1 & word2);
+		}
+
+	}
+
+	/**
+	 * Implementation of {@link FunctionBiterator} used to stream the indices of
+	 * bits that result in the <i>dead</i> state after the {@code OR} operation,
+	 * splitting at appropriate indices to manipulate a {@link BitSet} in parallel.
+	 * Words are cached as they are encountered, so any modifications after
+	 * iteration begins are not accounted for.
+	 * 
+	 * @see FunctionBiterator
+	 */
+	public static final class NotOr extends FunctionBiterator {
+
+		/**
+		 * Creates a {@link FunctionBiterator.NotOr} that will cover indices of bits
+		 * resulting in the <i>dead</i> state within the specified starting and ending
+		 * indices <b>position</b> and <b>end</b> after an {@code OR} operation.
+		 * 
+		 * @param set1     The first {@link BitSet} that will be operated on against
+		 *                 <b>set2</b>.
+		 * @param set2     The second {@link BitSet} that will be operated on against
+		 *                 <b>set1</b>.
+		 * @param position (inclusive) the first index to include.
+		 * @param end      (exclusive) the index after the last index to include.
+		 * @throws NullPointerException     if <b>set1</b> or <b>set2</b> are null.
+		 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
+		 *                                  to <b>end</b>, or the sizes of <b>set1</b>
+		 *                                  and <b>set2</b> differ.
+		 */
+		public NotOr(final BitSet set1, final BitSet set2, final int position, final int end) {
+			super(set1, set2, position, end);
+		}
+
+		/**
+		 * Creates a {@link FunctionBiterator.NotOr} that will cover all indices of bits
+		 * resulting in the <i>dead</i> state within the specified {@link BitSet}s
+		 * <b>set1</b> and <b>set2</b> after an {@code OR} operation.
+		 * 
+		 * @param set1 The first {@link BitSet} that will be operated on against
+		 *             <b>set2</b>.
+		 * @param set2 The second {@link BitSet} that will be operated on against
+		 *             <b>set1</b>.
+		 * @throws NullPointerException     if <b>set1</b> or <b>set2</b> are null.
+		 * @throws IllegalArgumentException if the sizes of <b>set1</b> and <b>set2</b>
+		 *                                  differ.
+		 */
+		public NotOr(final BitSet set1, final BitSet set2) {
+			this(set1, set2, 0, set1.size);
+		}
+
+		@Override
+		public OfInt trySplit() {
+			if (estimateSize() < THRESHOLD) {
+				return null;
+			}
+			return new FunctionBiterator.NotOr(set1, set2, position, position = splitIndex());
+		}
+
+		@Override
+		protected long bitwiseFunction(final long word1, final long word2) {
+			return ~(word1 | word2);
+		}
+
+	}
+
+	/**
+	 * Implementation of {@link FunctionBiterator} used to stream the indices of
+	 * bits that result in the <i>dead</i> state after the {@code XOR} operation,
+	 * splitting at appropriate indices to manipulate a {@link BitSet} in parallel.
+	 * Words are cached as they are encountered, so any modifications after
+	 * iteration begins may not be included.
+	 * 
+	 * @see FunctionBiterator
+	 */
+	public static final class NotXOr extends FunctionBiterator {
+
+		/**
+		 * Creates a {@link FunctionBiterator.NotXOr} that will cover indices of bits
+		 * resulting in the <i>dead</i> state within the specified starting and ending
+		 * indices <b>position</b> and <b>end</b> after an {@code XOR} operation.
+		 * 
+		 * @param set1     The first {@link BitSet} that will be operated on against
+		 *                 <b>set2</b>.
+		 * @param set2     The second {@link BitSet} that will be operated on against
+		 *                 <b>set1</b>.
+		 * @param position (inclusive) the first index to include.
+		 * @param end      (exclusive) the index after the last index to include.
+		 * @throws NullPointerException     if <b>set1</b> or <b>set2</b> are null.
+		 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
+		 *                                  to <b>end</b>, or the sizes of <b>set1</b>
+		 *                                  and <b>set2</b> differ.
+		 */
+		public NotXOr(final BitSet set1, final BitSet set2, final int position, final int end) {
+			super(set1, set2, position, end);
+		}
+
+		/**
+		 * Creates a {@link FunctionBiterator.XOr} that will cover all indices of bits
+		 * resulting in the <i>dead</i> state within the specified {@link BitSet}s
+		 * <b>set1</b> and <b>set2</b> after an {@code XOR} operation.
+		 * 
+		 * @param set1 The first {@link BitSet} that will be operated on against
+		 *             <b>set2</b>.
+		 * @param set2 The second {@link BitSet} that will be operated on against
+		 *             <b>set1</b>.
+		 * @throws NullPointerException     if <b>set1</b> or <b>set2</b> are null.
+		 * @throws IllegalArgumentException if the sizes of <b>set1</b> and <b>set2</b>
+		 *                                  differ.
+		 */
+		public NotXOr(final BitSet set1, final BitSet set2) {
+			this(set1, set2, 0, set1.size);
+		}
+
+		@Override
+		public OfInt trySplit() {
+			if (estimateSize() < THRESHOLD) {
+				return null;
+			}
+			return new FunctionBiterator.NotXOr(set1, set2, position, position = splitIndex());
+		}
+
+		@Override
+		protected long bitwiseFunction(final long word1, final long word2) {
+			return ~(word1 ^ word2);
+		}
+	}
 
 }
