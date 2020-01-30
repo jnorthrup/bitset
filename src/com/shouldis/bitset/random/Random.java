@@ -27,8 +27,7 @@ public class Random {
 
 	/**
 	 * Atomic value used to ensure that seeds generated at similar times are
-	 * sufficiently different. This value is changed each time a seed is generated
-	 * and consumed.
+	 * different. This value is changed each time a seed is generated and consumed.
 	 **/
 	private static final AtomicLong SEED_ENTROPY = new AtomicLong(MAGIC_NUMBER);
 

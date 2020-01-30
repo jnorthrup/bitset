@@ -38,13 +38,13 @@ package com.shouldis.bitset.random;
  * uniformly-distributed field of bits, and when a <i>dead</i> bit is
  * encountered, an {@code AND} operation is performed.
  * <p>
- * The underlying pseudo-random number generator {@link Random} has a period
- * of 2<sup>64</sup> -1. This generator consumes multiple elements of that
- * sequence with each call to {@link #nextInt()}, {@link #nextLong()}, and every
- * 64th call to {@link #nextBoolean()}. As a side-effect of consuming multiple
+ * The underlying pseudo-random number generator {@link Random} has a period of
+ * 2<sup>64</sup> -1. This generator consumes multiple elements of that sequence
+ * with each call to {@link #nextInt()}, {@link #nextLong()}, and every 64th
+ * call to {@link #nextBoolean()}. As a side-effect of consuming multiple
  * elements of the sequence with each call, it is possible to reduce the period
  * of the sequence by a factor of {@link #depth} if it is a divisor of
- * 2<sup>64</sup> -1 such as 3, 5, 15, 17, 51.
+ * 2<sup>64</sup> -1 such as 3, 5, 15, 17 or 51.
  * 
  * @author Aaron Shouldis
  * @see Random
@@ -89,15 +89,15 @@ public class DensityRandom extends Random {
 	private int bitsConsumed;
 
 	/**
-	 * Generates a {@link DensityRandom} with the specified <b>density</b>,
-	 * <b>depth</b>, and <b>seed</b>. <b>density</b> will be bounded by
-	 * {@link #boundDensity(double, int)} to ensure it is always a valid percentage.
-	 * <b>depth</b> will be bounded by {@link #boundDepth(int)} to ensure it is with
-	 * in the range [1, 63].
+	 * Creates an instance of {@link DensityRandom} with the specified
+	 * <b>density</b>, <b>depth</b>, and <b>seed</b>. <b>density</b> will be bounded
+	 * by {@link #boundDensity(double, int)} to ensure it is always a valid
+	 * percentage. <b>depth</b> will be bounded by {@link #boundDepth(int)} to
+	 * ensure it is with in the range [1, 63].
 	 * <p>
 	 * {@link #nextInt()}, {@link #nextLong()}, and {@link #nextBoolean()} of this
-	 * {@link DensityRandom} will generate <i>live</i> bits at a rate determined
-	 * by <b>density</b>. <b>depth</b> number of random number generation operations
+	 * {@link DensityRandom} will generate <i>live</i> bits at a rate determined by
+	 * <b>density</b>. <b>depth</b> number of random number generation operations
 	 * will be performed to derive a word of that desired <b>density</b>.
 	 * 
 	 * @param density the ratio of <i>live</i> bits to <i>dead</i> bits to be
@@ -114,21 +114,21 @@ public class DensityRandom extends Random {
 		long numerator = Math.round(density / powerInverse(depth));
 		int reductions = Long.numberOfTrailingZeros(numerator);
 		numerator >>>= reductions;
-		this.depth = depth -= reductions;
-		this.density = numerator * powerInverse(depth);
 		sequence = numerator >>> 1;
+		this.depth = depth - reductions;
+		this.density = numerator * powerInverse(this.depth);
 	}
 
 	/**
-	 * Generates a {@link DensityRandom} with the specified <b>density</b> and
-	 * <b>depth</b>. <b>density</b> will be bounded by
+	 * Creates an instance of {@link DensityRandom} with the specified
+	 * <b>density</b> and <b>depth</b>. <b>density</b> will be bounded by
 	 * {@link #boundDensity(double, int)} to ensure it is always a valid percentage.
 	 * <b>depth</b> will be bounded by {@link #boundDepth(int)} to ensure it is with
 	 * in the range [1, 63].
 	 * <p>
 	 * {@link #nextInt()}, {@link #nextLong()}, and {@link #nextBoolean()} of this
-	 * {@link DensityRandom} will generate <i>live</i> bits at a rate determined
-	 * by <b>density</b>. <b>depth</b> number of random number generation operations
+	 * {@link DensityRandom} will generate <i>live</i> bits at a rate determined by
+	 * <b>density</b>. <b>depth</b> number of random number generation operations
 	 * will be performed to derive a word of that desired <b>density</b>.
 	 * 
 	 * @param density the ratio of <i>live</i> bits to <i>dead</i> bits to be
@@ -141,16 +141,16 @@ public class DensityRandom extends Random {
 	}
 
 	/**
-	 * Generates a {@link DensityRandom} with the specified <b>density</b>,
-	 * <b>tolerance</b>, and <b>seed</b>. <b>density</b> will be bounded by
-	 * {@link #boundDensity(double, int)} to ensure it is always a valid percentage.
-	 * <b>tolerance</b> will be used to compute a {@link #depth}, which will then be
-	 * bounded by {@link #boundDepth(int)} to ensure it is with in the range [1,
-	 * 63].
+	 * Creates an instance of {@link DensityRandom} with the specified
+	 * <b>density</b>, <b>tolerance</b>, and <b>seed</b>. <b>density</b> will be
+	 * bounded by {@link #boundDensity(double, int)} to ensure it is always a valid
+	 * percentage. <b>tolerance</b> will be used to compute a {@link #depth}, which
+	 * will then be bounded by {@link #boundDepth(int)} to ensure it is with in the
+	 * range [1, 63].
 	 * <p>
 	 * {@link #nextInt()}, {@link #nextLong()}, and {@link #nextBoolean()} of this
-	 * {@link DensityRandom} will generate <i>live</i> bits at a rate determined
-	 * by <b>density</b>. <b>depth</b> number of random number generation operations
+	 * {@link DensityRandom} will generate <i>live</i> bits at a rate determined by
+	 * <b>density</b>. <b>depth</b> number of random number generation operations
 	 * will be performed to derive a word of that desired <b>density</b>.
 	 * 
 	 * @param density   the ratio of <i>live</i> bits to <i>dead</i> bits to be
@@ -166,21 +166,21 @@ public class DensityRandom extends Random {
 	}
 
 	/**
-	 * Generates a {@link DensityRandom} with the specified <b>density</b> and
-	 * <b>tolerance</b>. <b>density</b> will be bounded by
+	 * Creates an instance of {@link DensityRandom} with the specified
+	 * <b>density</b> and <b>tolerance</b>. <b>density</b> will be bounded by
 	 * {@link #boundDensity(double, int)} to ensure it is always a valid percentage.
 	 * <b>tolerance</b> will be used to compute a {@link #depth}, which will then be
 	 * bounded by {@link #boundDepth(int)} to ensure it is with in the range [1,
 	 * 63].
 	 * <p>
 	 * {@link #nextInt()}, {@link #nextLong()}, and {@link #nextBoolean()} of this
-	 * {@link DensityRandom} will generate <i>live</i> bits at a rate determined
-	 * by <b>density</b>. <b>depth</b> number of random number generation operations
+	 * {@link DensityRandom} will generate <i>live</i> bits at a rate determined by
+	 * <b>density</b>. <b>depth</b> number of random number generation operations
 	 * will be performed to derive a word of that desired <b>density</b>.
 	 * 
 	 * @param density   the ratio of <i>live</i> bits to <i>dead</i> bits to be
 	 *                  produced.
-	 * @param tolerance a percentage used to describe the distance that is
+	 * @param tolerance a percentage used to describe the maximum distance that is
 	 *                  acceptable to have between <b>density</b>, and the value it
 	 *                  is estimated to.
 	 */

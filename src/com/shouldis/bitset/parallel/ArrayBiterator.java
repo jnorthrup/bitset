@@ -10,7 +10,7 @@ import com.shouldis.bitset.BitSet;
  * Implementation of {@link SizedBiterator} used to stream all values within a
  * specified integer array representing indices in an order appropriate to
  * manipulate a {@link BitSet} in parallel. The contents of the supplied arrays
- * must be sorted in ascending order; behavior is undefined otherwise.
+ * must be distinct, and sorted in ascending order; behavior is undefined otherwise.
  * 
  * @see SizedBiterator
  */
