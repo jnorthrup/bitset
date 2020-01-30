@@ -12,11 +12,11 @@ BitSet implementation focusing on performance.
 ### ConcurrentBitSet
 BitSet implementation that can be safely operated upon by any number of threads without external synchronization.
 
-### XOrShift
+### Random
 Implementation of the XOrShift64 pseudo-random number generation algorithm providing means to randomize BitSets efficiently.
 
-### DensityXOrShift
-Variant of XOrShift whose generated bits have a specified chance of being in the *live* state, or "density".
+### DensityRandom
+Variant of Random whose generated bits have a specified chance of being in the *live* state, or "density".
 
 ### Biterator
 Means of reducing ranges of indices into portions that can be safely operated upon in parallel.
