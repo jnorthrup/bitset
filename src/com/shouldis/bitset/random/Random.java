@@ -12,13 +12,13 @@ import com.shouldis.bitset.ConcurrentBitSet;
  * <p>
  * This class can be used to generate and randomize {@link BitSet}s, such that
  * each bit has equal chance of being in the <i>live</i> or <i>dead</i> state.
- * {@link DensityXOrShift} can be used to generate bits efficiently with a
+ * {@link DensityRandom} can be used to generate bits efficiently with a
  * non-uniform chance of being in the <i>live</i> or <i>dead</i> state.
  * 
  * @author Aaron Shouldis
- * @see DensityXOrShift
+ * @see DensityRandom
  */
-public class XOrShift {
+public class Random {
 
 	/**
 	 * Magic number value used to generate and randomize seeds.
@@ -38,22 +38,22 @@ public class XOrShift {
 	private long state;
 
 	/**
-	 * Creates an instance of {@link XOrShift} initialized by the specified
+	 * Creates an instance of {@link Random} initialized by the specified
 	 * <b>seed</b> such that generators with the same seed produce the same
 	 * sequence. The effect of this is described by {@link #setSeed(long)}.
 	 * 
 	 * @param seed the value used to initialize the state of this generator.
 	 */
-	public XOrShift(final long seed) {
+	public Random(final long seed) {
 		setSeed(seed);
 	}
 
 	/**
-	 * Creates an instance of {@link XOrShift} with a randomly generated seed. This
+	 * Creates an instance of {@link Random} with a randomly generated seed. This
 	 * seed will be drawn from the current value of {@link #MAGIC_NUMBER} and
 	 * {@link System#nanoTime()}.
 	 */
-	public XOrShift() {
+	public Random() {
 		this(generateSeed());
 	}
 
@@ -241,7 +241,7 @@ public class XOrShift {
 	 * Changes the seed of this random number generator. If the specified
 	 * <b>seed</b> is 0, then a random seed with be generated and used instead.
 	 * 
-	 * @param seed the seed used to change to state of this {@link XOrShift}.
+	 * @param seed the seed used to change to state of this {@link Random}.
 	 */
 	public final void setSeed(long seed) {
 		if (seed == 0L) {
