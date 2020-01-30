@@ -9,7 +9,7 @@ import com.shouldis.bitset.BitSet;
  * represents which bits will be <i>live</i> after performing a
  * {@link #bitwiseFunction(long, long)} between the words of 2 {@link BitSet}s
  * at the same word index. The three main operations: {@link And}, {@link Or},
- * and {@link XOr} are provided by this class.
+ * and {@link XOr} are provided by this class, as well as their inversions.
  * 
  * @author Aaron Shouldis
  * @see Biterator
