@@ -428,15 +428,14 @@ public class BitSet {
 	}
 
 	/**
-	 * Changes the long word at <b>wordIndex</b> within {@link #words} to the
-	 * inversion of an {@code AND} operation between the current value at the
-	 * specified <b>wordIndex</b> within {@link #words} and the specified
-	 * <b>mask</b>.
+	 * Changes the long word at <b>wordIndex</b> within {@link #words} to the result
+	 * of a {@code NOT AND} operation between the current value at the specified
+	 * <b>wordIndex</b> within {@link #words} and the specified <b>mask</b>.
 	 * 
-	 * @param wordIndex the index within {@link #words} to perform the {@code AND}
-	 *                  operation upon.
-	 * @param mask      the mask to use in the {@code AND} operation on the current
-	 *                  value at the specified <b>wordIndex</b>.
+	 * @param wordIndex the index within {@link #words} to perform the
+	 *                  {@code NOT AND} operation upon.
+	 * @param mask      the mask to use in the {@code NOT AND} operation on the
+	 *                  current value at the specified <b>wordIndex</b>.
 	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
 	 *                                        range 0 to ceiling({@link #size} /
 	 *                                        64).
@@ -446,15 +445,14 @@ public class BitSet {
 	}
 
 	/**
-	 * Changes the long word at <b>wordIndex</b> within {@link #words} to the
-	 * inversion of an {@code OR} operation between the current value at the
-	 * specified <b>wordIndex</b> within {@link #words} and the specified
-	 * <b>mask</b>.
+	 * Changes the long word at <b>wordIndex</b> within {@link #words} to the result
+	 * of a {@code NOT OR} operation between the current value at the specified
+	 * <b>wordIndex</b> within {@link #words} and the specified <b>mask</b>.
 	 * 
-	 * @param wordIndex the index within {@link #words} to perform the {@code OR}
-	 *                  operation upon.
-	 * @param mask      the mask to use in the {@code OR} operation on the current
-	 *                  value at the specified <b>wordIndex</b>.
+	 * @param wordIndex the index within {@link #words} to perform the
+	 *                  {@code NOT OR} operation upon.
+	 * @param mask      the mask to use in the {@code NOT OR} operation on the
+	 *                  current value at the specified <b>wordIndex</b>.
 	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
 	 *                                        range 0 to ceiling({@link #size} /
 	 *                                        64).
@@ -464,15 +462,14 @@ public class BitSet {
 	}
 
 	/**
-	 * Changes the long word at <b>wordIndex</b> within {@link #words} to the
-	 * inversion of an {@code XOR} operation between the current value at the
-	 * specified <b>wordIndex</b> within {@link #words} and the specified
-	 * <b>mask</b>.
+	 * Changes the long word at <b>wordIndex</b> within {@link #words} to the result
+	 * of a {@code NOT XOR} operation between the current value at the specified
+	 * <b>wordIndex</b> within {@link #words} and the specified <b>mask</b>.
 	 * 
-	 * @param wordIndex the index within {@link #words} to perform the {@code XOR}
-	 *                  operation upon.
-	 * @param mask      the mask to use in the {@code XOR} operation on the current
-	 *                  value at the specified <b>wordIndex</b>.
+	 * @param wordIndex the index within {@link #words} to perform the
+	 *                  {@code NOT XOR} operation upon.
+	 * @param mask      the mask to use in the {@code NOT XOR} operation on the
+	 *                  current value at the specified <b>wordIndex</b>.
 	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
 	 *                                        range 0 to ceiling({@link #size} /
 	 *                                        64).

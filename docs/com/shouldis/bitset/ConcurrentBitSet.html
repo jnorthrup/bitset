@@ -254,10 +254,9 @@ long&nbsp;mask)</code></th>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#notAndWord(int,long)">notAndWord</a></span>&#8203;(int&nbsp;wordIndex,
 long&nbsp;mask)</code></th>
 <td class="colLast">
-<div class="block">Changes the long word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> to the
- inversion of an <code>AND</code> operation between the current value at the
- specified <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> and the specified
- <b>mask</b>.</div>
+<div class="block">Changes the long word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> to the result
+ of a <code>NOT AND</code> operation between the current value at the specified
+ <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> and the specified <b>mask</b>.</div>
 </td>
 </tr>
 <tr class="altColor" id="i6">
@@ -265,10 +264,9 @@ long&nbsp;mask)</code></th>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#notOrWord(int,long)">notOrWord</a></span>&#8203;(int&nbsp;wordIndex,
 long&nbsp;mask)</code></th>
 <td class="colLast">
-<div class="block">Changes the long word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> to the
- inversion of an <code>OR</code> operation between the current value at the
- specified <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> and the specified
- <b>mask</b>.</div>
+<div class="block">Changes the long word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> to the result
+ of a <code>NOT OR</code> operation between the current value at the specified
+ <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> and the specified <b>mask</b>.</div>
 </td>
 </tr>
 <tr class="rowColor" id="i7">
@@ -276,10 +274,9 @@ long&nbsp;mask)</code></th>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#notXOrWord(int,long)">notXOrWord</a></span>&#8203;(int&nbsp;wordIndex,
 long&nbsp;mask)</code></th>
 <td class="colLast">
-<div class="block">Changes the long word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> to the
- inversion of an <code>XOR</code> operation between the current value at the
- specified <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> and the specified
- <b>mask</b>.</div>
+<div class="block">Changes the long word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> to the result
+ of a <code>NOT XOR</code> operation between the current value at the specified
+ <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> and the specified <b>mask</b>.</div>
 </td>
 </tr>
 <tr class="altColor" id="i8">
@@ -579,18 +576,17 @@ long&nbsp;mask)</span></div>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">notAndWord</span>&#8203;(<span class="arguments">int&nbsp;wordIndex,
 long&nbsp;mask)</span></div>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="BitSet.html#notAndWord(int,long)">BitSet</a></code></span></div>
-<div class="block">Changes the long word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> to the
- inversion of an <code>AND</code> operation between the current value at the
- specified <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> and the specified
- <b>mask</b>.</div>
+<div class="block">Changes the long word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> to the result
+ of a <code>NOT AND</code> operation between the current value at the specified
+ <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> and the specified <b>mask</b>.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="BitSet.html#notAndWord(int,long)">notAndWord</a></code>&nbsp;in class&nbsp;<code><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>wordIndex</code> - the index within <a href="BitSet.html#words"><code>BitSet.words</code></a> to perform the <code>AND</code>
-                  operation upon.</dd>
-<dd><code>mask</code> - the mask to use in the <code>AND</code> operation on the current
-                  value at the specified <b>wordIndex</b>.</dd>
+<dd><code>wordIndex</code> - the index within <a href="BitSet.html#words"><code>BitSet.words</code></a> to perform the
+                  <code>NOT AND</code> operation upon.</dd>
+<dd><code>mask</code> - the mask to use in the <code>NOT AND</code> operation on the
+                  current value at the specified <b>wordIndex</b>.</dd>
 </dl>
 </section>
 </li>
@@ -600,18 +596,17 @@ long&nbsp;mask)</span></div>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">notOrWord</span>&#8203;(<span class="arguments">int&nbsp;wordIndex,
 long&nbsp;mask)</span></div>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="BitSet.html#notOrWord(int,long)">BitSet</a></code></span></div>
-<div class="block">Changes the long word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> to the
- inversion of an <code>OR</code> operation between the current value at the
- specified <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> and the specified
- <b>mask</b>.</div>
+<div class="block">Changes the long word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> to the result
+ of a <code>NOT OR</code> operation between the current value at the specified
+ <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> and the specified <b>mask</b>.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="BitSet.html#notOrWord(int,long)">notOrWord</a></code>&nbsp;in class&nbsp;<code><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>wordIndex</code> - the index within <a href="BitSet.html#words"><code>BitSet.words</code></a> to perform the <code>OR</code>
-                  operation upon.</dd>
-<dd><code>mask</code> - the mask to use in the <code>OR</code> operation on the current
-                  value at the specified <b>wordIndex</b>.</dd>
+<dd><code>wordIndex</code> - the index within <a href="BitSet.html#words"><code>BitSet.words</code></a> to perform the
+                  <code>NOT OR</code> operation upon.</dd>
+<dd><code>mask</code> - the mask to use in the <code>NOT OR</code> operation on the
+                  current value at the specified <b>wordIndex</b>.</dd>
 </dl>
 </section>
 </li>
@@ -621,18 +616,17 @@ long&nbsp;mask)</span></div>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">notXOrWord</span>&#8203;(<span class="arguments">int&nbsp;wordIndex,
 long&nbsp;mask)</span></div>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="BitSet.html#notXOrWord(int,long)">BitSet</a></code></span></div>
-<div class="block">Changes the long word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> to the
- inversion of an <code>XOR</code> operation between the current value at the
- specified <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> and the specified
- <b>mask</b>.</div>
+<div class="block">Changes the long word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> to the result
+ of a <code>NOT XOR</code> operation between the current value at the specified
+ <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> and the specified <b>mask</b>.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="BitSet.html#notXOrWord(int,long)">notXOrWord</a></code>&nbsp;in class&nbsp;<code><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>wordIndex</code> - the index within <a href="BitSet.html#words"><code>BitSet.words</code></a> to perform the <code>XOR</code>
-                  operation upon.</dd>
-<dd><code>mask</code> - the mask to use in the <code>XOR</code> operation on the current
-                  value at the specified <b>wordIndex</b>.</dd>
+<dd><code>wordIndex</code> - the index within <a href="BitSet.html#words"><code>BitSet.words</code></a> to perform the
+                  <code>NOT XOR</code> operation upon.</dd>
+<dd><code>mask</code> - the mask to use in the <code>NOT XOR</code> operation on the
+                  current value at the specified <b>wordIndex</b>.</dd>
 </dl>
 </section>
 </li>

@@ -533,10 +533,9 @@ int&nbsp;wordIndex)</code></th>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#notAndWord(int,long)">notAndWord</a></span>&#8203;(int&nbsp;wordIndex,
 long&nbsp;mask)</code></th>
 <td class="colLast">
-<div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the
- inversion of an <code>AND</code> operation between the current value at the
- specified <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified
- <b>mask</b>.</div>
+<div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the result
+ of a <code>NOT AND</code> operation between the current value at the specified
+ <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified <b>mask</b>.</div>
 </td>
 </tr>
 <tr class="altColor" id="i36">
@@ -552,10 +551,9 @@ long&nbsp;mask)</code></th>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#notOrWord(int,long)">notOrWord</a></span>&#8203;(int&nbsp;wordIndex,
 long&nbsp;mask)</code></th>
 <td class="colLast">
-<div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the
- inversion of an <code>OR</code> operation between the current value at the
- specified <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified
- <b>mask</b>.</div>
+<div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the result
+ of a <code>NOT OR</code> operation between the current value at the specified
+ <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified <b>mask</b>.</div>
 </td>
 </tr>
 <tr class="altColor" id="i38">
@@ -571,10 +569,9 @@ long&nbsp;mask)</code></th>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#notXOrWord(int,long)">notXOrWord</a></span>&#8203;(int&nbsp;wordIndex,
 long&nbsp;mask)</code></th>
 <td class="colLast">
-<div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the
- inversion of an <code>XOR</code> operation between the current value at the
- specified <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified
- <b>mask</b>.</div>
+<div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the result
+ of a <code>NOT XOR</code> operation between the current value at the specified
+ <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified <b>mask</b>.</div>
 </td>
 </tr>
 <tr class="altColor" id="i40">
@@ -1175,16 +1172,15 @@ long&nbsp;mask)</span></div>
 <h3><a id="notAndWord(int,long)">notAndWord</a></h3>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">notAndWord</span>&#8203;(<span class="arguments">int&nbsp;wordIndex,
 long&nbsp;mask)</span></div>
-<div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the
- inversion of an <code>AND</code> operation between the current value at the
- specified <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified
- <b>mask</b>.</div>
+<div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the result
+ of a <code>NOT AND</code> operation between the current value at the specified
+ <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified <b>mask</b>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>wordIndex</code> - the index within <a href="#words"><code>words</code></a> to perform the <code>AND</code>
-                  operation upon.</dd>
-<dd><code>mask</code> - the mask to use in the <code>AND</code> operation on the current
-                  value at the specified <b>wordIndex</b>.</dd>
+<dd><code>wordIndex</code> - the index within <a href="#words"><code>words</code></a> to perform the
+                  <code>NOT AND</code> operation upon.</dd>
+<dd><code>mask</code> - the mask to use in the <code>NOT AND</code> operation on the
+                  current value at the specified <b>wordIndex</b>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
                                         range 0 to ceiling(<a href="#size"><code>size</code></a> /
@@ -1197,16 +1193,15 @@ long&nbsp;mask)</span></div>
 <h3><a id="notOrWord(int,long)">notOrWord</a></h3>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">notOrWord</span>&#8203;(<span class="arguments">int&nbsp;wordIndex,
 long&nbsp;mask)</span></div>
-<div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the
- inversion of an <code>OR</code> operation between the current value at the
- specified <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified
- <b>mask</b>.</div>
+<div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the result
+ of a <code>NOT OR</code> operation between the current value at the specified
+ <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified <b>mask</b>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>wordIndex</code> - the index within <a href="#words"><code>words</code></a> to perform the <code>OR</code>
-                  operation upon.</dd>
-<dd><code>mask</code> - the mask to use in the <code>OR</code> operation on the current
-                  value at the specified <b>wordIndex</b>.</dd>
+<dd><code>wordIndex</code> - the index within <a href="#words"><code>words</code></a> to perform the
+                  <code>NOT OR</code> operation upon.</dd>
+<dd><code>mask</code> - the mask to use in the <code>NOT OR</code> operation on the
+                  current value at the specified <b>wordIndex</b>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
                                         range 0 to ceiling(<a href="#size"><code>size</code></a> /
@@ -1219,16 +1214,15 @@ long&nbsp;mask)</span></div>
 <h3><a id="notXOrWord(int,long)">notXOrWord</a></h3>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">notXOrWord</span>&#8203;(<span class="arguments">int&nbsp;wordIndex,
 long&nbsp;mask)</span></div>
-<div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the
- inversion of an <code>XOR</code> operation between the current value at the
- specified <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified
- <b>mask</b>.</div>
+<div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the result
+ of a <code>NOT XOR</code> operation between the current value at the specified
+ <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified <b>mask</b>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>wordIndex</code> - the index within <a href="#words"><code>words</code></a> to perform the <code>XOR</code>
-                  operation upon.</dd>
-<dd><code>mask</code> - the mask to use in the <code>XOR</code> operation on the current
-                  value at the specified <b>wordIndex</b>.</dd>
+<dd><code>wordIndex</code> - the index within <a href="#words"><code>words</code></a> to perform the
+                  <code>NOT XOR</code> operation upon.</dd>
+<dd><code>mask</code> - the mask to use in the <code>NOT XOR</code> operation on the
+                  current value at the specified <b>wordIndex</b>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
                                         range 0 to ceiling(<a href="#size"><code>size</code></a> /
