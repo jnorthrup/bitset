@@ -429,6 +429,60 @@ public class BitSet {
 
 	/**
 	 * Changes the long word at <b>wordIndex</b> within {@link #words} to the
+	 * inversion of an {@code AND} operation between the current value at the
+	 * specified <b>wordIndex</b> within {@link #words} and the specified
+	 * <b>mask</b>.
+	 * 
+	 * @param wordIndex the index within {@link #words} to perform the {@code AND}
+	 *                  operation upon.
+	 * @param mask      the mask to use in the {@code AND} operation on the current
+	 *                  value at the specified <b>wordIndex</b>.
+	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
+	 *                                        range 0 to ceiling({@link #size} /
+	 *                                        64).
+	 */
+	public void notAndWord(final int wordIndex, final long mask) {
+		words[wordIndex] = ~(words[wordIndex] & mask);
+	}
+
+	/**
+	 * Changes the long word at <b>wordIndex</b> within {@link #words} to the
+	 * inversion of an {@code OR} operation between the current value at the
+	 * specified <b>wordIndex</b> within {@link #words} and the specified
+	 * <b>mask</b>.
+	 * 
+	 * @param wordIndex the index within {@link #words} to perform the {@code OR}
+	 *                  operation upon.
+	 * @param mask      the mask to use in the {@code OR} operation on the current
+	 *                  value at the specified <b>wordIndex</b>.
+	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
+	 *                                        range 0 to ceiling({@link #size} /
+	 *                                        64).
+	 */
+	public void notOrWord(final int wordIndex, final long mask) {
+		words[wordIndex] = ~(words[wordIndex] | mask);
+	}
+
+	/**
+	 * Changes the long word at <b>wordIndex</b> within {@link #words} to the
+	 * inversion of an {@code XOR} operation between the current value at the
+	 * specified <b>wordIndex</b> within {@link #words} and the specified
+	 * <b>mask</b>.
+	 * 
+	 * @param wordIndex the index within {@link #words} to perform the {@code XOR}
+	 *                  operation upon.
+	 * @param mask      the mask to use in the {@code XOR} operation on the current
+	 *                  value at the specified <b>wordIndex</b>.
+	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
+	 *                                        range 0 to ceiling({@link #size} /
+	 *                                        64).
+	 */
+	public void notXOrWord(final int wordIndex, final long mask) {
+		words[wordIndex] = ~(words[wordIndex] ^ mask);
+	}
+
+	/**
+	 * Changes the long word at <b>wordIndex</b> within {@link #words} to the
 	 * complement of its current state.
 	 * 
 	 * @param wordIndex the index within {@link #words} to perform the toggle
@@ -750,6 +804,57 @@ public class BitSet {
 		compareSize(set);
 		for (int i = 0; i < wordCount; i++) {
 			xorWord(i, set.getWord(i));
+		}
+	}
+
+	/**
+	 * Performs a global {@code NOT AND} operation on all bits in this
+	 * {@link BitSet} with those in the specified {@link BitSet} <b>set</b>.
+	 * 
+	 * @param set the other {@link BitSet} from which to perform the {@code NOT AND}
+	 *            operation.
+	 * @throws IllegalArgumentException if the {@link #size}s of both
+	 *                                  {@link BitSet}s are not equal.
+	 * @throws NullPointerException     if <b>set</b> is null.
+	 */
+	public final void notAnd(final BitSet set) {
+		compareSize(set);
+		for (int i = 0; i < wordCount; i++) {
+			notAndWord(i, set.getWord(i));
+		}
+	}
+
+	/**
+	 * Performs a global {@code NOT OR} operation on all bits in this {@link BitSet}
+	 * with those in the specified {@link BitSet} <b>set</b>.
+	 * 
+	 * @param set the other {@link BitSet} from which to perform the {@code NOT OR}
+	 *            operation.
+	 * @throws IllegalArgumentException if the {@link #size}s of both
+	 *                                  {@link BitSet}s are not equal.
+	 * @throws NullPointerException     if <b>set</b> is null.
+	 */
+	public final void notOr(final BitSet set) {
+		compareSize(set);
+		for (int i = 0; i < wordCount; i++) {
+			notOrWord(i, set.getWord(i));
+		}
+	}
+
+	/**
+	 * Performs a global {@code NOT XOR} operation on all bits in this
+	 * {@link BitSet} with those in the specified {@link BitSet} <b>set</b>.
+	 * 
+	 * @param set the other {@link BitSet} from which to perform the {@code NOT XOR}
+	 *            operation.
+	 * @throws IllegalArgumentException if the {@link #size}s of both
+	 *                                  {@link BitSet}s are not equal.
+	 * @throws NullPointerException     if <b>set</b> is null.
+	 */
+	public final void notXOr(final BitSet set) {
+		compareSize(set);
+		for (int i = 0; i < wordCount; i++) {
+			notXOrWord(i, set.getWord(i));
 		}
 	}
 

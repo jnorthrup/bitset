@@ -89,8 +89,8 @@ public final class ConcurrentBitSet extends BitSet {
 	}
 
 	@Override
-	public void setWordSegment(int wordIndex, long word, long mask) {
-		long newWord, expected;
+	public void setWordSegment(final int wordIndex, final long word, final long mask) {
+		long expected, newWord;
 		do {
 			expected = getWord(wordIndex);
 			newWord = (mask & word) | (~mask & expected);
@@ -113,18 +113,45 @@ public final class ConcurrentBitSet extends BitSet {
 	}
 
 	@Override
-	public void toggleWord(int wordIndex) {
+	public void notAndWord(final int wordIndex, long mask) {
+		long expected, word;
+		do {
+			expected = getWord(wordIndex);
+			word = ~(getWord(wordIndex) & mask);
+		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+	}
+
+	@Override
+	public void notOrWord(final int wordIndex, long mask) {
+		long expected, word;
+		do {
+			expected = getWord(wordIndex);
+			word = ~(getWord(wordIndex) | mask);
+		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+	}
+
+	@Override
+	public void notXOrWord(final int wordIndex, long mask) {
+		long expected, word;
+		do {
+			expected = getWord(wordIndex);
+			word = ~(getWord(wordIndex) ^ mask);
+		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+	}
+
+	@Override
+	public void toggleWord(final int wordIndex) {
 		xorWord(wordIndex, MASK);
 	}
 
 	@Override
-	public void fillWord(int wordIndex) {
+	public void fillWord(final int wordIndex) {
 		setWord(wordIndex, MASK);
 	}
 
 	@Override
-	public void emptyWord(int wordIndex) {
-		setWord(wordIndex, 0);
+	public void emptyWord(final int wordIndex) {
+		setWord(wordIndex, 0L);
 	}
 
 }
