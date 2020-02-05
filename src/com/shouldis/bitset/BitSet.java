@@ -1064,16 +1064,6 @@ public class BitSet {
 		return builder.toString();
 	}
 
-	public static void main(String[] args) {
-		Random random = new Random();
-		BitSet set = random.nextBitSet(Integer.MAX_VALUE);
-		long start = System.nanoTime();
-		set.hashCode();
-		System.out.println(System.nanoTime() - start);
-		System.out.println(set.hashCode());
-		System.out.println(Integer.toBinaryString(set.hashCode()));
-	}
-
 	@Override
 	public int hashCode() {
 		cleanLastWord();
@@ -1093,13 +1083,7 @@ public class BitSet {
 			return true;
 		}
 		boolean equal = obj instanceof BitSet;
-		if (equal) {
-			final BitSet other = (BitSet) obj;
-			cleanLastWord();
-			other.cleanLastWord();
-			equal = Arrays.equals(words, other.words);
-		}
-		return equal;
+		return equal && Arrays.equals(words, ((BitSet) obj).words);
 	}
 
 }
