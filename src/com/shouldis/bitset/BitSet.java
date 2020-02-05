@@ -1013,16 +1013,6 @@ public class BitSet {
 	}
 
 	/**
-	 * Calculates a {@code long} identifier number generated from
-	 * {@link #hashCode()} and {@link #population()}.
-	 * 
-	 * @return the unique identifying code.
-	 */
-	public final long identifier() {
-		return ((long) hashCode() << Integer.SIZE) + population();
-	}
-
-	/**
 	 * Calculates <b>index</b> divided by 64. Equivalent to the index of the word
 	 * corresponding to the specified <b>index</b>.
 	 * 
@@ -1074,10 +1064,24 @@ public class BitSet {
 		return builder.toString();
 	}
 
+	public static void main(String[] args) {
+		Random random = new Random();
+		BitSet set = random.nextBitSet(Integer.MAX_VALUE);
+		long start = System.nanoTime();
+		set.hashCode();
+		System.out.println(System.nanoTime() - start);
+		System.out.println(set.hashCode());
+		System.out.println(Integer.toBinaryString(set.hashCode()));
+	}
+
 	@Override
 	public int hashCode() {
 		cleanLastWord();
-		return size ^ Arrays.hashCode(words);
+		long hash = size;
+		for (int i = 0; i < wordCount; i++) {
+			hash ^= i + getWord(i);
+		}
+		return (int) hash;
 	}
 
 	@Override
