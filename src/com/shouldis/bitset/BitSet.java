@@ -1012,15 +1012,6 @@ public class BitSet {
 		return population() / (double) size;
 	}
 
-	public static void main(String[] args) {
-		BitSet set = new BitSet(Integer.MAX_VALUE);
-		Random random = new Random();
-		set.randomize(random);
-		long start = System.nanoTime();
-		set.identifier();
-		System.out.println(System.nanoTime() - start);
-	}
-
 	/**
 	 * Calculates a {@code long} identifier number which acts as a larger hash code
 	 * with fewer collisions.

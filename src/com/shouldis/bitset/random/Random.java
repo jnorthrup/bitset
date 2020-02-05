@@ -10,10 +10,12 @@ import com.shouldis.bitset.ConcurrentBitSet;
  * algorithm to generate uniform random numbers. This generator has a period of
  * 2<sup>64</sup> -1.
  * <p>
- * This class can be used to generate and randomize {@link BitSet}s, such that
- * each bit has equal chance of being in the <i>live</i> or <i>dead</i> state.
- * {@link DensityRandom} can be used to generate bits efficiently with a
- * non-uniform chance of being in the <i>live</i> or <i>dead</i> state.
+ * In addition to generating random numbers, this class can be used to generate
+ * and randomize {@link BitSet}s, such that each bit has equal chance of being
+ * in the <i>live</i> or <i>dead</i> state. {@link DensityRandom} can be used to
+ * generate bits efficiently with a non-uniform chance of being in the
+ * <i>live</i> or <i>dead</i> state, whereas this implementation randomizes
+ * {@link BitSet}s uniformly.
  * 
  * @author Aaron Shouldis
  * @see DensityRandom

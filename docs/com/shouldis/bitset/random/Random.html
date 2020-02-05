@@ -106,10 +106,12 @@ extends java.lang.Object</pre>
  algorithm to generate uniform random numbers. This generator has a period of
  2<sup>64</sup> -1.
  <p>
- This class can be used to generate and randomize <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s, such that
- each bit has equal chance of being in the <i>live</i> or <i>dead</i> state.
- <a href="DensityRandom.html" title="class in com.shouldis.bitset.random"><code>DensityRandom</code></a> can be used to generate bits efficiently with a
- non-uniform chance of being in the <i>live</i> or <i>dead</i> state.</div>
+ In addition to generating random numbers, this class can be used to generate
+ and randomize <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s, such that each bit has equal chance of being
+ in the <i>live</i> or <i>dead</i> state. <a href="DensityRandom.html" title="class in com.shouldis.bitset.random"><code>DensityRandom</code></a> can be used to
+ generate bits efficiently with a non-uniform chance of being in the
+ <i>live</i> or <i>dead</i> state, whereas this implementation randomizes
+ <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s uniformly.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>Aaron Shouldis</dd>
