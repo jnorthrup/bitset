@@ -33,6 +33,3 @@ Benchmark of the time to stream the indices of all bits in the *live* state. Eas
 
 Benchmark of the time to manipulate the state of each bit individually. Easily parallelized using a **BitSpliterator**. **ConcurrentBitSet** is heavily taxed by the number of write operations. Again, made innately faster than **java.util.BitSet** by avoiding range and invariant checks.  
 ![Manipulating](https://github.com/ashouldis/BitSet/blob/master/benchmark/benchmark_bit.png "\Benchmark_Bit")  
-
-Benchmark of the time to manipulate the state of bits in a range sequentially. Does not benefit from being parallelized, and each implementation operates the same except **ConcurrentBitSet**.  
-![Range Manipulating](https://github.com/ashouldis/BitSet/blob/master/benchmark/benchmark_range.png "\Benchmark_Range")
