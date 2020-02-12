@@ -32,7 +32,6 @@ import com.shouldis.bitset.random.Random;
  * indices are manipulated or read, and in the aggregating functions
  * {@link #population()}, {@link #hashCode()}, etc., any hanging bits will have
  * their effect on those functions made consistent by {@link #cleanLastWord()}.
- * <p>
  * Otherwise, accessing a negative index, or any index greater than or equal to
  * {@link #size} will cause an {@link IndexOutOfBoundsException} to be thrown.
  * 
