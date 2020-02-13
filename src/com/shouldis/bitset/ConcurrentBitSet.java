@@ -117,7 +117,7 @@ public final class ConcurrentBitSet extends BitSet {
 		long expected, word;
 		do {
 			expected = getWord(wordIndex);
-			word = ~(getWord(wordIndex) & mask);
+			word = ~(expected & mask);
 		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
 	}
 
@@ -126,7 +126,7 @@ public final class ConcurrentBitSet extends BitSet {
 		long expected, word;
 		do {
 			expected = getWord(wordIndex);
-			word = ~(getWord(wordIndex) | mask);
+			word = ~(expected | mask);
 		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
 	}
 
@@ -135,7 +135,7 @@ public final class ConcurrentBitSet extends BitSet {
 		long expected, word;
 		do {
 			expected = getWord(wordIndex);
-			word = ~(getWord(wordIndex) ^ mask);
+			word = ~(expected ^ mask);
 		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
 	}
 
