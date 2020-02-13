@@ -113,7 +113,7 @@ public final class ConcurrentBitSet extends BitSet {
 	}
 
 	@Override
-	public void notAndWord(final int wordIndex, long mask) {
+	public void notAndWord(final int wordIndex, final long mask) {
 		long expected, word;
 		do {
 			expected = getWord(wordIndex);
@@ -122,7 +122,7 @@ public final class ConcurrentBitSet extends BitSet {
 	}
 
 	@Override
-	public void notOrWord(final int wordIndex, long mask) {
+	public void notOrWord(final int wordIndex, final long mask) {
 		long expected, word;
 		do {
 			expected = getWord(wordIndex);
@@ -131,7 +131,7 @@ public final class ConcurrentBitSet extends BitSet {
 	}
 
 	@Override
-	public void notXOrWord(final int wordIndex, long mask) {
+	public void notXOrWord(final int wordIndex, final long mask) {
 		long expected, word;
 		do {
 			expected = getWord(wordIndex);
