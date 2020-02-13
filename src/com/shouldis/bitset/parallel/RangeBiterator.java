@@ -10,6 +10,7 @@ import com.shouldis.bitset.BitSet;
  * specified range, splitting at appropriate indices to manipulate a
  * {@link BitSet} in parallel.
  * 
+ * @author Aaron Shouldis
  * @see SizedBiterator
  */
 public final class RangeBiterator extends SizedBiterator {

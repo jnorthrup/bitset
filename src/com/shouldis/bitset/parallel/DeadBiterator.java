@@ -12,6 +12,7 @@ import com.shouldis.bitset.BitSet;
  * a {@link BitSet} in parallel. Words are cached as they are encountered, so
  * any modifications after iteration begins may not be included.
  * 
+ * @author Aaron Shouldis
  * @see Biterator
  */
 public class DeadBiterator extends Biterator {

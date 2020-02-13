@@ -12,6 +12,7 @@ import com.shouldis.bitset.BitSet;
  * manipulate a {@link BitSet} in parallel. The contents of the supplied arrays
  * must be distinct, and sorted in ascending order; behavior is undefined otherwise.
  * 
+ * @author Aaron Shouldis
  * @see SizedBiterator
  */
 public final class ArrayBiterator extends SizedBiterator {
