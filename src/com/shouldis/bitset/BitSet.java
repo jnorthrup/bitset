@@ -488,7 +488,7 @@ public class BitSet {
 	 *                                        64).
 	 */
 	public void toggleWord(final int wordIndex) {
-		setWord(wordIndex, ~getWord(wordIndex));
+		xorWord(wordIndex, MASK);
 	}
 
 	/**

@@ -139,19 +139,4 @@ public final class ConcurrentBitSet extends BitSet {
 		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
 	}
 
-	@Override
-	public void toggleWord(final int wordIndex) {
-		xorWord(wordIndex, MASK);
-	}
-
-	@Override
-	public void fillWord(final int wordIndex) {
-		setWord(wordIndex, MASK);
-	}
-
-	@Override
-	public void emptyWord(final int wordIndex) {
-		setWord(wordIndex, 0L);
-	}
-
 }
