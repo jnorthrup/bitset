@@ -136,7 +136,7 @@ public class Random {
 	 * @return the next randomly generated integer.
 	 */
 	public final int nextPositiveInt() {
-		return (int) (nextRawLong() >>> Integer.SIZE + 1);
+		return (int) (nextRawLong() >>> 33);
 	}
 
 	/**
