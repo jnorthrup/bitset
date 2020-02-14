@@ -1085,9 +1085,10 @@ public class BitSet {
 		cleanLastWord();
 		long hash = size;
 		for (int i = 0; i < wordCount; i++) {
-			hash ^= i + getWord(i);
+			hash *= 31;
+			hash += getWord(i);
 		}
-		return (int) hash;
+		return (int) (hash ^ (hash >>> Integer.SIZE));
 	}
 
 	@Override
