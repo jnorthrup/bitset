@@ -271,4 +271,14 @@ public class Random {
 		return next;
 	}
 
+	/**
+	 * Efficient method of computing 2<sup>-<b>power</b></sup> doubles.
+	 * 
+	 * @param power the desired power of the resulting double.
+	 * @return a double representation of 2<sup>-<b>power</b></sup>.
+	 */
+	public static final double powerInverse(final int power) {
+		return Double.longBitsToDouble((long) (Double.MAX_EXPONENT - power) << 52);
+	}
+
 }
