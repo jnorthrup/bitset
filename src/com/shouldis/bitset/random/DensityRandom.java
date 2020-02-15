@@ -236,7 +236,7 @@ public class DensityRandom extends Random {
 	 * @param power the desired power of the resulting double.
 	 * @return a double representation of 2<sup>-<b>power</b></sup>.
 	 */
-	private static final double powerInverse(final int power) {
+	public static final double powerInverse(final int power) {
 		return Double.longBitsToDouble((long) (Double.MAX_EXPONENT - power) << 52);
 	}
 
