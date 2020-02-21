@@ -274,7 +274,7 @@ public class DensityRandom extends Random {
 	 * @return <b>depth</b> bounded within [1, 63].
 	 */
 	private static final int boundDepth(final int depth) {
-		return Math.min(Math.max(depth, 1), Long.SIZE - 1);
+		return Math.min(Math.max(depth, 1), 63);
 	}
 
 }
