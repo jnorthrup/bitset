@@ -1099,8 +1099,7 @@ public class BitSet {
 		if (obj == this) {
 			return true;
 		}
-		boolean equal = obj instanceof BitSet;
-		return equal && Arrays.equals(words, ((BitSet) obj).words);
+		return obj instanceof BitSet && Arrays.equals(words, ((BitSet) obj).words);
 	}
 
 }
