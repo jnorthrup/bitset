@@ -1013,17 +1013,19 @@ public class BitSet {
 
 	/**
 	 * Calculates a {@code long} identifier number which acts as a larger hash code
-	 * with fewer collisions.
+	 * with fewer collisions, drawing from the hashCode and population.
 	 * 
 	 * @return the unique identifying code.
 	 */
 	public final long identifier() {
 		cleanLastWord();
-		long hash = size;
+		long word, hash = size;
 		int population = 0;
 		for (int i = 0; i < wordCount; i++) {
-			hash ^= i + getWord(i);
-			population += Long.bitCount(getWord(i));
+			word = getWord(i);
+			hash *= 31;
+			hash += word;
+			population += Long.bitCount(word);
 		}
 		return hash ^ population;
 	}
