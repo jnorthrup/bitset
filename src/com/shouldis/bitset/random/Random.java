@@ -254,7 +254,7 @@ public class Random {
 	}
 
 	/**
-	 * Randomly generates a seed using entropy from {@link #SEED_ENTROPY} and the
+	 * Randomly generates a seed using {@link #SEED_ENTROPY} and the
 	 * {@link System#nanoTime()}.
 	 * 
 	 * @return a randomly generated seed.
@@ -262,12 +262,12 @@ public class Random {
 	protected static final long generateSeed() {
 		long current, next;
 		do {
-			current = SEED_ENTROPY.get();
-			next = current * MAGIC_NUMBER;
+			next = current = SEED_ENTROPY.get();
+			do {
+				next ^= System.nanoTime();
+			} while (next == 0L);
+			next *= MAGIC_NUMBER;
 		} while (!SEED_ENTROPY.compareAndSet(current, next));
-		do {
-			next ^= System.nanoTime();
-		} while (next == 0L);
 		return next;
 	}
 
