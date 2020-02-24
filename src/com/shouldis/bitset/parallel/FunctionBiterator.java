@@ -46,7 +46,14 @@ public abstract class FunctionBiterator extends Biterator {
 	 */
 	protected FunctionBiterator(final BitSet set1, final BitSet set2, final int position, final int end) {
 		super(position, end);
-		(this.set1 = set1).compareSize(this.set2 = set2);
+		this.set1 = set1;
+		this.set2 = set2;
+		set1.compareSize(set2);
+		if (end >= set1.size) {
+			final StringBuilder builder = new StringBuilder();
+			builder.append(end).append(" >= ").append(set1.size);
+			throw new IllegalArgumentException(builder.toString());
+		}
 	}
 
 	/**
@@ -326,7 +333,7 @@ public abstract class FunctionBiterator extends Biterator {
 			return word1 ^ word2;
 		}
 	}
-	
+
 	/**
 	 * Implementation of {@link FunctionBiterator} used to stream the indices of
 	 * bits that result in the <i>dead</i> state after the {@code AND} operation,
@@ -359,8 +366,8 @@ public abstract class FunctionBiterator extends Biterator {
 		}
 
 		/**
-		 * Creates a {@link FunctionBiterator.NotAnd} that will cover all indices of bits
-		 * resulting in the <i>dead</i> state within the specified {@link BitSet}s
+		 * Creates a {@link FunctionBiterator.NotAnd} that will cover all indices of
+		 * bits resulting in the <i>dead</i> state within the specified {@link BitSet}s
 		 * <b>set1</b> and <b>set2</b> after an {@code AND} operation.
 		 * 
 		 * @param set1 The first {@link BitSet} that will be operated on against

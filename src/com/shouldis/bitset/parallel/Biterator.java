@@ -31,7 +31,7 @@ public abstract class Biterator implements Spliterator.OfInt {
 	 * words to ensure splitting is worthwhile, and leaves each process with at
 	 * least 1 word to process.
 	 */
-	protected static final int THRESHOLD = Long.SIZE << 2;
+	protected static final int THRESHOLD = Long.SIZE * 4;
 
 	/**
 	 * The next index this {@link Biterator} will produce.
@@ -52,9 +52,16 @@ public abstract class Biterator implements Spliterator.OfInt {
 	 *                                  to <b>end</b>.
 	 */
 	protected Biterator(final int position, final int end) {
-		if ((this.position = position) >= (this.end = end)) {
+		this.position = position;
+		this.end = end;
+		if (position >= end) {
 			final StringBuilder builder = new StringBuilder();
 			builder.append(position).append(" >= ").append(end);
+			throw new IllegalArgumentException(builder.toString());
+		}
+		if (position < 0) {
+			final StringBuilder builder = new StringBuilder();
+			builder.append(position).append(" < 0");
 			throw new IllegalArgumentException(builder.toString());
 		}
 	}
@@ -89,8 +96,8 @@ public abstract class Biterator implements Spliterator.OfInt {
 	 * @return the middle index of this {@link Biterator}.
 	 */
 	protected final int middle() {
-		final int middle = (position >> 1) + (end >> 1);
-		return middle + (((position % 2) + (end % 2)) >> 1);
+		final int middle = (position / 2) + (end / 2);
+		return middle + (((position % 2) + (end % 2)) / 2);
 	}
 
 	/**

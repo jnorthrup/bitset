@@ -86,14 +86,16 @@ public class BitSet {
 	 * @throws IllegalArgumentException if <b>size</b> is less than 0.
 	 */
 	public BitSet(final int size) {
-		int wordCount = divideSize(this.size = size);
+		this.size = size;
+		int wordCount = divideSize(size);
 		if (wordCount >= 0 && modSize(size) > 0) {
 			wordCount++;
 		}
 		if (wordCount < 0) {
 			throw new IllegalArgumentException(Integer.toString(size));
 		}
-		words = new long[this.wordCount = wordCount];
+		this.wordCount = wordCount;
+		words = new long[wordCount];
 	}
 
 	/**
@@ -734,8 +736,8 @@ public class BitSet {
 	 * Creates a parallel-safe {@link IntStream} consisting of the indices of all
 	 * <i>live</i> bits within this {@link BitSet} using {@link LiveBiterator}.
 	 * 
-	 * @return a parallel-safe {@link IntStream} representation of <i>live</i>
-	 *         indices.
+	 * @return a parallel-safe {@link IntStream} representation of the bit indices
+	 *         in the <i>live</i> state.
 	 */
 	public final IntStream live() {
 		return new LiveBiterator(this).stream();
@@ -745,8 +747,8 @@ public class BitSet {
 	 * Creates a parallel-safe {@link IntStream} consisting of the indices of all
 	 * <i>dead</i> bits within this {@link BitSet} using {@link DeadBiterator}.
 	 * 
-	 * @return a parallel-safe {@link IntStream} representation of <i>dead</i>
-	 *         indices.
+	 * @return a parallel-safe {@link IntStream} representation of the bit indices
+	 *         in the <i>dead</i> state.
 	 */
 	public final IntStream dead() {
 		return new DeadBiterator(this).stream();
