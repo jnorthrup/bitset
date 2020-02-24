@@ -420,10 +420,11 @@ int&nbsp;end)</span></div>
 <dd><code>position</code> - (inclusive) the first index to include.</dd>
 <dd><code>end</code> - (exclusive) index after the last index to include.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.NullPointerException</code> - if <b>set1</b> or <b>set2</b> are null.</dd>
 <dd><code>java.lang.IllegalArgumentException</code> - if <b>position</b> is greater than or equal
                                   to <b>end</b>, or the sizes of <b>set1</b>
                                   and <b>set2</b> differ.</dd>
-<dd><code>java.lang.NullPointerException</code> - if <b>set1</b> or <b>set2</b> are null.</dd>
+<dd><code>java.lang.IllegalArgumentException</code> - if <b>position</b> is less than 0.</dd>
 </dl>
 </section>
 </li>

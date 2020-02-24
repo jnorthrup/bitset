@@ -50,6 +50,7 @@ public abstract class Biterator implements Spliterator.OfInt {
 	 * @param end      (exclusive) index after the last index to include.
 	 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
 	 *                                  to <b>end</b>.
+	 * @throws IllegalArgumentException if <b>position</b> is less than 0.
 	 */
 	protected Biterator(final int position, final int end) {
 		this.position = position;

@@ -1,6 +1,5 @@
 package com.shouldis.bitset.parallel;
 
-import java.util.Objects;
 import java.util.Spliterator;
 import java.util.function.IntConsumer;
 
@@ -10,7 +9,8 @@ import com.shouldis.bitset.BitSet;
  * Implementation of {@link SizedBiterator} used to stream all values within a
  * specified integer array representing indices in an order appropriate to
  * manipulate a {@link BitSet} in parallel. The contents of the supplied arrays
- * must be distinct, and sorted in ascending order; behavior is undefined otherwise.
+ * must be distinct, and sorted in ascending order; behavior is undefined
+ * otherwise.
  * 
  * @author Aaron Shouldis
  * @see SizedBiterator
@@ -33,10 +33,17 @@ public final class ArrayBiterator extends SizedBiterator {
 	 * @throws NullPointerException     if <b>items</b> is null.
 	 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
 	 *                                  to <b>end</b>.
+	 * @throws IllegalArgumentException if <b>end</b> is greater than or equal to
+	 *                                  the length of <b>items</b>.
 	 */
 	public ArrayBiterator(final int[] items, final int position, final int end) {
 		super(position, end);
-		this.items = Objects.requireNonNull(items);
+		this.items = items;
+		if (end >= items.length) {
+			final StringBuilder builder = new StringBuilder();
+			builder.append(end).append(" >= ").append(items.length);
+			throw new IllegalArgumentException(builder.toString());
+		}
 	}
 
 	/**

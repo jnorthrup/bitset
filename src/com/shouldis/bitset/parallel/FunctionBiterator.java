@@ -39,10 +39,11 @@ public abstract class FunctionBiterator extends Biterator {
 	 *                 <b>set1</b>.
 	 * @param position (inclusive) the first index to include.
 	 * @param end      (exclusive) index after the last index to include.
+	 * @throws NullPointerException     if <b>set1</b> or <b>set2</b> are null.
 	 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
 	 *                                  to <b>end</b>, or the sizes of <b>set1</b>
 	 *                                  and <b>set2</b> differ.
-	 * @throws NullPointerException     if <b>set1</b> or <b>set2</b> are null.
+	 * @throws IllegalArgumentException if <b>position</b> is less than 0.
 	 */
 	protected FunctionBiterator(final BitSet set1, final BitSet set2, final int position, final int end) {
 		super(position, end);
@@ -172,6 +173,7 @@ public abstract class FunctionBiterator extends Biterator {
 		 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
 		 *                                  to <b>end</b>, or the sizes of <b>set1</b>
 		 *                                  and <b>set2</b> differ.
+		 * @throws IllegalArgumentException if <b>position</b> is less than 0.
 		 */
 		public And(final BitSet set1, final BitSet set2, final int position, final int end) {
 			super(set1, set2, position, end);
@@ -235,6 +237,7 @@ public abstract class FunctionBiterator extends Biterator {
 		 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
 		 *                                  to <b>end</b>, or the sizes of <b>set1</b>
 		 *                                  and <b>set2</b> differ.
+		 * @throws IllegalArgumentException if <b>position</b> is less than 0.
 		 */
 		public Or(final BitSet set1, final BitSet set2, final int position, final int end) {
 			super(set1, set2, position, end);
@@ -298,6 +301,7 @@ public abstract class FunctionBiterator extends Biterator {
 		 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
 		 *                                  to <b>end</b>, or the sizes of <b>set1</b>
 		 *                                  and <b>set2</b> differ.
+		 * @throws IllegalArgumentException if <b>position</b> is less than 0.
 		 */
 		public XOr(final BitSet set1, final BitSet set2, final int position, final int end) {
 			super(set1, set2, position, end);
@@ -360,6 +364,7 @@ public abstract class FunctionBiterator extends Biterator {
 		 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
 		 *                                  to <b>end</b>, or the sizes of <b>set1</b>
 		 *                                  and <b>set2</b> differ.
+		 * @throws IllegalArgumentException if <b>position</b> is less than 0.
 		 */
 		public NotAnd(final BitSet set1, final BitSet set2, final int position, final int end) {
 			super(set1, set2, position, end);
@@ -423,6 +428,7 @@ public abstract class FunctionBiterator extends Biterator {
 		 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
 		 *                                  to <b>end</b>, or the sizes of <b>set1</b>
 		 *                                  and <b>set2</b> differ.
+		 * @throws IllegalArgumentException if <b>position</b> is less than 0.
 		 */
 		public NotOr(final BitSet set1, final BitSet set2, final int position, final int end) {
 			super(set1, set2, position, end);
@@ -486,6 +492,7 @@ public abstract class FunctionBiterator extends Biterator {
 		 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
 		 *                                  to <b>end</b>, or the sizes of <b>set1</b>
 		 *                                  and <b>set2</b> differ.
+		 * @throws IllegalArgumentException if <b>position</b> is less than 0.
 		 */
 		public NotXOr(final BitSet set1, final BitSet set2, final int position, final int end) {
 			super(set1, set2, position, end);
