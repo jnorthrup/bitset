@@ -41,7 +41,7 @@ import com.shouldis.bitset.random.Random;
 public class BitSet {
 
 	/**
-	 * Long mask with all bits set. (0xFFFFFFFFFFFFFFFF)
+	 * Long mask with all bits in the <i>live</i> state. (0xFFFFFFFFFFFFFFFF)
 	 */
 	public static final long MASK = -1L;
 

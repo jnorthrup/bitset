@@ -101,10 +101,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <pre>public final class <span class="typeNameLabel">ConcurrentBitSet</span>
 extends <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></pre>
 <div class="block">Implementation of <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in which all methods capable of reading or
- writing the state of bits such as <a href="#getWord(int)"><code>getWord(int)</code></a>,
- <a href="#setWord(int,long)"><code>setWord(int, long)</code></a>, <a href="#andWord(int,long)"><code>andWord(int, long)</code></a>,
- <a href="#orWord(int,long)"><code>orWord(int, long)</code></a>, <a href="#xorWord(int,long)"><code>xorWord(int, long)</code></a> are delegated to
- atomic-operations.
+ writing the state of bits such as <a href="#setWord(int,long)"><code>setWord(int, long)</code></a>,
+ <a href="#andWord(int,long)"><code>andWord(int, long)</code></a>, <a href="#orWord(int,long)"><code>orWord(int, long)</code></a>,
+ <a href="#xorWord(int,long)"><code>xorWord(int, long)</code></a> are delegated to atomic-operations.
+ <a href="#getWord(int)"><code>getWord(int)</code></a> is also performed by the same semantics.
  <p>
  The use of atomic operations allows concurrent modification of this
  <a href="ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> without any external synchronization at the cost of

@@ -5,10 +5,10 @@ import java.lang.invoke.VarHandle;
 
 /**
  * Implementation of {@link BitSet} in which all methods capable of reading or
- * writing the state of bits such as {@link #getWord(int)},
- * {@link #setWord(int, long)}, {@link #andWord(int, long)},
- * {@link #orWord(int, long)}, {@link #xorWord(int, long)} are delegated to
- * atomic-operations.
+ * writing the state of bits such as {@link #setWord(int, long)},
+ * {@link #andWord(int, long)}, {@link #orWord(int, long)},
+ * {@link #xorWord(int, long)} are delegated to atomic-operations.
+ * {@link #getWord(int)} is also performed by the same semantics.
  * <p>
  * The use of atomic operations allows concurrent modification of this
  * {@link ConcurrentBitSet} without any external synchronization at the cost of
