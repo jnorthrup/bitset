@@ -1,5 +1,6 @@
 package com.shouldis.bitset.random;
 
+import java.io.Serializable;
 import java.util.concurrent.atomic.AtomicLong;
 
 import com.shouldis.bitset.BitSet;
@@ -20,7 +21,9 @@ import com.shouldis.bitset.ConcurrentBitSet;
  * @author Aaron Shouldis
  * @see DensityRandom
  */
-public class Random {
+public class Random implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Magic number value used to generate and randomize seeds.

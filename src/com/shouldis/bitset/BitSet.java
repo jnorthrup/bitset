@@ -1,5 +1,6 @@
 package com.shouldis.bitset;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
@@ -38,7 +39,9 @@ import com.shouldis.bitset.random.Random;
  * @author Aaron Shouldis
  * @see ConcurrentBitSet
  */
-public class BitSet {
+public class BitSet implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Long mask with all bits in the <i>live</i> state. (0xFFFFFFFFFFFFFFFF)

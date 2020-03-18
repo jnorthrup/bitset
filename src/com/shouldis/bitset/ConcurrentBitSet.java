@@ -22,6 +22,8 @@ import java.lang.invoke.VarHandle;
  */
 public final class ConcurrentBitSet extends BitSet {
 
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * A handle on the long array methods for direct, atomic operations.
 	 */

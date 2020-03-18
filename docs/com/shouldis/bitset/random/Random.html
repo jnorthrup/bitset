@@ -96,12 +96,17 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </div>
 <section class="description">
 <dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><code>java.io.Serializable</code></dd>
+</dl>
+<dl>
 <dt>Direct Known Subclasses:</dt>
 <dd><code><a href="DensityRandom.html" title="class in com.shouldis.bitset.random">DensityRandom</a></code></dd>
 </dl>
 <hr>
 <pre>public class <span class="typeNameLabel">Random</span>
-extends java.lang.Object</pre>
+extends java.lang.Object
+implements java.io.Serializable</pre>
 <div class="block">Pseudo-random number generator using a modified version of the XORShift64
  algorithm to generate uniform random numbers. This generator has a period of
  2<sup>64</sup> -1.
@@ -116,7 +121,8 @@ extends java.lang.Object</pre>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>Aaron Shouldis</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="DensityRandom.html" title="class in com.shouldis.bitset.random"><code>DensityRandom</code></a></dd>
+<dd><a href="DensityRandom.html" title="class in com.shouldis.bitset.random"><code>DensityRandom</code></a>, 
+<a href="../../../../serialized-form.html#com.shouldis.bitset.random.Random">Serialized Form</a></dd>
 </dl>
 </section>
 <section class="summary">
@@ -154,6 +160,11 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>private static long</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#serialVersionUID">serialVersionUID</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>private long</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#state">state</a></span></code></th>
 <td class="colLast">
@@ -362,6 +373,16 @@ extends java.lang.Object</pre>
 </a>
 <h2>Field Details</h2>
 <ul class="blockList">
+<li class="blockList">
+<section class="detail">
+<h3><a id="serialVersionUID">serialVersionUID</a></h3>
+<div class="memberSignature"><span class="modifiers">private static final</span>&nbsp;<span class="returnType">long</span>&nbsp;<span class="memberName">serialVersionUID</span></div>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../constant-values.html#com.shouldis.bitset.random.Random.serialVersionUID">Constant Field Values</a></dd>
+</dl>
+</section>
+</li>
 <li class="blockList">
 <section class="detail">
 <h3><a id="MAGIC_NUMBER">MAGIC_NUMBER</a></h3>
