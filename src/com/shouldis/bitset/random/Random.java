@@ -1,15 +1,14 @@
 package com.shouldis.bitset.random;
 
-import java.io.Serializable;
 import java.util.concurrent.atomic.AtomicLong;
 
 import com.shouldis.bitset.BitSet;
 import com.shouldis.bitset.ConcurrentBitSet;
 
 /**
- * Pseudo-random number generator using a modified version of the XORShift64
- * algorithm to generate uniform random numbers. This generator has a period of
- * 2<sup>64</sup> -1.
+ * Pseudo-random number generator using a modified version of the (not
+ * cryptography-secure) XORShift64 algorithm to generate uniform random numbers.
+ * This generator has a period of 2<sup>64</sup> -1.
  * <p>
  * In addition to generating random numbers, this class can be used to generate
  * and randomize {@link BitSet}s, such that each bit has equal chance of being
@@ -21,9 +20,7 @@ import com.shouldis.bitset.ConcurrentBitSet;
  * @author Aaron Shouldis
  * @see DensityRandom
  */
-public class Random implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class Random {
 
 	/**
 	 * Magic number value used to generate and randomize seeds.
