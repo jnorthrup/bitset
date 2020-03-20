@@ -521,7 +521,7 @@ public class BitSet implements Serializable {
 	 *                                        64).
 	 */
 	public void emptyWord(final int wordIndex) {
-		setWord(wordIndex, 0);
+		setWord(wordIndex, 0L);
 	}
 
 	/**
