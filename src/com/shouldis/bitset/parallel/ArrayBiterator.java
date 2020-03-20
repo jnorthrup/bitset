@@ -39,9 +39,9 @@ public final class ArrayBiterator extends SizedBiterator {
 	public ArrayBiterator(final int[] items, final int position, final int end) {
 		super(position, end);
 		this.items = items;
-		if (end >= items.length) {
+		if (end > items.length) {
 			final StringBuilder builder = new StringBuilder();
-			builder.append(end).append(" >= ").append(items.length);
+			builder.append(end).append(" > ").append(items.length);
 			throw new IllegalArgumentException(builder.toString());
 		}
 	}

@@ -50,9 +50,9 @@ public abstract class FunctionBiterator extends Biterator {
 		this.set1 = set1;
 		this.set2 = set2;
 		set1.compareSize(set2);
-		if (end >= set1.size) {
+		if (end > set1.size) {
 			final StringBuilder builder = new StringBuilder();
-			builder.append(end).append(" >= ").append(set1.size);
+			builder.append(end).append(" > ").append(set1.size);
 			throw new IllegalArgumentException(builder.toString());
 		}
 	}

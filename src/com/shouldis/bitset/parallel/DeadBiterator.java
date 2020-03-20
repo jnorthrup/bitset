@@ -37,9 +37,9 @@ public class DeadBiterator extends Biterator {
 	public DeadBiterator(final BitSet set, final int position, final int end) {
 		super(position, end);
 		this.set = set;
-		if (end >= set.size) {
+		if (end > set.size) {
 			final StringBuilder builder = new StringBuilder();
-			builder.append(end).append(" >= ").append(set.size);
+			builder.append(end).append(" > ").append(set.size);
 			throw new IllegalArgumentException(builder.toString());
 		}
 	}
