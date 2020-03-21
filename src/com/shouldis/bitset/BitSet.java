@@ -1092,7 +1092,7 @@ public class BitSet implements Serializable {
 		cleanLastWord();
 		long hash = size;
 		for (int i = 0; i < wordCount; i++) {
-			hash *= 31;
+			hash *= 31L;
 			hash += getWord(i);
 		}
 		return (int) (hash ^ (hash >>> Integer.SIZE));
