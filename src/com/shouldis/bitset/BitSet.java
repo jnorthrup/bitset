@@ -1083,9 +1083,9 @@ public class BitSet implements Serializable {
 	 * @return the unique identifying code.
 	 */
 	public final long identifier() {
-		cleanLastWord();
 		long word, hash = size;
 		int population = 0;
+		cleanLastWord();
 		for (int i = 0; i < wordCount; i++) {
 			word = getWord(i);
 			hash *= 31;
@@ -1149,8 +1149,8 @@ public class BitSet implements Serializable {
 
 	@Override
 	public int hashCode() {
-		cleanLastWord();
 		long hash = size;
+		cleanLastWord();
 		for (int i = 0; i < wordCount; i++) {
 			hash *= 31L;
 			hash += getWord(i);
