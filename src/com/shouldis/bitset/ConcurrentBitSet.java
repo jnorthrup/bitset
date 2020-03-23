@@ -173,7 +173,7 @@ public final class ConcurrentBitSet extends BitSet {
 		long expected, word;
 		do {
 			expected = getWord(wordIndex);
-			word = Long.rotateRight(expected, distance);
+			word = Long.rotateLeft(expected, distance);
 		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
 	}
 
