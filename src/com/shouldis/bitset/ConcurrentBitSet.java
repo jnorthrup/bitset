@@ -141,4 +141,40 @@ public final class ConcurrentBitSet extends BitSet {
 		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
 	}
 
+	@Override
+	public void shiftWordRight(final int wordIndex, final int distance) {
+		long expected, word;
+		do {
+			expected = getWord(wordIndex);
+			word = expected >>> distance;
+		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+	}
+
+	@Override
+	public void shiftWordLeft(final int wordIndex, final int distance) {
+		long expected, word;
+		do {
+			expected = getWord(wordIndex);
+			word = expected << distance;
+		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+	}
+
+	@Override
+	public void rotateWordRight(final int wordIndex, final int distance) {
+		long expected, word;
+		do {
+			expected = getWord(wordIndex);
+			word = Long.rotateRight(expected, distance);
+		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+	}
+
+	@Override
+	public void rotateWordLeft(final int wordIndex, final int distance) {
+		long expected, word;
+		do {
+			expected = getWord(wordIndex);
+			word = Long.rotateRight(expected, distance);
+		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+	}
+
 }

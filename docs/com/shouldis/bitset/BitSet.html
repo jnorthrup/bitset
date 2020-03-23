@@ -19,7 +19,7 @@
 <script type="text/javascript" src="../../../script-dir/jquery-ui.js"></script>
 </head>
 <body class="class-declaration">
-<script type="text/javascript">var data = {"i0":10,"i1":10,"i2":10,"i3":9,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":9,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":9,"i28":9,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10,"i43":10,"i44":10,"i45":10,"i46":10,"i47":10,"i48":10,"i49":10,"i50":10,"i51":10,"i52":10,"i53":10,"i54":10,"i55":10,"i56":10,"i57":10};
+<script type="text/javascript">var data = {"i0":10,"i1":10,"i2":10,"i3":9,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":9,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":9,"i28":9,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10,"i43":10,"i44":10,"i45":10,"i46":10,"i47":10,"i48":10,"i49":10,"i50":10,"i51":10,"i52":10,"i53":10,"i54":10,"i55":10,"i56":10,"i57":10,"i58":10,"i59":10,"i60":10,"i61":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -636,13 +636,31 @@ int&nbsp;to)</code></th>
 </tr>
 <tr class="altColor" id="i46">
 <td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#rotateWordLeft(int,int)">rotateWordLeft</a></span>&#8203;(int&nbsp;wordIndex,
+int&nbsp;distance)</code></th>
+<td class="colLast">
+<div class="block">Rotates the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the left
+ by <b>distance</b> bits.</div>
+</td>
+</tr>
+<tr class="rowColor" id="i47">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#rotateWordRight(int,int)">rotateWordRight</a></span>&#8203;(int&nbsp;wordIndex,
+int&nbsp;distance)</code></th>
+<td class="colLast">
+<div class="block">Rotates the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the right
+ by <b>distance</b> bits.</div>
+</td>
+</tr>
+<tr class="altColor" id="i48">
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#set(int)">set</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
 <div class="block">Changes the state of a bit at the specified <b>index</b> to the <i>live</i>
  state.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i47">
+<tr class="rowColor" id="i49">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#set(int,int)">set</a></span>&#8203;(int&nbsp;from,
 int&nbsp;to)</code></th>
@@ -651,7 +669,7 @@ int&nbsp;to)</code></th>
  state.</div>
 </td>
 </tr>
-<tr class="altColor" id="i48">
+<tr class="altColor" id="i50">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setWord(int,long)">setWord</a></span>&#8203;(int&nbsp;wordIndex,
 long&nbsp;word)</code></th>
@@ -660,7 +678,7 @@ long&nbsp;word)</code></th>
  <a href="#words"><code>words</code></a>, setting it to <b>word</b>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i49">
+<tr class="rowColor" id="i51">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setWordSegment(int,long,long)">setWordSegment</a></span>&#8203;(int&nbsp;wordIndex,
 long&nbsp;word,
@@ -672,7 +690,25 @@ long&nbsp;mask)</code></th>
  where <b>mask</b> has bits in the <i>live</i> state.</div>
 </td>
 </tr>
-<tr class="altColor" id="i50">
+<tr class="altColor" id="i52">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shiftWordLeft(int,int)">shiftWordLeft</a></span>&#8203;(int&nbsp;wordIndex,
+int&nbsp;distance)</code></th>
+<td class="colLast">
+<div class="block">Shifts the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the left by
+ <b>distance</b> bits.</div>
+</td>
+</tr>
+<tr class="rowColor" id="i53">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shiftWordRight(int,int)">shiftWordRight</a></span>&#8203;(int&nbsp;wordIndex,
+int&nbsp;distance)</code></th>
+<td class="colLast">
+<div class="block">Shifts the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the right
+ by <b>distance</b> bits.</div>
+</td>
+</tr>
+<tr class="altColor" id="i54">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toggle(int)">toggle</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
@@ -680,7 +716,7 @@ long&nbsp;mask)</code></th>
  through an <code>XOR</code> operation.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i51">
+<tr class="rowColor" id="i55">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toggle(int,int)">toggle</a></span>&#8203;(int&nbsp;from,
 int&nbsp;to)</code></th>
@@ -689,7 +725,7 @@ int&nbsp;to)</code></th>
  opposites through an <code>XOR</code> operation.</div>
 </td>
 </tr>
-<tr class="altColor" id="i52">
+<tr class="altColor" id="i56">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toggleWord(int)">toggleWord</a></span>&#8203;(int&nbsp;wordIndex)</code></th>
 <td class="colLast">
@@ -697,12 +733,12 @@ int&nbsp;to)</code></th>
  complement of its current state.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i53">
+<tr class="rowColor" id="i57">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor" id="i54">
+<tr class="altColor" id="i58">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#xor(com.shouldis.bitset.BitSet)">xor</a></span>&#8203;(<a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
 <td class="colLast">
@@ -710,7 +746,7 @@ int&nbsp;to)</code></th>
  with those in the specified <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i55">
+<tr class="rowColor" id="i59">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#xOrRandomize(com.shouldis.bitset.random.Random)">xOrRandomize</a></span>&#8203;(<a href="random/Random.html" title="class in com.shouldis.bitset.random">Random</a>&nbsp;random)</code></th>
 <td class="colLast">
@@ -718,7 +754,7 @@ int&nbsp;to)</code></th>
  by the specified <a href="random/Random.html" title="class in com.shouldis.bitset.random"><code>Random</code></a> <b>random</b>.</div>
 </td>
 </tr>
-<tr class="altColor" id="i56">
+<tr class="altColor" id="i60">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#xOrRandomize(com.shouldis.bitset.random.Random,int,int)">xOrRandomize</a></span>&#8203;(<a href="random/Random.html" title="class in com.shouldis.bitset.random">Random</a>&nbsp;random,
 int&nbsp;from,
@@ -728,7 +764,7 @@ int&nbsp;to)</code></th>
  random bits generated by the specified <a href="random/Random.html" title="class in com.shouldis.bitset.random"><code>Random</code></a> <b>random</b>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i57">
+<tr class="rowColor" id="i61">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#xorWord(int,long)">xorWord</a></span>&#8203;(int&nbsp;wordIndex,
 long&nbsp;mask)</code></th>
@@ -1253,7 +1289,7 @@ long&nbsp;mask)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="toggleWord(int)">toggleWord</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">toggleWord</span>&#8203;(<span class="arguments">int&nbsp;wordIndex)</span></div>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">toggleWord</span>&#8203;(<span class="arguments">int&nbsp;wordIndex)</span></div>
 <div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the
  complement of its current state.</div>
 <dl>
@@ -1269,8 +1305,84 @@ long&nbsp;mask)</span></div>
 </li>
 <li class="blockList">
 <section class="detail">
+<h3><a id="shiftWordRight(int,int)">shiftWordRight</a></h3>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">shiftWordRight</span>&#8203;(<span class="arguments">int&nbsp;wordIndex,
+int&nbsp;distance)</span></div>
+<div class="block">Shifts the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the right
+ by <b>distance</b> bits.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>wordIndex</code> - the index within <a href="#words"><code>words</code></a> to perform the shift
+                  operation upon.</dd>
+<dd><code>distance</code> - how far to shift the word in bits.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
+                                        range 0 to ceiling(<a href="#size"><code>size</code></a> /
+                                        64).</dd>
+</dl>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="shiftWordLeft(int,int)">shiftWordLeft</a></h3>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">shiftWordLeft</span>&#8203;(<span class="arguments">int&nbsp;wordIndex,
+int&nbsp;distance)</span></div>
+<div class="block">Shifts the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the left by
+ <b>distance</b> bits.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>wordIndex</code> - the index within <a href="#words"><code>words</code></a> to perform the shift
+                  operation upon.</dd>
+<dd><code>distance</code> - how far to shift the word in bits.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
+                                        range 0 to ceiling(<a href="#size"><code>size</code></a> /
+                                        64).</dd>
+</dl>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="rotateWordRight(int,int)">rotateWordRight</a></h3>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">rotateWordRight</span>&#8203;(<span class="arguments">int&nbsp;wordIndex,
+int&nbsp;distance)</span></div>
+<div class="block">Rotates the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the right
+ by <b>distance</b> bits.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>wordIndex</code> - the index within <a href="#words"><code>words</code></a> to perform the rotate
+                  operation upon.</dd>
+<dd><code>distance</code> - how far to rotate the word in bits.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
+                                        range 0 to ceiling(<a href="#size"><code>size</code></a> /
+                                        64).</dd>
+</dl>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="rotateWordLeft(int,int)">rotateWordLeft</a></h3>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">rotateWordLeft</span>&#8203;(<span class="arguments">int&nbsp;wordIndex,
+int&nbsp;distance)</span></div>
+<div class="block">Rotates the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the left
+ by <b>distance</b> bits.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>wordIndex</code> - the index within <a href="#words"><code>words</code></a> to perform the rotate
+                  operation upon.</dd>
+<dd><code>distance</code> - how far to rotate the word in bits.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
+                                        range 0 to ceiling(<a href="#size"><code>size</code></a> /
+                                        64).</dd>
+</dl>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
 <h3><a id="fillWord(int)">fillWord</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">fillWord</span>&#8203;(<span class="arguments">int&nbsp;wordIndex)</span></div>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">fillWord</span>&#8203;(<span class="arguments">int&nbsp;wordIndex)</span></div>
 <div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to
  <a href="#MASK"><code>MASK</code></a>, setting all bits to the <i>live</i> state.</div>
 <dl>
@@ -1287,7 +1399,7 @@ long&nbsp;mask)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="emptyWord(int)">emptyWord</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">emptyWord</span>&#8203;(<span class="arguments">int&nbsp;wordIndex)</span></div>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">emptyWord</span>&#8203;(<span class="arguments">int&nbsp;wordIndex)</span></div>
 <div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to 0,
  removing all bits in the <i>live</i> state.</div>
 <dl>

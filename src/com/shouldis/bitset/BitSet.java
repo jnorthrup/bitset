@@ -492,8 +492,68 @@ public class BitSet implements Serializable {
 	 *                                        range 0 to ceiling({@link #size} /
 	 *                                        64).
 	 */
-	public void toggleWord(final int wordIndex) {
+	public final void toggleWord(final int wordIndex) {
 		xorWord(wordIndex, MASK);
+	}
+
+	/**
+	 * Shifts the long word at <b>wordIndex</b> within {@link #words} to the right
+	 * by <b>distance</b> bits.
+	 * 
+	 * @param wordIndex the index within {@link #words} to perform the shift
+	 *                  operation upon.
+	 * @param distance  how far to shift the word in bits.
+	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
+	 *                                        range 0 to ceiling({@link #size} /
+	 *                                        64).
+	 */
+	public void shiftWordRight(final int wordIndex, final int distance) {
+		setWord(wordIndex, getWord(wordIndex) >>> distance);
+	}
+
+	/**
+	 * Shifts the long word at <b>wordIndex</b> within {@link #words} to the left by
+	 * <b>distance</b> bits.
+	 * 
+	 * @param wordIndex the index within {@link #words} to perform the shift
+	 *                  operation upon.
+	 * @param distance  how far to shift the word in bits.
+	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
+	 *                                        range 0 to ceiling({@link #size} /
+	 *                                        64).
+	 */
+	public void shiftWordLeft(final int wordIndex, final int distance) {
+		setWord(wordIndex, getWord(wordIndex) << distance);
+	}
+
+	/**
+	 * Rotates the long word at <b>wordIndex</b> within {@link #words} to the right
+	 * by <b>distance</b> bits.
+	 * 
+	 * @param wordIndex the index within {@link #words} to perform the rotate
+	 *                  operation upon.
+	 * @param distance  how far to rotate the word in bits.
+	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
+	 *                                        range 0 to ceiling({@link #size} /
+	 *                                        64).
+	 */
+	public void rotateWordRight(final int wordIndex, final int distance) {
+		setWord(wordIndex, Long.rotateRight(getWord(wordIndex), distance));
+	}
+
+	/**
+	 * Rotates the long word at <b>wordIndex</b> within {@link #words} to the left
+	 * by <b>distance</b> bits.
+	 * 
+	 * @param wordIndex the index within {@link #words} to perform the rotate
+	 *                  operation upon.
+	 * @param distance  how far to rotate the word in bits.
+	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
+	 *                                        range 0 to ceiling({@link #size} /
+	 *                                        64).
+	 */
+	public void rotateWordLeft(final int wordIndex, final int distance) {
+		setWord(wordIndex, Long.rotateLeft(getWord(wordIndex), distance));
 	}
 
 	/**
@@ -506,7 +566,7 @@ public class BitSet implements Serializable {
 	 *                                        range 0 to ceiling({@link #size} /
 	 *                                        64).
 	 */
-	public void fillWord(final int wordIndex) {
+	public final void fillWord(final int wordIndex) {
 		setWord(wordIndex, MASK);
 	}
 
@@ -520,7 +580,7 @@ public class BitSet implements Serializable {
 	 *                                        range 0 to ceiling({@link #size} /
 	 *                                        64).
 	 */
-	public void emptyWord(final int wordIndex) {
+	public final void emptyWord(final int wordIndex) {
 		setWord(wordIndex, 0L);
 	}
 
