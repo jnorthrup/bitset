@@ -27,14 +27,15 @@ import com.shouldis.bitset.random.Random;
  * thread-safe, requiring no external synchronization at the cost of
  * performance.
  * <p>
- * If {@link #size} isn't a multiple of 64, there will be "hanging" bits that
- * exist on the end of the last long within {@link #words}, which are not
+ * If {@link #size} isn't a multiple of 64, there will be {@link #hanging} bits
+ * that exist on the end of the last long within {@link #words}, which are not
  * accounted for by {@link #size}. No exception will be thrown when these bit
  * indices are manipulated or read, and in the aggregating functions
- * {@link #population()}, {@link #hashCode()}, etc., any hanging bits will have
- * their effect on those functions made consistent by {@link #cleanLastWord()}.
- * Otherwise, accessing a negative index, or any index greater than or equal to
- * {@link #size} will cause an {@link IndexOutOfBoundsException} to be thrown.
+ * {@link #population()}, {@link #hashCode()}, etc., any {@link #hanging} bits
+ * will have their effect on those functions made consistent by
+ * {@link #cleanLastWord()}. Otherwise, accessing a negative index, or any index
+ * greater than or equal to {@link #size} will cause an
+ * {@link IndexOutOfBoundsException} to be thrown.
  * 
  * @author Aaron Shouldis
  * @see ConcurrentBitSet
@@ -73,6 +74,17 @@ public class BitSet implements Serializable {
 	public final int wordCount;
 
 	/**
+	 * The number of bits in the last word that are not accounted for by
+	 * {@link size}, or 0 if all 64 bits are accounted for.
+	 */
+	protected final int hanging;
+
+	/**
+	 * Long mask used keep any {@link #hanging} bits in the <i>dead</i> state.
+	 */
+	protected final long hangingMask;
+
+	/**
 	 * Array holding the long words whose bits are manipulated. Has length
 	 * ceiling({@link #size} / 64). Though this has protected visibility, using
 	 * methods such as {@link #getWord(int)}, {@link #setWord(int, long)},
@@ -97,6 +109,8 @@ public class BitSet implements Serializable {
 		if (wordCount < 0) {
 			throw new IllegalArgumentException(Integer.toString(size));
 		}
+		hanging = modSize(-size);
+		hangingMask = MASK >>> hanging;
 		this.wordCount = wordCount;
 		words = new long[wordCount];
 	}
@@ -498,7 +512,7 @@ public class BitSet implements Serializable {
 
 	/**
 	 * Shifts the long word at <b>wordIndex</b> within {@link #words} to the right
-	 * by <b>distance</b> bits.
+	 * by <b>distance</b> bits. This will have no effect on {@link #hanging} bits.
 	 * 
 	 * @param wordIndex the index within {@link #words} to perform the shift
 	 *                  operation upon.
@@ -508,12 +522,16 @@ public class BitSet implements Serializable {
 	 *                                        64).
 	 */
 	public void shiftWordRight(final int wordIndex, final int distance) {
-		setWord(wordIndex, getWord(wordIndex) >>> distance);
+		if (wordIndex == wordCount - 1 && hanging != 0) {
+			setWord(wordIndex, (hangingMask & getWord(wordIndex)) >>> distance);
+		} else {
+			setWord(wordIndex, getWord(wordIndex) >>> distance);
+		}
 	}
 
 	/**
 	 * Shifts the long word at <b>wordIndex</b> within {@link #words} to the left by
-	 * <b>distance</b> bits.
+	 * <b>distance</b> bits. This will have no effect on {@link #hanging} bits.
 	 * 
 	 * @param wordIndex the index within {@link #words} to perform the shift
 	 *                  operation upon.
@@ -523,7 +541,11 @@ public class BitSet implements Serializable {
 	 *                                        64).
 	 */
 	public void shiftWordLeft(final int wordIndex, final int distance) {
-		setWord(wordIndex, getWord(wordIndex) << distance);
+		if (wordIndex == wordCount - 1 && hanging != 0) {
+			setWord(wordIndex, hangingMask & (getWord(wordIndex) << distance));
+		} else {
+			setWord(wordIndex, getWord(wordIndex) << distance);
+		}
 	}
 
 	/**
@@ -537,8 +559,18 @@ public class BitSet implements Serializable {
 	 *                                        range 0 to ceiling({@link #size} /
 	 *                                        64).
 	 */
-	public void rotateWordRight(final int wordIndex, final int distance) {
-		setWord(wordIndex, Long.rotateRight(getWord(wordIndex), distance));
+	public void rotateWordRight(final int wordIndex, int distance) {
+		if (wordIndex == wordCount - 1 && hanging != 0) {
+			final long word = getWord(wordIndex);
+			if (distance > 0) {
+				setWord(wordIndex, hangingMask & ((word >>> distance) | (word << -(hanging + distance))));
+			} else if (distance < 0) {
+				distance = Math.abs(distance);
+				setWord(wordIndex, hangingMask & ((word << distance) | (word >>> -(hanging + distance))));
+			}
+		} else {
+			setWord(wordIndex, Long.rotateRight(getWord(wordIndex), distance));
+		}
 	}
 
 	/**
@@ -552,8 +584,35 @@ public class BitSet implements Serializable {
 	 *                                        range 0 to ceiling({@link #size} /
 	 *                                        64).
 	 */
-	public void rotateWordLeft(final int wordIndex, final int distance) {
-		setWord(wordIndex, Long.rotateLeft(getWord(wordIndex), distance));
+	public void rotateWordLeft(final int wordIndex, int distance) {
+		if (wordIndex == wordCount - 1 && hanging != 0) {
+			final long word = getWord(wordIndex);
+			if (distance > 0) {
+				setWord(wordIndex, hangingMask & ((word << distance) | (word >>> -(hanging + distance))));
+			} else if (distance < 0) {
+				distance = Math.abs(distance);
+				setWord(wordIndex, hangingMask & ((word >>> distance) | (word << -(hanging + distance))));
+			}
+		} else {
+			setWord(wordIndex, Long.rotateLeft(getWord(wordIndex), distance));
+		}
+	}
+
+	/**
+	 * Reverses the long word at <b>wordIndex</b> within {@link #words}.
+	 * 
+	 * @param wordIndex the index within {@link #words} to perform the rotate
+	 *                  operation upon.
+	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
+	 *                                        range 0 to ceiling({@link #size} /
+	 *                                        64).
+	 */
+	public void reverseWord(final int wordIndex) {
+		if (wordIndex == wordCount - 1 && hanging != 0) {
+			setWord(wordIndex, hangingMask & (Long.reverse(getWord(wordIndex)) >>> hanging));
+		} else {
+			setWord(wordIndex, Long.reverse(getWord(wordIndex)));
+		}
 	}
 
 	/**
@@ -979,13 +1038,13 @@ public class BitSet implements Serializable {
 	}
 
 	/**
-	 * Changes the state of any "hanging bits" to the <i>dead</i> state in order to
-	 * maintain their effect on aggregating functions ({@link #population()}, etc).
+	 * Changes the state of any {@link #hanging} bits to the <i>dead</i> state in
+	 * order to maintain their effect on aggregating functions
+	 * ({@link #population()}, etc).
 	 */
 	protected final void cleanLastWord() {
-		final int hangingBits = modSize(-size);
-		if (hangingBits > 0) {
-			andWord(wordCount - 1, MASK >>> hangingBits);
+		if (hanging > 0) {
+			andWord(wordCount - 1, hangingMask);
 		}
 	}
 

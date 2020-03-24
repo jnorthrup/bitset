@@ -144,37 +144,97 @@ public final class ConcurrentBitSet extends BitSet {
 	@Override
 	public void shiftWordRight(final int wordIndex, final int distance) {
 		long expected, word;
-		do {
-			expected = getWord(wordIndex);
-			word = expected >>> distance;
-		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+		if (wordIndex == wordCount - 1 && hanging != 0) {
+			do {
+				expected = getWord(wordIndex);
+				word = (hangingMask & expected) >>> distance;
+			} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+		} else {
+			do {
+				expected = getWord(wordIndex);
+				word = expected >>> distance;
+			} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+		}
 	}
 
 	@Override
 	public void shiftWordLeft(final int wordIndex, final int distance) {
 		long expected, word;
-		do {
-			expected = getWord(wordIndex);
-			word = expected << distance;
-		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+		if (wordIndex == wordCount - 1 && hanging != 0) {
+			do {
+				expected = getWord(wordIndex);
+				word = hangingMask & (expected << distance);
+			} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+		} else {
+			do {
+				expected = getWord(wordIndex);
+				word = expected << distance;
+			} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+		}
 	}
 
 	@Override
-	public void rotateWordRight(final int wordIndex, final int distance) {
+	public void rotateWordRight(final int wordIndex, int distance) {
 		long expected, word;
-		do {
-			expected = getWord(wordIndex);
-			word = Long.rotateRight(expected, distance);
-		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+		if (wordIndex == wordCount - 1 && hanging != 0) {
+			if (distance > 0) {
+				do {
+					expected = getWord(wordIndex);
+					word = hangingMask & ((expected >>> distance) | (expected << -(hanging + distance)));
+				} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+			} else if (distance < 0) {
+				distance = Math.abs(distance);
+				do {
+					expected = getWord(wordIndex);
+					word = hangingMask & ((expected << distance) | (expected >>> -(hanging + distance)));
+				} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+			}
+		} else {
+			do {
+				expected = getWord(wordIndex);
+				word = Long.rotateRight(getWord(wordIndex), distance);
+			} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+		}
 	}
 
 	@Override
-	public void rotateWordLeft(final int wordIndex, final int distance) {
+	public void rotateWordLeft(final int wordIndex, int distance) {
 		long expected, word;
-		do {
-			expected = getWord(wordIndex);
-			word = Long.rotateLeft(expected, distance);
-		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+		if (wordIndex == wordCount - 1 && hanging != 0) {
+			if (distance > 0) {
+				do {
+					expected = getWord(wordIndex);
+					word = hangingMask & ((expected << distance) | (expected >>> -(hanging + distance)));
+				} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+			} else if (distance < 0) {
+				distance = Math.abs(distance);
+				do {
+					expected = getWord(wordIndex);
+					word = hangingMask & ((expected >>> distance) | (expected << -(hanging + distance)));
+				} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+			}
+		} else {
+			do {
+				expected = getWord(wordIndex);
+				word = Long.rotateLeft(getWord(wordIndex), distance);
+			} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+		}
+	}
+
+	@Override
+	public void reverseWord(final int wordIndex) {
+		long expected, word;
+		if (wordIndex == wordCount - 1 && hanging != 0) {
+			do {
+				expected = getWord(wordIndex);
+				word = hangingMask & (Long.reverse(expected) >>> hanging);
+			} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+		} else {
+			do {
+				expected = getWord(wordIndex);
+				word = Long.reverse(expected);
+			} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+		}
 	}
 
 }

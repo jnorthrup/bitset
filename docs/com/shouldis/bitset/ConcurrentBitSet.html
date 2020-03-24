@@ -19,7 +19,7 @@
 <script type="text/javascript" src="../../../script-dir/jquery-ui.js"></script>
 </head>
 <body class="class-declaration">
-<script type="text/javascript">var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10};
+<script type="text/javascript">var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -162,7 +162,7 @@ extends <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></p
 <h3>Fields inherited from class&nbsp;com.shouldis.bitset.<a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></h3>
 <a id="fields.inherited.from.class.com.shouldis.bitset.BitSet">
 <!--   -->
-</a><code><a href="BitSet.html#MASK">MASK</a>, <a href="BitSet.html#size">size</a>, <a href="BitSet.html#wordCount">wordCount</a>, <a href="BitSet.html#words">words</a></code></div>
+</a><code><a href="BitSet.html#hanging">hanging</a>, <a href="BitSet.html#hangingMask">hangingMask</a>, <a href="BitSet.html#MASK">MASK</a>, <a href="BitSet.html#size">size</a>, <a href="BitSet.html#wordCount">wordCount</a>, <a href="BitSet.html#words">words</a></code></div>
 </section>
 </li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -292,6 +292,13 @@ long&nbsp;mask)</code></th>
 </tr>
 <tr class="altColor" id="i8">
 <td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#reverseWord(int)">reverseWord</a></span>&#8203;(int&nbsp;wordIndex)</code></th>
+<td class="colLast">
+<div class="block">Reverses the long word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a>.</div>
+</td>
+</tr>
+<tr class="rowColor" id="i9">
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#rotateWordLeft(int,int)">rotateWordLeft</a></span>&#8203;(int&nbsp;wordIndex,
 int&nbsp;distance)</code></th>
 <td class="colLast">
@@ -299,7 +306,7 @@ int&nbsp;distance)</code></th>
  by <b>distance</b> bits.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i9">
+<tr class="altColor" id="i10">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#rotateWordRight(int,int)">rotateWordRight</a></span>&#8203;(int&nbsp;wordIndex,
 int&nbsp;distance)</code></th>
@@ -308,7 +315,7 @@ int&nbsp;distance)</code></th>
  by <b>distance</b> bits.</div>
 </td>
 </tr>
-<tr class="altColor" id="i10">
+<tr class="rowColor" id="i11">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setWord(int,long)">setWord</a></span>&#8203;(int&nbsp;wordIndex,
 long&nbsp;word)</code></th>
@@ -317,7 +324,7 @@ long&nbsp;word)</code></th>
  <a href="BitSet.html#words"><code>BitSet.words</code></a>, setting it to <b>word</b>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i11">
+<tr class="altColor" id="i12">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setWordSegment(int,long,long)">setWordSegment</a></span>&#8203;(int&nbsp;wordIndex,
 long&nbsp;word,
@@ -329,7 +336,7 @@ long&nbsp;mask)</code></th>
  where <b>mask</b> has bits in the <i>live</i> state.</div>
 </td>
 </tr>
-<tr class="altColor" id="i12">
+<tr class="rowColor" id="i13">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shiftWordLeft(int,int)">shiftWordLeft</a></span>&#8203;(int&nbsp;wordIndex,
 int&nbsp;distance)</code></th>
@@ -338,7 +345,7 @@ int&nbsp;distance)</code></th>
  <b>distance</b> bits.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i13">
+<tr class="altColor" id="i14">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shiftWordRight(int,int)">shiftWordRight</a></span>&#8203;(int&nbsp;wordIndex,
 int&nbsp;distance)</code></th>
@@ -347,7 +354,7 @@ int&nbsp;distance)</code></th>
  by <b>distance</b> bits.</div>
 </td>
 </tr>
-<tr class="altColor" id="i14">
+<tr class="rowColor" id="i15">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#xorWord(int,long)">xorWord</a></span>&#8203;(int&nbsp;wordIndex,
 long&nbsp;mask)</code></th>
@@ -669,7 +676,7 @@ long&nbsp;mask)</span></div>
 int&nbsp;distance)</span></div>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="BitSet.html#shiftWordRight(int,int)">BitSet</a></code></span></div>
 <div class="block">Shifts the long word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> to the right
- by <b>distance</b> bits.</div>
+ by <b>distance</b> bits. This will have no effect on <a href="BitSet.html#hanging"><code>BitSet.hanging</code></a> bits.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="BitSet.html#shiftWordRight(int,int)">shiftWordRight</a></code>&nbsp;in class&nbsp;<code><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></dd>
@@ -687,7 +694,7 @@ int&nbsp;distance)</span></div>
 int&nbsp;distance)</span></div>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="BitSet.html#shiftWordLeft(int,int)">BitSet</a></code></span></div>
 <div class="block">Shifts the long word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a> to the left by
- <b>distance</b> bits.</div>
+ <b>distance</b> bits. This will have no effect on <a href="BitSet.html#hanging"><code>BitSet.hanging</code></a> bits.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="BitSet.html#shiftWordLeft(int,int)">shiftWordLeft</a></code>&nbsp;in class&nbsp;<code><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></dd>
@@ -731,6 +738,21 @@ int&nbsp;distance)</span></div>
 <dd><code>wordIndex</code> - the index within <a href="BitSet.html#words"><code>BitSet.words</code></a> to perform the rotate
                   operation upon.</dd>
 <dd><code>distance</code> - how far to rotate the word in bits.</dd>
+</dl>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="reverseWord(int)">reverseWord</a></h3>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">reverseWord</span>&#8203;(<span class="arguments">int&nbsp;wordIndex)</span></div>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="BitSet.html#reverseWord(int)">BitSet</a></code></span></div>
+<div class="block">Reverses the long word at <b>wordIndex</b> within <a href="BitSet.html#words"><code>BitSet.words</code></a>.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="BitSet.html#reverseWord(int)">reverseWord</a></code>&nbsp;in class&nbsp;<code><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>wordIndex</code> - the index within <a href="BitSet.html#words"><code>BitSet.words</code></a> to perform the rotate
+                  operation upon.</dd>
 </dl>
 </section>
 </li>
