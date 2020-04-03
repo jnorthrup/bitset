@@ -7,7 +7,7 @@ import java.lang.invoke.VarHandle;
  * Implementation of {@link BitSet} in which all methods capable of reading or
  * writing the state of bits such as {@link #setWord(int, long)},
  * {@link #andWord(int, long)}, {@link #orWord(int, long)},
- * {@link #xorWord(int, long)} are delegated to atomic-operations.
+ * {@link #xOrWord(int, long)} are delegated to atomic-operations.
  * {@link #getWord(int)} is also performed by the same semantics.
  * <p>
  * The use of atomic operations allows concurrent modification of this
@@ -91,15 +91,6 @@ public final class ConcurrentBitSet extends BitSet {
 	}
 
 	@Override
-	public void setWordSegment(final int wordIndex, final long word, final long mask) {
-		long expected, newWord;
-		do {
-			expected = getWord(wordIndex);
-			newWord = (mask & word) | (~mask & expected);
-		} while (!HANDLE.compareAndSet(words, wordIndex, expected, newWord));
-	}
-
-	@Override
 	public void andWord(final int wordIndex, final long mask) {
 		HANDLE.getAndBitwiseAnd(words, wordIndex, mask);
 	}
@@ -110,7 +101,7 @@ public final class ConcurrentBitSet extends BitSet {
 	}
 
 	@Override
-	public void xorWord(final int wordIndex, final long mask) {
+	public void xOrWord(final int wordIndex, final long mask) {
 		HANDLE.getAndBitwiseXor(words, wordIndex, mask);
 	}
 
@@ -142,99 +133,21 @@ public final class ConcurrentBitSet extends BitSet {
 	}
 
 	@Override
-	public void shiftWordRight(final int wordIndex, final int distance) {
-		long expected, word;
-		if (wordIndex == wordCount - 1 && hanging != 0) {
-			do {
-				expected = getWord(wordIndex);
-				word = (hangingMask & expected) >>> distance;
-			} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
-		} else {
-			do {
-				expected = getWord(wordIndex);
-				word = expected >>> distance;
-			} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
-		}
+	public void setWordSegment(final int wordIndex, final long word, final long mask) {
+		long expected, newWord;
+		do {
+			expected = getWord(wordIndex);
+			newWord = (mask & word) | (~mask & expected);
+		} while (!HANDLE.compareAndSet(words, wordIndex, expected, newWord));
 	}
 
 	@Override
-	public void shiftWordLeft(final int wordIndex, final int distance) {
+	public void applyFunction(final int wordIndex, final WordFunction function) {
 		long expected, word;
-		if (wordIndex == wordCount - 1 && hanging != 0) {
-			do {
-				expected = getWord(wordIndex);
-				word = hangingMask & (expected << distance);
-			} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
-		} else {
-			do {
-				expected = getWord(wordIndex);
-				word = expected << distance;
-			} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
-		}
-	}
-
-	@Override
-	public void rotateWordRight(final int wordIndex, int distance) {
-		long expected, word;
-		if (wordIndex == wordCount - 1 && hanging != 0) {
-			if (distance > 0) {
-				do {
-					expected = getWord(wordIndex);
-					word = hangingMask & ((expected >>> distance) | (expected << -(hanging + distance)));
-				} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
-			} else if (distance < 0) {
-				distance = Math.abs(distance);
-				do {
-					expected = getWord(wordIndex);
-					word = hangingMask & ((expected << distance) | (expected >>> -(hanging + distance)));
-				} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
-			}
-		} else {
-			do {
-				expected = getWord(wordIndex);
-				word = Long.rotateRight(getWord(wordIndex), distance);
-			} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
-		}
-	}
-
-	@Override
-	public void rotateWordLeft(final int wordIndex, int distance) {
-		long expected, word;
-		if (wordIndex == wordCount - 1 && hanging != 0) {
-			if (distance > 0) {
-				do {
-					expected = getWord(wordIndex);
-					word = hangingMask & ((expected << distance) | (expected >>> -(hanging + distance)));
-				} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
-			} else if (distance < 0) {
-				distance = Math.abs(distance);
-				do {
-					expected = getWord(wordIndex);
-					word = hangingMask & ((expected >>> distance) | (expected << -(hanging + distance)));
-				} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
-			}
-		} else {
-			do {
-				expected = getWord(wordIndex);
-				word = Long.rotateLeft(getWord(wordIndex), distance);
-			} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
-		}
-	}
-
-	@Override
-	public void reverseWord(final int wordIndex) {
-		long expected, word;
-		if (wordIndex == wordCount - 1 && hanging != 0) {
-			do {
-				expected = getWord(wordIndex);
-				word = hangingMask & (Long.reverse(expected) >>> hanging);
-			} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
-		} else {
-			do {
-				expected = getWord(wordIndex);
-				word = Long.reverse(expected);
-			} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
-		}
+		do {
+			expected = getWord(wordIndex);
+			word = function.apply(expected);
+		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
 	}
 
 }

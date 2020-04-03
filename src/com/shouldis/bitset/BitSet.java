@@ -27,15 +27,14 @@ import com.shouldis.bitset.random.Random;
  * thread-safe, requiring no external synchronization at the cost of
  * performance.
  * <p>
- * If {@link #size} isn't a multiple of 64, there will be {@link #hanging} bits
- * that exist on the end of the last long within {@link #words}, which are not
+ * If {@link #size} isn't a multiple of 64, there will be hanging bits that
+ * exist on the end of the last long within {@link #words}, which are not
  * accounted for by {@link #size}. No exception will be thrown when these bit
  * indices are manipulated or read, and in the aggregating functions
- * {@link #population()}, {@link #hashCode()}, etc., any {@link #hanging} bits
- * will have their effect on those functions made consistent by
- * {@link #cleanLastWord()}. Otherwise, accessing a negative index, or any index
- * greater than or equal to {@link #size} will cause an
- * {@link IndexOutOfBoundsException} to be thrown.
+ * {@link #population()}, {@link #hashCode()}, etc., any hanging bits will have
+ * their effect on those functions made consistent by {@link #cleanLastWord()}.
+ * Otherwise, accessing a negative index, or any index greater than or equal to
+ * {@link #size} will cause an {@link IndexOutOfBoundsException} to be thrown.
  * 
  * @author Aaron Shouldis
  * @see ConcurrentBitSet
@@ -74,17 +73,6 @@ public class BitSet implements Serializable {
 	public final int wordCount;
 
 	/**
-	 * The number of bits in the last word that are not accounted for by
-	 * {@link size}, or 0 if all 64 bits are accounted for.
-	 */
-	protected final int hanging;
-
-	/**
-	 * Long mask used keep any {@link #hanging} bits in the <i>dead</i> state.
-	 */
-	protected final long hangingMask;
-
-	/**
 	 * Array holding the long words whose bits are manipulated. Has length
 	 * ceiling({@link #size} / 64). Though this has protected visibility, using
 	 * methods such as {@link #getWord(int)}, {@link #setWord(int, long)},
@@ -109,8 +97,6 @@ public class BitSet implements Serializable {
 		if (wordCount < 0) {
 			throw new IllegalArgumentException(Integer.toString(size));
 		}
-		hanging = modSize(-size);
-		hangingMask = MASK >>> hanging;
 		this.wordCount = wordCount;
 		words = new long[wordCount];
 	}
@@ -311,7 +297,7 @@ public class BitSet implements Serializable {
 	 *                                        than or equal to {@link #size}.
 	 */
 	public final void toggle(final int index) {
-		xorWord(divideSize(index), bitMask(index));
+		xOrWord(divideSize(index), bitMask(index));
 	}
 
 	/**
@@ -334,13 +320,13 @@ public class BitSet implements Serializable {
 		final long startMask = MASK << from;
 		final long endMask = MASK >>> -to;
 		if (start == end) {
-			xorWord(start, startMask & endMask);
+			xOrWord(start, startMask & endMask);
 		} else {
-			xorWord(start, startMask);
+			xOrWord(start, startMask);
 			for (int i = start + 1; i < end; i++) {
 				toggleWord(i);
 			}
-			xorWord(end, endMask);
+			xOrWord(end, endMask);
 		}
 	}
 
@@ -371,24 +357,6 @@ public class BitSet implements Serializable {
 	 */
 	public void setWord(final int wordIndex, final long word) {
 		words[wordIndex] = word;
-	}
-
-	/**
-	 * Changes the long word at the specified <b>wordIndex</b> within {@link #words}
-	 * such that it retains the previous state of bits where the bits of <b>mask</b>
-	 * are in the <i>dead</i> state, and takes on the value of bits in <b>word</b>
-	 * where <b>mask</b> has bits in the <i>live</i> state.
-	 * 
-	 * @param wordIndex the index within {@link #words} to change.
-	 * @param word      the new long value to be set to {@link #words}.
-	 * @param mask      the mask used to determine which bits from <b>word</b> will
-	 *                  be applied.
-	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
-	 *                                        range 0 to ceiling({@link #size} /
-	 *                                        64).
-	 */
-	public void setWordSegment(final int wordIndex, final long word, final long mask) {
-		setWord(wordIndex, (mask & word) | (~mask & getWord(wordIndex)));
 	}
 
 	/**
@@ -441,7 +409,7 @@ public class BitSet implements Serializable {
 	 *                                        range 0 to ceiling({@link #size} /
 	 *                                        64).
 	 */
-	public void xorWord(final int wordIndex, final long mask) {
+	public void xOrWord(final int wordIndex, final long mask) {
 		words[wordIndex] ^= mask;
 	}
 
@@ -497,6 +465,24 @@ public class BitSet implements Serializable {
 	}
 
 	/**
+	 * Changes the long word at the specified <b>wordIndex</b> within {@link #words}
+	 * such that it retains the previous state of bits where the bits of <b>mask</b>
+	 * are in the <i>dead</i> state, and takes on the value of bits in <b>word</b>
+	 * where <b>mask</b> has bits in the <i>live</i> state.
+	 * 
+	 * @param wordIndex the index within {@link #words} to change.
+	 * @param word      the new long value to be set to {@link #words}.
+	 * @param mask      the mask used to determine which bits from <b>word</b> will
+	 *                  be applied.
+	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
+	 *                                        range 0 to ceiling({@link #size} /
+	 *                                        64).
+	 */
+	public void setWordSegment(final int wordIndex, final long word, final long mask) {
+		setWord(wordIndex, (mask & word) | (~mask & getWord(wordIndex)));
+	}
+
+	/**
 	 * Changes the long word at <b>wordIndex</b> within {@link #words} to the
 	 * complement of its current state.
 	 * 
@@ -507,112 +493,7 @@ public class BitSet implements Serializable {
 	 *                                        64).
 	 */
 	public final void toggleWord(final int wordIndex) {
-		xorWord(wordIndex, MASK);
-	}
-
-	/**
-	 * Shifts the long word at <b>wordIndex</b> within {@link #words} to the right
-	 * by <b>distance</b> bits. This will have no effect on {@link #hanging} bits.
-	 * 
-	 * @param wordIndex the index within {@link #words} to perform the shift
-	 *                  operation upon.
-	 * @param distance  how far to shift the word in bits.
-	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
-	 *                                        range 0 to ceiling({@link #size} /
-	 *                                        64).
-	 */
-	public void shiftWordRight(final int wordIndex, final int distance) {
-		if (wordIndex == wordCount - 1 && hanging != 0) {
-			setWord(wordIndex, (hangingMask & getWord(wordIndex)) >>> distance);
-		} else {
-			setWord(wordIndex, getWord(wordIndex) >>> distance);
-		}
-	}
-
-	/**
-	 * Shifts the long word at <b>wordIndex</b> within {@link #words} to the left by
-	 * <b>distance</b> bits. This will have no effect on {@link #hanging} bits.
-	 * 
-	 * @param wordIndex the index within {@link #words} to perform the shift
-	 *                  operation upon.
-	 * @param distance  how far to shift the word in bits.
-	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
-	 *                                        range 0 to ceiling({@link #size} /
-	 *                                        64).
-	 */
-	public void shiftWordLeft(final int wordIndex, final int distance) {
-		if (wordIndex == wordCount - 1 && hanging != 0) {
-			setWord(wordIndex, hangingMask & (getWord(wordIndex) << distance));
-		} else {
-			setWord(wordIndex, getWord(wordIndex) << distance);
-		}
-	}
-
-	/**
-	 * Rotates the long word at <b>wordIndex</b> within {@link #words} to the right
-	 * by <b>distance</b> bits.
-	 * 
-	 * @param wordIndex the index within {@link #words} to perform the rotate
-	 *                  operation upon.
-	 * @param distance  how far to rotate the word in bits.
-	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
-	 *                                        range 0 to ceiling({@link #size} /
-	 *                                        64).
-	 */
-	public void rotateWordRight(final int wordIndex, int distance) {
-		if (wordIndex == wordCount - 1 && hanging != 0) {
-			final long word = getWord(wordIndex);
-			if (distance > 0) {
-				setWord(wordIndex, hangingMask & ((word >>> distance) | (word << -(hanging + distance))));
-			} else if (distance < 0) {
-				distance = Math.abs(distance);
-				setWord(wordIndex, hangingMask & ((word << distance) | (word >>> -(hanging + distance))));
-			}
-		} else {
-			setWord(wordIndex, Long.rotateRight(getWord(wordIndex), distance));
-		}
-	}
-
-	/**
-	 * Rotates the long word at <b>wordIndex</b> within {@link #words} to the left
-	 * by <b>distance</b> bits.
-	 * 
-	 * @param wordIndex the index within {@link #words} to perform the rotate
-	 *                  operation upon.
-	 * @param distance  how far to rotate the word in bits.
-	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
-	 *                                        range 0 to ceiling({@link #size} /
-	 *                                        64).
-	 */
-	public void rotateWordLeft(final int wordIndex, int distance) {
-		if (wordIndex == wordCount - 1 && hanging != 0) {
-			final long word = getWord(wordIndex);
-			if (distance > 0) {
-				setWord(wordIndex, hangingMask & ((word << distance) | (word >>> -(hanging + distance))));
-			} else if (distance < 0) {
-				distance = Math.abs(distance);
-				setWord(wordIndex, hangingMask & ((word >>> distance) | (word << -(hanging + distance))));
-			}
-		} else {
-			setWord(wordIndex, Long.rotateLeft(getWord(wordIndex), distance));
-		}
-	}
-
-	/**
-	 * Reverses the long word at <b>wordIndex</b> within {@link #words}.
-	 * 
-	 * @param wordIndex the index within {@link #words} to perform the rotate
-	 *                  operation upon.
-	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
-	 *                                        range 0 to ceiling({@link #size} /
-	 *                                        64).
-	 */
-	public void reverseWord(final int wordIndex) {
-		if (wordIndex == wordCount - 1 && hanging != 0) {
-			setWord(wordIndex, hangingMask & (Long.reverse(getWord(wordIndex)) >>> hanging));
-		} else {
-			setWord(wordIndex, Long.reverse(getWord(wordIndex)));
-		}
+		xOrWord(wordIndex, MASK);
 	}
 
 	/**
@@ -641,6 +522,18 @@ public class BitSet implements Serializable {
 	 */
 	public final void emptyWord(final int wordIndex) {
 		setWord(wordIndex, 0L);
+	}
+
+	/**
+	 * Applies the specified {@link WordFunction} <b>function</b> to the word at the
+	 * specified <b>wordIndex</b>.
+	 * 
+	 * @param wordIndex the index within {@link #words} to apply the function to.
+	 * @param function  the {@link WordFunction} to apply at the specified
+	 *                  <b>wordIndex</b>.
+	 */
+	public void applyFunction(final int wordIndex, final WordFunction function) {
+		setWord(wordIndex, function.apply(getWord(wordIndex)));
 	}
 
 	/**
@@ -723,13 +616,13 @@ public class BitSet implements Serializable {
 		final long startMask = MASK << from;
 		final long endMask = MASK >>> -to;
 		if (start == end) {
-			xorWord(start, random.nextLong() & startMask & endMask);
+			xOrWord(start, random.nextLong() & startMask & endMask);
 		} else {
-			xorWord(start, random.nextLong() & startMask);
+			xOrWord(start, random.nextLong() & startMask);
 			for (int i = start + 1; i < end; i++) {
-				xorWord(i, random.nextLong());
+				xOrWord(i, random.nextLong());
 			}
-			xorWord(end, random.nextLong() & endMask);
+			xOrWord(end, random.nextLong() & endMask);
 		}
 	}
 
@@ -746,7 +639,7 @@ public class BitSet implements Serializable {
 	 */
 	public final void xOrRandomize(final Random random) {
 		for (int i = 0; i < wordCount; i++) {
-			xorWord(i, random.nextLong());
+			xOrWord(i, random.nextLong());
 		}
 	}
 
@@ -805,6 +698,22 @@ public class BitSet implements Serializable {
 	}
 
 	/**
+	 * Calculates the index of the next <i>live</i> bit within a specified
+	 * <b>word</b> that is at the specified <b>wordIndex</b> within {@link #words}.
+	 * This index will represent its bit index in the underlying long array as well
+	 * as the offset within the long <b>word</b>.
+	 * 
+	 * @param word      the long word to be checked for a <i>live</i> bit.
+	 * @param wordIndex the index of the word within {@link #words}.
+	 * @return the index of the next <i>live</i> bit within the specified word, or
+	 *         -1 if none is found.
+	 */
+	private final int nextLiveBit(final long word, final int wordIndex) {
+		final int index = multiplySize(wordIndex) + Long.numberOfTrailingZeros(word);
+		return index < size ? index : -1;
+	}
+
+	/**
 	 * Calculates the index of the most recent <i>live</i> bit before the specified
 	 * <b>index</b>, including that <b>index</b>. If none are found, -1 is returned.
 	 * 
@@ -852,6 +761,22 @@ public class BitSet implements Serializable {
 			}
 		}
 		return -1;
+	}
+
+	/**
+	 * Calculates the index of the recent-most <i>live</i> bit within a specified
+	 * <b>word</b> that is at the specified <b>wordIndex</b> within {@link #words}.
+	 * This index will represent its bit index in the underlying long array as well
+	 * as the offset within the long <b>word</b>.
+	 * 
+	 * @param word      the long word to be checked for a <i>live</i> bit.
+	 * @param wordIndex the index of the word within {@link #words}.
+	 * @return the index of the recent-most <i>live</i> bit within the specified
+	 *         word.
+	 */
+	private final int lastLiveBit(final long word, final int wordIndex) {
+		final int index = multiplySize(wordIndex + 1) - Long.numberOfLeadingZeros(word) - 1;
+		return index < size ? index : -1;
 	}
 
 	/**
@@ -923,7 +848,7 @@ public class BitSet implements Serializable {
 	public final void xor(final BitSet set) {
 		compareSize(set);
 		for (int i = 0; i < wordCount; i++) {
-			xorWord(i, set.getWord(i));
+			xOrWord(i, set.getWord(i));
 		}
 	}
 
@@ -1038,46 +963,14 @@ public class BitSet implements Serializable {
 	}
 
 	/**
-	 * Changes the state of any {@link #hanging} bits to the <i>dead</i> state in
-	 * order to maintain their effect on aggregating functions
-	 * ({@link #population()}, etc).
+	 * Changes the state of any hanging bits to the <i>dead</i> state in order to
+	 * maintain their effect on aggregating functions ({@link #population()}, etc).
 	 */
 	protected final void cleanLastWord() {
+		final int hanging = BitSet.modSize(-size);
 		if (hanging > 0) {
-			andWord(wordCount - 1, hangingMask);
+			andWord(wordCount - 1, MASK >>> hanging);
 		}
-	}
-
-	/**
-	 * Calculates the index of the next <i>live</i> bit within a specified
-	 * <b>word</b> that is at the specified <b>wordIndex</b> within {@link #words}.
-	 * This index will represent its bit index in the underlying long array as well
-	 * as the offset within the long <b>word</b>.
-	 * 
-	 * @param word      the long word to be checked for a <i>live</i> bit.
-	 * @param wordIndex the index of the word within {@link #words}.
-	 * @return the index of the next <i>live</i> bit within the specified word, or
-	 *         -1 if none is found.
-	 */
-	private final int nextLiveBit(final long word, final int wordIndex) {
-		final int index = multiplySize(wordIndex) + Long.numberOfTrailingZeros(word);
-		return index < size ? index : -1;
-	}
-
-	/**
-	 * Calculates the index of the recent-most <i>live</i> bit within a specified
-	 * <b>word</b> that is at the specified <b>wordIndex</b> within {@link #words}.
-	 * This index will represent its bit index in the underlying long array as well
-	 * as the offset within the long <b>word</b>.
-	 * 
-	 * @param word      the long word to be checked for a <i>live</i> bit.
-	 * @param wordIndex the index of the word within {@link #words}.
-	 * @return the index of the recent-most <i>live</i> bit within the specified
-	 *         word.
-	 */
-	private final int lastLiveBit(final long word, final int wordIndex) {
-		final int index = multiplySize(wordIndex + 1) - Long.numberOfLeadingZeros(word) - 1;
-		return index < size ? index : -1;
 	}
 
 	/**

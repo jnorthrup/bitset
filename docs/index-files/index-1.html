@@ -84,15 +84,15 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Performs a global <code>AND</code> operation on all bits in this <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>
  with those in the specified <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/FunctionBiterator.And.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet)">And(BitSet, BitSet)</a></span> - Constructor for class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/FunctionBiterator.And.html" title="class in com.shouldis.bitset.parallel">FunctionBiterator.And</a></dt>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/CompoundBiterator.And.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet)">And(BitSet, BitSet)</a></span> - Constructor for class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/CompoundBiterator.And.html" title="class in com.shouldis.bitset.parallel">CompoundBiterator.And</a></dt>
 <dd>
-<div class="block">Creates a <a href="../com/shouldis/bitset/parallel/FunctionBiterator.And.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator.And</code></a> that will cover all indices of bits
+<div class="block">Creates a <a href="../com/shouldis/bitset/parallel/CompoundBiterator.And.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator.And</code></a> that will cover all indices of bits
  resulting in the <i>live</i> state within the specified <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
  <b>set1</b> and <b>set2</b> after an <code>AND</code> operation.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/FunctionBiterator.And.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">And(BitSet, BitSet, int, int)</a></span> - Constructor for class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/FunctionBiterator.And.html" title="class in com.shouldis.bitset.parallel">FunctionBiterator.And</a></dt>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/CompoundBiterator.And.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">And(BitSet, BitSet, int, int)</a></span> - Constructor for class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/CompoundBiterator.And.html" title="class in com.shouldis.bitset.parallel">CompoundBiterator.And</a></dt>
 <dd>
-<div class="block">Creates a <a href="../com/shouldis/bitset/parallel/FunctionBiterator.And.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator.And</code></a> that will cover indices of bits
+<div class="block">Creates a <a href="../com/shouldis/bitset/parallel/CompoundBiterator.And.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator.And</code></a> that will cover indices of bits
  resulting in the <i>live</i> state within the specified starting and ending
  indices <b>position</b> and <b>end</b> after an <code>AND</code> operation.</div>
 </dd>
@@ -103,6 +103,17 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  <b>wordIndex</b> within <a href="../com/shouldis/bitset/BitSet.html#words"><code>BitSet.words</code></a> and the specified <b>mask</b>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/ConcurrentBitSet.html#andWord(int,long)">andWord(int, long)</a></span> - Method in class com.shouldis.bitset.<a href="../com/shouldis/bitset/ConcurrentBitSet.html" title="class in com.shouldis.bitset">ConcurrentBitSet</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/WordFunction.html#apply(long)">apply(long)</a></span> - Method in interface com.shouldis.bitset.<a href="../com/shouldis/bitset/WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a></dt>
+<dd>
+<div class="block">Function used to perform operations on the words within a <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/BitSet.html#applyFunction(int,com.shouldis.bitset.WordFunction)">applyFunction(int, WordFunction)</a></span> - Method in class com.shouldis.bitset.<a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset">BitSet</a></dt>
+<dd>
+<div class="block">Applies the specified <a href="../com/shouldis/bitset/WordFunction.html" title="interface in com.shouldis.bitset"><code>WordFunction</code></a> <b>function</b> to the word at the
+ specified <b>wordIndex</b>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/ConcurrentBitSet.html#applyFunction(int,com.shouldis.bitset.WordFunction)">applyFunction(int, WordFunction)</a></span> - Method in class com.shouldis.bitset.<a href="../com/shouldis/bitset/ConcurrentBitSet.html" title="class in com.shouldis.bitset">ConcurrentBitSet</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="../com/shouldis/bitset/parallel/ArrayBiterator.html" title="class in com.shouldis.bitset.parallel"><span class="typeNameLink">ArrayBiterator</span></a> - Class in <a href="../com/shouldis/bitset/parallel/package-summary.html">com.shouldis.bitset.parallel</a></dt>
 <dd>

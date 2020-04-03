@@ -104,15 +104,15 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Changes the state of all bits in the specified range to the <i>live</i>
  state.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/FunctionBiterator.html#set1">set1</a></span> - Variable in class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/FunctionBiterator.html" title="class in com.shouldis.bitset.parallel">FunctionBiterator</a></dt>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/CompoundBiterator.html#set1">set1</a></span> - Variable in class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/CompoundBiterator.html" title="class in com.shouldis.bitset.parallel">CompoundBiterator</a></dt>
 <dd>
 <div class="block">The first <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> that will have its words operated on against those
- of <a href="../com/shouldis/bitset/parallel/FunctionBiterator.html#set2"><code>FunctionBiterator.set2</code></a>.</div>
+ of <a href="../com/shouldis/bitset/parallel/CompoundBiterator.html#set2"><code>CompoundBiterator.set2</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/FunctionBiterator.html#set2">set2</a></span> - Variable in class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/FunctionBiterator.html" title="class in com.shouldis.bitset.parallel">FunctionBiterator</a></dt>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/CompoundBiterator.html#set2">set2</a></span> - Variable in class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/CompoundBiterator.html" title="class in com.shouldis.bitset.parallel">CompoundBiterator</a></dt>
 <dd>
 <div class="block">The second <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> that will have its words operated on against those
- of <a href="../com/shouldis/bitset/parallel/FunctionBiterator.html#set1"><code>FunctionBiterator.set1</code></a>.</div>
+ of <a href="../com/shouldis/bitset/parallel/CompoundBiterator.html#set1"><code>CompoundBiterator.set1</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/random/Random.html#setSeed(long)">setSeed(long)</a></span> - Method in class com.shouldis.bitset.random.<a href="../com/shouldis/bitset/random/Random.html" title="class in com.shouldis.bitset.random">Random</a></dt>
 <dd>
@@ -134,20 +134,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/ConcurrentBitSet.html#setWordSegment(int,long,long)">setWordSegment(int, long, long)</a></span> - Method in class com.shouldis.bitset.<a href="../com/shouldis/bitset/ConcurrentBitSet.html" title="class in com.shouldis.bitset">ConcurrentBitSet</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/BitSet.html#shiftWordLeft(int,int)">shiftWordLeft(int, int)</a></span> - Method in class com.shouldis.bitset.<a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset">BitSet</a></dt>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/WordFunction.html#shiftLeft(int)">shiftLeft(int)</a></span> - Static method in interface com.shouldis.bitset.<a href="../com/shouldis/bitset/WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a></dt>
 <dd>
-<div class="block">Shifts the long word at <b>wordIndex</b> within <a href="../com/shouldis/bitset/BitSet.html#words"><code>BitSet.words</code></a> to the left by
- <b>distance</b> bits.</div>
+<div class="block"><a href="../com/shouldis/bitset/WordFunction.html" title="interface in com.shouldis.bitset"><code>WordFunction</code></a> used to shift the bits within the argument <b>word</b>
+ to the left.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/ConcurrentBitSet.html#shiftWordLeft(int,int)">shiftWordLeft(int, int)</a></span> - Method in class com.shouldis.bitset.<a href="../com/shouldis/bitset/ConcurrentBitSet.html" title="class in com.shouldis.bitset">ConcurrentBitSet</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/BitSet.html#shiftWordRight(int,int)">shiftWordRight(int, int)</a></span> - Method in class com.shouldis.bitset.<a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset">BitSet</a></dt>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/WordFunction.html#shiftRight(int)">shiftRight(int)</a></span> - Static method in interface com.shouldis.bitset.<a href="../com/shouldis/bitset/WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a></dt>
 <dd>
-<div class="block">Shifts the long word at <b>wordIndex</b> within <a href="../com/shouldis/bitset/BitSet.html#words"><code>BitSet.words</code></a> to the right
- by <b>distance</b> bits.</div>
+<div class="block"><a href="../com/shouldis/bitset/WordFunction.html" title="interface in com.shouldis.bitset"><code>WordFunction</code></a> used to shift the bits within the argument <b>word</b>
+ to the right.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/ConcurrentBitSet.html#shiftWordRight(int,int)">shiftWordRight(int, int)</a></span> - Method in class com.shouldis.bitset.<a href="../com/shouldis/bitset/ConcurrentBitSet.html" title="class in com.shouldis.bitset">ConcurrentBitSet</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/BitSet.html#size">size</a></span> - Variable in class com.shouldis.bitset.<a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset">BitSet</a></dt>
 <dd>
 <div class="block">The number of indices accessible by this <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>.</div>

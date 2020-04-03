@@ -83,62 +83,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/ArrayBiterator.html#forEachRemaining(java.util.function.IntConsumer)">forEachRemaining(IntConsumer)</a></span> - Method in class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/ArrayBiterator.html" title="class in com.shouldis.bitset.parallel">ArrayBiterator</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/DeadBiterator.html#forEachRemaining(java.util.function.IntConsumer)">forEachRemaining(IntConsumer)</a></span> - Method in class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/DeadBiterator.html" title="class in com.shouldis.bitset.parallel">DeadBiterator</a></dt>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/CompoundBiterator.html#forEachRemaining(java.util.function.IntConsumer)">forEachRemaining(IntConsumer)</a></span> - Method in class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/CompoundBiterator.html" title="class in com.shouldis.bitset.parallel">CompoundBiterator</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/FunctionBiterator.html#forEachRemaining(java.util.function.IntConsumer)">forEachRemaining(IntConsumer)</a></span> - Method in class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/FunctionBiterator.html" title="class in com.shouldis.bitset.parallel">FunctionBiterator</a></dt>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/DeadBiterator.html#forEachRemaining(java.util.function.IntConsumer)">forEachRemaining(IntConsumer)</a></span> - Method in class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/DeadBiterator.html" title="class in com.shouldis.bitset.parallel">DeadBiterator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/LiveBiterator.html#forEachRemaining(java.util.function.IntConsumer)">forEachRemaining(IntConsumer)</a></span> - Method in class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/LiveBiterator.html" title="class in com.shouldis.bitset.parallel">LiveBiterator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/RangeBiterator.html#forEachRemaining(java.util.function.IntConsumer)">forEachRemaining(IntConsumer)</a></span> - Method in class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/RangeBiterator.html" title="class in com.shouldis.bitset.parallel">RangeBiterator</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="../com/shouldis/bitset/parallel/FunctionBiterator.html" title="class in com.shouldis.bitset.parallel"><span class="typeNameLink">FunctionBiterator</span></a> - Class in <a href="../com/shouldis/bitset/parallel/package-summary.html">com.shouldis.bitset.parallel</a></dt>
-<dd>
-<div class="block">Implementation of <a href="../com/shouldis/bitset/parallel/Biterator.html" title="class in com.shouldis.bitset.parallel"><code>Biterator</code></a> that creates a stream of indices that
- represents which bits will be <i>live</i> after performing a
- <a href="../com/shouldis/bitset/parallel/FunctionBiterator.html#bitwiseFunction(long,long)"><code>FunctionBiterator.bitwiseFunction(long, long)</code></a> between the words of 2 <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
- at the same word index.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/FunctionBiterator.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">FunctionBiterator(BitSet, BitSet, int, int)</a></span> - Constructor for class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/FunctionBiterator.html" title="class in com.shouldis.bitset.parallel">FunctionBiterator</a></dt>
-<dd>
-<div class="block">Creates a <a href="../com/shouldis/bitset/parallel/FunctionBiterator.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator</code></a> with the specified starting and ending
- position.</div>
-</dd>
-<dt><a href="../com/shouldis/bitset/parallel/FunctionBiterator.And.html" title="class in com.shouldis.bitset.parallel"><span class="typeNameLink">FunctionBiterator.And</span></a> - Class in <a href="../com/shouldis/bitset/parallel/package-summary.html">com.shouldis.bitset.parallel</a></dt>
-<dd>
-<div class="block">Implementation of <a href="../com/shouldis/bitset/parallel/FunctionBiterator.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator</code></a> used to stream the indices of
- bits that result in the <i>live</i> state after the <code>AND</code> operation,
- splitting at appropriate indices to manipulate a <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</dd>
-<dt><a href="../com/shouldis/bitset/parallel/FunctionBiterator.NotAnd.html" title="class in com.shouldis.bitset.parallel"><span class="typeNameLink">FunctionBiterator.NotAnd</span></a> - Class in <a href="../com/shouldis/bitset/parallel/package-summary.html">com.shouldis.bitset.parallel</a></dt>
-<dd>
-<div class="block">Implementation of <a href="../com/shouldis/bitset/parallel/FunctionBiterator.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator</code></a> used to stream the indices of
- bits that result in the <i>dead</i> state after the <code>AND</code> operation,
- splitting at appropriate indices to manipulate a <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</dd>
-<dt><a href="../com/shouldis/bitset/parallel/FunctionBiterator.NotOr.html" title="class in com.shouldis.bitset.parallel"><span class="typeNameLink">FunctionBiterator.NotOr</span></a> - Class in <a href="../com/shouldis/bitset/parallel/package-summary.html">com.shouldis.bitset.parallel</a></dt>
-<dd>
-<div class="block">Implementation of <a href="../com/shouldis/bitset/parallel/FunctionBiterator.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator</code></a> used to stream the indices of
- bits that result in the <i>dead</i> state after the <code>OR</code> operation,
- splitting at appropriate indices to manipulate a <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</dd>
-<dt><a href="../com/shouldis/bitset/parallel/FunctionBiterator.NotXOr.html" title="class in com.shouldis.bitset.parallel"><span class="typeNameLink">FunctionBiterator.NotXOr</span></a> - Class in <a href="../com/shouldis/bitset/parallel/package-summary.html">com.shouldis.bitset.parallel</a></dt>
-<dd>
-<div class="block">Implementation of <a href="../com/shouldis/bitset/parallel/FunctionBiterator.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator</code></a> used to stream the indices of
- bits that result in the <i>dead</i> state after the <code>XOR</code> operation,
- splitting at appropriate indices to manipulate a <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</dd>
-<dt><a href="../com/shouldis/bitset/parallel/FunctionBiterator.Or.html" title="class in com.shouldis.bitset.parallel"><span class="typeNameLink">FunctionBiterator.Or</span></a> - Class in <a href="../com/shouldis/bitset/parallel/package-summary.html">com.shouldis.bitset.parallel</a></dt>
-<dd>
-<div class="block">Implementation of <a href="../com/shouldis/bitset/parallel/FunctionBiterator.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator</code></a> used to stream the indices of
- bits that result in the <i>live</i> state after the <code>OR</code> operation,
- splitting at appropriate indices to manipulate a <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</dd>
-<dt><a href="../com/shouldis/bitset/parallel/FunctionBiterator.XOr.html" title="class in com.shouldis.bitset.parallel"><span class="typeNameLink">FunctionBiterator.XOr</span></a> - Class in <a href="../com/shouldis/bitset/parallel/package-summary.html">com.shouldis.bitset.parallel</a></dt>
-<dd>
-<div class="block">Implementation of <a href="../com/shouldis/bitset/parallel/FunctionBiterator.html" title="class in com.shouldis.bitset.parallel"><code>FunctionBiterator</code></a> used to stream the indices of
- bits that result in the <i>live</i> state after the <code>XOR</code> operation,
- splitting at appropriate indices to manipulate a <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</dd>
 </dl>
 <a href="index-1.html">A</a>&nbsp;<a href="index-2.html">B</a>&nbsp;<a href="index-3.html">C</a>&nbsp;<a href="index-4.html">D</a>&nbsp;<a href="index-5.html">E</a>&nbsp;<a href="index-6.html">F</a>&nbsp;<a href="index-7.html">G</a>&nbsp;<a href="index-8.html">H</a>&nbsp;<a href="index-9.html">I</a>&nbsp;<a href="index-10.html">L</a>&nbsp;<a href="index-11.html">M</a>&nbsp;<a href="index-12.html">N</a>&nbsp;<a href="index-13.html">O</a>&nbsp;<a href="index-14.html">P</a>&nbsp;<a href="index-15.html">R</a>&nbsp;<a href="index-16.html">S</a>&nbsp;<a href="index-17.html">T</a>&nbsp;<a href="index-18.html">W</a>&nbsp;<a href="index-19.html">X</a>&nbsp;<br><a href="../allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="../allpackages-index.html">All&nbsp;Packages</a></div>
 </main>

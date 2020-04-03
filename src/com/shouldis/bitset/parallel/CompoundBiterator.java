@@ -14,7 +14,7 @@ import com.shouldis.bitset.BitSet;
  * @author Aaron Shouldis
  * @see Biterator
  */
-public abstract class FunctionBiterator extends Biterator {
+public abstract class CompoundBiterator extends Biterator {
 
 	/**
 	 * The first {@link BitSet} that will have its words operated on against those
@@ -29,8 +29,8 @@ public abstract class FunctionBiterator extends Biterator {
 	protected final BitSet set2;
 
 	/**
-	 * Creates a {@link FunctionBiterator} with the specified starting and ending
-	 * position. This {@link FunctionBiterator} will perform bitwise operations on
+	 * Creates a {@link CompoundBiterator} with the specified starting and ending
+	 * position. This {@link CompoundBiterator} will perform bitwise operations on
 	 * the words of the specified {@link BitSet}s.
 	 * 
 	 * @param set1     the first {@link BitSet}, which will be operated on against
@@ -45,7 +45,7 @@ public abstract class FunctionBiterator extends Biterator {
 	 *                                  and <b>set2</b> differ.
 	 * @throws IllegalArgumentException if <b>position</b> is less than 0.
 	 */
-	protected FunctionBiterator(final BitSet set1, final BitSet set2, final int position, final int end) {
+	protected CompoundBiterator(final BitSet set1, final BitSet set2, final int position, final int end) {
 		super(position, end);
 		this.set1 = set1;
 		this.set2 = set2;
@@ -59,7 +59,7 @@ public abstract class FunctionBiterator extends Biterator {
 
 	/**
 	 * Calculates the result of the bitwise operation represented by this
-	 * {@link FunctionBiterator} between the specified words from {@link #set1} and
+	 * {@link CompoundBiterator} between the specified words from {@link #set1} and
 	 * {@link #set2}.
 	 * 
 	 * @param word1 the long word from {@link #set1} to be operated against
@@ -148,18 +148,18 @@ public abstract class FunctionBiterator extends Biterator {
 	}
 
 	/**
-	 * Implementation of {@link FunctionBiterator} used to stream the indices of
+	 * Implementation of {@link CompoundBiterator} used to stream the indices of
 	 * bits that result in the <i>live</i> state after the {@code AND} operation,
 	 * splitting at appropriate indices to manipulate a {@link BitSet} in parallel.
 	 * Words are cached as they are encountered, so any modifications after
 	 * iteration begins may not be included.
 	 * 
-	 * @see FunctionBiterator
+	 * @see CompoundBiterator
 	 */
-	public static final class And extends FunctionBiterator {
+	public static final class And extends CompoundBiterator {
 
 		/**
-		 * Creates a {@link FunctionBiterator.And} that will cover indices of bits
+		 * Creates a {@link CompoundBiterator.And} that will cover indices of bits
 		 * resulting in the <i>live</i> state within the specified starting and ending
 		 * indices <b>position</b> and <b>end</b> after an {@code AND} operation.
 		 * 
@@ -180,7 +180,7 @@ public abstract class FunctionBiterator extends Biterator {
 		}
 
 		/**
-		 * Creates a {@link FunctionBiterator.And} that will cover all indices of bits
+		 * Creates a {@link CompoundBiterator.And} that will cover all indices of bits
 		 * resulting in the <i>live</i> state within the specified {@link BitSet}s
 		 * <b>set1</b> and <b>set2</b> after an {@code AND} operation.
 		 * 
@@ -201,7 +201,7 @@ public abstract class FunctionBiterator extends Biterator {
 			if (estimateSize() < THRESHOLD) {
 				return null;
 			}
-			return new FunctionBiterator.And(set1, set2, position, position = splitIndex());
+			return new CompoundBiterator.And(set1, set2, position, position = splitIndex());
 		}
 
 		@Override
@@ -212,18 +212,18 @@ public abstract class FunctionBiterator extends Biterator {
 	}
 
 	/**
-	 * Implementation of {@link FunctionBiterator} used to stream the indices of
+	 * Implementation of {@link CompoundBiterator} used to stream the indices of
 	 * bits that result in the <i>live</i> state after the {@code OR} operation,
 	 * splitting at appropriate indices to manipulate a {@link BitSet} in parallel.
 	 * Words are cached as they are encountered, so any modifications after
 	 * iteration begins are not accounted for.
 	 * 
-	 * @see FunctionBiterator
+	 * @see CompoundBiterator
 	 */
-	public static final class Or extends FunctionBiterator {
+	public static final class Or extends CompoundBiterator {
 
 		/**
-		 * Creates a {@link FunctionBiterator.Or} that will cover indices of bits
+		 * Creates a {@link CompoundBiterator.Or} that will cover indices of bits
 		 * resulting in the <i>live</i> state within the specified starting and ending
 		 * indices <b>position</b> and <b>end</b> after an {@code OR} operation.
 		 * 
@@ -244,7 +244,7 @@ public abstract class FunctionBiterator extends Biterator {
 		}
 
 		/**
-		 * Creates a {@link FunctionBiterator.Or} that will cover all indices of bits
+		 * Creates a {@link CompoundBiterator.Or} that will cover all indices of bits
 		 * resulting in the <i>live</i> state within the specified {@link BitSet}s
 		 * <b>set1</b> and <b>set2</b> after an {@code OR} operation.
 		 * 
@@ -265,7 +265,7 @@ public abstract class FunctionBiterator extends Biterator {
 			if (estimateSize() < THRESHOLD) {
 				return null;
 			}
-			return new FunctionBiterator.Or(set1, set2, position, position = splitIndex());
+			return new CompoundBiterator.Or(set1, set2, position, position = splitIndex());
 		}
 
 		@Override
@@ -276,18 +276,18 @@ public abstract class FunctionBiterator extends Biterator {
 	}
 
 	/**
-	 * Implementation of {@link FunctionBiterator} used to stream the indices of
+	 * Implementation of {@link CompoundBiterator} used to stream the indices of
 	 * bits that result in the <i>live</i> state after the {@code XOR} operation,
 	 * splitting at appropriate indices to manipulate a {@link BitSet} in parallel.
 	 * Words are cached as they are encountered, so any modifications after
 	 * iteration begins may not be included.
 	 * 
-	 * @see FunctionBiterator
+	 * @see CompoundBiterator
 	 */
-	public static final class XOr extends FunctionBiterator {
+	public static final class XOr extends CompoundBiterator {
 
 		/**
-		 * Creates a {@link FunctionBiterator.And} that will cover indices of bits
+		 * Creates a {@link CompoundBiterator.And} that will cover indices of bits
 		 * resulting in the <i>live</i> state within the specified starting and ending
 		 * indices <b>position</b> and <b>end</b> after an {@code XOR} operation.
 		 * 
@@ -308,7 +308,7 @@ public abstract class FunctionBiterator extends Biterator {
 		}
 
 		/**
-		 * Creates a {@link FunctionBiterator.XOr} that will cover all indices of bits
+		 * Creates a {@link CompoundBiterator.XOr} that will cover all indices of bits
 		 * resulting in the <i>live</i> state within the specified {@link BitSet}s
 		 * <b>set1</b> and <b>set2</b> after an {@code XOR} operation.
 		 * 
@@ -329,7 +329,7 @@ public abstract class FunctionBiterator extends Biterator {
 			if (estimateSize() < THRESHOLD) {
 				return null;
 			}
-			return new FunctionBiterator.XOr(set1, set2, position, position = splitIndex());
+			return new CompoundBiterator.XOr(set1, set2, position, position = splitIndex());
 		}
 
 		@Override
@@ -339,18 +339,18 @@ public abstract class FunctionBiterator extends Biterator {
 	}
 
 	/**
-	 * Implementation of {@link FunctionBiterator} used to stream the indices of
+	 * Implementation of {@link CompoundBiterator} used to stream the indices of
 	 * bits that result in the <i>dead</i> state after the {@code AND} operation,
 	 * splitting at appropriate indices to manipulate a {@link BitSet} in parallel.
 	 * Words are cached as they are encountered, so any modifications after
 	 * iteration begins may not be included.
 	 * 
-	 * @see FunctionBiterator
+	 * @see CompoundBiterator
 	 */
-	public static final class NotAnd extends FunctionBiterator {
+	public static final class NotAnd extends CompoundBiterator {
 
 		/**
-		 * Creates a {@link FunctionBiterator.NotAnd} that will cover indices of bits
+		 * Creates a {@link CompoundBiterator.NotAnd} that will cover indices of bits
 		 * resulting in the <i>dead</i> state within the specified starting and ending
 		 * indices <b>position</b> and <b>end</b> after an {@code AND} operation.
 		 * 
@@ -371,7 +371,7 @@ public abstract class FunctionBiterator extends Biterator {
 		}
 
 		/**
-		 * Creates a {@link FunctionBiterator.NotAnd} that will cover all indices of
+		 * Creates a {@link CompoundBiterator.NotAnd} that will cover all indices of
 		 * bits resulting in the <i>dead</i> state within the specified {@link BitSet}s
 		 * <b>set1</b> and <b>set2</b> after an {@code AND} operation.
 		 * 
@@ -392,7 +392,7 @@ public abstract class FunctionBiterator extends Biterator {
 			if (estimateSize() < THRESHOLD) {
 				return null;
 			}
-			return new FunctionBiterator.NotAnd(set1, set2, position, position = splitIndex());
+			return new CompoundBiterator.NotAnd(set1, set2, position, position = splitIndex());
 		}
 
 		@Override
@@ -403,18 +403,18 @@ public abstract class FunctionBiterator extends Biterator {
 	}
 
 	/**
-	 * Implementation of {@link FunctionBiterator} used to stream the indices of
+	 * Implementation of {@link CompoundBiterator} used to stream the indices of
 	 * bits that result in the <i>dead</i> state after the {@code OR} operation,
 	 * splitting at appropriate indices to manipulate a {@link BitSet} in parallel.
 	 * Words are cached as they are encountered, so any modifications after
 	 * iteration begins are not accounted for.
 	 * 
-	 * @see FunctionBiterator
+	 * @see CompoundBiterator
 	 */
-	public static final class NotOr extends FunctionBiterator {
+	public static final class NotOr extends CompoundBiterator {
 
 		/**
-		 * Creates a {@link FunctionBiterator.NotOr} that will cover indices of bits
+		 * Creates a {@link CompoundBiterator.NotOr} that will cover indices of bits
 		 * resulting in the <i>dead</i> state within the specified starting and ending
 		 * indices <b>position</b> and <b>end</b> after an {@code OR} operation.
 		 * 
@@ -435,7 +435,7 @@ public abstract class FunctionBiterator extends Biterator {
 		}
 
 		/**
-		 * Creates a {@link FunctionBiterator.NotOr} that will cover all indices of bits
+		 * Creates a {@link CompoundBiterator.NotOr} that will cover all indices of bits
 		 * resulting in the <i>dead</i> state within the specified {@link BitSet}s
 		 * <b>set1</b> and <b>set2</b> after an {@code OR} operation.
 		 * 
@@ -456,7 +456,7 @@ public abstract class FunctionBiterator extends Biterator {
 			if (estimateSize() < THRESHOLD) {
 				return null;
 			}
-			return new FunctionBiterator.NotOr(set1, set2, position, position = splitIndex());
+			return new CompoundBiterator.NotOr(set1, set2, position, position = splitIndex());
 		}
 
 		@Override
@@ -467,18 +467,18 @@ public abstract class FunctionBiterator extends Biterator {
 	}
 
 	/**
-	 * Implementation of {@link FunctionBiterator} used to stream the indices of
+	 * Implementation of {@link CompoundBiterator} used to stream the indices of
 	 * bits that result in the <i>dead</i> state after the {@code XOR} operation,
 	 * splitting at appropriate indices to manipulate a {@link BitSet} in parallel.
 	 * Words are cached as they are encountered, so any modifications after
 	 * iteration begins may not be included.
 	 * 
-	 * @see FunctionBiterator
+	 * @see CompoundBiterator
 	 */
-	public static final class NotXOr extends FunctionBiterator {
+	public static final class NotXOr extends CompoundBiterator {
 
 		/**
-		 * Creates a {@link FunctionBiterator.NotXOr} that will cover indices of bits
+		 * Creates a {@link CompoundBiterator.NotXOr} that will cover indices of bits
 		 * resulting in the <i>dead</i> state within the specified starting and ending
 		 * indices <b>position</b> and <b>end</b> after an {@code XOR} operation.
 		 * 
@@ -499,7 +499,7 @@ public abstract class FunctionBiterator extends Biterator {
 		}
 
 		/**
-		 * Creates a {@link FunctionBiterator.XOr} that will cover all indices of bits
+		 * Creates a {@link CompoundBiterator.XOr} that will cover all indices of bits
 		 * resulting in the <i>dead</i> state within the specified {@link BitSet}s
 		 * <b>set1</b> and <b>set2</b> after an {@code XOR} operation.
 		 * 
@@ -520,7 +520,7 @@ public abstract class FunctionBiterator extends Biterator {
 			if (estimateSize() < THRESHOLD) {
 				return null;
 			}
-			return new FunctionBiterator.NotXOr(set1, set2, position, position = splitIndex());
+			return new CompoundBiterator.NotXOr(set1, set2, position, position = splitIndex());
 		}
 
 		@Override
