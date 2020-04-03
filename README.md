@@ -4,26 +4,6 @@ Compact, fixed-sized set data structure for integers. Many applications of BitSe
 ## Documentation
 This library is fully documented -- the JavaDocs are best viewed [here](https://ashouldis.github.io/BitSet/).
 
-## Class Summary
-
-### BitSet
-BitSet implementation focusing on performance.
-
-### ConcurrentBitSet
-BitSet implementation that can be safely operated upon by any number of threads without synchronization.
-
-### Random
-Implementation of the XOrShift64 pseudo-random number generation algorithm providing means to randomize BitSets efficiently.
-
-### DensityRandom
-Implementation of Random that efficiently generates bits that have a specified chance of being in the *live* state, or "density".
-
-### Biterator
-Means of reducing ranges of indices into portions that can be safely operated upon in parallel.
-
-### FunctionBiterator
-Means of efficiently streaming the result of bitwise operations between two BitSets in-place.
-
 ## Benchmark
 Benchmark of the time to read the state of all bits. Easily parallelized using a **Biterator**. Made faster than **java.util.BitSet** in all cases by avoiding range and invariant checks.  
 ![Reading](https://github.com/ashouldis/BitSet/blob/master/benchmark/benchmark_read.png "\Benchmark_Read")  
