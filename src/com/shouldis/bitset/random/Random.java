@@ -362,6 +362,21 @@ public class Random {
 	}
 
 	/**
+	 * Returns the current seed of this {@link Random}. This will be the seed needed
+	 * to set an instance of {@link Random} to the current state of this
+	 * {@link Random} through the {@link #setSeed(long)} method.
+	 * 
+	 * @return the current seed, derived from the current state.
+	 */
+	public final long getSeed() {
+		long seed = state;
+		if (seed != MAGIC_NUMBER) {
+			seed ^= MAGIC_NUMBER;
+		}
+		return seed;
+	}
+
+	/**
 	 * Randomly generates a seed using {@link #SEED_ENTROPY} and the
 	 * {@link System#nanoTime()}.
 	 * 
