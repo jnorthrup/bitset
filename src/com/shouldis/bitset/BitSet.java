@@ -736,7 +736,7 @@ public class BitSet implements Serializable {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public final void xor(final BitSet set) {
+	public final void xOr(final BitSet set) {
 		compareSize(set);
 		for (int i = 0; i < wordCount; i++) {
 			xOrWord(i, set.getWord(i));
