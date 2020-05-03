@@ -166,4 +166,21 @@ public interface WordFunction {
 		};
 	}
 
+	/**
+	 * Creates {@link WordFunction}s that are combinations of two other
+	 * {@link WordFunction}s.
+	 * 
+	 * @param first  the first {@link WordFunction} to be applied to the word
+	 *               argument.
+	 * @param second the second {@link WordFunction} to be applied to the result of
+	 *               <b>first</b>.
+	 * @return a {@link WordFunction} which applies both <b>first</b> and
+	 *         <b>second</b>.
+	 */
+	public static WordFunction combine(final WordFunction first, final WordFunction second) {
+		return (final long word) -> {
+			return second.apply(first.apply(word));
+		};
+	}
+
 }
