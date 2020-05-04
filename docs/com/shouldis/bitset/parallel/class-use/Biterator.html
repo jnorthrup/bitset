@@ -114,70 +114,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../CompoundBiterator.html" title="class in com.shouldis.bitset.parallel">CompoundBiterator</a></span></code></th>
-<td class="colLast">
-<div class="block">Implementation of <a href="../Biterator.html" title="class in com.shouldis.bitset.parallel"><code>Biterator</code></a> that creates a stream of indices that
- represents which bits will be <i>live</i> after performing a
- <a href="../CompoundBiterator.html#bitwiseFunction(long,long)"><code>CompoundBiterator.bitwiseFunction(long, long)</code></a> between the words of 2 <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
- at the same word index.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static class&nbsp;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../CompoundBiterator.And.html" title="class in com.shouldis.bitset.parallel">CompoundBiterator.And</a></span></code></th>
-<td class="colLast">
-<div class="block">Implementation of <a href="../CompoundBiterator.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator</code></a> used to stream the indices of
- bits that result in the <i>live</i> state after the <code>AND</code> operation,
- splitting at appropriate indices to manipulate a <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static class&nbsp;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../CompoundBiterator.NotAnd.html" title="class in com.shouldis.bitset.parallel">CompoundBiterator.NotAnd</a></span></code></th>
-<td class="colLast">
-<div class="block">Implementation of <a href="../CompoundBiterator.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator</code></a> used to stream the indices of
- bits that result in the <i>dead</i> state after the <code>AND</code> operation,
- splitting at appropriate indices to manipulate a <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static class&nbsp;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../CompoundBiterator.NotOr.html" title="class in com.shouldis.bitset.parallel">CompoundBiterator.NotOr</a></span></code></th>
-<td class="colLast">
-<div class="block">Implementation of <a href="../CompoundBiterator.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator</code></a> used to stream the indices of
- bits that result in the <i>dead</i> state after the <code>OR</code> operation,
- splitting at appropriate indices to manipulate a <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static class&nbsp;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../CompoundBiterator.NotXOr.html" title="class in com.shouldis.bitset.parallel">CompoundBiterator.NotXOr</a></span></code></th>
-<td class="colLast">
-<div class="block">Implementation of <a href="../CompoundBiterator.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator</code></a> used to stream the indices of
- bits that result in the <i>dead</i> state after the <code>XOR</code> operation,
- splitting at appropriate indices to manipulate a <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static class&nbsp;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../CompoundBiterator.Or.html" title="class in com.shouldis.bitset.parallel">CompoundBiterator.Or</a></span></code></th>
-<td class="colLast">
-<div class="block">Implementation of <a href="../CompoundBiterator.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator</code></a> used to stream the indices of
- bits that result in the <i>live</i> state after the <code>OR</code> operation,
- splitting at appropriate indices to manipulate a <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static class&nbsp;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../CompoundBiterator.XOr.html" title="class in com.shouldis.bitset.parallel">CompoundBiterator.XOr</a></span></code></th>
-<td class="colLast">
-<div class="block">Implementation of <a href="../CompoundBiterator.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator</code></a> used to stream the indices of
- bits that result in the <i>live</i> state after the <code>XOR</code> operation,
- splitting at appropriate indices to manipulate a <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../DeadBiterator.html" title="class in com.shouldis.bitset.parallel">DeadBiterator</a></span></code></th>
 <td class="colLast">
 <div class="block">Implementation of <a href="../Biterator.html" title="class in com.shouldis.bitset.parallel"><code>Biterator</code></a> used to stream the indices of <i>dead</i>
@@ -185,7 +121,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  a <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../LiveBiterator.html" title="class in com.shouldis.bitset.parallel">LiveBiterator</a></span></code></th>
 <td class="colLast">
@@ -194,7 +130,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  a <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../RangeBiterator.html" title="class in com.shouldis.bitset.parallel">RangeBiterator</a></span></code></th>
 <td class="colLast">
@@ -203,7 +139,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../SizedBiterator.html" title="class in com.shouldis.bitset.parallel">SizedBiterator</a></span></code></th>
 <td class="colLast">

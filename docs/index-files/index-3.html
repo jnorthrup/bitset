@@ -102,54 +102,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Creates <a href="../com/shouldis/bitset/WordFunction.html" title="interface in com.shouldis.bitset"><code>WordFunction</code></a>s that are combinations of two other
  <a href="../com/shouldis/bitset/WordFunction.html" title="interface in com.shouldis.bitset"><code>WordFunction</code></a>s.</div>
 </dd>
-<dt><a href="../com/shouldis/bitset/parallel/CompoundBiterator.html" title="class in com.shouldis.bitset.parallel"><span class="typeNameLink">CompoundBiterator</span></a> - Class in <a href="../com/shouldis/bitset/parallel/package-summary.html">com.shouldis.bitset.parallel</a></dt>
-<dd>
-<div class="block">Implementation of <a href="../com/shouldis/bitset/parallel/Biterator.html" title="class in com.shouldis.bitset.parallel"><code>Biterator</code></a> that creates a stream of indices that
- represents which bits will be <i>live</i> after performing a
- <a href="../com/shouldis/bitset/parallel/CompoundBiterator.html#bitwiseFunction(long,long)"><code>CompoundBiterator.bitwiseFunction(long, long)</code></a> between the words of 2 <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
- at the same word index.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/CompoundBiterator.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">CompoundBiterator(BitSet, BitSet, int, int)</a></span> - Constructor for class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/CompoundBiterator.html" title="class in com.shouldis.bitset.parallel">CompoundBiterator</a></dt>
-<dd>
-<div class="block">Creates a <a href="../com/shouldis/bitset/parallel/CompoundBiterator.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator</code></a> with the specified starting and ending
- position.</div>
-</dd>
-<dt><a href="../com/shouldis/bitset/parallel/CompoundBiterator.And.html" title="class in com.shouldis.bitset.parallel"><span class="typeNameLink">CompoundBiterator.And</span></a> - Class in <a href="../com/shouldis/bitset/parallel/package-summary.html">com.shouldis.bitset.parallel</a></dt>
-<dd>
-<div class="block">Implementation of <a href="../com/shouldis/bitset/parallel/CompoundBiterator.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator</code></a> used to stream the indices of
- bits that result in the <i>live</i> state after the <code>AND</code> operation,
- splitting at appropriate indices to manipulate a <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</dd>
-<dt><a href="../com/shouldis/bitset/parallel/CompoundBiterator.NotAnd.html" title="class in com.shouldis.bitset.parallel"><span class="typeNameLink">CompoundBiterator.NotAnd</span></a> - Class in <a href="../com/shouldis/bitset/parallel/package-summary.html">com.shouldis.bitset.parallel</a></dt>
-<dd>
-<div class="block">Implementation of <a href="../com/shouldis/bitset/parallel/CompoundBiterator.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator</code></a> used to stream the indices of
- bits that result in the <i>dead</i> state after the <code>AND</code> operation,
- splitting at appropriate indices to manipulate a <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</dd>
-<dt><a href="../com/shouldis/bitset/parallel/CompoundBiterator.NotOr.html" title="class in com.shouldis.bitset.parallel"><span class="typeNameLink">CompoundBiterator.NotOr</span></a> - Class in <a href="../com/shouldis/bitset/parallel/package-summary.html">com.shouldis.bitset.parallel</a></dt>
-<dd>
-<div class="block">Implementation of <a href="../com/shouldis/bitset/parallel/CompoundBiterator.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator</code></a> used to stream the indices of
- bits that result in the <i>dead</i> state after the <code>OR</code> operation,
- splitting at appropriate indices to manipulate a <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</dd>
-<dt><a href="../com/shouldis/bitset/parallel/CompoundBiterator.NotXOr.html" title="class in com.shouldis.bitset.parallel"><span class="typeNameLink">CompoundBiterator.NotXOr</span></a> - Class in <a href="../com/shouldis/bitset/parallel/package-summary.html">com.shouldis.bitset.parallel</a></dt>
-<dd>
-<div class="block">Implementation of <a href="../com/shouldis/bitset/parallel/CompoundBiterator.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator</code></a> used to stream the indices of
- bits that result in the <i>dead</i> state after the <code>XOR</code> operation,
- splitting at appropriate indices to manipulate a <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</dd>
-<dt><a href="../com/shouldis/bitset/parallel/CompoundBiterator.Or.html" title="class in com.shouldis.bitset.parallel"><span class="typeNameLink">CompoundBiterator.Or</span></a> - Class in <a href="../com/shouldis/bitset/parallel/package-summary.html">com.shouldis.bitset.parallel</a></dt>
-<dd>
-<div class="block">Implementation of <a href="../com/shouldis/bitset/parallel/CompoundBiterator.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator</code></a> used to stream the indices of
- bits that result in the <i>live</i> state after the <code>OR</code> operation,
- splitting at appropriate indices to manipulate a <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</dd>
-<dt><a href="../com/shouldis/bitset/parallel/CompoundBiterator.XOr.html" title="class in com.shouldis.bitset.parallel"><span class="typeNameLink">CompoundBiterator.XOr</span></a> - Class in <a href="../com/shouldis/bitset/parallel/package-summary.html">com.shouldis.bitset.parallel</a></dt>
-<dd>
-<div class="block">Implementation of <a href="../com/shouldis/bitset/parallel/CompoundBiterator.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator</code></a> used to stream the indices of
- bits that result in the <i>live</i> state after the <code>XOR</code> operation,
- splitting at appropriate indices to manipulate a <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
-</dd>
 <dt><a href="../com/shouldis/bitset/ConcurrentBitSet.html" title="class in com.shouldis.bitset"><span class="typeNameLink">ConcurrentBitSet</span></a> - Class in <a href="../com/shouldis/bitset/package-summary.html">com.shouldis.bitset</a></dt>
 <dd>
 <div class="block">Implementation of <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in which all methods capable of reading or

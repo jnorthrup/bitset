@@ -72,11 +72,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </a>
 <h2 class="title">N</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/CompoundBiterator.html#next(int)">next(int)</a></span> - Method in class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/CompoundBiterator.html" title="class in com.shouldis.bitset.parallel">CompoundBiterator</a></dt>
-<dd>
-<div class="block">Calculates the index of the next <i>live</i> bit after the specified
- <b>index</b>, including that <b>index</b>.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/DeadBiterator.html#next(int)">next(int)</a></span> - Method in class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/DeadBiterator.html" title="class in com.shouldis.bitset.parallel">DeadBiterator</a></dt>
 <dd>
 <div class="block">Calculates the index of the next <i>dead</i> bit after the specified
@@ -201,18 +196,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Performs a global <code>NOT AND</code> operation on all bits in this
  <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> with those in the specified <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/CompoundBiterator.NotAnd.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet)">NotAnd(BitSet, BitSet)</a></span> - Constructor for class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/CompoundBiterator.NotAnd.html" title="class in com.shouldis.bitset.parallel">CompoundBiterator.NotAnd</a></dt>
-<dd>
-<div class="block">Creates a <a href="../com/shouldis/bitset/parallel/CompoundBiterator.NotAnd.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator.NotAnd</code></a> that will cover all indices of
- bits resulting in the <i>dead</i> state within the specified <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
- <b>set1</b> and <b>set2</b> after an <code>AND</code> operation.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/CompoundBiterator.NotAnd.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">NotAnd(BitSet, BitSet, int, int)</a></span> - Constructor for class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/CompoundBiterator.NotAnd.html" title="class in com.shouldis.bitset.parallel">CompoundBiterator.NotAnd</a></dt>
-<dd>
-<div class="block">Creates a <a href="../com/shouldis/bitset/parallel/CompoundBiterator.NotAnd.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator.NotAnd</code></a> that will cover indices of bits
- resulting in the <i>dead</i> state within the specified starting and ending
- indices <b>position</b> and <b>end</b> after an <code>AND</code> operation.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/BitSet.html#notAndWord(int,long)">notAndWord(int, long)</a></span> - Method in class com.shouldis.bitset.<a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset">BitSet</a></dt>
 <dd>
 <div class="block">Changes the long word at <b>wordIndex</b> within <a href="../com/shouldis/bitset/BitSet.html#words"><code>BitSet.words</code></a> to the result
@@ -226,18 +209,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Performs a global <code>NOT OR</code> operation on all bits in this <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>
  with those in the specified <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/CompoundBiterator.NotOr.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet)">NotOr(BitSet, BitSet)</a></span> - Constructor for class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/CompoundBiterator.NotOr.html" title="class in com.shouldis.bitset.parallel">CompoundBiterator.NotOr</a></dt>
-<dd>
-<div class="block">Creates a <a href="../com/shouldis/bitset/parallel/CompoundBiterator.NotOr.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator.NotOr</code></a> that will cover all indices of bits
- resulting in the <i>dead</i> state within the specified <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
- <b>set1</b> and <b>set2</b> after an <code>OR</code> operation.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/CompoundBiterator.NotOr.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">NotOr(BitSet, BitSet, int, int)</a></span> - Constructor for class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/CompoundBiterator.NotOr.html" title="class in com.shouldis.bitset.parallel">CompoundBiterator.NotOr</a></dt>
-<dd>
-<div class="block">Creates a <a href="../com/shouldis/bitset/parallel/CompoundBiterator.NotOr.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator.NotOr</code></a> that will cover indices of bits
- resulting in the <i>dead</i> state within the specified starting and ending
- indices <b>position</b> and <b>end</b> after an <code>OR</code> operation.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/BitSet.html#notOrWord(int,long)">notOrWord(int, long)</a></span> - Method in class com.shouldis.bitset.<a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset">BitSet</a></dt>
 <dd>
 <div class="block">Changes the long word at <b>wordIndex</b> within <a href="../com/shouldis/bitset/BitSet.html#words"><code>BitSet.words</code></a> to the result
@@ -250,18 +221,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Performs a global <code>NOT XOR</code> operation on all bits in this
  <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> with those in the specified <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/CompoundBiterator.NotXOr.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet)">NotXOr(BitSet, BitSet)</a></span> - Constructor for class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/CompoundBiterator.NotXOr.html" title="class in com.shouldis.bitset.parallel">CompoundBiterator.NotXOr</a></dt>
-<dd>
-<div class="block">Creates a <a href="../com/shouldis/bitset/parallel/CompoundBiterator.XOr.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator.XOr</code></a> that will cover all indices of bits
- resulting in the <i>dead</i> state within the specified <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
- <b>set1</b> and <b>set2</b> after an <code>XOR</code> operation.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/CompoundBiterator.NotXOr.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">NotXOr(BitSet, BitSet, int, int)</a></span> - Constructor for class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/CompoundBiterator.NotXOr.html" title="class in com.shouldis.bitset.parallel">CompoundBiterator.NotXOr</a></dt>
-<dd>
-<div class="block">Creates a <a href="../com/shouldis/bitset/parallel/CompoundBiterator.NotXOr.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator.NotXOr</code></a> that will cover indices of bits
- resulting in the <i>dead</i> state within the specified starting and ending
- indices <b>position</b> and <b>end</b> after an <code>XOR</code> operation.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/BitSet.html#notXOrWord(int,long)">notXOrWord(int, long)</a></span> - Method in class com.shouldis.bitset.<a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset">BitSet</a></dt>
 <dd>

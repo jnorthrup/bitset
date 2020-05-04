@@ -305,22 +305,6 @@ int&nbsp;distance)</code></th>
 <div class="block">The <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> that the <i>live</i> bit indices will be calculated from.</div>
 </td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></td>
-<th class="colSecond" scope="row"><span class="typeNameLabel">CompoundBiterator.</span><code><span class="memberNameLink"><a href="../parallel/CompoundBiterator.html#set1">set1</a></span></code></th>
-<td class="colLast">
-<div class="block">The first <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> that will have its words operated on against those
- of <a href="../parallel/CompoundBiterator.html#set2"><code>CompoundBiterator.set2</code></a>.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></td>
-<th class="colSecond" scope="row"><span class="typeNameLabel">CompoundBiterator.</span><code><span class="memberNameLink"><a href="../parallel/CompoundBiterator.html#set2">set2</a></span></code></th>
-<td class="colLast">
-<div class="block">The second <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> that will have its words operated on against those
- of <a href="../parallel/CompoundBiterator.html#set1"><code>CompoundBiterator.set1</code></a>.</div>
-</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -335,43 +319,13 @@ int&nbsp;distance)</code></th>
 </thead>
 <tbody>
 <tr class="altColor">
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/CompoundBiterator.And.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet)">And</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
-<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2)</code></th>
-<td class="colLast">
-<div class="block">Creates a <a href="../parallel/CompoundBiterator.And.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator.And</code></a> that will cover all indices of bits
- resulting in the <i>live</i> state within the specified <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
- <b>set1</b> and <b>set2</b> after an <code>AND</code> operation.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/CompoundBiterator.And.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">And</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
-<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2,
-int&nbsp;position,
-int&nbsp;end)</code></th>
-<td class="colLast">
-<div class="block">Creates a <a href="../parallel/CompoundBiterator.And.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator.And</code></a> that will cover indices of bits
- resulting in the <i>live</i> state within the specified starting and ending
- indices <b>position</b> and <b>end</b> after an <code>AND</code> operation.</div>
-</td>
-</tr>
-<tr class="altColor">
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/CompoundBiterator.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">CompoundBiterator</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
-<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2,
-int&nbsp;position,
-int&nbsp;end)</code></th>
-<td class="colLast">
-<div class="block">Creates a <a href="../parallel/CompoundBiterator.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator</code></a> with the specified starting and ending
- position.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/DeadBiterator.html#%3Cinit%3E(com.shouldis.bitset.BitSet)">DeadBiterator</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
 <td class="colLast">
 <div class="block">Creates a <a href="../parallel/DeadBiterator.html" title="class in com.shouldis.bitset.parallel"><code>DeadBiterator</code></a> that will cover all <i>dead</i> bits within
  the specified <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/DeadBiterator.html#%3Cinit%3E(com.shouldis.bitset.BitSet,int,int)">DeadBiterator</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set,
 int&nbsp;position,
 int&nbsp;end)</code></th>
@@ -380,14 +334,14 @@ int&nbsp;end)</code></th>
  the specified starting and ending indices <b>position</b> and <b>end</b>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/LiveBiterator.html#%3Cinit%3E(com.shouldis.bitset.BitSet)">LiveBiterator</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
 <td class="colLast">
 <div class="block">Creates a <a href="../parallel/LiveBiterator.html" title="class in com.shouldis.bitset.parallel"><code>LiveBiterator</code></a> that will cover all <i>live</i> bits within
  the specified <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/LiveBiterator.html#%3Cinit%3E(com.shouldis.bitset.BitSet,int,int)">LiveBiterator</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set,
 int&nbsp;position,
 int&nbsp;end)</code></th>
@@ -395,106 +349,6 @@ int&nbsp;end)</code></th>
 <div class="block">Creates a <a href="../parallel/LiveBiterator.html" title="class in com.shouldis.bitset.parallel"><code>LiveBiterator</code></a> that will cover all <i>live</i> bits within
  <b>set</b> in the specified starting and ending indices <b>position</b> and
  <b>end</b>.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/CompoundBiterator.NotAnd.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet)">NotAnd</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
-<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2)</code></th>
-<td class="colLast">
-<div class="block">Creates a <a href="../parallel/CompoundBiterator.NotAnd.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator.NotAnd</code></a> that will cover all indices of
- bits resulting in the <i>dead</i> state within the specified <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
- <b>set1</b> and <b>set2</b> after an <code>AND</code> operation.</div>
-</td>
-</tr>
-<tr class="altColor">
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/CompoundBiterator.NotAnd.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">NotAnd</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
-<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2,
-int&nbsp;position,
-int&nbsp;end)</code></th>
-<td class="colLast">
-<div class="block">Creates a <a href="../parallel/CompoundBiterator.NotAnd.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator.NotAnd</code></a> that will cover indices of bits
- resulting in the <i>dead</i> state within the specified starting and ending
- indices <b>position</b> and <b>end</b> after an <code>AND</code> operation.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/CompoundBiterator.NotOr.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet)">NotOr</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
-<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2)</code></th>
-<td class="colLast">
-<div class="block">Creates a <a href="../parallel/CompoundBiterator.NotOr.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator.NotOr</code></a> that will cover all indices of bits
- resulting in the <i>dead</i> state within the specified <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
- <b>set1</b> and <b>set2</b> after an <code>OR</code> operation.</div>
-</td>
-</tr>
-<tr class="altColor">
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/CompoundBiterator.NotOr.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">NotOr</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
-<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2,
-int&nbsp;position,
-int&nbsp;end)</code></th>
-<td class="colLast">
-<div class="block">Creates a <a href="../parallel/CompoundBiterator.NotOr.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator.NotOr</code></a> that will cover indices of bits
- resulting in the <i>dead</i> state within the specified starting and ending
- indices <b>position</b> and <b>end</b> after an <code>OR</code> operation.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/CompoundBiterator.NotXOr.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet)">NotXOr</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
-<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2)</code></th>
-<td class="colLast">
-<div class="block">Creates a <a href="../parallel/CompoundBiterator.XOr.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator.XOr</code></a> that will cover all indices of bits
- resulting in the <i>dead</i> state within the specified <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
- <b>set1</b> and <b>set2</b> after an <code>XOR</code> operation.</div>
-</td>
-</tr>
-<tr class="altColor">
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/CompoundBiterator.NotXOr.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">NotXOr</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
-<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2,
-int&nbsp;position,
-int&nbsp;end)</code></th>
-<td class="colLast">
-<div class="block">Creates a <a href="../parallel/CompoundBiterator.NotXOr.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator.NotXOr</code></a> that will cover indices of bits
- resulting in the <i>dead</i> state within the specified starting and ending
- indices <b>position</b> and <b>end</b> after an <code>XOR</code> operation.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/CompoundBiterator.Or.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet)">Or</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
-<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2)</code></th>
-<td class="colLast">
-<div class="block">Creates a <a href="../parallel/CompoundBiterator.Or.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator.Or</code></a> that will cover all indices of bits
- resulting in the <i>live</i> state within the specified <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
- <b>set1</b> and <b>set2</b> after an <code>OR</code> operation.</div>
-</td>
-</tr>
-<tr class="altColor">
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/CompoundBiterator.Or.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">Or</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
-<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2,
-int&nbsp;position,
-int&nbsp;end)</code></th>
-<td class="colLast">
-<div class="block">Creates a <a href="../parallel/CompoundBiterator.Or.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator.Or</code></a> that will cover indices of bits
- resulting in the <i>live</i> state within the specified starting and ending
- indices <b>position</b> and <b>end</b> after an <code>OR</code> operation.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/CompoundBiterator.XOr.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet)">XOr</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
-<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2)</code></th>
-<td class="colLast">
-<div class="block">Creates a <a href="../parallel/CompoundBiterator.XOr.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator.XOr</code></a> that will cover all indices of bits
- resulting in the <i>live</i> state within the specified <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s
- <b>set1</b> and <b>set2</b> after an <code>XOR</code> operation.</div>
-</td>
-</tr>
-<tr class="altColor">
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../parallel/CompoundBiterator.XOr.html#%3Cinit%3E(com.shouldis.bitset.BitSet,com.shouldis.bitset.BitSet,int,int)">XOr</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set1,
-<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set2,
-int&nbsp;position,
-int&nbsp;end)</code></th>
-<td class="colLast">
-<div class="block">Creates a <a href="../parallel/CompoundBiterator.And.html" title="class in com.shouldis.bitset.parallel"><code>CompoundBiterator.And</code></a> that will cover indices of bits
- resulting in the <i>live</i> state within the specified starting and ending
- indices <b>position</b> and <b>end</b> after an <code>XOR</code> operation.</div>
 </td>
 </tr>
 </tbody>
