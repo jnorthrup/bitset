@@ -2,7 +2,7 @@ package com.shouldis.bitset;
 
 /**
  * Functional interface used in conjunction with
- * {@link BitSet#applyFunction(int, WordFunction)}. {@link #apply(long)} should
+ * {@link BitSet#apply(int, WordFunction)}. {@link #apply(long)} should
  * represent a function used to manipulate the bits within the words of a
  * {@link BitSet}. Useful for performing more complex operations outside the
  * suite of typical bitwise operations.

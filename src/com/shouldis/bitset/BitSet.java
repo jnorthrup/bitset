@@ -529,7 +529,7 @@ public class BitSet implements Serializable {
 	 * @param function  the {@link WordFunction} to apply at the specified
 	 *                  <b>wordIndex</b>.
 	 */
-	public void applyFunction(final int wordIndex, final WordFunction function) {
+	public void apply(final int wordIndex, final WordFunction function) {
 		setWord(wordIndex, function.apply(getWord(wordIndex)));
 	}
 

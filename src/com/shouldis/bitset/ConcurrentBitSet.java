@@ -142,7 +142,7 @@ public final class ConcurrentBitSet extends BitSet {
 	}
 
 	@Override
-	public void applyFunction(final int wordIndex, final WordFunction function) {
+	public void apply(final int wordIndex, final WordFunction function) {
 		long expected, word;
 		do {
 			expected = getWord(wordIndex);
