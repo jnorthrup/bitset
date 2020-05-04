@@ -214,7 +214,8 @@ public class BitSet implements Serializable {
 	/**
 	 * Changes the state of all bits in the specified range to the <i>live</i>
 	 * state. No action is taken if <b>from</b> is greater than or equal to
-	 * <b>to</b>.
+	 * <b>to</b>. {@link ConcurrentBitSet} will only perform this atomically on each
+	 * word within the range individually.
 	 * 
 	 * @param from (inclusive) the index of the first bit to be changed to the
 	 *             <i>live</i> state.
@@ -258,7 +259,8 @@ public class BitSet implements Serializable {
 	/**
 	 * Changes the state of all bits in the specified range to the <i>dead</i>
 	 * state. No action is taken if <b>from</b> is greater than or equal to
-	 * <b>to</b>.
+	 * <b>to</b>. {@link ConcurrentBitSet} will only perform this atomically on each
+	 * word within the range individually.
 	 * 
 	 * @param from (inclusive) the index of the first bit to be cleared.
 	 * @param to   (exclusive) the end of the range of bits to be cleared.
@@ -300,7 +302,8 @@ public class BitSet implements Serializable {
 	/**
 	 * Changes the state of all bits in the specified range to their respective
 	 * opposites through an {@code XOR} operation. No action is taken if <b>from</b>
-	 * is greater than or equal to <b>to</b>.
+	 * is greater than or equal to <b>to</b>. {@link ConcurrentBitSet} will only
+	 * perform this atomically on each word within the range individually.
 	 * 
 	 * @param from (inclusive) the index of the first bit to be toggled.
 	 * @param to   (exclusive) the end of the range of bits to be toggled.

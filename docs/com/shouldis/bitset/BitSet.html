@@ -943,7 +943,8 @@ int&nbsp;to)</span></div>
 int&nbsp;to)</span></div>
 <div class="block">Changes the state of all bits in the specified range to the <i>live</i>
  state. No action is taken if <b>from</b> is greater than or equal to
- <b>to</b>.</div>
+ <b>to</b>. <a href="ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> will only perform this atomically on each
+ word within the range individually.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>from</code> - (inclusive) the index of the first bit to be changed to the
@@ -979,7 +980,8 @@ int&nbsp;to)</span></div>
 int&nbsp;to)</span></div>
 <div class="block">Changes the state of all bits in the specified range to the <i>dead</i>
  state. No action is taken if <b>from</b> is greater than or equal to
- <b>to</b>.</div>
+ <b>to</b>. <a href="ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> will only perform this atomically on each
+ word within the range individually.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>from</code> - (inclusive) the index of the first bit to be cleared.</dd>
@@ -1013,7 +1015,8 @@ int&nbsp;to)</span></div>
 int&nbsp;to)</span></div>
 <div class="block">Changes the state of all bits in the specified range to their respective
  opposites through an <code>XOR</code> operation. No action is taken if <b>from</b>
- is greater than or equal to <b>to</b>.</div>
+ is greater than or equal to <b>to</b>. <a href="ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> will only
+ perform this atomically on each word within the range individually.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>from</code> - (inclusive) the index of the first bit to be toggled.</dd>
