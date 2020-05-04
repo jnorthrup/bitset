@@ -25,7 +25,7 @@ public final class RangeBiterator extends SizedBiterator {
 	 *                                  to <b>end</b>.
 	 * @throws IllegalArgumentException if <b>position</b> is less than 0.
 	 */
-	protected RangeBiterator(final int position, final int end) {
+	public RangeBiterator(final int position, final int end) {
 		super(position, end);
 	}
 
