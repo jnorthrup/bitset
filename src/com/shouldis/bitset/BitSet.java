@@ -16,7 +16,6 @@ import com.shouldis.bitset.parallel.LiveBiterator;
  * underlying long words.
  * <p>
  * The bits represented by this {@link BitSet} will either be in the <i>live</i>
- * state ({@code 1, true}), or the <i>dead</i> state ({@code 0, false}).
  * <p>
  * {@link BitSet} on its own is thread-safe only for read operations, although a
  * {@link com.shouldis.bitset.parallel.Biterator} may be used to stream indices
@@ -703,7 +702,6 @@ public class BitSet implements Serializable {
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
 	public final void and(final BitSet set) {
-		compareSize(set);
 		for (int i = 0; i < wordCount; i++) {
 			andWord(i, set.getWord(i));
 		}
@@ -720,7 +718,6 @@ public class BitSet implements Serializable {
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
 	public final void or(final BitSet set) {
-		compareSize(set);
 		for (int i = 0; i < wordCount; i++) {
 			orWord(i, set.getWord(i));
 		}
@@ -737,7 +734,6 @@ public class BitSet implements Serializable {
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
 	public final void xOr(final BitSet set) {
-		compareSize(set);
 		for (int i = 0; i < wordCount; i++) {
 			xOrWord(i, set.getWord(i));
 		}
@@ -754,7 +750,6 @@ public class BitSet implements Serializable {
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
 	public final void notAnd(final BitSet set) {
-		compareSize(set);
 		for (int i = 0; i < wordCount; i++) {
 			notAndWord(i, set.getWord(i));
 		}
@@ -771,7 +766,6 @@ public class BitSet implements Serializable {
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
 	public final void notOr(final BitSet set) {
-		compareSize(set);
 		for (int i = 0; i < wordCount; i++) {
 			notOrWord(i, set.getWord(i));
 		}
@@ -788,7 +782,6 @@ public class BitSet implements Serializable {
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
 	public final void notXOr(final BitSet set) {
-		compareSize(set);
 		for (int i = 0; i < wordCount; i++) {
 			notXOrWord(i, set.getWord(i));
 		}
@@ -805,7 +798,6 @@ public class BitSet implements Serializable {
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
 	public final void not(final BitSet set) {
-		compareSize(set);
 		for (int i = 0; i < wordCount; i++) {
 			setWord(i, ~set.getWord(i));
 		}
@@ -849,7 +841,6 @@ public class BitSet implements Serializable {
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
 	public final void copy(final BitSet set) {
-		compareSize(set);
 		System.arraycopy(set.words, 0, words, 0, wordCount);
 	}
 
@@ -861,21 +852,6 @@ public class BitSet implements Serializable {
 		final int hanging = BitSet.modSize(-size);
 		if (hanging > 0) {
 			andWord(wordCount - 1, MASK >>> hanging);
-		}
-	}
-
-	/**
-	 * Compares the {@link #size} of this {@link BitSet} with that of the other
-	 * specified {@link BitSet} <b>set</b>. Enforces that they are equal, throwing a
-	 * {@link IllegalArgumentException} otherwise.
-	 * 
-	 * @param set the {@link BitSet} to compare {@link #size}s with.
-	 * @throws NullPointerException           if <b>set</b> is null.
-	 * @throws ArrayIndexOutOfBoundsException if the {@link #size}s are different.
-	 */
-	public final void compareSize(final BitSet set) {
-		if (set.size != size) {
-			throw new ArrayIndexOutOfBoundsException(Math.min(set.wordCount, wordCount) - 1);
 		}
 	}
 
