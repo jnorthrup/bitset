@@ -9,12 +9,10 @@ import com.shouldis.bitset.parallel.DeadBiterator;
 import com.shouldis.bitset.parallel.LiveBiterator;
 
 /**
- * Represents a fixed number of bits stored within an internal long array,
+ * Representation a fixed number of bits stored within an internal long array,
  * mapping positive integer indices to individual bits and facilitating the
  * manipulation of those individual bits or ranges of bits, as well as
- * retrieving their boolean values. Using this memory structure, this class
- * allows grouping of multiple bitwise operations into fewer operations on the
- * underlying long words.
+ * retrieving their boolean values.
  * <p>
  * The bits represented by this {@link BitSet} will either be in the <i>live</i>
  * <p>
