@@ -3,6 +3,8 @@ package com.shouldis.bitset;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.VarHandle;
 
+import com.shouldis.bitset.function.WordFunction;
+
 /**
  * Implementation of {@link BitSet} in which all methods capable of reading or
  * writing the state of bits such as {@link #setWord(int, long)},

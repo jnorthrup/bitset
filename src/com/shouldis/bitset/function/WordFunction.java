@@ -1,4 +1,6 @@
-package com.shouldis.bitset;
+package com.shouldis.bitset.function;
+
+import com.shouldis.bitset.BitSet;
 
 /**
  * Functional interface used in conjunction with
@@ -35,7 +37,8 @@ public interface WordFunction {
 	/**
 	 * {@link WordFunction} used to reverse the order of bits within the argument
 	 * <b>word</b>. Performs the operations of {@link #REVERSE}, but only
-	 * appropriate for the last word of the specified {@link BitSet} <b>set</b>.
+	 * appropriate for the last word of the specified {@link BitSet} <b>set</b>, or
+	 * {@link BitSet}s of the same size.
 	 * 
 	 * @param set the {@link BitSet} to generate the reverse function for.
 	 * @return the function used to reverse the final word in <b>set</b>.
@@ -55,7 +58,7 @@ public interface WordFunction {
 	 * @param distance how far to shift the bits to the right.
 	 * @return a function representing a shift by <b>distance</b> bits.
 	 */
-	public static WordFunction shiftRight(final int distance) {
+	public static WordFunction shiftR(final int distance) {
 		return (final long word) -> {
 			return word >>> distance;
 		};
@@ -63,14 +66,15 @@ public interface WordFunction {
 
 	/**
 	 * {@link WordFunction} used to shift the bits within the argument <b>word</b>
-	 * to the right. Performs the operations of {@link #shiftRight(int)}, but only
-	 * appropriate for the last word of the specified {@link BitSet} <b>set</b>.
+	 * to the right. Performs the operations of {@link #shiftR(int)}, but only
+	 * appropriate for the last word of the specified {@link BitSet} <b>set</b>, or
+	 * {@link BitSet}s of the same size.
 	 * 
 	 * @param set      the {@link BitSet} to generate the right shift function for.
 	 * @param distance how far to shift the bits to the right.
 	 * @return the function used to shift the final word in <b>set</b>.
 	 */
-	public static WordFunction hangingShiftRight(final BitSet set, final int distance) {
+	public static WordFunction hangingShiftR(final BitSet set, final int distance) {
 		final long mask = BitSet.MASK >>> BitSet.modSize(-set.size);
 		return (final long word) -> {
 			return (mask & word) >>> distance;
@@ -84,7 +88,7 @@ public interface WordFunction {
 	 * @param distance how far to shift the bits to the left.
 	 * @return a function representing a shift by <b>distance</b> bits.
 	 */
-	public static WordFunction shiftLeft(final int distance) {
+	public static WordFunction shiftL(final int distance) {
 		return (final long word) -> {
 			return word << distance;
 		};
@@ -92,14 +96,15 @@ public interface WordFunction {
 
 	/**
 	 * {@link WordFunction} used to shift the bits within the argument <b>word</b>
-	 * to the left. Performs the operations of {@link #shiftLeft(int)}, but only
-	 * appropriate for the last word of the specified {@link BitSet} <b>set</b>.
+	 * to the left. Performs the operations of {@link #shiftL(int)}, but only
+	 * appropriate for the last word of the specified {@link BitSet} <b>set</b>, or
+	 * {@link BitSet}s of the same size.
 	 * 
 	 * @param set      the {@link BitSet} to generate the left shift function for.
 	 * @param distance how far to shift the bits to the left.
 	 * @return the function used to shift the final word in <b>set</b>.
 	 */
-	public static WordFunction hangingShiftLeft(final BitSet set, final int distance) {
+	public static WordFunction hangingShiftL(final BitSet set, final int distance) {
 		final long mask = BitSet.MASK >>> BitSet.modSize(-set.size);
 		return (final long word) -> {
 			return mask & (word << distance);
@@ -113,7 +118,7 @@ public interface WordFunction {
 	 * @param distance how far to rotate the bits to the right.
 	 * @return a function representing a shift by <b>distance</b> bits.
 	 */
-	public static WordFunction rotateRight(final int distance) {
+	public static WordFunction rotateR(final int distance) {
 		return (final long word) -> {
 			return Long.rotateRight(word, distance);
 		};
@@ -121,14 +126,15 @@ public interface WordFunction {
 
 	/**
 	 * {@link WordFunction} used to rotate the bits within the argument <b>word</b>
-	 * to the right. Performs the operations of {@link #rotateRight(int)}, but only
-	 * appropriate for the last word of the specified {@link BitSet} <b>set</b>.
+	 * to the right. Performs the operations of {@link #rotateR(int)}, but only
+	 * appropriate for the last word of the specified {@link BitSet} <b>set</b>, or
+	 * {@link BitSet}s of the same size.
 	 * 
 	 * @param set      the {@link BitSet} to generate the right rotate function for.
 	 * @param distance how far to rotate the bits to the right.
 	 * @return the function used to shift the final word in <b>set</b>.
 	 */
-	public static WordFunction hangingRotateRight(final BitSet set, final int distance) {
+	public static WordFunction hangingRotateR(final BitSet set, final int distance) {
 		final long hanging = BitSet.modSize(-set.size);
 		final long mask = BitSet.MASK >>> hanging;
 		return (final long word) -> {
@@ -143,7 +149,7 @@ public interface WordFunction {
 	 * @param distance how far to rotate the bits to the left.
 	 * @return a function representing a shift by <b>distance</b> bits.
 	 */
-	public static WordFunction rotateLeft(final int distance) {
+	public static WordFunction rotateL(final int distance) {
 		return (final long word) -> {
 			return Long.rotateLeft(word, distance);
 		};
@@ -151,14 +157,15 @@ public interface WordFunction {
 
 	/**
 	 * {@link WordFunction} used to rotate the bits within the argument <b>word</b>
-	 * to the left. Performs the operations of {@link #rotateLeft(int)}, but only
-	 * appropriate for the last word of the specified {@link BitSet} <b>set</b>.
+	 * to the left. Performs the operations of {@link #rotateL(int)}, but only
+	 * appropriate for the last word of the specified {@link BitSet} <b>set</b>, or
+	 * {@link BitSet}s of the same size.
 	 * 
 	 * @param set      the {@link BitSet} to generate the left rotate function for.
 	 * @param distance how far to rotate the bits to the left.
 	 * @return the function used to shift the final word in <b>set</b>.
 	 */
-	public static WordFunction hangingRotateLeft(final BitSet set, final int distance) {
+	public static WordFunction hangingRotateL(final BitSet set, final int distance) {
 		final long hanging = BitSet.modSize(-set.size);
 		final long mask = BitSet.MASK >>> hanging;
 		return (final long word) -> {
@@ -167,8 +174,8 @@ public interface WordFunction {
 	}
 
 	/**
-	 * Creates {@link WordFunction}s that are combinations of two other
-	 * {@link WordFunction}s.
+	 * Creates a {@link WordFunction} which performs the two specified
+	 * {@link WordFunction}s <b>first</b> and <b>second</b> in sequence.
 	 * 
 	 * @param first  the first {@link WordFunction} to be applied to the word
 	 *               argument.
