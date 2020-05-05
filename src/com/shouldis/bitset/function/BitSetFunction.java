@@ -33,7 +33,8 @@ public interface BitSetFunction {
 
 	/**
 	 * {@link BitSetFunction} that transforms each bit in the specified
-	 * {@link BitSet} into the complement of its current state.
+	 * {@link BitSet} into the complement of its current state. Returns the same
+	 * {@link BitSet} reference.
 	 */
 	public static final BitSetFunction TOGGLE = (final BitSet set) -> {
 		for (int i = 0; i < set.wordCount; i++) {
@@ -44,7 +45,8 @@ public interface BitSetFunction {
 
 	/**
 	 * {@link BitSetFunction} that transforms each bit in the specified
-	 * {@link BitSet} to the <i>live</i> state.
+	 * {@link BitSet} to the <i>live</i> state. Returns the same {@link BitSet}
+	 * reference.
 	 */
 	public static final BitSetFunction FILL = (final BitSet set) -> {
 		for (int i = 0; i < set.wordCount; i++) {
@@ -55,7 +57,8 @@ public interface BitSetFunction {
 
 	/**
 	 * {@link BitSetFunction} that transforms each bit in the specified
-	 * {@link BitSet} to the <i>dead</i> state.
+	 * {@link BitSet} to the <i>dead</i> state. Returns the same {@link BitSet}
+	 * reference.
 	 */
 	public static final BitSetFunction EMPTY = (final BitSet set) -> {
 		for (int i = 0; i < set.wordCount; i++) {
