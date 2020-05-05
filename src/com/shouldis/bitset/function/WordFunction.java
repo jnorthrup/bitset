@@ -22,13 +22,6 @@ public interface WordFunction {
 	public long apply(final long word);
 
 	/**
-	 * {@link WordFunction} used to invert the bits within the argument <b>word</b>.
-	 */
-	public static final WordFunction NOT = (final long word) -> {
-		return ~word;
-	};
-
-	/**
 	 * {@link WordFunction} used to reverse the order of bits within the argument
 	 * <b>word</b>.
 	 */
@@ -42,6 +35,8 @@ public interface WordFunction {
 	 * 
 	 * @param set the {@link BitSet} to generate the reverse function for.
 	 * @return the function used to reverse the final word in <b>set</b>.
+	 * 
+	 * @throws NullPointerException if <b>set</b> is null.
 	 */
 	public static WordFunction hangingReverse(final BitSet set) {
 		final long hanging = BitSet.modSize(-set.size);
@@ -73,6 +68,8 @@ public interface WordFunction {
 	 * @param set      the {@link BitSet} to generate the right shift function for.
 	 * @param distance how far to shift the bits to the right.
 	 * @return the function used to shift the final word in <b>set</b>.
+	 * 
+	 * @throws NullPointerException if <b>set</b> is null.
 	 */
 	public static WordFunction hangingShiftR(final BitSet set, final int distance) {
 		final long mask = BitSet.MASK >>> BitSet.modSize(-set.size);
@@ -103,6 +100,8 @@ public interface WordFunction {
 	 * @param set      the {@link BitSet} to generate the left shift function for.
 	 * @param distance how far to shift the bits to the left.
 	 * @return the function used to shift the final word in <b>set</b>.
+	 * 
+	 * @throws NullPointerException if <b>set</b> is null.
 	 */
 	public static WordFunction hangingShiftL(final BitSet set, final int distance) {
 		final long mask = BitSet.MASK >>> BitSet.modSize(-set.size);
@@ -133,6 +132,8 @@ public interface WordFunction {
 	 * @param set      the {@link BitSet} to generate the right rotate function for.
 	 * @param distance how far to rotate the bits to the right.
 	 * @return the function used to shift the final word in <b>set</b>.
+	 * 
+	 * @throws NullPointerException if <b>set</b> is null.
 	 */
 	public static WordFunction hangingRotateR(final BitSet set, final int distance) {
 		final long hanging = BitSet.modSize(-set.size);
@@ -164,6 +165,8 @@ public interface WordFunction {
 	 * @param set      the {@link BitSet} to generate the left rotate function for.
 	 * @param distance how far to rotate the bits to the left.
 	 * @return the function used to shift the final word in <b>set</b>.
+	 * 
+	 * @throws NullPointerException if <b>set</b> is null.
 	 */
 	public static WordFunction hangingRotateL(final BitSet set, final int distance) {
 		final long hanging = BitSet.modSize(-set.size);
@@ -183,11 +186,33 @@ public interface WordFunction {
 	 *               <b>first</b>.
 	 * @return a {@link WordFunction} which applies both <b>first</b> and
 	 *         <b>second</b>.
+	 * 
+	 * @throws NullPointerException if <b>first</b> or <b>second</b> are null.
 	 */
 	public static WordFunction combine(final WordFunction first, final WordFunction second) {
 		return (final long word) -> {
 			return second.apply(first.apply(word));
 		};
+	}
+
+	/**
+	 * Creates a {@link WordFunction} which performs the specified array of
+	 * {@link WordFunction}s <b>functions</b> in sequence starting at index 0.
+	 * 
+	 * @param functions the list of {@link WordFunction}s to sequence.
+	 * @return a sequenced {@link WordFunction} containing each of the
+	 *         {@link WordFunction}s in <b>functions</b>.
+	 * 
+	 * @throws NullPointerException if <b>functions</b>, or any of the
+	 *                              {@link WordFunction}s in <b>functions</b> are
+	 *                              null.
+	 */
+	public static WordFunction sequence(final WordFunction... functions) {
+		WordFunction aggregate = functions[0];
+		for (int i = 1; i < functions.length; i++) {
+			aggregate = combine(aggregate, functions[i]);
+		}
+		return aggregate;
 	}
 
 }

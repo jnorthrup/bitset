@@ -806,34 +806,6 @@ public class BitSet implements Serializable {
 	}
 
 	/**
-	 * Transforms each bit in this {@link BitSet} into the complement of its current
-	 * state.
-	 */
-	public final void not() {
-		for (int i = 0; i < wordCount; i++) {
-			toggleWord(i);
-		}
-	}
-
-	/**
-	 * Transforms each bit in this {@link BitSet} to the <i>live</i> state.
-	 */
-	public final void fill() {
-		for (int i = 0; i < wordCount; i++) {
-			fillWord(i);
-		}
-	}
-
-	/**
-	 * Transforms each bit in this {@link BitSet} to the <i>dead</i> state.
-	 */
-	public final void empty() {
-		for (int i = 0; i < wordCount; i++) {
-			emptyWord(i);
-		}
-	}
-
-	/**
 	 * Transforms this {@link BitSet} so that each bit matches the state of that in
 	 * the give <b>set</b>.
 	 * 

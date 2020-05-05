@@ -120,6 +120,30 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> through <a href="../../BitSet.html#%3Cinit%3E(com.shouldis.bitset.BitSet)"><code>BitSet(BitSet)</code></a>.</div>
 </td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="../BitSetFunction.html" title="interface in com.shouldis.bitset.function">BitSetFunction</a></code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">BitSetFunction.</span><code><span class="memberNameLink"><a href="../BitSetFunction.html#EMPTY">EMPTY</a></span></code></th>
+<td class="colLast">
+<div class="block"><a href="../BitSetFunction.html" title="interface in com.shouldis.bitset.function"><code>BitSetFunction</code></a> that transforms each bit in the specified
+ <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> to the <i>dead</i> state.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="../BitSetFunction.html" title="interface in com.shouldis.bitset.function">BitSetFunction</a></code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">BitSetFunction.</span><code><span class="memberNameLink"><a href="../BitSetFunction.html#FILL">FILL</a></span></code></th>
+<td class="colLast">
+<div class="block"><a href="../BitSetFunction.html" title="interface in com.shouldis.bitset.function"><code>BitSetFunction</code></a> that transforms each bit in the specified
+ <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> to the <i>live</i> state.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="../BitSetFunction.html" title="interface in com.shouldis.bitset.function">BitSetFunction</a></code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">BitSetFunction.</span><code><span class="memberNameLink"><a href="../BitSetFunction.html#TOGGLE">TOGGLE</a></span></code></th>
+<td class="colLast">
+<div class="block"><a href="../BitSetFunction.html" title="interface in com.shouldis.bitset.function"><code>BitSetFunction</code></a> that transforms each bit in the specified
+ <a href="../../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> into the complement of its current state.</div>
+</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -143,6 +167,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  <a href="../BitSetFunction.html" title="interface in com.shouldis.bitset.function"><code>BitSetFunction</code></a>s <b>first</b> and <b>second</b> in sequence.</div>
 </td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="../BitSetFunction.html" title="interface in com.shouldis.bitset.function">BitSetFunction</a></code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">BitSetFunction.</span><code><span class="memberNameLink"><a href="../BitSetFunction.html#sequence(com.shouldis.bitset.function.BitSetFunction...)">sequence</a></span>&#8203;(<a href="../BitSetFunction.html" title="interface in com.shouldis.bitset.function">BitSetFunction</a>...&nbsp;functions)</code></th>
+<td class="colLast">
+<div class="block">Creates a <a href="../BitSetFunction.html" title="interface in com.shouldis.bitset.function"><code>BitSetFunction</code></a> which performs the specified array of
+ <a href="../BitSetFunction.html" title="interface in com.shouldis.bitset.function"><code>BitSetFunction</code></a>s <b>functions</b> in sequence starting at index 0.</div>
+</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -164,6 +196,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <td class="colLast">
 <div class="block">Creates a <a href="../BitSetFunction.html" title="interface in com.shouldis.bitset.function"><code>BitSetFunction</code></a> which performs the two specified
  <a href="../BitSetFunction.html" title="interface in com.shouldis.bitset.function"><code>BitSetFunction</code></a>s <b>first</b> and <b>second</b> in sequence.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="../BitSetFunction.html" title="interface in com.shouldis.bitset.function">BitSetFunction</a></code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">BitSetFunction.</span><code><span class="memberNameLink"><a href="../BitSetFunction.html#sequence(com.shouldis.bitset.function.BitSetFunction...)">sequence</a></span>&#8203;(<a href="../BitSetFunction.html" title="interface in com.shouldis.bitset.function">BitSetFunction</a>...&nbsp;functions)</code></th>
+<td class="colLast">
+<div class="block">Creates a <a href="../BitSetFunction.html" title="interface in com.shouldis.bitset.function"><code>BitSetFunction</code></a> which performs the specified array of
+ <a href="../BitSetFunction.html" title="interface in com.shouldis.bitset.function"><code>BitSetFunction</code></a>s <b>functions</b> in sequence starting at index 0.</div>
 </td>
 </tr>
 </tbody>

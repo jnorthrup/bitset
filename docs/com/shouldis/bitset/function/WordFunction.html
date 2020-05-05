@@ -19,7 +19,7 @@
 <script type="text/javascript" src="../../../../script-dir/jquery-ui.js"></script>
 </head>
 <body class="class-declaration">
-<script type="text/javascript">var data = {"i0":6,"i1":1,"i2":1,"i3":1,"i4":1,"i5":1,"i6":1,"i7":1,"i8":1,"i9":1,"i10":1};
+<script type="text/javascript">var data = {"i0":6,"i1":1,"i2":1,"i3":1,"i4":1,"i5":1,"i6":1,"i7":1,"i8":1,"i9":1,"i10":1,"i11":1};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -124,13 +124,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </thead>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>static <a href="WordFunction.html" title="interface in com.shouldis.bitset.function">WordFunction</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#NOT">NOT</a></span></code></th>
-<td class="colLast">
-<div class="block"><a href="WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a> used to invert the bits within the argument <b>word</b>.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code>static <a href="WordFunction.html" title="interface in com.shouldis.bitset.function">WordFunction</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#REVERSE">REVERSE</a></span></code></th>
 <td class="colLast">
@@ -239,13 +232,21 @@ int&nbsp;distance)</code></th>
 </tr>
 <tr class="rowColor" id="i9">
 <td class="colFirst"><code>static <a href="WordFunction.html" title="interface in com.shouldis.bitset.function">WordFunction</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#sequence(com.shouldis.bitset.function.WordFunction...)">sequence</a></span>&#8203;(<a href="WordFunction.html" title="interface in com.shouldis.bitset.function">WordFunction</a>...&nbsp;functions)</code></th>
+<td class="colLast">
+<div class="block">Creates a <a href="WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a> which performs the specified array of
+ <a href="WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a>s <b>functions</b> in sequence starting at index 0.</div>
+</td>
+</tr>
+<tr class="altColor" id="i10">
+<td class="colFirst"><code>static <a href="WordFunction.html" title="interface in com.shouldis.bitset.function">WordFunction</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shiftL(int)">shiftL</a></span>&#8203;(int&nbsp;distance)</code></th>
 <td class="colLast">
 <div class="block"><a href="WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a> used to shift the bits within the argument <b>word</b>
  to the left.</div>
 </td>
 </tr>
-<tr class="altColor" id="i10">
+<tr class="rowColor" id="i11">
 <td class="colFirst"><code>static <a href="WordFunction.html" title="interface in com.shouldis.bitset.function">WordFunction</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shiftR(int)">shiftR</a></span>&#8203;(int&nbsp;distance)</code></th>
 <td class="colLast">
@@ -270,13 +271,6 @@ int&nbsp;distance)</code></th>
 </a>
 <h2>Field Details</h2>
 <ul class="blockList">
-<li class="blockList">
-<section class="detail">
-<h3><a id="NOT">NOT</a></h3>
-<div class="memberSignature"><span class="modifiers">static final</span>&nbsp;<span class="returnType"><a href="WordFunction.html" title="interface in com.shouldis.bitset.function">WordFunction</a></span>&nbsp;<span class="memberName">NOT</span></div>
-<div class="block"><a href="WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a> used to invert the bits within the argument <b>word</b>.</div>
-</section>
-</li>
 <li class="blockList">
 <section class="detail">
 <h3><a id="REVERSE">REVERSE</a></h3>
@@ -321,6 +315,8 @@ int&nbsp;distance)</code></th>
 <dd><code>set</code> - the <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> to generate the reverse function for.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the function used to reverse the final word in <b>set</b>.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.NullPointerException</code> - if <b>set</b> is null.</dd>
 </dl>
 </section>
 </li>
@@ -353,6 +349,8 @@ int&nbsp;distance)</span></div>
 <dd><code>distance</code> - how far to shift the bits to the right.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the function used to shift the final word in <b>set</b>.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.NullPointerException</code> - if <b>set</b> is null.</dd>
 </dl>
 </section>
 </li>
@@ -385,6 +383,8 @@ int&nbsp;distance)</span></div>
 <dd><code>distance</code> - how far to shift the bits to the left.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the function used to shift the final word in <b>set</b>.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.NullPointerException</code> - if <b>set</b> is null.</dd>
 </dl>
 </section>
 </li>
@@ -417,6 +417,8 @@ int&nbsp;distance)</span></div>
 <dd><code>distance</code> - how far to rotate the bits to the right.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the function used to shift the final word in <b>set</b>.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.NullPointerException</code> - if <b>set</b> is null.</dd>
 </dl>
 </section>
 </li>
@@ -449,6 +451,8 @@ int&nbsp;distance)</span></div>
 <dd><code>distance</code> - how far to rotate the bits to the left.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the function used to shift the final word in <b>set</b>.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.NullPointerException</code> - if <b>set</b> is null.</dd>
 </dl>
 </section>
 </li>
@@ -468,6 +472,27 @@ int&nbsp;distance)</span></div>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a <a href="WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a> which applies both <b>first</b> and
          <b>second</b>.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.NullPointerException</code> - if <b>first</b> or <b>second</b> are null.</dd>
+</dl>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="sequence(com.shouldis.bitset.function.WordFunction...)">sequence</a></h3>
+<div class="memberSignature"><span class="modifiers">static</span>&nbsp;<span class="returnType"><a href="WordFunction.html" title="interface in com.shouldis.bitset.function">WordFunction</a></span>&nbsp;<span class="memberName">sequence</span>&#8203;(<span class="arguments"><a href="WordFunction.html" title="interface in com.shouldis.bitset.function">WordFunction</a>...&nbsp;functions)</span></div>
+<div class="block">Creates a <a href="WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a> which performs the specified array of
+ <a href="WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a>s <b>functions</b> in sequence starting at index 0.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>functions</code> - the list of <a href="WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a>s to sequence.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a sequenced <a href="WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a> containing each of the
+         <a href="WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a>s in <b>functions</b>.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.NullPointerException</code> - if <b>functions</b>, or any of the
+                              <a href="WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a>s in <b>functions</b> are
+                              null.</dd>
 </dl>
 </section>
 </li>

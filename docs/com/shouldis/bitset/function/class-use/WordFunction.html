@@ -145,13 +145,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>static <a href="../WordFunction.html" title="interface in com.shouldis.bitset.function">WordFunction</a></code></td>
-<th class="colSecond" scope="row"><span class="typeNameLabel">WordFunction.</span><code><span class="memberNameLink"><a href="../WordFunction.html#NOT">NOT</a></span></code></th>
-<td class="colLast">
-<div class="block"><a href="../WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a> used to invert the bits within the argument <b>word</b>.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static <a href="../WordFunction.html" title="interface in com.shouldis.bitset.function">WordFunction</a></code></td>
 <th class="colSecond" scope="row"><span class="typeNameLabel">WordFunction.</span><code><span class="memberNameLink"><a href="../WordFunction.html#REVERSE">REVERSE</a></span></code></th>
 <td class="colLast">
 <div class="block"><a href="../WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a> used to reverse the order of bits within the argument
@@ -243,13 +236,21 @@ int&nbsp;distance)</code></th>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static <a href="../WordFunction.html" title="interface in com.shouldis.bitset.function">WordFunction</a></code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">WordFunction.</span><code><span class="memberNameLink"><a href="../WordFunction.html#sequence(com.shouldis.bitset.function.WordFunction...)">sequence</a></span>&#8203;(<a href="../WordFunction.html" title="interface in com.shouldis.bitset.function">WordFunction</a>...&nbsp;functions)</code></th>
+<td class="colLast">
+<div class="block">Creates a <a href="../WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a> which performs the specified array of
+ <a href="../WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a>s <b>functions</b> in sequence starting at index 0.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="../WordFunction.html" title="interface in com.shouldis.bitset.function">WordFunction</a></code></td>
 <th class="colSecond" scope="row"><span class="typeNameLabel">WordFunction.</span><code><span class="memberNameLink"><a href="../WordFunction.html#shiftL(int)">shiftL</a></span>&#8203;(int&nbsp;distance)</code></th>
 <td class="colLast">
 <div class="block"><a href="../WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a> used to shift the bits within the argument <b>word</b>
  to the left.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static <a href="../WordFunction.html" title="interface in com.shouldis.bitset.function">WordFunction</a></code></td>
 <th class="colSecond" scope="row"><span class="typeNameLabel">WordFunction.</span><code><span class="memberNameLink"><a href="../WordFunction.html#shiftR(int)">shiftR</a></span>&#8203;(int&nbsp;distance)</code></th>
 <td class="colLast">
@@ -278,6 +279,14 @@ int&nbsp;distance)</code></th>
 <td class="colLast">
 <div class="block">Creates a <a href="../WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a> which performs the two specified
  <a href="../WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a>s <b>first</b> and <b>second</b> in sequence.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="../WordFunction.html" title="interface in com.shouldis.bitset.function">WordFunction</a></code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">WordFunction.</span><code><span class="memberNameLink"><a href="../WordFunction.html#sequence(com.shouldis.bitset.function.WordFunction...)">sequence</a></span>&#8203;(<a href="../WordFunction.html" title="interface in com.shouldis.bitset.function">WordFunction</a>...&nbsp;functions)</code></th>
+<td class="colLast">
+<div class="block">Creates a <a href="../WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a> which performs the specified array of
+ <a href="../WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a>s <b>functions</b> in sequence starting at index 0.</div>
 </td>
 </tr>
 </tbody>
