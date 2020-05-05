@@ -3,6 +3,7 @@ package com.shouldis.bitset;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.VarHandle;
 
+import com.shouldis.bitset.function.BitSetFunction;
 import com.shouldis.bitset.function.WordFunction;
 
 /**
@@ -12,9 +13,9 @@ import com.shouldis.bitset.function.WordFunction;
  * The use of atomic operations allows concurrent modification of this
  * {@link ConcurrentBitSet} without any external synchronization at the cost of
  * processing time. These operations are done by the semantics of
- * {@link VarHandle#setVolatile(Object...)}.
- * <p>
- * All methods have behavior as specified by {@link BitSet}.
+ * {@link VarHandle#setVolatile(Object...)}. Not that global operations such as
+ * {@link BitSetFunction}s, {@link #and(BitSet)}, {@link #or(BitSet)},
+ * {@link #xOr(BitSet)} will only be made atomic on a per-word basis.
  * 
  * @author Aaron Shouldis
  * @see BitSet
