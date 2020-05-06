@@ -1,4 +1,5 @@
 com.shouldis.bitset
+com.shouldis.bitset.chunk
 com.shouldis.bitset.function
 com.shouldis.bitset.parallel
 com.shouldis.bitset.random
