@@ -13,7 +13,7 @@ import com.shouldis.bitset.function.WordFunction;
  * The use of atomic operations allows concurrent modification of this
  * {@link ConcurrentBitSet} without any external synchronization at the cost of
  * processing time. These operations are done by the semantics of
- * {@link VarHandle#setVolatile(Object...)}. Not that global operations such as
+ * {@link VarHandle#setVolatile(Object...)}. Note that global operations such as
  * {@link BitSetFunction}s, {@link #and(BitSet)}, {@link #or(BitSet)},
  * {@link #xOr(BitSet)} will only be made atomic on a per-word basis.
  * 

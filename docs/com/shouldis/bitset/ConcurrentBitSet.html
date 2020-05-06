@@ -110,7 +110,7 @@ extends <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></p
  The use of atomic operations allows concurrent modification of this
  <a href="ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> without any external synchronization at the cost of
  processing time. These operations are done by the semantics of
- <code>VarHandle.setVolatile(Object...)</code>. Not that global operations such as
+ <code>VarHandle.setVolatile(Object...)</code>. Note that global operations such as
  <a href="function/BitSetFunction.html" title="interface in com.shouldis.bitset.function"><code>BitSetFunction</code></a>s, <a href="BitSet.html#and(com.shouldis.bitset.BitSet)"><code>BitSet.and(BitSet)</code></a>, <a href="BitSet.html#or(com.shouldis.bitset.BitSet)"><code>BitSet.or(BitSet)</code></a>,
  <a href="BitSet.html#xOr(com.shouldis.bitset.BitSet)"><code>BitSet.xOr(BitSet)</code></a> will only be made atomic on a per-word basis.</div>
 <dl>
