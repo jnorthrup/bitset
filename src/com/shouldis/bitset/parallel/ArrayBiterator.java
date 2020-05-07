@@ -25,7 +25,8 @@ public final class ArrayBiterator extends SizedBiterator {
 	/**
 	 * Creates a {@link ArrayBiterator} with the specified starting and ending
 	 * indices <b>position</b> and <b>end</b>. The values within the specified range
-	 * of indices within the array <b>items</b> will be processed.
+	 * of indices [<b>from</b>, <b>to</b>) within the array <b>items</b> will be
+	 * processed.
 	 * 
 	 * @param items    the array of indices to be processed.
 	 * @param position (inclusive) the first index to include.

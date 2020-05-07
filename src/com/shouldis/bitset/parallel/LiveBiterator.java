@@ -23,8 +23,7 @@ public final class LiveBiterator extends Biterator {
 
 	/**
 	 * Creates a {@link LiveBiterator} that will cover all <i>live</i> bits within
-	 * <b>set</b> in the specified starting and ending indices <b>position</b> and
-	 * <b>end</b>.
+	 * <b>set</b> in the specified range [<b>position</b>, <b>end</b>).
 	 * 
 	 * @param set      The {@link BitSet} that the <i>live</i> bit indices will be
 	 *                 calculated from.

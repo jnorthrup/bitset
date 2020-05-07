@@ -86,8 +86,7 @@ public final class Chunk implements Serializable {
 
 	/**
 	 * Resolves the x-coordinate corresponding to the specified <b>index</b>. If the
-	 * index is out of the bound [0, {@link #CHUNK_SIZE -1]}, the result is
-	 * undefined.
+	 * index is out of the [0, {@link #CHUNK_SIZE}), the result is undefined.
 	 * 
 	 * @param index the bit index to map to an x-coordinate.
 	 * @return the x-coordinate representation of <b>index</b>.
@@ -98,8 +97,7 @@ public final class Chunk implements Serializable {
 
 	/**
 	 * Resolves the y-coordinate corresponding to the specified <b>index</b>. If the
-	 * index is out of the bound [0, {@link #CHUNK_SIZE -1]}, the result is
-	 * undefined.
+	 * index is out of the range [0, {@link #CHUNK_SIZE}), the result is undefined.
 	 * 
 	 * @param index the bit index to map to an y-coordinate.
 	 * @return the y-coordinate representation of <b>index</b>.
@@ -122,8 +120,8 @@ public final class Chunk implements Serializable {
 
 	/**
 	 * Resolves an x-coordinate and a y-coordinate to a bit index through wrapping.
-	 * {@link #wrap(int)} is used to bound the coordinates in the range [0, 63] as
-	 * if this {@link Chunk} was a torus.
+	 * {@link #wrap(int)} is used to bound the coordinates in the range [0,
+	 * {@link Long#SIZE}) as if this {@link Chunk} was a torus.
 	 * 
 	 * @param x the x-coordinate to resolve to a bit index.
 	 * @param y the y-coordinate to resolve to a bit index.
@@ -136,10 +134,13 @@ public final class Chunk implements Serializable {
 
 	/**
 	 * Resolves an x-coordinate or y-coordinate to a x-coordinate or y-coordinate
-	 * bounding it within the range [0, 63] as if this {@link Chunk} was a torus.
+	 * bounding it within the range [0, {@link Long#SIZE}) as if this {@link Chunk}
+	 * was a torus.
 	 * 
-	 * @param coordinate the coordinate to bound within the range [0, 63].
-	 * @return <b>coordinate</b> after being bound within the range [0, 63].
+	 * @param coordinate the coordinate to bound within the range [0,
+	 *                   {@link Long#SIZE}).
+	 * @return <b>coordinate</b> after being bound within the range [0,
+	 *         {@link Long#SIZE}).
 	 */
 	public static final int wrap(int coordinate) {
 		coordinate = BitSet.modSize(coordinate);

@@ -12,8 +12,8 @@ package com.shouldis.bitset.parallel;
 public abstract class SizedBiterator extends Biterator {
 
 	/**
-	 * Creates a {@link SizedBiterator} with the specified starting and ending
-	 * position.
+	 * Creates a {@link SizedBiterator} with the specified range [<b>position</b>,
+	 * <b>end</b>).
 	 * 
 	 * @param position (inclusive) the first index to include.
 	 * @param end      (exclusive) index after the last index to include.

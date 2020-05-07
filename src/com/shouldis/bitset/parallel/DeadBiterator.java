@@ -23,7 +23,7 @@ public class DeadBiterator extends Biterator {
 
 	/**
 	 * Creates a {@link DeadBiterator} that will cover all <i>dead</i> bits within
-	 * the specified starting and ending indices <b>position</b> and <b>end</b>.
+	 * the specified range [<b>position</b>, <b>end</b>).
 	 * 
 	 * @param set      The {@link BitSet} that the <i>dead</i> bit indices will be
 	 *                 calculated from.

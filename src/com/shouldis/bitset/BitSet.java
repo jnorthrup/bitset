@@ -166,15 +166,16 @@ public class BitSet implements Serializable {
 	}
 
 	/**
-	 * Calculates the number of <i>live</i> bits in the specified range.
+	 * Calculates the number of <i>live</i> bits in the specified range
+	 * [<b>from</b>, <b>to</b>).
 	 * 
 	 * @param from (inclusive) the index of the first bit to be checked.
 	 * @param to   (exclusive) the end of the range of bits to be checked.
 	 * @return the number of <i>live</i> bits inside the specified range, or 0 if
 	 *         <b>from</b> is greater than or equal to <b>to</b>.
 	 * @throws ArrayIndexOutOfBoundsException if <b>from</b> or <b>to</b> are
-	 *                                        outside of the range 0 to
-	 *                                        {@link #size},
+	 *                                        outside of the range [0,
+	 *                                        {@link #size}).
 	 */
 	public final int get(final int from, final int to) {
 		if (from >= to) {
@@ -211,18 +212,18 @@ public class BitSet implements Serializable {
 	}
 
 	/**
-	 * Changes the state of all bits in the specified range to the <i>live</i>
-	 * state. No action is taken if <b>from</b> is greater than or equal to
-	 * <b>to</b>. {@link ConcurrentBitSet} will only perform this atomically on each
-	 * word within the range individually.
+	 * Changes the state of all bits in the specified range [<b>from</b>, <b>to</b>)
+	 * to the <i>live</i> state. No action is taken if <b>from</b> is greater than
+	 * or equal to <b>to</b>. {@link ConcurrentBitSet} will only perform this
+	 * atomically on each word within the range individually.
 	 * 
 	 * @param from (inclusive) the index of the first bit to be changed to the
 	 *             <i>live</i> state.
 	 * @param to   (exclusive) the end of the range of bits to be changed to the
 	 *             <i>live</i> state.
 	 * @throws ArrayIndexOutOfBoundsException if <b>from</b> or <b>to</b> are
-	 *                                        outside of the range 0 to
-	 *                                        {@link #size}.
+	 *                                        outside of the range [0,
+	 *                                        {@link #size}).
 	 */
 	public final void set(final int from, final int to) {
 		if (from >= to) {
@@ -256,16 +257,16 @@ public class BitSet implements Serializable {
 	}
 
 	/**
-	 * Changes the state of all bits in the specified range to the <i>dead</i>
-	 * state. No action is taken if <b>from</b> is greater than or equal to
-	 * <b>to</b>. {@link ConcurrentBitSet} will only perform this atomically on each
-	 * word within the range individually.
+	 * Changes the state of all bits in the specified range [<b>from</b>, <b>to</b>)
+	 * to the <i>dead</i> state. No action is taken if <b>from</b> is greater than
+	 * or equal to <b>to</b>. {@link ConcurrentBitSet} will only perform this
+	 * atomically on each word within the range individually.
 	 * 
 	 * @param from (inclusive) the index of the first bit to be cleared.
 	 * @param to   (exclusive) the end of the range of bits to be cleared.
 	 * @throws ArrayIndexOutOfBoundsException if <b>from</b> or <b>to</b> are
-	 *                                        outside of the range 0 to
-	 *                                        {@link #size}.
+	 *                                        outside of the range [0,
+	 *                                        {@link #size}).
 	 */
 	public final void clear(final int from, final int to) {
 		if (from >= to) {
@@ -299,16 +300,16 @@ public class BitSet implements Serializable {
 	}
 
 	/**
-	 * Changes the state of all bits in the specified range to their respective
-	 * opposites through an {@code XOR} operation. No action is taken if <b>from</b>
-	 * is greater than or equal to <b>to</b>. {@link ConcurrentBitSet} will only
-	 * perform this atomically on each word within the range individually.
+	 * Changes the state of all bits in the specified range [<b>from</b>, <b>to</b>)
+	 * to their opposites through an {@code XOR} operation. No action is taken if
+	 * <b>from</b> is greater than or equal to <b>to</b>. {@link ConcurrentBitSet}
+	 * will only perform this atomically on each word within the range individually.
 	 * 
 	 * @param from (inclusive) the index of the first bit to be toggled.
 	 * @param to   (exclusive) the end of the range of bits to be toggled.
 	 * @throws ArrayIndexOutOfBoundsException if <b>from</b> or <b>to</b> are
-	 *                                        outside of the range 0 to
-	 *                                        {@link #size}.
+	 *                                        outside of the range [0,
+	 *                                        {@link #size}).
 	 */
 	public final void toggle(final int from, final int to) {
 		if (from >= to) {
@@ -336,8 +337,7 @@ public class BitSet implements Serializable {
 	 * @param wordIndex the index within {@link #words} to read.
 	 * @return the raw contents of {@link #words} at the specified <b>wordIndex</b>.
 	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
-	 *                                        range 0 to ceiling({@link #size} /
-	 *                                        64).
+	 *                                        range [0, {@link #wordCount}).
 	 */
 	public long getWord(final int wordIndex) {
 		return words[wordIndex];
@@ -351,8 +351,7 @@ public class BitSet implements Serializable {
 	 * @param word      the long value to be set to {@link #words} at
 	 *                  <b>wordIndex</b>.
 	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
-	 *                                        range 0 to ceiling({@link #size} /
-	 *                                        64).
+	 *                                        range [0, {@link #wordCount}).
 	 */
 	public void setWord(final int wordIndex, final long word) {
 		words[wordIndex] = word;
@@ -369,8 +368,7 @@ public class BitSet implements Serializable {
 	 * @param mask      the mask to use in the {@code AND} operation on the current
 	 *                  value at the specified <b>wordIndex</b>.
 	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
-	 *                                        range 0 to ceiling({@link #size} /
-	 *                                        64).
+	 *                                        range [0, {@link #wordCount}).
 	 */
 	public void andWord(final int wordIndex, final long mask) {
 		words[wordIndex] &= mask;
@@ -387,8 +385,7 @@ public class BitSet implements Serializable {
 	 * @param mask      the mask to use in the {@code OR} operation on the current
 	 *                  value at the specified <b>wordIndex</b>.
 	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
-	 *                                        range 0 to ceiling({@link #size} /
-	 *                                        64).
+	 *                                        range [0, {@link #wordCount}).
 	 */
 	public void orWord(final int wordIndex, final long mask) {
 		words[wordIndex] |= mask;
@@ -405,8 +402,7 @@ public class BitSet implements Serializable {
 	 * @param mask      the mask to use in the {@code XOR} operation on the current
 	 *                  value at the specified <b>wordIndex</b>.
 	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
-	 *                                        range 0 to ceiling({@link #size} /
-	 *                                        64).
+	 *                                        range [0, {@link #wordCount}).
 	 */
 	public void xOrWord(final int wordIndex, final long mask) {
 		words[wordIndex] ^= mask;
@@ -422,8 +418,7 @@ public class BitSet implements Serializable {
 	 * @param mask      the mask to use in the {@code NOT AND} operation on the
 	 *                  current value at the specified <b>wordIndex</b>.
 	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
-	 *                                        range 0 to ceiling({@link #size} /
-	 *                                        64).
+	 *                                        range [0, {@link #wordCount}).
 	 */
 	public void notAndWord(final int wordIndex, final long mask) {
 		words[wordIndex] = ~(words[wordIndex] & mask);
@@ -439,8 +434,7 @@ public class BitSet implements Serializable {
 	 * @param mask      the mask to use in the {@code NOT OR} operation on the
 	 *                  current value at the specified <b>wordIndex</b>.
 	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
-	 *                                        range 0 to ceiling({@link #size} /
-	 *                                        64).
+	 *                                        range [0, {@link #wordCount}).
 	 */
 	public void notOrWord(final int wordIndex, final long mask) {
 		words[wordIndex] = ~(words[wordIndex] | mask);
@@ -456,8 +450,7 @@ public class BitSet implements Serializable {
 	 * @param mask      the mask to use in the {@code NOT XOR} operation on the
 	 *                  current value at the specified <b>wordIndex</b>.
 	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
-	 *                                        range 0 to ceiling({@link #size} /
-	 *                                        64).
+	 *                                        range [0, {@link #wordCount}).
 	 */
 	public void notXOrWord(final int wordIndex, final long mask) {
 		words[wordIndex] = ~(words[wordIndex] ^ mask);
@@ -474,8 +467,7 @@ public class BitSet implements Serializable {
 	 * @param mask      the mask used to determine which bits from <b>word</b> will
 	 *                  be applied.
 	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
-	 *                                        range 0 to ceiling({@link #size} /
-	 *                                        64).
+	 *                                        range [0, {@link #wordCount}).
 	 */
 	public void setWordSegment(final int wordIndex, final long word, final long mask) {
 		setWord(wordIndex, (mask & word) | (~mask & getWord(wordIndex)));
@@ -488,8 +480,7 @@ public class BitSet implements Serializable {
 	 * @param wordIndex the index within {@link #words} to perform the toggle
 	 *                  operation upon.
 	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
-	 *                                        range 0 to ceiling({@link #size} /
-	 *                                        64).
+	 *                                        range [0, {@link #wordCount}).
 	 */
 	public final void toggleWord(final int wordIndex) {
 		xOrWord(wordIndex, MASK);
@@ -502,8 +493,7 @@ public class BitSet implements Serializable {
 	 * @param wordIndex the index within {@link #words} to perform the fill
 	 *                  operation upon.
 	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
-	 *                                        range 0 to ceiling({@link #size} /
-	 *                                        64).
+	 *                                        range [0, {@link #wordCount}).
 	 */
 	public final void fillWord(final int wordIndex) {
 		setWord(wordIndex, MASK);
@@ -516,8 +506,7 @@ public class BitSet implements Serializable {
 	 * @param wordIndex the index within {@link #words} to perform the empty
 	 *                  operation upon.
 	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
-	 *                                        range 0 to ceiling({@link #size} /
-	 *                                        64).
+	 *                                        range [0, {@link #wordCount}).
 	 */
 	public final void emptyWord(final int wordIndex) {
 		setWord(wordIndex, 0L);
@@ -845,8 +834,8 @@ public class BitSet implements Serializable {
 
 	/**
 	 * Calculates what percentage of bits in this {@link BitSet} are in the
-	 * <i>live</i> state in the specified range. No action is taken if <b>from</b>
-	 * is greater than or equal to <b>to</b>.
+	 * <i>live</i> state in the specified range [<b>from</b>, <b>to</b>). No action
+	 * is taken if <b>from</b> is greater than or equal to <b>to</b>.
 	 * 
 	 * @param from (inclusive) the index of the first bit to be checked.
 	 * @param to   (exclusive) the end of the range of bits to be checked.

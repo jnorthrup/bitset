@@ -44,7 +44,8 @@ public abstract class Biterator implements Spliterator.OfInt {
 	protected final int end;
 
 	/**
-	 * Creates a {@link Biterator} with the specified starting and ending position.
+	 * Creates a {@link Biterator} with the specified range [<b>position</b>,
+	 * <b>end</b>).
 	 * 
 	 * @param position (inclusive) the first index to include.
 	 * @param end      (exclusive) index after the last index to include.

@@ -324,8 +324,8 @@ long&nbsp;mask)</code></th>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#clear(int,int)">clear</a></span>&#8203;(int&nbsp;from,
 int&nbsp;to)</code></th>
 <td class="colLast">
-<div class="block">Changes the state of all bits in the specified range to the <i>dead</i>
- state.</div>
+<div class="block">Changes the state of all bits in the specified range [<b>from</b>, <b>to</b>)
+ to the <i>dead</i> state.</div>
 </td>
 </tr>
 <tr class="altColor" id="i8">
@@ -358,7 +358,7 @@ int&nbsp;to)</code></th>
 int&nbsp;to)</code></th>
 <td class="colLast">
 <div class="block">Calculates what percentage of bits in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> are in the
- <i>live</i> state in the specified range.</div>
+ <i>live</i> state in the specified range [<b>from</b>, <b>to</b>).</div>
 </td>
 </tr>
 <tr class="altColor" id="i12">
@@ -401,7 +401,8 @@ int&nbsp;to)</code></th>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#get(int,int)">get</a></span>&#8203;(int&nbsp;from,
 int&nbsp;to)</code></th>
 <td class="colLast">
-<div class="block">Calculates the number of <i>live</i> bits in the specified range.</div>
+<div class="block">Calculates the number of <i>live</i> bits in the specified range
+ [<b>from</b>, <b>to</b>).</div>
 </td>
 </tr>
 <tr class="altColor" id="i18">
@@ -605,8 +606,8 @@ long&nbsp;mask)</code></th>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#set(int,int)">set</a></span>&#8203;(int&nbsp;from,
 int&nbsp;to)</code></th>
 <td class="colLast">
-<div class="block">Changes the state of all bits in the specified range to the <i>live</i>
- state.</div>
+<div class="block">Changes the state of all bits in the specified range [<b>from</b>, <b>to</b>)
+ to the <i>live</i> state.</div>
 </td>
 </tr>
 <tr class="rowColor" id="i43">
@@ -643,8 +644,8 @@ long&nbsp;mask)</code></th>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toggle(int,int)">toggle</a></span>&#8203;(int&nbsp;from,
 int&nbsp;to)</code></th>
 <td class="colLast">
-<div class="block">Changes the state of all bits in the specified range to their respective
- opposites through an <code>XOR</code> operation.</div>
+<div class="block">Changes the state of all bits in the specified range [<b>from</b>, <b>to</b>)
+ to their opposites through an <code>XOR</code> operation.</div>
 </td>
 </tr>
 <tr class="rowColor" id="i47">
@@ -881,7 +882,8 @@ long&nbsp;mask)</code></th>
 <h3><a id="get(int,int)">get</a></h3>
 <div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">get</span>&#8203;(<span class="arguments">int&nbsp;from,
 int&nbsp;to)</span></div>
-<div class="block">Calculates the number of <i>live</i> bits in the specified range.</div>
+<div class="block">Calculates the number of <i>live</i> bits in the specified range
+ [<b>from</b>, <b>to</b>).</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>from</code> - (inclusive) the index of the first bit to be checked.</dd>
@@ -891,8 +893,8 @@ int&nbsp;to)</span></div>
          <b>from</b> is greater than or equal to <b>to</b>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>from</b> or <b>to</b> are
-                                        outside of the range 0 to
-                                        <a href="#size"><code>size</code></a>,</dd>
+                                        outside of the range [0,
+                                        <a href="#size"><code>size</code></a>).</dd>
 </dl>
 </section>
 </li>
@@ -917,10 +919,10 @@ int&nbsp;to)</span></div>
 <h3><a id="set(int,int)">set</a></h3>
 <div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">set</span>&#8203;(<span class="arguments">int&nbsp;from,
 int&nbsp;to)</span></div>
-<div class="block">Changes the state of all bits in the specified range to the <i>live</i>
- state. No action is taken if <b>from</b> is greater than or equal to
- <b>to</b>. <a href="ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> will only perform this atomically on each
- word within the range individually.</div>
+<div class="block">Changes the state of all bits in the specified range [<b>from</b>, <b>to</b>)
+ to the <i>live</i> state. No action is taken if <b>from</b> is greater than
+ or equal to <b>to</b>. <a href="ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> will only perform this
+ atomically on each word within the range individually.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>from</code> - (inclusive) the index of the first bit to be changed to the
@@ -929,8 +931,8 @@ int&nbsp;to)</span></div>
              <i>live</i> state.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>from</b> or <b>to</b> are
-                                        outside of the range 0 to
-                                        <a href="#size"><code>size</code></a>.</dd>
+                                        outside of the range [0,
+                                        <a href="#size"><code>size</code></a>).</dd>
 </dl>
 </section>
 </li>
@@ -954,18 +956,18 @@ int&nbsp;to)</span></div>
 <h3><a id="clear(int,int)">clear</a></h3>
 <div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">clear</span>&#8203;(<span class="arguments">int&nbsp;from,
 int&nbsp;to)</span></div>
-<div class="block">Changes the state of all bits in the specified range to the <i>dead</i>
- state. No action is taken if <b>from</b> is greater than or equal to
- <b>to</b>. <a href="ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> will only perform this atomically on each
- word within the range individually.</div>
+<div class="block">Changes the state of all bits in the specified range [<b>from</b>, <b>to</b>)
+ to the <i>dead</i> state. No action is taken if <b>from</b> is greater than
+ or equal to <b>to</b>. <a href="ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> will only perform this
+ atomically on each word within the range individually.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>from</code> - (inclusive) the index of the first bit to be cleared.</dd>
 <dd><code>to</code> - (exclusive) the end of the range of bits to be cleared.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>from</b> or <b>to</b> are
-                                        outside of the range 0 to
-                                        <a href="#size"><code>size</code></a>.</dd>
+                                        outside of the range [0,
+                                        <a href="#size"><code>size</code></a>).</dd>
 </dl>
 </section>
 </li>
@@ -989,18 +991,18 @@ int&nbsp;to)</span></div>
 <h3><a id="toggle(int,int)">toggle</a></h3>
 <div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">toggle</span>&#8203;(<span class="arguments">int&nbsp;from,
 int&nbsp;to)</span></div>
-<div class="block">Changes the state of all bits in the specified range to their respective
- opposites through an <code>XOR</code> operation. No action is taken if <b>from</b>
- is greater than or equal to <b>to</b>. <a href="ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> will only
- perform this atomically on each word within the range individually.</div>
+<div class="block">Changes the state of all bits in the specified range [<b>from</b>, <b>to</b>)
+ to their opposites through an <code>XOR</code> operation. No action is taken if
+ <b>from</b> is greater than or equal to <b>to</b>. <a href="ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a>
+ will only perform this atomically on each word within the range individually.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>from</code> - (inclusive) the index of the first bit to be toggled.</dd>
 <dd><code>to</code> - (exclusive) the end of the range of bits to be toggled.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>from</b> or <b>to</b> are
-                                        outside of the range 0 to
-                                        <a href="#size"><code>size</code></a>.</dd>
+                                        outside of the range [0,
+                                        <a href="#size"><code>size</code></a>).</dd>
 </dl>
 </section>
 </li>
@@ -1017,8 +1019,7 @@ int&nbsp;to)</span></div>
 <dd>the raw contents of <a href="#words"><code>words</code></a> at the specified <b>wordIndex</b>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
-                                        range 0 to ceiling(<a href="#size"><code>size</code></a> /
-                                        64).</dd>
+                                        range [0, <a href="#wordCount"><code>wordCount</code></a>).</dd>
 </dl>
 </section>
 </li>
@@ -1036,8 +1037,7 @@ long&nbsp;word)</span></div>
                   <b>wordIndex</b>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
-                                        range 0 to ceiling(<a href="#size"><code>size</code></a> /
-                                        64).</dd>
+                                        range [0, <a href="#wordCount"><code>wordCount</code></a>).</dd>
 </dl>
 </section>
 </li>
@@ -1058,8 +1058,7 @@ long&nbsp;mask)</span></div>
                   value at the specified <b>wordIndex</b>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
-                                        range 0 to ceiling(<a href="#size"><code>size</code></a> /
-                                        64).</dd>
+                                        range [0, <a href="#wordCount"><code>wordCount</code></a>).</dd>
 </dl>
 </section>
 </li>
@@ -1080,8 +1079,7 @@ long&nbsp;mask)</span></div>
                   value at the specified <b>wordIndex</b>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
-                                        range 0 to ceiling(<a href="#size"><code>size</code></a> /
-                                        64).</dd>
+                                        range [0, <a href="#wordCount"><code>wordCount</code></a>).</dd>
 </dl>
 </section>
 </li>
@@ -1102,8 +1100,7 @@ long&nbsp;mask)</span></div>
                   value at the specified <b>wordIndex</b>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
-                                        range 0 to ceiling(<a href="#size"><code>size</code></a> /
-                                        64).</dd>
+                                        range [0, <a href="#wordCount"><code>wordCount</code></a>).</dd>
 </dl>
 </section>
 </li>
@@ -1123,8 +1120,7 @@ long&nbsp;mask)</span></div>
                   current value at the specified <b>wordIndex</b>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
-                                        range 0 to ceiling(<a href="#size"><code>size</code></a> /
-                                        64).</dd>
+                                        range [0, <a href="#wordCount"><code>wordCount</code></a>).</dd>
 </dl>
 </section>
 </li>
@@ -1144,8 +1140,7 @@ long&nbsp;mask)</span></div>
                   current value at the specified <b>wordIndex</b>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
-                                        range 0 to ceiling(<a href="#size"><code>size</code></a> /
-                                        64).</dd>
+                                        range [0, <a href="#wordCount"><code>wordCount</code></a>).</dd>
 </dl>
 </section>
 </li>
@@ -1165,8 +1160,7 @@ long&nbsp;mask)</span></div>
                   current value at the specified <b>wordIndex</b>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
-                                        range 0 to ceiling(<a href="#size"><code>size</code></a> /
-                                        64).</dd>
+                                        range [0, <a href="#wordCount"><code>wordCount</code></a>).</dd>
 </dl>
 </section>
 </li>
@@ -1188,8 +1182,7 @@ long&nbsp;mask)</span></div>
                   be applied.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
-                                        range 0 to ceiling(<a href="#size"><code>size</code></a> /
-                                        64).</dd>
+                                        range [0, <a href="#wordCount"><code>wordCount</code></a>).</dd>
 </dl>
 </section>
 </li>
@@ -1205,8 +1198,7 @@ long&nbsp;mask)</span></div>
                   operation upon.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
-                                        range 0 to ceiling(<a href="#size"><code>size</code></a> /
-                                        64).</dd>
+                                        range [0, <a href="#wordCount"><code>wordCount</code></a>).</dd>
 </dl>
 </section>
 </li>
@@ -1222,8 +1214,7 @@ long&nbsp;mask)</span></div>
                   operation upon.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
-                                        range 0 to ceiling(<a href="#size"><code>size</code></a> /
-                                        64).</dd>
+                                        range [0, <a href="#wordCount"><code>wordCount</code></a>).</dd>
 </dl>
 </section>
 </li>
@@ -1239,8 +1230,7 @@ long&nbsp;mask)</span></div>
                   operation upon.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>wordIndex</b> is outside of the
-                                        range 0 to ceiling(<a href="#size"><code>size</code></a> /
-                                        64).</dd>
+                                        range [0, <a href="#wordCount"><code>wordCount</code></a>).</dd>
 </dl>
 </section>
 </li>
@@ -1543,8 +1533,8 @@ int&nbsp;wordIndex)</span></div>
 <div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">double</span>&nbsp;<span class="memberName">density</span>&#8203;(<span class="arguments">int&nbsp;from,
 int&nbsp;to)</span></div>
 <div class="block">Calculates what percentage of bits in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> are in the
- <i>live</i> state in the specified range. No action is taken if <b>from</b>
- is greater than or equal to <b>to</b>.</div>
+ <i>live</i> state in the specified range [<b>from</b>, <b>to</b>). No action
+ is taken if <b>from</b> is greater than or equal to <b>to</b>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>from</code> - (inclusive) the index of the first bit to be checked.</dd>

@@ -303,7 +303,8 @@ int&nbsp;depth)</code></th>
 <td class="colFirst"><code>private static int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#boundDepth(int)">boundDepth</a></span>&#8203;(int&nbsp;depth)</code></th>
 <td class="colLast">
-<div class="block">Ensures that the specified <b>depth</b> is within the range [1, 63].</div>
+<div class="block">Ensures that the specified <b>depth</b> is within the range [1,
+ <code>Long.SIZE</code>).</div>
 </td>
 </tr>
 <tr class="altColor" id="i2">
@@ -395,8 +396,9 @@ int&nbsp;depth)</code></th>
 <h3><a id="depth">depth</a></h3>
 <div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">depth</span></div>
 <div class="block">The depth, or number of operations performed in order to achieve an
- estimation of <a href="#density"><code>density</code></a>. This value is bounded to the range [1, 63] by
- <a href="#boundDepth(int)"><code>boundDepth(int)</code></a>, resulting in an accuracy of up to 2<sup>-64</sup>.</div>
+ estimation of <a href="#density"><code>density</code></a>. This value is bounded to the range [1,
+ <code>Long.SIZE</code>) by <a href="#boundDepth(int)"><code>boundDepth(int)</code></a>, resulting in an accuracy of
+ up to 2<sup>-64</sup>.</div>
 </section>
 </li>
 <li class="blockList">
@@ -445,7 +447,7 @@ long&nbsp;seed)</span></div>
  <b>density</b>, <b>depth</b>, and <b>seed</b>. <b>density</b> will be bounded
  by <a href="#boundDensity(double,int)"><code>boundDensity(double, int)</code></a> to ensure it is always a valid
  percentage. <b>depth</b> will be bounded by <a href="#boundDepth(int)"><code>boundDepth(int)</code></a> to
- ensure it is with in the range [1, 63].
+ ensure it is with in the range [1, <code>Long.SIZE</code>).
  <p>
  <a href="#nextInt()"><code>nextInt()</code></a>, <a href="#nextLong()"><code>nextLong()</code></a>, and <a href="#nextBoolean()"><code>nextBoolean()</code></a> of this
  <a href="DensityRandom.html" title="class in com.shouldis.bitset.random"><code>DensityRandom</code></a> will generate <i>live</i> bits at a rate determined by
@@ -471,7 +473,7 @@ int&nbsp;depth)</span></div>
  <b>density</b> and <b>depth</b>. <b>density</b> will be bounded by
  <a href="#boundDensity(double,int)"><code>boundDensity(double, int)</code></a> to ensure it is always a valid percentage.
  <b>depth</b> will be bounded by <a href="#boundDepth(int)"><code>boundDepth(int)</code></a> to ensure it is with
- in the range [1, 63].
+ in the range [1, <code>Long.SIZE</code>).
  <p>
  <a href="#nextInt()"><code>nextInt()</code></a>, <a href="#nextLong()"><code>nextLong()</code></a>, and <a href="#nextBoolean()"><code>nextBoolean()</code></a> of this
  <a href="DensityRandom.html" title="class in com.shouldis.bitset.random"><code>DensityRandom</code></a> will generate <i>live</i> bits at a rate determined by
@@ -497,7 +499,7 @@ long&nbsp;seed)</span></div>
  bounded by <a href="#boundDensity(double,int)"><code>boundDensity(double, int)</code></a> to ensure it is always a valid
  percentage. <b>tolerance</b> will be used to compute a <a href="#depth"><code>depth</code></a>, which
  will then be bounded by <a href="#boundDepth(int)"><code>boundDepth(int)</code></a> to ensure it is with in the
- range [1, 63].
+ range [1, <code>Long.SIZE</code>).
  <p>
  <a href="#nextInt()"><code>nextInt()</code></a>, <a href="#nextLong()"><code>nextLong()</code></a>, and <a href="#nextBoolean()"><code>nextBoolean()</code></a> of this
  <a href="DensityRandom.html" title="class in com.shouldis.bitset.random"><code>DensityRandom</code></a> will generate <i>live</i> bits at a rate determined by
@@ -525,7 +527,7 @@ double&nbsp;tolerance)</span></div>
  <a href="#boundDensity(double,int)"><code>boundDensity(double, int)</code></a> to ensure it is always a valid percentage.
  <b>tolerance</b> will be used to compute a <a href="#depth"><code>depth</code></a>, which will then be
  bounded by <a href="#boundDepth(int)"><code>boundDepth(int)</code></a> to ensure it is with in the range [1,
- 63].
+ <code>Long.SIZE</code>).
  <p>
  <a href="#nextInt()"><code>nextInt()</code></a>, <a href="#nextLong()"><code>nextLong()</code></a>, and <a href="#nextBoolean()"><code>nextBoolean()</code></a> of this
  <a href="DensityRandom.html" title="class in com.shouldis.bitset.random"><code>DensityRandom</code></a> will generate <i>live</i> bits at a rate determined by
@@ -665,7 +667,8 @@ int&nbsp;depth)</span></div>
 <section class="detail">
 <h3><a id="boundDepth(int)">boundDepth</a></h3>
 <div class="memberSignature"><span class="modifiers">private static final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">boundDepth</span>&#8203;(<span class="arguments">int&nbsp;depth)</span></div>
-<div class="block">Ensures that the specified <b>depth</b> is within the range [1, 63].</div>
+<div class="block">Ensures that the specified <b>depth</b> is within the range [1,
+ <code>Long.SIZE</code>).</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>depth</code> - the value to bound, representing the max number of operations.</dd>

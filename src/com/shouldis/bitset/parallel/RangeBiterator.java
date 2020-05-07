@@ -16,8 +16,8 @@ import com.shouldis.bitset.BitSet;
 public final class RangeBiterator extends SizedBiterator {
 
 	/**
-	 * Creates a {@link RangeBiterator} with the specified starting and ending at
-	 * the specified <b>position</b> and <b>end</b> indices.
+	 * Creates a {@link RangeBiterator} with the specified range [<b>position</b>,
+	 * <b>end</b>).
 	 * 
 	 * @param position (inclusive) the first index to include.
 	 * @param end      (exclusive) the index after the last index to include.

@@ -63,8 +63,9 @@ public class DensityRandom extends Random {
 
 	/**
 	 * The depth, or number of operations performed in order to achieve an
-	 * estimation of {@link #density}. This value is bounded to the range [1, 63] by
-	 * {@link #boundDepth(int)}, resulting in an accuracy of up to 2<sup>-64</sup>.
+	 * estimation of {@link #density}. This value is bounded to the range [1,
+	 * {@link Long#SIZE}) by {@link #boundDepth(int)}, resulting in an accuracy of
+	 * up to 2<sup>-64</sup>.
 	 */
 	public final int depth;
 
@@ -93,7 +94,7 @@ public class DensityRandom extends Random {
 	 * <b>density</b>, <b>depth</b>, and <b>seed</b>. <b>density</b> will be bounded
 	 * by {@link #boundDensity(double, int)} to ensure it is always a valid
 	 * percentage. <b>depth</b> will be bounded by {@link #boundDepth(int)} to
-	 * ensure it is with in the range [1, 63].
+	 * ensure it is with in the range [1, {@link Long#SIZE}).
 	 * <p>
 	 * {@link #nextInt()}, {@link #nextLong()}, and {@link #nextBoolean()} of this
 	 * {@link DensityRandom} will generate <i>live</i> bits at a rate determined by
@@ -124,7 +125,7 @@ public class DensityRandom extends Random {
 	 * <b>density</b> and <b>depth</b>. <b>density</b> will be bounded by
 	 * {@link #boundDensity(double, int)} to ensure it is always a valid percentage.
 	 * <b>depth</b> will be bounded by {@link #boundDepth(int)} to ensure it is with
-	 * in the range [1, 63].
+	 * in the range [1, {@link Long#SIZE}).
 	 * <p>
 	 * {@link #nextInt()}, {@link #nextLong()}, and {@link #nextBoolean()} of this
 	 * {@link DensityRandom} will generate <i>live</i> bits at a rate determined by
@@ -146,7 +147,7 @@ public class DensityRandom extends Random {
 	 * bounded by {@link #boundDensity(double, int)} to ensure it is always a valid
 	 * percentage. <b>tolerance</b> will be used to compute a {@link #depth}, which
 	 * will then be bounded by {@link #boundDepth(int)} to ensure it is with in the
-	 * range [1, 63].
+	 * range [1, {@link Long#SIZE}).
 	 * <p>
 	 * {@link #nextInt()}, {@link #nextLong()}, and {@link #nextBoolean()} of this
 	 * {@link DensityRandom} will generate <i>live</i> bits at a rate determined by
@@ -171,7 +172,7 @@ public class DensityRandom extends Random {
 	 * {@link #boundDensity(double, int)} to ensure it is always a valid percentage.
 	 * <b>tolerance</b> will be used to compute a {@link #depth}, which will then be
 	 * bounded by {@link #boundDepth(int)} to ensure it is with in the range [1,
-	 * 63].
+	 * {@link Long#SIZE}).
 	 * <p>
 	 * {@link #nextInt()}, {@link #nextLong()}, and {@link #nextBoolean()} of this
 	 * {@link DensityRandom} will generate <i>live</i> bits at a rate determined by
@@ -268,7 +269,8 @@ public class DensityRandom extends Random {
 	}
 
 	/**
-	 * Ensures that the specified <b>depth</b> is within the range [1, 63].
+	 * Ensures that the specified <b>depth</b> is within the range [1,
+	 * {@link Long#SIZE}).
 	 * 
 	 * @param depth the value to bound, representing the max number of operations.
 	 * @return <b>depth</b> bounded within [1, 63].

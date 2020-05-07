@@ -269,7 +269,8 @@ int&nbsp;y)</code></th>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#wrap(int)">wrap</a></span>&#8203;(int&nbsp;coordinate)</code></th>
 <td class="colLast">
 <div class="block">Resolves an x-coordinate or y-coordinate to a x-coordinate or y-coordinate
- bounding it within the range [0, 63] as if this <a href="Chunk.html" title="class in com.shouldis.bitset.chunk"><code>Chunk</code></a> was a torus.</div>
+ bounding it within the range [0, <code>Long.SIZE</code>) as if this <a href="Chunk.html" title="class in com.shouldis.bitset.chunk"><code>Chunk</code></a>
+ was a torus.</div>
 </td>
 </tr>
 <tr class="altColor" id="i10">
@@ -437,8 +438,7 @@ int&nbsp;y)</code></th>
 <h3><a id="x(int)">x</a></h3>
 <div class="memberSignature"><span class="modifiers">public static final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">x</span>&#8203;(<span class="arguments">int&nbsp;index)</span></div>
 <div class="block">Resolves the x-coordinate corresponding to the specified <b>index</b>. If the
- index is out of the bound [0, <a href="#CHUNK_SIZE"><code>-1]</code></a>, the result is
- undefined.</div>
+ index is out of the [0, <a href="#CHUNK_SIZE"><code>CHUNK_SIZE</code></a>), the result is undefined.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>index</code> - the bit index to map to an x-coordinate.</dd>
@@ -452,8 +452,7 @@ int&nbsp;y)</code></th>
 <h3><a id="y(int)">y</a></h3>
 <div class="memberSignature"><span class="modifiers">public static final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">y</span>&#8203;(<span class="arguments">int&nbsp;index)</span></div>
 <div class="block">Resolves the y-coordinate corresponding to the specified <b>index</b>. If the
- index is out of the bound [0, <a href="#CHUNK_SIZE"><code>-1]</code></a>, the result is
- undefined.</div>
+ index is out of the range [0, <a href="#CHUNK_SIZE"><code>CHUNK_SIZE</code></a>), the result is undefined.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>index</code> - the bit index to map to an y-coordinate.</dd>
@@ -484,8 +483,8 @@ int&nbsp;y)</span></div>
 <div class="memberSignature"><span class="modifiers">public static final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">wrapIndex</span>&#8203;(<span class="arguments">int&nbsp;x,
 int&nbsp;y)</span></div>
 <div class="block">Resolves an x-coordinate and a y-coordinate to a bit index through wrapping.
- <a href="#wrap(int)"><code>wrap(int)</code></a> is used to bound the coordinates in the range [0, 63] as
- if this <a href="Chunk.html" title="class in com.shouldis.bitset.chunk"><code>Chunk</code></a> was a torus.</div>
+ <a href="#wrap(int)"><code>wrap(int)</code></a> is used to bound the coordinates in the range [0,
+ <code>Long.SIZE</code>) as if this <a href="Chunk.html" title="class in com.shouldis.bitset.chunk"><code>Chunk</code></a> was a torus.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>x</code> - the x-coordinate to resolve to a bit index.</dd>
@@ -501,12 +500,15 @@ int&nbsp;y)</span></div>
 <h3><a id="wrap(int)">wrap</a></h3>
 <div class="memberSignature"><span class="modifiers">public static final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">wrap</span>&#8203;(<span class="arguments">int&nbsp;coordinate)</span></div>
 <div class="block">Resolves an x-coordinate or y-coordinate to a x-coordinate or y-coordinate
- bounding it within the range [0, 63] as if this <a href="Chunk.html" title="class in com.shouldis.bitset.chunk"><code>Chunk</code></a> was a torus.</div>
+ bounding it within the range [0, <code>Long.SIZE</code>) as if this <a href="Chunk.html" title="class in com.shouldis.bitset.chunk"><code>Chunk</code></a>
+ was a torus.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>coordinate</code> - the coordinate to bound within the range [0, 63].</dd>
+<dd><code>coordinate</code> - the coordinate to bound within the range [0,
+                   <code>Long.SIZE</code>).</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd><b>coordinate</b> after being bound within the range [0, 63].</dd>
+<dd><b>coordinate</b> after being bound within the range [0,
+         <code>Long.SIZE</code>).</dd>
 </dl>
 </section>
 </li>
