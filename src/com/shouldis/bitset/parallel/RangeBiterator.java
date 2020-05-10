@@ -30,14 +30,6 @@ public final class RangeBiterator extends SizedBiterator {
 	}
 
 	@Override
-	public Spliterator.OfInt trySplit() {
-		if (estimateSize() < THRESHOLD) {
-			return null;
-		}
-		return new RangeBiterator(position, position = splitIndex());
-	}
-
-	@Override
 	public boolean tryAdvance(final IntConsumer action) {
 		if (position < end) {
 			action.accept(position++);
@@ -51,6 +43,14 @@ public final class RangeBiterator extends SizedBiterator {
 		while (position < end) {
 			action.accept(position++);
 		}
+	}
+
+	@Override
+	public Spliterator.OfInt trySplit() {
+		if (estimateSize() < THRESHOLD) {
+			return null;
+		}
+		return new RangeBiterator(position, position = splitIndex());
 	}
 
 }

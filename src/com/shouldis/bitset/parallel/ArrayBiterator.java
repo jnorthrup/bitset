@@ -59,11 +59,13 @@ public final class ArrayBiterator extends SizedBiterator {
 	}
 
 	@Override
-	public Spliterator.OfInt trySplit() {
-		if (estimateSize() < THRESHOLD) {
-			return null;
+	protected int splitIndex() {
+		int middle = middle();
+		final int wordIndex = BitSet.divideSize(items[middle++]);
+		while (BitSet.divideSize(items[middle]) <= wordIndex) {
+			middle++;
 		}
-		return new ArrayBiterator(items, position, position = splitIndex());
+		return middle;
 	}
 
 	@Override
@@ -83,13 +85,11 @@ public final class ArrayBiterator extends SizedBiterator {
 	}
 
 	@Override
-	protected int splitIndex() {
-		int middle = middle();
-		final int wordIndex = BitSet.divideSize(items[middle++]);
-		while (BitSet.divideSize(items[middle]) <= wordIndex) {
-			middle++;
+	public Spliterator.OfInt trySplit() {
+		if (estimateSize() < THRESHOLD) {
+			return null;
 		}
-		return middle;
+		return new ArrayBiterator(items, position, position = splitIndex());
 	}
 
 }

@@ -119,13 +119,13 @@ public abstract class Biterator implements Spliterator.OfInt {
 	}
 
 	@Override
-	public long estimateSize() {
-		return end - position;
+	public int characteristics() {
+		return DISTINCT | ORDERED | NONNULL | IMMUTABLE;
 	}
 
 	@Override
-	public int characteristics() {
-		return DISTINCT | ORDERED | NONNULL | IMMUTABLE;
+	public long estimateSize() {
+		return end - position;
 	}
 
 }

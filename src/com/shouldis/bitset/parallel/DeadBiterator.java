@@ -56,12 +56,33 @@ public class DeadBiterator extends Biterator {
 		this(set, 0, set.size);
 	}
 
-	@Override
-	public Spliterator.OfInt trySplit() {
-		if (estimateSize() < THRESHOLD) {
-			return null;
+	/**
+	 * Calculates the index of the next <i>dead</i> bit after the specified
+	 * <b>index</b>, including that <b>index</b>. All bits indices until
+	 * {@link #end} will be checked. If no <i>live</i> bits are found, {@link #end}
+	 * is returned.
+	 * 
+	 * @param index (inclusive) the first index to check.
+	 * @return the index of the next <i>dead</i> bit, or {@link #end} if none were
+	 *         found.
+	 */
+	private final int next(final int index) {
+		int wordIndex = BitSet.divideSize(index);
+		final int lastWordIndex = BitSet.divideSize(end - 1);
+		if (index >= end) {
+			return end;
 		}
-		return new DeadBiterator(set, position, position = splitIndex());
+		long word = ~set.getWord(wordIndex) & (BitSet.MASK << index);
+		if (word != 0L) {
+			return nextLiveBit(word, wordIndex);
+		}
+		while (++wordIndex <= lastWordIndex) {
+			word = ~set.getWord(wordIndex);
+			if (word != 0L) {
+				return nextLiveBit(word, wordIndex);
+			}
+		}
+		return end;
 	}
 
 	@Override
@@ -98,33 +119,12 @@ public class DeadBiterator extends Biterator {
 		} while (position < end);
 	}
 
-	/**
-	 * Calculates the index of the next <i>dead</i> bit after the specified
-	 * <b>index</b>, including that <b>index</b>. All bits indices until
-	 * {@link #end} will be checked. If no <i>live</i> bits are found, {@link #end}
-	 * is returned.
-	 * 
-	 * @param index (inclusive) the first index to check.
-	 * @return the index of the next <i>dead</i> bit, or {@link #end} if none were
-	 *         found.
-	 */
-	private final int next(final int index) {
-		int wordIndex = BitSet.divideSize(index);
-		final int lastWordIndex = BitSet.divideSize(end - 1);
-		if (index >= end) {
-			return end;
+	@Override
+	public Spliterator.OfInt trySplit() {
+		if (estimateSize() < THRESHOLD) {
+			return null;
 		}
-		long word = ~set.getWord(wordIndex) & (BitSet.MASK << index);
-		if (word != 0L) {
-			return nextLiveBit(word, wordIndex);
-		}
-		while (++wordIndex <= lastWordIndex) {
-			word = ~set.getWord(wordIndex);
-			if (word != 0L) {
-				return nextLiveBit(word, wordIndex);
-			}
-		}
-		return end;
+		return new DeadBiterator(set, position, position = splitIndex());
 	}
 
 }
