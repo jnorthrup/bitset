@@ -2,7 +2,7 @@ package com.shouldis.bitset.chunk;
 
 import com.shouldis.bitset.BitSet;
 import com.shouldis.bitset.ConcurrentBitSet;
-import com.shouldis.bitset.function.WordFunction;
+import com.shouldis.bitset.WordFunction;
 
 /**
  * Functional interface used to apply functions to a {@link Chunk}.

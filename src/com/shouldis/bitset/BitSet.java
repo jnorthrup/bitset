@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
-import com.shouldis.bitset.function.WordFunction;
 import com.shouldis.bitset.parallel.DeadBiterator;
 import com.shouldis.bitset.parallel.LiveBiterator;
 
@@ -680,6 +679,34 @@ public class BitSet implements Serializable {
 	 */
 	public final IntStream dead() {
 		return new DeadBiterator(this).stream();
+	}
+
+	/**
+	 * Transforms each bit in this {@link BitSet} to the <i>live</i> state.
+	 */
+	public final void fill() {
+		for (int i = 0; i < wordCount; i++) {
+			fillWord(i);
+		}
+	}
+
+	/**
+	 * Transforms each bit in this {@link BitSet} to the <i>dead</i> state.
+	 */
+	public final void empty() {
+		for (int i = 0; i < wordCount; i++) {
+			emptyWord(i);
+		}
+	}
+
+	/**
+	 * Transforms each bit in this {@link BitSet} into the complement of its current
+	 * state.
+	 */
+	public final void not() {
+		for (int i = 0; i < wordCount; i++) {
+			toggleWord(i);
+		}
 	}
 
 	/**

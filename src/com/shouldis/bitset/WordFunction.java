@@ -1,6 +1,4 @@
-package com.shouldis.bitset.function;
-
-import com.shouldis.bitset.BitSet;
+package com.shouldis.bitset;
 
 /**
  * Functional interface used in conjunction with

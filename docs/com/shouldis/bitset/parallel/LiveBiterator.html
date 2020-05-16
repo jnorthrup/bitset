@@ -350,8 +350,19 @@ int&nbsp;end)</span></div>
 <ul class="blockList">
 <li class="blockList">
 <section class="detail">
-<h3><a id="trySplit()">trySplit</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">java.util.Spliterator.OfInt</span>&nbsp;<span class="memberName">trySplit</span>()</div>
+<h3><a id="next(int)">next</a></h3>
+<div class="memberSignature"><span class="modifiers">private final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">next</span>&#8203;(<span class="arguments">int&nbsp;index)</span></div>
+<div class="block">Calculates the index of the next <i>live</i> bit after the specified
+ <b>index</b>, including that <b>index</b>. All bits indices, until
+ <a href="Biterator.html#end"><code>Biterator.end</code></a> will be checked. If no <i>live</i> bits are found, <a href="Biterator.html#end"><code>Biterator.end</code></a>
+ is returned.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>index</code> - (inclusive) the first index to check.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the index of the next <i>live</i> bit, or <a href="Biterator.html#end"><code>Biterator.end</code></a> if none were
+         found.</dd>
+</dl>
 </section>
 </li>
 <li class="blockList">
@@ -368,19 +379,8 @@ int&nbsp;end)</span></div>
 </li>
 <li class="blockList">
 <section class="detail">
-<h3><a id="next(int)">next</a></h3>
-<div class="memberSignature"><span class="modifiers">private final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">next</span>&#8203;(<span class="arguments">int&nbsp;index)</span></div>
-<div class="block">Calculates the index of the next <i>live</i> bit after the specified
- <b>index</b>, including that <b>index</b>. All bits indices, until
- <a href="Biterator.html#end"><code>Biterator.end</code></a> will be checked. If no <i>live</i> bits are found, <a href="Biterator.html#end"><code>Biterator.end</code></a>
- is returned.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>index</code> - (inclusive) the first index to check.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the index of the next <i>live</i> bit, or <a href="Biterator.html#end"><code>Biterator.end</code></a> if none were
-         found.</dd>
-</dl>
+<h3><a id="trySplit()">trySplit</a></h3>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">java.util.Spliterator.OfInt</span>&nbsp;<span class="memberName">trySplit</span>()</div>
 </section>
 </li>
 </ul>
