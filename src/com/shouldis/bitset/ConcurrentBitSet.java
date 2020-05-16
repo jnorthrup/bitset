@@ -10,9 +10,9 @@ import java.lang.invoke.VarHandle;
  * The use of atomic operations allows concurrent modification of this
  * {@link ConcurrentBitSet} without any external synchronization at the cost of
  * processing time. These operations are done by the semantics of
- * {@link VarHandle#setVolatile(Object...)}. Note that global operations such as
- * {@link BitSetFunction}s, {@link #and(BitSet)}, {@link #or(BitSet)},
- * {@link #xOr(BitSet)} will only be made atomic on a per-word basis.
+ * {@link VarHandle#setVolatile(Object...)}. Note that operations affecting more
+ * than 1 word such as {@link #not()}, {@link #and(BitSet)}, will only be made
+ * atomic on a per-word basis.
  * 
  * @author Aaron Shouldis
  * @see BitSet
