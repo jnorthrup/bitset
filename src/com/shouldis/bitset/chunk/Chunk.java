@@ -58,7 +58,7 @@ public final class Chunk implements Serializable {
 	 * @return the created {@link Chunk} copy of <b>chunk</b>.
 	 */
 	public static final Chunk create(final Chunk chunk) {
-		return new Chunk(new BitSet(chunk.bits()));
+		return new Chunk(chunk.bits().copy());
 	}
 
 	/**
@@ -81,7 +81,7 @@ public final class Chunk implements Serializable {
 	 * @return the created {@link Chunk} copy of <b>chunk</b>.
 	 */
 	public static final Chunk createConcurrent(final Chunk chunk) {
-		return new Chunk(new ConcurrentBitSet(chunk.bits()));
+		return new Chunk(chunk.bits().concurrentCopy());
 	}
 
 	/**
