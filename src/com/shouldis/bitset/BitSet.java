@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
+import com.shouldis.bitset.chunk.Chunk;
 import com.shouldis.bitset.parallel.DeadBiterator;
 import com.shouldis.bitset.parallel.LiveBiterator;
 
@@ -107,6 +108,28 @@ public class BitSet implements Serializable {
 	public BitSet(final BitSet set) {
 		this(set.size);
 		copy(set);
+	}
+
+	/**
+	 * Creates a {@link BitSet} copy of this {@link BitSet} by the same semantics as
+	 * {@link #BitSet(BitSet)}.
+	 * 
+	 * @return a {@link BitSet} copy of this {@link BitSet} with the same size and
+	 *         state.
+	 */
+	public final BitSet copy() {
+		return new BitSet(this);
+	}
+
+	/**
+	 * Creates a {@link ConcurrentBitSet} copy of this {@link BitSet} by the same
+	 * semantics as {@link ConcurrentBitSet#ConcurrentBitSet(BitSet)}.
+	 * 
+	 * @return a {@link ConcurrentBitSet} copy of this {@link BitSet} with the same
+	 *         size and state.
+	 */
+	public final ConcurrentBitSet concurrentCopy() {
+		return new ConcurrentBitSet(this);
 	}
 
 	/**
