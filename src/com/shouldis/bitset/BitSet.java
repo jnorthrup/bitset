@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
-import com.shouldis.bitset.chunk.Chunk;
 import com.shouldis.bitset.parallel.DeadBiterator;
 import com.shouldis.bitset.parallel.LiveBiterator;
 
