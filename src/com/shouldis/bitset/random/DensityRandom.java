@@ -1,5 +1,7 @@
 package com.shouldis.bitset.random;
 
+import com.shouldis.bitset.BitSet;
+
 /**
  * Implementation of {@link Random} which generates bits with a specified
  * Hamming-weight ratio using a sequence of bitwise {@code AND} and {@code OR}
@@ -209,7 +211,7 @@ public class DensityRandom extends Random {
 
 	@Override
 	public final boolean nextBoolean() {
-		if (bitsConsumed % Long.SIZE == 0) {
+		if (BitSet.modSize(bitsConsumed) == 0) {
 			booleanWord = nextLong();
 		}
 		return (booleanWord & (1L << bitsConsumed++)) != 0L;
