@@ -6,6 +6,7 @@ import java.util.stream.IntStream;
 
 import com.shouldis.bitset.parallel.DeadBiterator;
 import com.shouldis.bitset.parallel.LiveBiterator;
+import com.shouldis.bitset.random.Random;
 
 /**
  * Representation a fixed number of bits stored within an internal long array,
@@ -392,7 +393,7 @@ public class BitSet implements Serializable {
 	 *                                        range [0, {@link #wordCount}).
 	 */
 	public void andWord(final int wordIndex, final long mask) {
-		words[wordIndex] &= mask;
+		setWord(wordIndex, getWord(wordIndex) & mask);
 	}
 
 	/**
@@ -409,7 +410,7 @@ public class BitSet implements Serializable {
 	 *                                        range [0, {@link #wordCount}).
 	 */
 	public void orWord(final int wordIndex, final long mask) {
-		words[wordIndex] |= mask;
+		setWord(wordIndex, getWord(wordIndex) | mask);
 	}
 
 	/**
@@ -426,7 +427,7 @@ public class BitSet implements Serializable {
 	 *                                        range [0, {@link #wordCount}).
 	 */
 	public void xOrWord(final int wordIndex, final long mask) {
-		words[wordIndex] ^= mask;
+		setWord(wordIndex, getWord(wordIndex) ^ mask);
 	}
 
 	/**
@@ -442,7 +443,7 @@ public class BitSet implements Serializable {
 	 *                                        range [0, {@link #wordCount}).
 	 */
 	public void notAndWord(final int wordIndex, final long mask) {
-		words[wordIndex] = ~(words[wordIndex] & mask);
+		setWord(wordIndex, ~(getWord(wordIndex) & mask));
 	}
 
 	/**
@@ -458,7 +459,7 @@ public class BitSet implements Serializable {
 	 *                                        range [0, {@link #wordCount}).
 	 */
 	public void notOrWord(final int wordIndex, final long mask) {
-		words[wordIndex] = ~(words[wordIndex] | mask);
+		setWord(wordIndex, ~(getWord(wordIndex) | mask));
 	}
 
 	/**
@@ -474,7 +475,7 @@ public class BitSet implements Serializable {
 	 *                                        range [0, {@link #wordCount}).
 	 */
 	public void notXOrWord(final int wordIndex, final long mask) {
-		words[wordIndex] = ~(words[wordIndex] ^ mask);
+		setWord(wordIndex, ~(getWord(wordIndex) ^ mask));
 	}
 
 	/**
