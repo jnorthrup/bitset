@@ -25,7 +25,6 @@ public final class ImmutableBitSet extends BitSet {
 		for (int i = 0; i < wordCount; i++) {
 			words[i] = set.getWord(i);
 		}
-		words[wordCount - 1] &= MASK >>> BitSet.modSize(-size);
 	}
 
 	@Override
