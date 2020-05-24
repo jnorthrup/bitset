@@ -123,26 +123,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  writing the state of bits are delegated to atomic-operations.</div>
 </td>
 </tr>
-</tbody>
-</table>
-</div>
-<div class="useSummary">
-<table>
-<caption><span>Methods in <a href="../package-summary.html">com.shouldis.bitset</a> that return <a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a></span><span class="tabEnd">&nbsp;</span></caption>
-<thead>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colSecond" scope="col">Method</th>
-<th class="colLast" scope="col">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></td>
-<th class="colSecond" scope="row"><span class="typeNameLabel">BitSet.</span><code><span class="memberNameLink"><a href="../BitSet.html#copy()">copy</a></span>()</code></th>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../ImmutableBitSet.html" title="class in com.shouldis.bitset">ImmutableBitSet</a></span></code></th>
 <td class="colLast">
-<div class="block">Creates a <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> copy of this <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> by the same semantics as
- <a href="../BitSet.html#%3Cinit%3E(com.shouldis.bitset.BitSet)"><code>BitSet(BitSet)</code></a>.</div>
+<div class="block">Implementation of <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> causing <a href="../ImmutableBitSet.html#setWord(int,long)"><code>ImmutableBitSet.setWord(int, long)</code></a>, which
+ all write operations are delegated to, to throw an
+ <code>UnsupportedOperationException</code>.</div>
 </td>
 </tr>
 </tbody>
@@ -291,6 +278,13 @@ int&nbsp;distance)</code></th>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../ConcurrentBitSet.html#%3Cinit%3E(com.shouldis.bitset.BitSet)">ConcurrentBitSet</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
 <td class="colLast">
 <div class="block">Creates a <a href="../ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> which is a clone of the specified
+ <b>set</b>.</div>
+</td>
+</tr>
+<tr class="altColor">
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../ImmutableBitSet.html#%3Cinit%3E(com.shouldis.bitset.BitSet)">ImmutableBitSet</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
+<td class="colLast">
+<div class="block">Creates an <a href="../ImmutableBitSet.html" title="class in com.shouldis.bitset"><code>ImmutableBitSet</code></a> which is a clone of the specified
  <b>set</b>.</div>
 </td>
 </tr>

@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import com.shouldis.bitset.BitSet;
 import com.shouldis.bitset.ConcurrentBitSet;
+import com.shouldis.bitset.ImmutableBitSet;
 
 /**
  * 64 by 64 bit matrix backed by either a {@link BitSet} or
@@ -58,7 +59,7 @@ public final class Chunk implements Serializable {
 	 * @return the created {@link Chunk} copy of <b>chunk</b>.
 	 */
 	public static final Chunk create(final Chunk chunk) {
-		return new Chunk(chunk.bits().copy());
+		return new Chunk(new BitSet(chunk.bits()));
 	}
 
 	/**
@@ -81,7 +82,20 @@ public final class Chunk implements Serializable {
 	 * @return the created {@link Chunk} copy of <b>chunk</b>.
 	 */
 	public static final Chunk createConcurrent(final Chunk chunk) {
-		return new Chunk(chunk.bits().concurrentCopy());
+		return new Chunk(new ConcurrentBitSet(chunk.bits()));
+	}
+
+	/**
+	 * Creates a {@link Chunk} backed by an {@link ImmutableBitSet} with size equal
+	 * to {@link #CHUNK_SIZE}. All bits copy the state of the bits in the specified
+	 * {@link Chunk} <b>chunk</b>.
+	 * 
+	 * @param chunk the {@link Chunk} to copy.
+	 * 
+	 * @return the created {@link Chunk} copy of <b>chunk</b>.
+	 */
+	public static final Chunk createImmutable(final Chunk chunk) {
+		return new Chunk(new ImmutableBitSet(chunk.bits()));
 	}
 
 	/**

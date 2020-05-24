@@ -110,28 +110,6 @@ public class BitSet implements Serializable {
 	}
 
 	/**
-	 * Creates a {@link BitSet} copy of this {@link BitSet} by the same semantics as
-	 * {@link #BitSet(BitSet)}.
-	 * 
-	 * @return a {@link BitSet} copy of this {@link BitSet} with the same size and
-	 *         state.
-	 */
-	public final BitSet copy() {
-		return new BitSet(this);
-	}
-
-	/**
-	 * Creates a {@link ConcurrentBitSet} copy of this {@link BitSet} by the same
-	 * semantics as {@link ConcurrentBitSet#ConcurrentBitSet(BitSet)}.
-	 * 
-	 * @return a {@link ConcurrentBitSet} copy of this {@link BitSet} with the same
-	 *         size and state.
-	 */
-	public final ConcurrentBitSet concurrentCopy() {
-		return new ConcurrentBitSet(this);
-	}
-
-	/**
 	 * Ensures that the bit at the specified <b>index</b> is in the <i>live</i>
 	 * state. If it is not, it will be changed.
 	 * 
@@ -856,7 +834,9 @@ public class BitSet implements Serializable {
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
 	public final void copy(final BitSet set) {
-		System.arraycopy(set.words, 0, words, 0, wordCount);
+		for (int i = 0; i < wordCount; i++) {
+			setWord(i, set.getWord(i));
+		}
 	}
 
 	/**

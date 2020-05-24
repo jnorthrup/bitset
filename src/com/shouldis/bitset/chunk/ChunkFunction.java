@@ -2,6 +2,7 @@ package com.shouldis.bitset.chunk;
 
 import com.shouldis.bitset.BitSet;
 import com.shouldis.bitset.ConcurrentBitSet;
+import com.shouldis.bitset.ImmutableBitSet;
 import com.shouldis.bitset.WordFunction;
 
 /**
@@ -31,6 +32,13 @@ public interface ChunkFunction {
 	 * {@link Chunk#createConcurrent(Chunk)}.
 	 */
 	public static final ChunkFunction CONCURRENT_COPY = Chunk::createConcurrent;
+
+	/**
+	 * {@link ChunkFunction} that returns a copy of the specified {@link Chunk}
+	 * backed by an {@link ImmutableBitSet} using
+	 * {@link Chunk#createImmutable(Chunk)}.
+	 */
+	public static final ChunkFunction IMMUTABLE_COPY = Chunk::createImmutable;
 
 	/**
 	 * {@link ChunkFunction} that performs a transpose operation on the specified
