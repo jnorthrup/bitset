@@ -6,7 +6,6 @@ import java.util.stream.IntStream;
 
 import com.shouldis.bitset.parallel.DeadBiterator;
 import com.shouldis.bitset.parallel.LiveBiterator;
-import com.shouldis.bitset.random.Random;
 
 /**
  * Representation a fixed number of bits stored within an internal long array,
@@ -433,7 +432,8 @@ public class BitSet implements Serializable {
 	/**
 	 * Changes the long word at <b>wordIndex</b> within {@link #words} to the result
 	 * of a {@code NOT AND} operation between the current value at the specified
-	 * <b>wordIndex</b> within {@link #words} and the specified <b>mask</b>.
+	 * <b>wordIndex</b> within {@link #words} and the specified <b>mask</b>. <br>
+	 * {@code words[wordIndex] = ~(words[wordIndex] & mask);}
 	 * 
 	 * @param wordIndex the index within {@link #words} to perform the
 	 *                  {@code NOT AND} operation upon.
@@ -449,7 +449,8 @@ public class BitSet implements Serializable {
 	/**
 	 * Changes the long word at <b>wordIndex</b> within {@link #words} to the result
 	 * of a {@code NOT OR} operation between the current value at the specified
-	 * <b>wordIndex</b> within {@link #words} and the specified <b>mask</b>.
+	 * <b>wordIndex</b> within {@link #words} and the specified <b>mask</b>. <br>
+	 * Performs {@code words[wordIndex] = ~(words[wordIndex] | mask);}
 	 * 
 	 * @param wordIndex the index within {@link #words} to perform the
 	 *                  {@code NOT OR} operation upon.
@@ -465,7 +466,8 @@ public class BitSet implements Serializable {
 	/**
 	 * Changes the long word at <b>wordIndex</b> within {@link #words} to the result
 	 * of a {@code NOT XOR} operation between the current value at the specified
-	 * <b>wordIndex</b> within {@link #words} and the specified <b>mask</b>.
+	 * <b>wordIndex</b> within {@link #words} and the specified <b>mask</b>. <br>
+	 * {@code words[wordIndex] = ~(words[wordIndex] ^ mask);}
 	 * 
 	 * @param wordIndex the index within {@link #words} to perform the
 	 *                  {@code NOT XOR} operation upon.
