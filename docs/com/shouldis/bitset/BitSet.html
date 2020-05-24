@@ -1175,7 +1175,8 @@ long&nbsp;mask)</span></div>
 long&nbsp;mask)</span></div>
 <div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the result
  of a <code>NOT AND</code> operation between the current value at the specified
- <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified <b>mask</b>.</div>
+ <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified <b>mask</b>. <br>
+ <code>words[wordIndex] = ~(words[wordIndex] &amp; mask);</code></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>wordIndex</code> - the index within <a href="#words"><code>words</code></a> to perform the
@@ -1195,7 +1196,8 @@ long&nbsp;mask)</span></div>
 long&nbsp;mask)</span></div>
 <div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the result
  of a <code>NOT OR</code> operation between the current value at the specified
- <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified <b>mask</b>.</div>
+ <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified <b>mask</b>. <br>
+ Performs <code>words[wordIndex] = ~(words[wordIndex] | mask);</code></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>wordIndex</code> - the index within <a href="#words"><code>words</code></a> to perform the
@@ -1215,7 +1217,8 @@ long&nbsp;mask)</span></div>
 long&nbsp;mask)</span></div>
 <div class="block">Changes the long word at <b>wordIndex</b> within <a href="#words"><code>words</code></a> to the result
  of a <code>NOT XOR</code> operation between the current value at the specified
- <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified <b>mask</b>.</div>
+ <b>wordIndex</b> within <a href="#words"><code>words</code></a> and the specified <b>mask</b>. <br>
+ <code>words[wordIndex] = ~(words[wordIndex] ^ mask);</code></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>wordIndex</code> - the index within <a href="#words"><code>words</code></a> to perform the
