@@ -125,10 +125,11 @@ implements java.io.Serializable</pre>
  exist on the end of the last long within <a href="#words"><code>words</code></a>, which are not
  accounted for by <a href="#size"><code>size</code></a>. No exception will be thrown when these bit
  indices are manipulated or read, and in the aggregating functions
- <a href="#population()"><code>population()</code></a>, <a href="#hashCode()"><code>hashCode()</code></a>, etc., any hanging bits will have
- their effect on those functions made consistent by <a href="#cleanLastWord()"><code>cleanLastWord()</code></a>.
- Otherwise, accessing a negative index, or any index greater than or equal to
- <a href="#size"><code>size</code></a> will cause an <code>IndexOutOfBoundsException</code> to be thrown.</div>
+ <a href="#population()"><code>population()</code></a>, <a href="#hashCode()"><code>hashCode()</code></a>, etc. Hanging bits can have their
+ effect on those aggregating functions made consistent by calling
+ <a href="#cleanLastWord()"><code>cleanLastWord()</code></a>. Otherwise, accessing a negative index, or any index
+ greater than or equal to <a href="#size"><code>size</code></a> will cause an
+ <code>IndexOutOfBoundsException</code> to be thrown.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>Aaron Shouldis</dd>
@@ -304,11 +305,12 @@ long&nbsp;mask)</code></th>
 </td>
 </tr>
 <tr class="rowColor" id="i5">
-<td class="colFirst"><code>protected void</code></td>
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#cleanLastWord()">cleanLastWord</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Changes the state of any hanging bits to the <i>dead</i> state in order to
- maintain their effect on aggregating functions (<a href="#population()"><code>population()</code></a>, etc).</div>
+ maintain their effect on aggregating functions (<a href="#population()"><code>population()</code></a>,
+ <a href="#density()"><code>density()</code></a>, etc).</div>
 </td>
 </tr>
 <tr class="altColor" id="i6">
@@ -1558,9 +1560,10 @@ int&nbsp;wordIndex)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="cleanLastWord()">cleanLastWord</a></h3>
-<div class="memberSignature"><span class="modifiers">protected final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">cleanLastWord</span>()</div>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">cleanLastWord</span>()</div>
 <div class="block">Changes the state of any hanging bits to the <i>dead</i> state in order to
- maintain their effect on aggregating functions (<a href="#population()"><code>population()</code></a>, etc).</div>
+ maintain their effect on aggregating functions (<a href="#population()"><code>population()</code></a>,
+ <a href="#density()"><code>density()</code></a>, etc).</div>
 </section>
 </li>
 <li class="blockList">

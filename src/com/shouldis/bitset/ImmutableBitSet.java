@@ -22,13 +22,10 @@ public final class ImmutableBitSet extends BitSet {
 	 */
 	public ImmutableBitSet(final BitSet set) {
 		super(set.size);
-		final int hanging = BitSet.modSize(-size);
 		for (int i = 0; i < wordCount; i++) {
 			words[i] = set.getWord(i);
 		}
-		if (hanging > 0) {
-			words[wordCount - 1] &= MASK >>> hanging;
-		}
+		words[wordCount - 1] &= MASK >>> BitSet.modSize(-size);
 	}
 
 	@Override

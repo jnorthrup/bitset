@@ -26,10 +26,11 @@ import com.shouldis.bitset.parallel.LiveBiterator;
  * exist on the end of the last long within {@link #words}, which are not
  * accounted for by {@link #size}. No exception will be thrown when these bit
  * indices are manipulated or read, and in the aggregating functions
- * {@link #population()}, {@link #hashCode()}, etc., any hanging bits will have
- * their effect on those functions made consistent by {@link #cleanLastWord()}.
- * Otherwise, accessing a negative index, or any index greater than or equal to
- * {@link #size} will cause an {@link IndexOutOfBoundsException} to be thrown.
+ * {@link #population()}, {@link #hashCode()}, etc. Hanging bits can have their
+ * effect on those aggregating functions made consistent by calling
+ * {@link #cleanLastWord()}. Otherwise, accessing a negative index, or any index
+ * greater than or equal to {@link #size} will cause an
+ * {@link IndexOutOfBoundsException} to be thrown.
  * 
  * @author Aaron Shouldis
  * @see ConcurrentBitSet
@@ -841,9 +842,10 @@ public class BitSet implements Serializable {
 
 	/**
 	 * Changes the state of any hanging bits to the <i>dead</i> state in order to
-	 * maintain their effect on aggregating functions ({@link #population()}, etc).
+	 * maintain their effect on aggregating functions ({@link #population()},
+	 * {@link #density()}, etc).
 	 */
-	protected final void cleanLastWord() {
+	public final void cleanLastWord() {
 		final int hanging = BitSet.modSize(-size);
 		if (hanging > 0) {
 			andWord(wordCount - 1, MASK >>> hanging);
@@ -857,7 +859,6 @@ public class BitSet implements Serializable {
 	 */
 	public final int population() {
 		int population = 0;
-		cleanLastWord();
 		for (int i = 0; i < wordCount; i++) {
 			population += Long.bitCount(getWord(i));
 		}
@@ -899,7 +900,6 @@ public class BitSet implements Serializable {
 	public final long identifier() {
 		long word, hash = size;
 		int population = 0;
-		cleanLastWord();
 		for (int i = 0; i < wordCount; i++) {
 			word = getWord(i);
 			hash *= 31L;
@@ -964,7 +964,6 @@ public class BitSet implements Serializable {
 	@Override
 	public int hashCode() {
 		long hash = size;
-		cleanLastWord();
 		for (int i = 0; i < wordCount; i++) {
 			hash *= 31L;
 			hash += getWord(i);
