@@ -867,17 +867,16 @@ public class BitSet implements Serializable {
 
 	/**
 	 * Calculates what percentage of bits in this {@link BitSet} are in the
-	 * <i>live</i> state in the specified range [<b>from</b>, <b>to</b>). No action
-	 * is taken if <b>from</b> is greater than or equal to <b>to</b>.
+	 * <i>live</i> state in the specified range [<b>from</b>, <b>to</b>).
 	 * 
 	 * @param from (inclusive) the index of the first bit to be checked.
 	 * @param to   (exclusive) the end of the range of bits to be checked.
 	 * @return the percentage of <i>live</i> bits.
+	 * @throws ArrayIndexOutOfBoundsException if <b>from</b> or <b>to</b> are
+	 *                                        outside of the range [0,
+	 *                                        {@link #size}).
 	 */
 	public final double density(final int from, final int to) {
-		if (from >= to) {
-			return 0.0;
-		}
 		return get(from, to) / (double) (to - from);
 	}
 

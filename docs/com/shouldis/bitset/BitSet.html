@@ -1583,14 +1583,17 @@ int&nbsp;wordIndex)</span></div>
 <div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">double</span>&nbsp;<span class="memberName">density</span>&#8203;(<span class="arguments">int&nbsp;from,
 int&nbsp;to)</span></div>
 <div class="block">Calculates what percentage of bits in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> are in the
- <i>live</i> state in the specified range [<b>from</b>, <b>to</b>). No action
- is taken if <b>from</b> is greater than or equal to <b>to</b>.</div>
+ <i>live</i> state in the specified range [<b>from</b>, <b>to</b>).</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>from</code> - (inclusive) the index of the first bit to be checked.</dd>
 <dd><code>to</code> - (exclusive) the end of the range of bits to be checked.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the percentage of <i>live</i> bits.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>from</b> or <b>to</b> are
+                                        outside of the range [0,
+                                        <a href="#size"><code>size</code></a>).</dd>
 </dl>
 </section>
 </li>
