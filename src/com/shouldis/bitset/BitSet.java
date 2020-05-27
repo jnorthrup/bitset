@@ -28,7 +28,7 @@ import com.shouldis.bitset.parallel.LiveBiterator;
  * indices are manipulated or read, and in the aggregating functions
  * {@link #population()}, {@link #hashCode()}, etc. Hanging bits can have their
  * effect on those aggregating functions made consistent by calling
- * {@link #cleanLastWord()}. Otherwise, accessing a negative index, or any index
+ * {@link #clearHanging()}. Otherwise, accessing a negative index, or any index
  * greater than or equal to {@link #size} will cause an
  * {@link IndexOutOfBoundsException} to be thrown.
  * 
@@ -845,7 +845,7 @@ public class BitSet implements Serializable {
 	 * maintain their effect on aggregating functions ({@link #population()},
 	 * {@link #density()}, etc).
 	 */
-	public final void cleanLastWord() {
+	public final void clearHanging() {
 		final int hanging = BitSet.modSize(-size);
 		if (hanging > 0) {
 			andWord(wordCount - 1, MASK >>> hanging);
