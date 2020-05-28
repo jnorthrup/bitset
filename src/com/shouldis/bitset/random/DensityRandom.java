@@ -115,7 +115,7 @@ public class DensityRandom extends Random {
 		depth = boundDepth(depth);
 		density = boundDensity(density, depth);
 		long numerator = Math.round(density / powerInverse(depth));
-		int reductions = Long.numberOfTrailingZeros(numerator);
+		final int reductions = Long.numberOfTrailingZeros(numerator);
 		numerator >>>= reductions;
 		sequence = numerator >>> 1;
 		this.depth = depth - reductions;
