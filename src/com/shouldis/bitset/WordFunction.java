@@ -17,7 +17,7 @@ public interface WordFunction {
 	 * @param word the original word to manipulate.
 	 * @return the manipulated <b>word</b>.
 	 */
-	public long apply(final long word);
+	public long apply(long word);
 
 	/**
 	 * {@link WordFunction} used to reverse the order of bits within the argument

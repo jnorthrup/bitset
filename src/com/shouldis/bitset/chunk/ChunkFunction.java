@@ -18,7 +18,7 @@ public interface ChunkFunction {
 	 * @param chunk the {@link BitSet} to manipulate.
 	 * @return the manipulated <b>chunk</b>.
 	 */
-	public Chunk apply(final Chunk chunk);
+	public Chunk apply(Chunk chunk);
 
 	/**
 	 * {@link ChunkFunction} that returns a copy of the specified {@link Chunk}
