@@ -102,7 +102,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd><code>java.util.Spliterator&lt;java.lang.Integer&gt;</code>, <code>java.util.Spliterator.OfInt</code>, <code>java.util.Spliterator.OfPrimitive&lt;java.lang.Integer,&#8203;java.util.function.IntConsumer,&#8203;java.util.Spliterator.OfInt&gt;</code></dd>
 </dl>
 <hr>
-<pre>public class <span class="typeNameLabel">DeadBiterator</span>
+<pre>public final class <span class="typeNameLabel">DeadBiterator</span>
 extends <a href="Biterator.html" title="class in com.shouldis.bitset.parallel">Biterator</a></pre>
 <div class="block">Implementation of <a href="Biterator.html" title="class in com.shouldis.bitset.parallel"><code>Biterator</code></a> used to stream the indices of <i>dead</i>
  bits within a <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>, splitting at appropriate indices to manipulate
@@ -351,7 +351,7 @@ int&nbsp;end)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="next(int)">next</a></h3>
-<div class="memberSignature"><span class="modifiers">private final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">next</span>&#8203;(<span class="arguments">int&nbsp;index)</span></div>
+<div class="memberSignature"><span class="modifiers">private</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">next</span>&#8203;(<span class="arguments">int&nbsp;index)</span></div>
 <div class="block">Calculates the index of the next <i>dead</i> bit after the specified
  <b>index</b>, including that <b>index</b>. All bits indices until
  <a href="Biterator.html#end"><code>Biterator.end</code></a> will be checked. If no <i>live</i> bits are found, <a href="Biterator.html#end"><code>Biterator.end</code></a>

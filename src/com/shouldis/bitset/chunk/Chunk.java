@@ -45,7 +45,7 @@ public final class Chunk implements Serializable {
 	 * 
 	 * @return the created {@link Chunk}.
 	 */
-	public static final Chunk create() {
+	public static Chunk create() {
 		return new Chunk(new BitSet(CHUNK_SIZE));
 	}
 
@@ -58,7 +58,7 @@ public final class Chunk implements Serializable {
 	 * 
 	 * @return the created {@link Chunk} copy of <b>chunk</b>.
 	 */
-	public static final Chunk create(final Chunk chunk) {
+	public static Chunk create(final Chunk chunk) {
 		return new Chunk(new BitSet(chunk.bits()));
 	}
 
@@ -68,7 +68,7 @@ public final class Chunk implements Serializable {
 	 * 
 	 * @return the created {@link Chunk}.
 	 */
-	public static final Chunk createConcurrent() {
+	public static Chunk createConcurrent() {
 		return new Chunk(new ConcurrentBitSet(CHUNK_SIZE));
 	}
 
@@ -81,7 +81,7 @@ public final class Chunk implements Serializable {
 	 * 
 	 * @return the created {@link Chunk} copy of <b>chunk</b>.
 	 */
-	public static final Chunk createConcurrent(final Chunk chunk) {
+	public static Chunk createConcurrent(final Chunk chunk) {
 		return new Chunk(new ConcurrentBitSet(chunk.bits()));
 	}
 
@@ -94,7 +94,7 @@ public final class Chunk implements Serializable {
 	 * 
 	 * @return the created {@link Chunk} copy of <b>chunk</b>.
 	 */
-	public static final Chunk createImmutable(final Chunk chunk) {
+	public static Chunk createImmutable(final Chunk chunk) {
 		return new Chunk(new ImmutableBitSet(chunk.bits()));
 	}
 
@@ -105,7 +105,7 @@ public final class Chunk implements Serializable {
 	 * @param index the bit index to map to an x-coordinate.
 	 * @return the x-coordinate representation of <b>index</b>.
 	 */
-	public static final int x(final int index) {
+	public static int x(final int index) {
 		return BitSet.modSize(index);
 	}
 
@@ -116,7 +116,7 @@ public final class Chunk implements Serializable {
 	 * @param index the bit index to map to an y-coordinate.
 	 * @return the y-coordinate representation of <b>index</b>.
 	 */
-	public static final int y(final int index) {
+	public static int y(final int index) {
 		return BitSet.divideSize(index);
 	}
 
@@ -128,7 +128,7 @@ public final class Chunk implements Serializable {
 	 * @return the bit index representing the specified <b>x</b> and <b>y</b>
 	 *         coordinate.
 	 */
-	public static final int index(final int x, final int y) {
+	public static int index(final int x, final int y) {
 		return x + BitSet.multiplySize(y);
 	}
 
@@ -142,7 +142,7 @@ public final class Chunk implements Serializable {
 	 * @return the bit index representing the specified <b>x</b> and <b>y</b>
 	 *         coordinate after using {@link #wrap(int)}.
 	 */
-	public static final int wrapIndex(final int x, final int y) {
+	public static int wrapIndex(final int x, final int y) {
 		return index(wrap(x), wrap(y));
 	}
 
@@ -156,7 +156,7 @@ public final class Chunk implements Serializable {
 	 * @return <b>coordinate</b> after being bound within the range [0,
 	 *         {@link Long#SIZE}).
 	 */
-	public static final int wrap(int coordinate) {
+	public static int wrap(int coordinate) {
 		coordinate = BitSet.modSize(coordinate);
 		if (coordinate < 0) {
 			coordinate += Long.SIZE;
@@ -171,7 +171,7 @@ public final class Chunk implements Serializable {
 	 * 
 	 * @return the {@link BitSet} representing the bits of this {@link Chunk}.
 	 */
-	public final BitSet bits() {
+	public BitSet bits() {
 		return bits;
 	}
 

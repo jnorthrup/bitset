@@ -949,7 +949,7 @@ public class BitSet implements Serializable {
 	 * @param index the index to represent as a bit.
 	 * @return the bit that represents the position of an index within a word.
 	 */
-	protected static final long bitMask(final int index) {
+	public static final long bitMask(final int index) {
 		return 1L << index;
 	}
 

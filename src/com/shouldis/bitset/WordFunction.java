@@ -188,29 +188,7 @@ public interface WordFunction {
 	 * @throws NullPointerException if <b>first</b> or <b>second</b> are null.
 	 */
 	public static WordFunction combine(final WordFunction first, final WordFunction second) {
-		return (final long word) -> {
-			return second.apply(first.apply(word));
-		};
-	}
-
-	/**
-	 * Creates a {@link WordFunction} which performs the specified array of
-	 * {@link WordFunction}s <b>functions</b> in sequence starting at index 0.
-	 * 
-	 * @param functions the list of {@link WordFunction}s to sequence.
-	 * @return a sequenced {@link WordFunction} containing each of the
-	 *         {@link WordFunction}s in <b>functions</b>.
-	 * 
-	 * @throws NullPointerException if <b>functions</b>, or any of the
-	 *                              {@link WordFunction}s in <b>functions</b> are
-	 *                              null.
-	 */
-	public static WordFunction sequence(final WordFunction... functions) {
-		WordFunction aggregate = functions[0];
-		for (int i = 1; i < functions.length; i++) {
-			aggregate = combine(aggregate, functions[i]);
-		}
-		return aggregate;
+		return (final long word) -> second.apply(first.apply(word));
 	}
 
 }

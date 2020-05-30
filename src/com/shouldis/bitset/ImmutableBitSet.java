@@ -27,7 +27,7 @@ public final class ImmutableBitSet extends BitSet {
 	}
 
 	@Override
-	public final void setWord(final int wordIndex, final long word) {
+	public void setWord(final int wordIndex, final long word) {
 		throw new UnsupportedOperationException();
 	}
 

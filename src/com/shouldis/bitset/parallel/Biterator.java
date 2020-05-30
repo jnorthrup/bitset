@@ -31,7 +31,7 @@ public abstract class Biterator implements Spliterator.OfInt {
 	 * words to ensure splitting is worthwhile, and leaves each process with at
 	 * least 1 word to process.
 	 */
-	protected static final int THRESHOLD = Long.SIZE * 4;
+	protected static final int THRESHOLD = BitSet.multiplySize(4);
 
 	/**
 	 * The next index this {@link Biterator} will produce.
@@ -80,17 +80,6 @@ public abstract class Biterator implements Spliterator.OfInt {
 	}
 
 	/**
-	 * Calculates an appropriate place to split this {@link Biterator} considering
-	 * only the current {@link #position} and {@link #end}.
-	 * 
-	 * @return an appropriate place to split this {@link Biterator}
-	 */
-	protected int splitIndex() {
-		final int middle = middle();
-		return middle - BitSet.modSize(middle);
-	}
-
-	/**
 	 * Calculates the index in the middle index of this {@link Biterator} using the
 	 * current {@link #position} and {@link #end}. Performs calculations such that
 	 * there cannot be an overflow due to large integers.
@@ -100,6 +89,17 @@ public abstract class Biterator implements Spliterator.OfInt {
 	protected final int middle() {
 		final int middle = (position / 2) + (end / 2);
 		return middle + (((position % 2) + (end % 2)) / 2);
+	}
+
+	/**
+	 * Calculates an appropriate place to split this {@link Biterator} considering
+	 * only the current {@link #position} and {@link #end}.
+	 * 
+	 * @return an appropriate place to split this {@link Biterator}
+	 */
+	protected int splitIndex() {
+		final int middle = middle();
+		return middle - BitSet.modSize(middle);
 	}
 
 	/**

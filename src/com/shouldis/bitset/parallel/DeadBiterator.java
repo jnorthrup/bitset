@@ -14,7 +14,7 @@ import com.shouldis.bitset.BitSet;
  * @author Aaron Shouldis
  * @see Biterator
  */
-public class DeadBiterator extends Biterator {
+public final class DeadBiterator extends Biterator {
 
 	/**
 	 * The {@link BitSet} that the <i>dead</i> bit indices will be calculated from.
@@ -66,7 +66,7 @@ public class DeadBiterator extends Biterator {
 	 * @return the index of the next <i>dead</i> bit, or {@link #end} if none were
 	 *         found.
 	 */
-	private final int next(final int index) {
+	private int next(final int index) {
 		int wordIndex = BitSet.divideSize(index);
 		final int lastWordIndex = BitSet.divideSize(end - 1);
 		if (index >= end) {

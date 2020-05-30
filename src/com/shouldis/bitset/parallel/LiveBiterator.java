@@ -66,7 +66,7 @@ public final class LiveBiterator extends Biterator {
 	 * @return the index of the next <i>live</i> bit, or {@link #end} if none were
 	 *         found.
 	 */
-	private final int next(final int index) {
+	private int next(final int index) {
 		int wordIndex = BitSet.divideSize(index);
 		final int lastWordIndex = BitSet.divideSize(end - 1);
 		if (index >= end) {

@@ -98,7 +98,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </div>
 <section class="description">
 <hr>
-<pre>public class <span class="typeNameLabel">DensityRandom</span>
+<pre>public final class <span class="typeNameLabel">DensityRandom</span>
 extends <a href="Random.html" title="class in com.shouldis.bitset.random">Random</a></pre>
 <div class="block">Implementation of <a href="Random.html" title="class in com.shouldis.bitset.random"><code>Random</code></a> which generates bits with a specified
  Hamming-weight ratio using a sequence of bitwise <code>AND</code> and <code>OR</code>
@@ -556,7 +556,7 @@ double&nbsp;tolerance)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="nextLong()">nextLong</a></h3>
-<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">long</span>&nbsp;<span class="memberName">nextLong</span>()</div>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">long</span>&nbsp;<span class="memberName">nextLong</span>()</div>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="Random.html#nextLong()">Random</a></code></span></div>
 <div class="block">Returns the next pseudo-random long from this random number generator's
  sequence.</div>
@@ -571,7 +571,7 @@ double&nbsp;tolerance)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="nextInt()">nextInt</a></h3>
-<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">nextInt</span>()</div>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">nextInt</span>()</div>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="Random.html#nextInt()">Random</a></code></span></div>
 <div class="block">Returns the next pseudo-random integer from this random number generator's
  sequence.</div>
@@ -586,7 +586,7 @@ double&nbsp;tolerance)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="nextBoolean()">nextBoolean</a></h3>
-<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">boolean</span>&nbsp;<span class="memberName">nextBoolean</span>()</div>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">boolean</span>&nbsp;<span class="memberName">nextBoolean</span>()</div>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="Random.html#nextBoolean()">Random</a></code></span></div>
 <div class="block">Returns the next pseudo-random boolean from this random number generator's
  sequence.</div>
@@ -601,7 +601,7 @@ double&nbsp;tolerance)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="toleranceDepth(double)">toleranceDepth</a></h3>
-<div class="memberSignature"><span class="modifiers">public static final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">toleranceDepth</span>&#8203;(<span class="arguments">double&nbsp;tolerance)</span></div>
+<div class="memberSignature"><span class="modifiers">public static</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">toleranceDepth</span>&#8203;(<span class="arguments">double&nbsp;tolerance)</span></div>
 <div class="block">Computes a <a href="#depth"><code>depth</code></a> corresponding to the specified <b>tolerance</b>.
  <b>tolerance</b> will be bounded by <a href="#boundPercentage(double)"><code>boundPercentage(double)</code></a>, to
  ensure it is a valid percentage used to describe the max acceptable distance
@@ -620,7 +620,7 @@ double&nbsp;tolerance)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="powerInverse(int)">powerInverse</a></h3>
-<div class="memberSignature"><span class="modifiers">public static final</span>&nbsp;<span class="returnType">double</span>&nbsp;<span class="memberName">powerInverse</span>&#8203;(<span class="arguments">int&nbsp;power)</span></div>
+<div class="memberSignature"><span class="modifiers">public static</span>&nbsp;<span class="returnType">double</span>&nbsp;<span class="memberName">powerInverse</span>&#8203;(<span class="arguments">int&nbsp;power)</span></div>
 <div class="block">Efficient method of computing 2<sup>-<b>power</b></sup> doubles.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -633,7 +633,7 @@ double&nbsp;tolerance)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="boundDensity(double,int)">boundDensity</a></h3>
-<div class="memberSignature"><span class="modifiers">private static final</span>&nbsp;<span class="returnType">double</span>&nbsp;<span class="memberName">boundDensity</span>&#8203;(<span class="arguments">double&nbsp;density,
+<div class="memberSignature"><span class="modifiers">private static</span>&nbsp;<span class="returnType">double</span>&nbsp;<span class="memberName">boundDensity</span>&#8203;(<span class="arguments">double&nbsp;density,
 int&nbsp;depth)</span></div>
 <div class="block">Ensures that the specified <b>density</b> is within the acceptable range
  depending on <b>depth</b> such that it will fall in
@@ -652,7 +652,7 @@ int&nbsp;depth)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="boundPercentage(double)">boundPercentage</a></h3>
-<div class="memberSignature"><span class="modifiers">private static final</span>&nbsp;<span class="returnType">double</span>&nbsp;<span class="memberName">boundPercentage</span>&#8203;(<span class="arguments">double&nbsp;density)</span></div>
+<div class="memberSignature"><span class="modifiers">private static</span>&nbsp;<span class="returnType">double</span>&nbsp;<span class="memberName">boundPercentage</span>&#8203;(<span class="arguments">double&nbsp;density)</span></div>
 <div class="block">Ensures that the specified <b>density</b> is within the range [0, 1].</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -666,7 +666,7 @@ int&nbsp;depth)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="boundDepth(int)">boundDepth</a></h3>
-<div class="memberSignature"><span class="modifiers">private static final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">boundDepth</span>&#8203;(<span class="arguments">int&nbsp;depth)</span></div>
+<div class="memberSignature"><span class="modifiers">private static</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">boundDepth</span>&#8203;(<span class="arguments">int&nbsp;depth)</span></div>
 <div class="block">Ensures that the specified <b>depth</b> is within the range [1,
  <code>Long.SIZE</code>).</div>
 <dl>

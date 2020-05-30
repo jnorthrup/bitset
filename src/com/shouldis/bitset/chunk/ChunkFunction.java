@@ -116,29 +116,7 @@ public interface ChunkFunction {
 	 * @throws NullPointerException if <b>first</b> or <b>second</b> are null.
 	 */
 	public static ChunkFunction combine(final ChunkFunction first, final ChunkFunction second) {
-		return (final Chunk chunk) -> {
-			return second.apply(first.apply(chunk));
-		};
-	}
-
-	/**
-	 * Creates a {@link ChunkFunction} which performs the specified array of
-	 * {@link ChunkFunction}s <b>functions</b> in sequence starting at index 0.
-	 * 
-	 * @param functions the list of {@link ChunkFunction}s to sequence.
-	 * @return a sequenced {@link ChunkFunction} containing each of the
-	 *         {@link ChunkFunction}s in <b>functions</b>.
-	 * 
-	 * @throws NullPointerException if <b>functions</b>, or any of the
-	 *                              {@link ChunkFunction}s in <b>functions</b> are
-	 *                              null.
-	 */
-	public static ChunkFunction sequence(final ChunkFunction... functions) {
-		ChunkFunction aggregate = functions[0];
-		for (int i = 1; i < functions.length; i++) {
-			aggregate = combine(aggregate, functions[i]);
-		}
-		return aggregate;
+		return (final Chunk chunk) -> second.apply(first.apply(chunk));
 	}
 
 }

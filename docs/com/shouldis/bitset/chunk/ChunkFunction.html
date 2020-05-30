@@ -19,7 +19,7 @@
 <script type="text/javascript" src="../../../../script-dir/jquery-ui.js"></script>
 </head>
 <body class="class-declaration">
-<script type="text/javascript">var data = {"i0":6,"i1":1,"i2":1};
+<script type="text/javascript">var data = {"i0":6,"i1":1};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -232,14 +232,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  <a href="ChunkFunction.html" title="interface in com.shouldis.bitset.chunk"><code>ChunkFunction</code></a>s <b>first</b> and <b>second</b> in sequence.</div>
 </td>
 </tr>
-<tr class="altColor" id="i2">
-<td class="colFirst"><code>static <a href="ChunkFunction.html" title="interface in com.shouldis.bitset.chunk">ChunkFunction</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#sequence(com.shouldis.bitset.chunk.ChunkFunction...)">sequence</a></span>&#8203;(<a href="ChunkFunction.html" title="interface in com.shouldis.bitset.chunk">ChunkFunction</a>...&nbsp;functions)</code></th>
-<td class="colLast">
-<div class="block">Creates a <a href="ChunkFunction.html" title="interface in com.shouldis.bitset.chunk"><code>ChunkFunction</code></a> which performs the specified array of
- <a href="ChunkFunction.html" title="interface in com.shouldis.bitset.chunk"><code>ChunkFunction</code></a>s <b>functions</b> in sequence starting at index 0.</div>
-</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -372,25 +364,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
          <b>second</b>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.NullPointerException</code> - if <b>first</b> or <b>second</b> are null.</dd>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
-<h3><a id="sequence(com.shouldis.bitset.chunk.ChunkFunction...)">sequence</a></h3>
-<div class="memberSignature"><span class="modifiers">static</span>&nbsp;<span class="returnType"><a href="ChunkFunction.html" title="interface in com.shouldis.bitset.chunk">ChunkFunction</a></span>&nbsp;<span class="memberName">sequence</span>&#8203;(<span class="arguments"><a href="ChunkFunction.html" title="interface in com.shouldis.bitset.chunk">ChunkFunction</a>...&nbsp;functions)</span></div>
-<div class="block">Creates a <a href="ChunkFunction.html" title="interface in com.shouldis.bitset.chunk"><code>ChunkFunction</code></a> which performs the specified array of
- <a href="ChunkFunction.html" title="interface in com.shouldis.bitset.chunk"><code>ChunkFunction</code></a>s <b>functions</b> in sequence starting at index 0.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>functions</code> - the list of <a href="ChunkFunction.html" title="interface in com.shouldis.bitset.chunk"><code>ChunkFunction</code></a>s to sequence.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>a sequenced <a href="ChunkFunction.html" title="interface in com.shouldis.bitset.chunk"><code>ChunkFunction</code></a> containing each of the
-         <a href="ChunkFunction.html" title="interface in com.shouldis.bitset.chunk"><code>ChunkFunction</code></a>s in <b>functions</b>.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.NullPointerException</code> - if <b>functions</b>, or any of the
-                              <a href="ChunkFunction.html" title="interface in com.shouldis.bitset.chunk"><code>ChunkFunction</code></a>s in <b>functions</b> are
-                              null.</dd>
 </dl>
 </section>
 </li>
