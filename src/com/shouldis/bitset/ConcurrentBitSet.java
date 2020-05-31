@@ -11,8 +11,8 @@ import java.lang.invoke.VarHandle;
  * {@link ConcurrentBitSet} without any external synchronization at the cost of
  * processing time. These operations are done by the semantics of
  * {@link VarHandle#setVolatile(Object...)}. Note that operations affecting more
- * than 1 word such as {@link #not()}, {@link #and(BitSet)}, will only be made
- * atomic on a per-word basis.
+ * than 1 word such as {@link #not()} and {@link #xOr(BitSet)}, will only be
+ * made atomic on a per-word basis.
  * 
  * @author Aaron Shouldis
  * @see BitSet
@@ -30,6 +30,7 @@ public final class ConcurrentBitSet extends BitSet {
 	 * Creates a {@link ConcurrentBitSet} with the specified <b>size</b>.
 	 * 
 	 * @param size the number of indices that this {@link BitSet} will hold.
+	 * @throws IllegalArgumentException if <b>size</b> is less than 0.
 	 * @see BitSet#BitSet(int)
 	 */
 	public ConcurrentBitSet(final int size) {
@@ -41,6 +42,7 @@ public final class ConcurrentBitSet extends BitSet {
 	 * <b>set</b>.
 	 * 
 	 * @param set the {@link BitSet} to copy.
+	 * @throws NullPointerException if <b>set</b> is null.
 	 * @see BitSet#BitSet(BitSet)
 	 */
 	public ConcurrentBitSet(final BitSet set) {
