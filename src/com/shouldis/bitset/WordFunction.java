@@ -39,9 +39,7 @@ public interface WordFunction {
 	public static WordFunction hangingReverse(final BitSet set) {
 		final long hanging = BitSet.modSize(-set.size);
 		final long mask = BitSet.MASK >>> hanging;
-		return (final long word) -> {
-			return mask & (Long.reverse(word) >>> hanging);
-		};
+		return (final long word) -> mask & (Long.reverse(word) >>> hanging);
 	}
 
 	/**
@@ -52,9 +50,7 @@ public interface WordFunction {
 	 * @return a function representing a shift by <b>distance</b> bits.
 	 */
 	public static WordFunction shiftR(final int distance) {
-		return (final long word) -> {
-			return word >>> distance;
-		};
+		return (final long word) -> word >>> distance;
 	}
 
 	/**
@@ -71,9 +67,7 @@ public interface WordFunction {
 	 */
 	public static WordFunction hangingShiftR(final BitSet set, final int distance) {
 		final long mask = BitSet.MASK >>> BitSet.modSize(-set.size);
-		return (final long word) -> {
-			return (mask & word) >>> distance;
-		};
+		return (final long word) -> (mask & word) >>> distance;
 	}
 
 	/**
@@ -84,9 +78,7 @@ public interface WordFunction {
 	 * @return a function representing a shift by <b>distance</b> bits.
 	 */
 	public static WordFunction shiftL(final int distance) {
-		return (final long word) -> {
-			return word << distance;
-		};
+		return (final long word) -> word << distance;
 	}
 
 	/**
@@ -103,9 +95,7 @@ public interface WordFunction {
 	 */
 	public static WordFunction hangingShiftL(final BitSet set, final int distance) {
 		final long mask = BitSet.MASK >>> BitSet.modSize(-set.size);
-		return (final long word) -> {
-			return mask & (word << distance);
-		};
+		return (final long word) -> mask & (word << distance);
 	}
 
 	/**
@@ -116,9 +106,7 @@ public interface WordFunction {
 	 * @return a function representing a shift by <b>distance</b> bits.
 	 */
 	public static WordFunction rotateR(final int distance) {
-		return (final long word) -> {
-			return Long.rotateRight(word, distance);
-		};
+		return (final long word) -> Long.rotateRight(word, distance);
 	}
 
 	/**
@@ -136,9 +124,7 @@ public interface WordFunction {
 	public static WordFunction hangingRotateR(final BitSet set, final int distance) {
 		final long hanging = BitSet.modSize(-set.size);
 		final long mask = BitSet.MASK >>> hanging;
-		return (final long word) -> {
-			return mask & ((word >>> distance) | (word << -(hanging + distance)));
-		};
+		return (final long word) -> mask & ((word >>> distance) | (word << -(hanging + distance)));
 	}
 
 	/**
@@ -149,9 +135,7 @@ public interface WordFunction {
 	 * @return a function representing a shift by <b>distance</b> bits.
 	 */
 	public static WordFunction rotateL(final int distance) {
-		return (final long word) -> {
-			return Long.rotateLeft(word, distance);
-		};
+		return (final long word) -> Long.rotateLeft(word, distance);
 	}
 
 	/**
@@ -169,9 +153,7 @@ public interface WordFunction {
 	public static WordFunction hangingRotateL(final BitSet set, final int distance) {
 		final long hanging = BitSet.modSize(-set.size);
 		final long mask = BitSet.MASK >>> hanging;
-		return (final long word) -> {
-			return mask & ((word << distance) | (word >>> -(hanging + distance)));
-		};
+		return (final long word) -> mask & ((word << distance) | (word >>> -(hanging + distance)));
 	}
 
 	/**
