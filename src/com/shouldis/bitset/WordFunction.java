@@ -1,5 +1,7 @@
 package com.shouldis.bitset;
 
+import java.util.Objects;
+
 /**
  * Functional interface used in conjunction with
  * {@link BitSet#apply(int, WordFunction)}. {@link #apply(long)} should
@@ -170,6 +172,8 @@ public interface WordFunction {
 	 * @throws NullPointerException if <b>first</b> or <b>second</b> are null.
 	 */
 	public static WordFunction combine(final WordFunction first, final WordFunction second) {
+		Objects.requireNonNull(first);
+		Objects.requireNonNull(second);
 		return (final long word) -> second.apply(first.apply(word));
 	}
 

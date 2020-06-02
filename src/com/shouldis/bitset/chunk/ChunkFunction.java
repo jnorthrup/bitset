@@ -1,5 +1,7 @@
 package com.shouldis.bitset.chunk;
 
+import java.util.Objects;
+
 import com.shouldis.bitset.BitSet;
 import com.shouldis.bitset.ConcurrentBitSet;
 import com.shouldis.bitset.ImmutableBitSet;
@@ -116,6 +118,8 @@ public interface ChunkFunction {
 	 * @throws NullPointerException if <b>first</b> or <b>second</b> are null.
 	 */
 	public static ChunkFunction combine(final ChunkFunction first, final ChunkFunction second) {
+		Objects.requireNonNull(first);
+		Objects.requireNonNull(second);
 		return (final Chunk chunk) -> second.apply(first.apply(chunk));
 	}
 
