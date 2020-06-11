@@ -145,8 +145,8 @@ public class Random {
 	 * 
 	 * @return a randomly generated integer.
 	 */
-	public int nextInt() {
-		return nextRawInt();
+	public final int nextInt() {
+		return (int) (nextLong() >>> Integer.SIZE);
 	}
 
 	/**
@@ -176,16 +176,6 @@ public class Random {
 	}
 
 	/**
-	 * Returns the next pseudo-random boolean from this random number generator's
-	 * sequence.
-	 * 
-	 * @return a randomly generated boolean.
-	 */
-	public boolean nextBoolean() {
-		return nextRawLong() < 0L;
-	}
-
-	/**
 	 * Returns the next pseudo-random double from this random number generator's
 	 * sequence, with values ranging from 0.0 (inclusive) to 1.0 (exclusive).
 	 * 
@@ -203,6 +193,16 @@ public class Random {
 	 */
 	public final float nextFloat() {
 		return (nextRawLong() >>> 40) * 0x1.0p-24f;
+	}
+
+	/**
+	 * Returns the next pseudo-random boolean from this random number generator's
+	 * sequence.
+	 * 
+	 * @return a randomly generated boolean.
+	 */
+	public boolean nextBoolean() {
+		return nextRawLong() < 0L;
 	}
 
 	/**

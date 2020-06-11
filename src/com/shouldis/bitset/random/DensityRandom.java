@@ -205,11 +205,6 @@ public final class DensityRandom extends Random {
 	}
 
 	@Override
-	public int nextInt() {
-		return (int) (nextLong() >>> Integer.SIZE);
-	}
-
-	@Override
 	public boolean nextBoolean() {
 		if (BitSet.modSize(bitsConsumed) == 0) {
 			booleanWord = nextLong();
