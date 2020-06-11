@@ -185,11 +185,11 @@ public class BitSet implements Serializable {
 		final int end = divideSize(to - 1);
 		final long startMask = MASK << from;
 		final long endMask = MASK >>> -to;
-		int sum = 0;
+		int sum;
 		if (start == end) {
-			sum += Long.bitCount(getWord(start) & startMask & endMask);
+			sum = Long.bitCount(getWord(start) & startMask & endMask);
 		} else {
-			sum += Long.bitCount(getWord(start) & startMask);
+			sum = Long.bitCount(getWord(start) & startMask);
 			for (int i = start + 1; i < end; i++) {
 				sum += Long.bitCount(getWord(i));
 			}
