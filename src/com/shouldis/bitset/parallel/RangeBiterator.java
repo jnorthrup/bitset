@@ -21,9 +21,8 @@ public final class RangeBiterator extends SizedBiterator {
 	 * 
 	 * @param position (inclusive) the first index to include.
 	 * @param end      (exclusive) the index after the last index to include.
-	 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
-	 *                                  to <b>end</b>.
-	 * @throws IllegalArgumentException if <b>position</b> is less than 0.
+	 * @throws IndexOutOfBoundsException if <b>position</b> is greater than or equal
+	 *                                   to <b>end</b>, or less than 0.
 	 */
 	public RangeBiterator(final int position, final int end) {
 		super(position, end);

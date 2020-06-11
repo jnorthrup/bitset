@@ -1,5 +1,6 @@
 package com.shouldis.bitset.parallel;
 
+import java.util.Objects;
 import java.util.Spliterator;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -49,23 +50,13 @@ public abstract class Biterator implements Spliterator.OfInt {
 	 * 
 	 * @param position (inclusive) the first index to include.
 	 * @param end      (exclusive) index after the last index to include.
-	 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
-	 *                                  to <b>end</b>.
-	 * @throws IllegalArgumentException if <b>position</b> is less than 0.
+	 * @throws IndexOutOfBoundsException if <b>position</b> is greater than or equal
+	 *                                   to <b>end</b>, or less than 0.
 	 */
 	protected Biterator(final int position, final int end) {
 		this.position = position;
 		this.end = end;
-		if (position >= end) {
-			final StringBuilder builder = new StringBuilder();
-			builder.append(position).append(" >= ").append(end);
-			throw new IllegalArgumentException(builder.toString());
-		}
-		if (position < 0) {
-			final StringBuilder builder = new StringBuilder();
-			builder.append(position).append(" < 0");
-			throw new IllegalArgumentException(builder.toString());
-		}
+		Objects.checkIndex(position, end);
 	}
 
 	/**

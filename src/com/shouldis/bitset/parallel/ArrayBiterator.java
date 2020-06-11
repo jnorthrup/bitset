@@ -1,5 +1,6 @@
 package com.shouldis.bitset.parallel;
 
+import java.util.Objects;
 import java.util.Spliterator;
 import java.util.function.IntConsumer;
 
@@ -31,20 +32,16 @@ public final class ArrayBiterator extends SizedBiterator {
 	 * @param items    the array of indices to be processed.
 	 * @param position (inclusive) the first index to include.
 	 * @param end      (exclusive) the index after the last index to include.
-	 * @throws NullPointerException     if <b>items</b> is null.
-	 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
-	 *                                  to <b>end</b>.
-	 * @throws IllegalArgumentException if <b>end</b> is greater than or equal to
-	 *                                  the length of <b>items</b>.
+	 * @throws NullPointerException      if <b>items</b> is null.
+	 * @throws IndexOutOfBoundsException if <b>position</b> is greater than or equal
+	 *                                   to <b>end</b>, or less than 0.
+	 * @throws IndexOutOfBoundsException if <b>end</b> is greater than
+	 *                                   <b>items</b>.length.
 	 */
 	public ArrayBiterator(final int[] items, final int position, final int end) {
 		super(position, end);
 		this.items = items;
-		if (end > items.length) {
-			final StringBuilder builder = new StringBuilder();
-			builder.append(end).append(" > ").append(items.length);
-			throw new IllegalArgumentException(builder.toString());
-		}
+		Objects.checkFromToIndex(position, end, items.length);
 	}
 
 	/**

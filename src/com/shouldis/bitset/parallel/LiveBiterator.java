@@ -1,5 +1,6 @@
 package com.shouldis.bitset.parallel;
 
+import java.util.Objects;
 import java.util.Spliterator;
 import java.util.function.IntConsumer;
 
@@ -29,19 +30,16 @@ public final class LiveBiterator extends Biterator {
 	 *                 calculated from.
 	 * @param position (inclusive) the first index to include.
 	 * @param end      (exclusive) the index after the last index to include.
-	 * @throws NullPointerException     if <b>set</b> is null.
-	 * @throws IllegalArgumentException if <b>position</b> is greater than or equal
-	 *                                  to <b>end</b>.
-	 * @throws IllegalArgumentException if <b>position</b> is less than 0.
+	 * @throws NullPointerException      if <b>set</b> is null.
+	 * @throws IndexOutOfBoundsException if <b>position</b> is greater than or equal
+	 *                                   to <b>end</b>, or less than 0.
+	 * @throws IndexOutOfBoundsException if <b>end</b> is greater than
+	 *                                   <b>set</b>.size.
 	 */
 	public LiveBiterator(final BitSet set, final int position, final int end) {
 		super(position, end);
 		this.set = set;
-		if (end > set.size) {
-			final StringBuilder builder = new StringBuilder();
-			builder.append(end).append(" > ").append(set.size);
-			throw new IllegalArgumentException(builder.toString());
-		}
+		Objects.checkFromToIndex(position, end, set.size);
 	}
 
 	/**

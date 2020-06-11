@@ -326,10 +326,10 @@ int&nbsp;end)</span></div>
 <dd><code>end</code> - (exclusive) the index after the last index to include.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.NullPointerException</code> - if <b>items</b> is null.</dd>
-<dd><code>java.lang.IllegalArgumentException</code> - if <b>position</b> is greater than or equal
-                                  to <b>end</b>.</dd>
-<dd><code>java.lang.IllegalArgumentException</code> - if <b>end</b> is greater than or equal to
-                                  the length of <b>items</b>.</dd>
+<dd><code>java.lang.IndexOutOfBoundsException</code> - if <b>position</b> is greater than or equal
+                                   to <b>end</b>, or less than 0.</dd>
+<dd><code>java.lang.IndexOutOfBoundsException</code> - if <b>end</b> is greater than
+                                   <b>items</b>.length.</dd>
 </dl>
 </section>
 </li>
