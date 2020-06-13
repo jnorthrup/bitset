@@ -85,14 +85,14 @@ public class BitSet implements Serializable {
 	 * @throws IllegalArgumentException if <b>size</b> is less than 0.
 	 */
 	public BitSet(final int size) {
-		this.size = size;
 		int wordCount = divideSize(size);
-		if (wordCount >= 0 && modSize(size) > 0) {
-			wordCount++;
-		}
 		if (wordCount < 0) {
 			throw new IllegalArgumentException(Integer.toString(size));
 		}
+		if (modSize(size) > 0) {
+			wordCount++;
+		}
+		this.size = size;
 		this.wordCount = wordCount;
 		words = new long[wordCount];
 	}
