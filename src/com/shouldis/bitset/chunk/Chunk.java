@@ -8,8 +8,8 @@ import com.shouldis.bitset.ConcurrentBitSet;
 import com.shouldis.bitset.ImmutableBitSet;
 
 /**
- * 64 by 64 bit matrix backed by either a {@link BitSet} or
- * {@link ConcurrentBitSet}.
+ * 64 by 64 bit matrix backed by either a {@link BitSet},
+ * {@link ConcurrentBitSet} or {@link ImmutableBitSet}.
  * 
  * @author Aaron Shouldis
  */
