@@ -125,7 +125,7 @@ implements java.io.Serializable</pre>
  exist on the end of the last long within <a href="#words"><code>words</code></a>, which are not
  accounted for by <a href="#size"><code>size</code></a>. No exception will be thrown when these bit
  indices are manipulated or read, and in the aggregating functions
- <a href="#population()"><code>population()</code></a>, <a href="#hashCode()"><code>hashCode()</code></a>, etc. Hanging bits can have their
+ <a href="#population()"><code>population()</code></a>, <a href="#hashCode()"><code>hashCode()</code></a>, etc., hanging bits can have their
  effect on those aggregating functions made consistent by calling
  <a href="#clearHanging()"><code>clearHanging()</code></a>. Otherwise, accessing a negative index, or any index
  greater than or equal to <a href="#size"><code>size</code></a> will cause an

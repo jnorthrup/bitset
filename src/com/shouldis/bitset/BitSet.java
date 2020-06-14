@@ -26,7 +26,7 @@ import com.shouldis.bitset.parallel.LiveBiterator;
  * exist on the end of the last long within {@link #words}, which are not
  * accounted for by {@link #size}. No exception will be thrown when these bit
  * indices are manipulated or read, and in the aggregating functions
- * {@link #population()}, {@link #hashCode()}, etc. Hanging bits can have their
+ * {@link #population()}, {@link #hashCode()}, etc., hanging bits can have their
  * effect on those aggregating functions made consistent by calling
  * {@link #clearHanging()}. Otherwise, accessing a negative index, or any index
  * greater than or equal to {@link #size} will cause an
