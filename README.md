@@ -2,7 +2,7 @@
 Compact, fixed-sized set data structure for integers. Many applications of BitSets involve [embarrassingly parallel](https://www.wikipedia.org/wiki/Embarrassingly_parallel) operations. [java.util.BitSet](https://docs.oracle.com/javase/10/docs/api/java/util/BitSet.html) doesn't provide any way to take advantage of this, which inspired this library. This library also provides a variety of tools to efficiently stream, manipulate and randomize BitSets.
 
 ## Documentation
-This library is fully documented -- the JavaDocs are best viewed [here](https://ashouldis.github.io/BitSet/).
+This library is fully documented -- the JavaDocs are best viewed [here](https://ashouldis.github.io/bitset/).
 
 ## Benchmark
 Benchmark of the time to read the state of all bits. Easily parallelized using a **Biterator**.  
