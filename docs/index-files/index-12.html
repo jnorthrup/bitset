@@ -85,10 +85,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/random/Random.html#nextBitSet(int)">nextBitSet(int)</a></span> - Method in class com.shouldis.bitset.random.<a href="../com/shouldis/bitset/random/Random.html" title="class in com.shouldis.bitset.random">Random</a></dt>
 <dd>
 <div class="block">Generates a <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> with the specified <b>size</b>, with each word
- filled with <a href="../com/shouldis/bitset/random/Random.html#nextLong()"><code>nextLong()</code></a>.</div>
+ filled with <a href="../com/shouldis/bitset/random/Random.html#nextWord()"><code>nextWord()</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/random/DensityRandom.html#nextBoolean()">nextBoolean()</a></span> - Method in class com.shouldis.bitset.random.<a href="../com/shouldis/bitset/random/DensityRandom.html" title="class in com.shouldis.bitset.random">DensityRandom</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/random/Random.html#nextBoolean()">nextBoolean()</a></span> - Method in class com.shouldis.bitset.random.<a href="../com/shouldis/bitset/random/Random.html" title="class in com.shouldis.bitset.random">Random</a></dt>
 <dd>
 <div class="block">Returns the next pseudo-random boolean from this random number generator's
@@ -97,7 +95,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/random/Random.html#nextConcurrentBitSet(int)">nextConcurrentBitSet(int)</a></span> - Method in class com.shouldis.bitset.random.<a href="../com/shouldis/bitset/random/Random.html" title="class in com.shouldis.bitset.random">Random</a></dt>
 <dd>
 <div class="block">Generates a <a href="../com/shouldis/bitset/ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> with the specified <b>size</b>, with
- each word filled with <a href="../com/shouldis/bitset/random/Random.html#nextLong()"><code>nextLong()</code></a>.</div>
+ each word filled with <a href="../com/shouldis/bitset/random/Random.html#nextWord()"><code>nextWord()</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/BitSet.html#nextDead(int)">nextDead(int)</a></span> - Method in class com.shouldis.bitset.<a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset">BitSet</a></dt>
 <dd>
@@ -116,8 +114,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/random/Random.html#nextInt()">nextInt()</a></span> - Method in class com.shouldis.bitset.random.<a href="../com/shouldis/bitset/random/Random.html" title="class in com.shouldis.bitset.random">Random</a></dt>
 <dd>
-<div class="block">Returns the next pseudo-random integer from this random number generator's
- sequence.</div>
+<div class="block">Returns the next pseudo-random, uniformly distributed integer value from this
+ random number generator's sequence.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/random/Random.html#nextInt(int)">nextInt(int)</a></span> - Method in class com.shouldis.bitset.random.<a href="../com/shouldis/bitset/random/Random.html" title="class in com.shouldis.bitset.random">Random</a></dt>
 <dd>
@@ -141,12 +139,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  <b>word</b> that is at the specified <b>wordIndex</b> within
  <a href="../com/shouldis/bitset/BitSet.html#words"><code>BitSet.words</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/random/DensityRandom.html#nextLong()">nextLong()</a></span> - Method in class com.shouldis.bitset.random.<a href="../com/shouldis/bitset/random/DensityRandom.html" title="class in com.shouldis.bitset.random">DensityRandom</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/random/Random.html#nextLong()">nextLong()</a></span> - Method in class com.shouldis.bitset.random.<a href="../com/shouldis/bitset/random/Random.html" title="class in com.shouldis.bitset.random">Random</a></dt>
 <dd>
-<div class="block">Returns the next pseudo-random long from this random number generator's
- sequence.</div>
+<div class="block">Returns the next pseudo-random, uniformly distributed long value from this
+ random number generator's sequence using the XOrShift64 algorithm.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/random/Random.html#nextLong(long)">nextLong(long)</a></span> - Method in class com.shouldis.bitset.random.<a href="../com/shouldis/bitset/random/Random.html" title="class in com.shouldis.bitset.random">Random</a></dt>
 <dd>
@@ -165,15 +161,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  random number generator's sequence, but shifted to ensure it is always
  positive.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/random/Random.html#nextRawInt()">nextRawInt()</a></span> - Method in class com.shouldis.bitset.random.<a href="../com/shouldis/bitset/random/Random.html" title="class in com.shouldis.bitset.random">Random</a></dt>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/random/DensityRandom.html#nextWord()">nextWord()</a></span> - Method in class com.shouldis.bitset.random.<a href="../com/shouldis/bitset/random/DensityRandom.html" title="class in com.shouldis.bitset.random">DensityRandom</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/random/Random.html#nextWord()">nextWord()</a></span> - Method in class com.shouldis.bitset.random.<a href="../com/shouldis/bitset/random/Random.html" title="class in com.shouldis.bitset.random">Random</a></dt>
 <dd>
-<div class="block">Returns the next pseudo-random, uniformly distributed integer value from this
- random number generator's sequence.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/random/Random.html#nextRawLong()">nextRawLong()</a></span> - Method in class com.shouldis.bitset.random.<a href="../com/shouldis/bitset/random/Random.html" title="class in com.shouldis.bitset.random">Random</a></dt>
-<dd>
-<div class="block">Returns the next pseudo-random, uniformly distributed long value from this
- random number generator's sequence using the XORShift64 algorithm.</div>
+<div class="block">Returns the next pseudo-random long from this random number generator's
+ sequence.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/BitSet.html#not()">not()</a></span> - Method in class com.shouldis.bitset.<a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset">BitSet</a></dt>
 <dd>

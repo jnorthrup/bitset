@@ -19,7 +19,7 @@
 <script type="text/javascript" src="../../../../script-dir/jquery-ui.js"></script>
 </head>
 <body class="class-declaration">
-<script type="text/javascript">var data = {"i0":9,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10};
+<script type="text/javascript">var data = {"i0":9,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -139,6 +139,22 @@ extends java.lang.Object</pre>
 </thead>
 <tbody>
 <tr class="altColor">
+<td class="colFirst"><code>private int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#bitsConsumed">bitsConsumed</a></span></code></th>
+<td class="colLast">
+<div class="block">Internal counter to track how many bits of <a href="#booleanWord"><code>booleanWord</code></a> have been
+ consumed by <a href="#nextBoolean()"><code>nextBoolean()</code></a>.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>private long</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#booleanWord">booleanWord</a></span></code></th>
+<td class="colLast">
+<div class="block">The field of bits used by <a href="#nextBoolean()"><code>nextBoolean()</code></a> to more efficiently produce
+ boolean values derived from a single bit.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>private static long</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#MAGIC_NUMBER">MAGIC_NUMBER</a></span></code></th>
 <td class="colLast">
@@ -157,7 +173,7 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>private long</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#state">state</a></span></code></th>
 <td class="colLast">
-<div class="block">Internal value used to store the current value held by this generator.</div>
+<div class="block">Internal value used to store the current state of this generator.</div>
 </td>
 </tr>
 </tbody>
@@ -230,7 +246,9 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>long</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSeed()">getSeed</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Returns the current seed of this <a href="Random.html" title="class in com.shouldis.bitset.random"><code>Random</code></a>.</div>
+<div class="block">Returns the current seed of this <a href="Random.html" title="class in com.shouldis.bitset.random"><code>Random</code></a>, the seed needed to set an
+ instance of <a href="Random.html" title="class in com.shouldis.bitset.random"><code>Random</code></a> to the current state of this <a href="Random.html" title="class in com.shouldis.bitset.random"><code>Random</code></a>
+ through the <a href="#setSeed(long)"><code>setSeed(long)</code></a> method.</div>
 </td>
 </tr>
 <tr class="altColor" id="i2">
@@ -238,7 +256,7 @@ extends java.lang.Object</pre>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextBitSet(int)">nextBitSet</a></span>&#8203;(int&nbsp;size)</code></th>
 <td class="colLast">
 <div class="block">Generates a <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> with the specified <b>size</b>, with each word
- filled with <a href="#nextLong()"><code>nextLong()</code></a>.</div>
+ filled with <a href="#nextWord()"><code>nextWord()</code></a>.</div>
 </td>
 </tr>
 <tr class="rowColor" id="i3">
@@ -254,7 +272,7 @@ extends java.lang.Object</pre>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextConcurrentBitSet(int)">nextConcurrentBitSet</a></span>&#8203;(int&nbsp;size)</code></th>
 <td class="colLast">
 <div class="block">Generates a <a href="../ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> with the specified <b>size</b>, with
- each word filled with <a href="#nextLong()"><code>nextLong()</code></a>.</div>
+ each word filled with <a href="#nextWord()"><code>nextWord()</code></a>.</div>
 </td>
 </tr>
 <tr class="rowColor" id="i5">
@@ -274,11 +292,11 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="rowColor" id="i7">
-<td class="colFirst"><code>int</code></td>
+<td class="colFirst"><code>private int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextInt()">nextInt</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Returns the next pseudo-random integer from this random number generator's
- sequence.</div>
+<div class="block">Returns the next pseudo-random, uniformly distributed integer value from this
+ random number generator's sequence.</div>
 </td>
 </tr>
 <tr class="altColor" id="i8">
@@ -294,8 +312,8 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>long</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextLong()">nextLong</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Returns the next pseudo-random long from this random number generator's
- sequence.</div>
+<div class="block">Returns the next pseudo-random, uniformly distributed long value from this
+ random number generator's sequence using the XOrShift64 algorithm.</div>
 </td>
 </tr>
 <tr class="altColor" id="i10">
@@ -325,22 +343,14 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="rowColor" id="i13">
-<td class="colFirst"><code>private int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextRawInt()">nextRawInt</a></span>()</code></th>
+<td class="colFirst"><code>long</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextWord()">nextWord</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Returns the next pseudo-random, uniformly distributed integer value from this
- random number generator's sequence.</div>
+<div class="block">Returns the next pseudo-random long from this random number generator's
+ sequence.</div>
 </td>
 </tr>
 <tr class="altColor" id="i14">
-<td class="colFirst"><code>private long</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextRawLong()">nextRawLong</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Returns the next pseudo-random, uniformly distributed long value from this
- random number generator's sequence using the XORShift64 algorithm.</div>
-</td>
-</tr>
-<tr class="rowColor" id="i15">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#randomize(com.shouldis.bitset.BitSet)">randomize</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
 <td class="colLast">
@@ -348,7 +358,7 @@ extends java.lang.Object</pre>
  randomly according to the density of this <a href="Random.html" title="class in com.shouldis.bitset.random"><code>Random</code></a>.</div>
 </td>
 </tr>
-<tr class="altColor" id="i16">
+<tr class="rowColor" id="i15">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#randomize(com.shouldis.bitset.BitSet,int,int)">randomize</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set,
 int&nbsp;from,
@@ -359,14 +369,14 @@ int&nbsp;to)</code></th>
  density of this <a href="Random.html" title="class in com.shouldis.bitset.random"><code>Random</code></a>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i17">
+<tr class="altColor" id="i16">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSeed(long)">setSeed</a></span>&#8203;(long&nbsp;seed)</code></th>
 <td class="colLast">
 <div class="block">Changes the seed of this random number generator.</div>
 </td>
 </tr>
-<tr class="altColor" id="i18">
+<tr class="rowColor" id="i17">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#xOrRandomize(com.shouldis.bitset.BitSet)">xOrRandomize</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
 <td class="colLast">
@@ -374,7 +384,7 @@ int&nbsp;to)</code></th>
  specified <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i19">
+<tr class="altColor" id="i18">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#xOrRandomize(com.shouldis.bitset.BitSet,int,int)">xOrRandomize</a></span>&#8203;(<a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set,
 int&nbsp;from,
@@ -428,9 +438,26 @@ int&nbsp;to)</code></th>
 </li>
 <li class="blockList">
 <section class="detail">
+<h3><a id="booleanWord">booleanWord</a></h3>
+<div class="memberSignature"><span class="modifiers">private</span>&nbsp;<span class="returnType">long</span>&nbsp;<span class="memberName">booleanWord</span></div>
+<div class="block">The field of bits used by <a href="#nextBoolean()"><code>nextBoolean()</code></a> to more efficiently produce
+ boolean values derived from a single bit. Initialized and refreshed with
+ <a href="#nextWord()"><code>nextWord()</code></a> after all bits have been consumed.</div>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="bitsConsumed">bitsConsumed</a></h3>
+<div class="memberSignature"><span class="modifiers">private</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">bitsConsumed</span></div>
+<div class="block">Internal counter to track how many bits of <a href="#booleanWord"><code>booleanWord</code></a> have been
+ consumed by <a href="#nextBoolean()"><code>nextBoolean()</code></a>.</div>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
 <h3><a id="state">state</a></h3>
 <div class="memberSignature"><span class="modifiers">private</span>&nbsp;<span class="returnType">long</span>&nbsp;<span class="memberName">state</span></div>
-<div class="block">Internal value used to store the current value held by this generator.</div>
+<div class="block">Internal value used to store the current state of this generator.</div>
 </section>
 </li>
 </ul>
@@ -477,13 +504,26 @@ int&nbsp;to)</code></th>
 <ul class="blockList">
 <li class="blockList">
 <section class="detail">
-<h3><a id="nextRawLong()">nextRawLong</a></h3>
-<div class="memberSignature"><span class="modifiers">private final</span>&nbsp;<span class="returnType">long</span>&nbsp;<span class="memberName">nextRawLong</span>()</div>
+<h3><a id="nextLong()">nextLong</a></h3>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">long</span>&nbsp;<span class="memberName">nextLong</span>()</div>
 <div class="block">Returns the next pseudo-random, uniformly distributed long value from this
- random number generator's sequence using the XORShift64 algorithm.</div>
+ random number generator's sequence using the XOrShift64 algorithm.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the next randomly generated long in the sequence.</dd>
+</dl>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="nextWord()">nextWord</a></h3>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">long</span>&nbsp;<span class="memberName">nextWord</span>()</div>
+<div class="block">Returns the next pseudo-random long from this random number generator's
+ sequence. Values returned are not meant to represent numerical values, and
+ instead represent a field of bits.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a randomly generated long word.</dd>
 </dl>
 </section>
 </li>
@@ -497,18 +537,6 @@ int&nbsp;to)</code></th>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the next randomly generated long.</dd>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
-<h3><a id="nextLong()">nextLong</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">long</span>&nbsp;<span class="memberName">nextLong</span>()</div>
-<div class="block">Returns the next pseudo-random long from this random number generator's
- sequence.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>a randomly generated long.</dd>
 </dl>
 </section>
 </li>
@@ -531,8 +559,8 @@ int&nbsp;to)</code></th>
 </li>
 <li class="blockList">
 <section class="detail">
-<h3><a id="nextRawInt()">nextRawInt</a></h3>
-<div class="memberSignature"><span class="modifiers">private final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">nextRawInt</span>()</div>
+<h3><a id="nextInt()">nextInt</a></h3>
+<div class="memberSignature"><span class="modifiers">private final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">nextInt</span>()</div>
 <div class="block">Returns the next pseudo-random, uniformly distributed integer value from this
  random number generator's sequence.</div>
 <dl>
@@ -555,18 +583,6 @@ int&nbsp;to)</code></th>
 </li>
 <li class="blockList">
 <section class="detail">
-<h3><a id="nextInt()">nextInt</a></h3>
-<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">nextInt</span>()</div>
-<div class="block">Returns the next pseudo-random integer from this random number generator's
- sequence.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>a randomly generated integer.</dd>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
 <h3><a id="nextInt(int)">nextInt</a></h3>
 <div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">nextInt</span>&#8203;(<span class="arguments">int&nbsp;bound)</span></div>
 <div class="block">Returns the next pseudo-random, uniformly distributed integer value from this
@@ -579,6 +595,18 @@ int&nbsp;to)</code></th>
 <dd>the next integer between 0 and <b>bound</b>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.IllegalArgumentException</code> - if <b>bound</b> is less than 1;</dd>
+</dl>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="nextBoolean()">nextBoolean</a></h3>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">boolean</span>&nbsp;<span class="memberName">nextBoolean</span>()</div>
+<div class="block">Returns the next pseudo-random boolean from this random number generator's
+ sequence. Boolean values returned will be generated by <a href="#nextWord()"><code>nextWord()</code></a>.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a randomly generated boolean.</dd>
 </dl>
 </section>
 </li>
@@ -608,22 +636,10 @@ int&nbsp;to)</code></th>
 </li>
 <li class="blockList">
 <section class="detail">
-<h3><a id="nextBoolean()">nextBoolean</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">boolean</span>&nbsp;<span class="memberName">nextBoolean</span>()</div>
-<div class="block">Returns the next pseudo-random boolean from this random number generator's
- sequence.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>a randomly generated boolean.</dd>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
 <h3><a id="nextBitSet(int)">nextBitSet</a></h3>
 <div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType"><a href="../BitSet.html" title="class in com.shouldis.bitset">BitSet</a></span>&nbsp;<span class="memberName">nextBitSet</span>&#8203;(<span class="arguments">int&nbsp;size)</span></div>
 <div class="block">Generates a <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> with the specified <b>size</b>, with each word
- filled with <a href="#nextLong()"><code>nextLong()</code></a>.</div>
+ filled with <a href="#nextWord()"><code>nextWord()</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>size</code> - the size of generated <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>.</dd>
@@ -639,7 +655,7 @@ int&nbsp;to)</code></th>
 <h3><a id="nextConcurrentBitSet(int)">nextConcurrentBitSet</a></h3>
 <div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType"><a href="../ConcurrentBitSet.html" title="class in com.shouldis.bitset">ConcurrentBitSet</a></span>&nbsp;<span class="memberName">nextConcurrentBitSet</span>&#8203;(<span class="arguments">int&nbsp;size)</span></div>
 <div class="block">Generates a <a href="../ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> with the specified <b>size</b>, with
- each word filled with <a href="#nextLong()"><code>nextLong()</code></a>.</div>
+ each word filled with <a href="#nextWord()"><code>nextWord()</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>size</code> - the size of the generated <a href="../ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a>.</dd>
@@ -761,9 +777,9 @@ int&nbsp;to)</span></div>
 <section class="detail">
 <h3><a id="getSeed()">getSeed</a></h3>
 <div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">long</span>&nbsp;<span class="memberName">getSeed</span>()</div>
-<div class="block">Returns the current seed of this <a href="Random.html" title="class in com.shouldis.bitset.random"><code>Random</code></a>. This will be the seed needed
- to set an instance of <a href="Random.html" title="class in com.shouldis.bitset.random"><code>Random</code></a> to the current state of this
- <a href="Random.html" title="class in com.shouldis.bitset.random"><code>Random</code></a> through the <a href="#setSeed(long)"><code>setSeed(long)</code></a> method.</div>
+<div class="block">Returns the current seed of this <a href="Random.html" title="class in com.shouldis.bitset.random"><code>Random</code></a>, the seed needed to set an
+ instance of <a href="Random.html" title="class in com.shouldis.bitset.random"><code>Random</code></a> to the current state of this <a href="Random.html" title="class in com.shouldis.bitset.random"><code>Random</code></a>
+ through the <a href="#setSeed(long)"><code>setSeed(long)</code></a> method.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the current seed, derived from the current state.</dd>
