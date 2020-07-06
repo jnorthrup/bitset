@@ -76,23 +76,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/parallel/SizedBiterator.html#characteristics()">characteristics()</a></span> - Method in class com.shouldis.bitset.parallel.<a href="../com/shouldis/bitset/parallel/SizedBiterator.html" title="class in com.shouldis.bitset.parallel">SizedBiterator</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="../com/shouldis/bitset/chunk/Chunk.html" title="class in com.shouldis.bitset.chunk"><span class="typeNameLink">Chunk</span></a> - Class in <a href="../com/shouldis/bitset/chunk/package-summary.html">com.shouldis.bitset.chunk</a></dt>
-<dd>
-<div class="block">64 by 64 bit matrix backed by either a <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>,
- <a href="../com/shouldis/bitset/ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> or <a href="../com/shouldis/bitset/ImmutableBitSet.html" title="class in com.shouldis.bitset"><code>ImmutableBitSet</code></a>.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/chunk/Chunk.html#%3Cinit%3E(com.shouldis.bitset.BitSet)">Chunk(BitSet)</a></span> - Constructor for class com.shouldis.bitset.chunk.<a href="../com/shouldis/bitset/chunk/Chunk.html" title="class in com.shouldis.bitset.chunk">Chunk</a></dt>
-<dd>
-<div class="block">Internal, private constructor.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/chunk/Chunk.html#CHUNK_SIZE">CHUNK_SIZE</a></span> - Static variable in class com.shouldis.bitset.chunk.<a href="../com/shouldis/bitset/chunk/Chunk.html" title="class in com.shouldis.bitset.chunk">Chunk</a></dt>
-<dd>
-<div class="block">The number of bits contained in a <a href="../com/shouldis/bitset/chunk/Chunk.html" title="class in com.shouldis.bitset.chunk"><code>Chunk</code></a></div>
-</dd>
-<dt><a href="../com/shouldis/bitset/chunk/ChunkFunction.html" title="interface in com.shouldis.bitset.chunk"><span class="typeNameLink">ChunkFunction</span></a> - Interface in <a href="../com/shouldis/bitset/chunk/package-summary.html">com.shouldis.bitset.chunk</a></dt>
-<dd>
-<div class="block">Functional interface used to apply functions to a <a href="../com/shouldis/bitset/chunk/Chunk.html" title="class in com.shouldis.bitset.chunk"><code>Chunk</code></a>.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/BitSet.html#clear(int)">clear(int)</a></span> - Method in class com.shouldis.bitset.<a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset">BitSet</a></dt>
 <dd>
 <div class="block">Changes the state of a bit at the specified <b>index</b> to the <i>dead</i>
@@ -111,27 +94,27 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><a href="../com/shouldis/bitset/package-summary.html">com.shouldis.bitset</a> - package com.shouldis.bitset</dt>
 <dd>&nbsp;</dd>
-<dt><a href="../com/shouldis/bitset/chunk/package-summary.html">com.shouldis.bitset.chunk</a> - package com.shouldis.bitset.chunk</dt>
+<dt><a href="../com/shouldis/bitset/matrix/package-summary.html">com.shouldis.bitset.matrix</a> - package com.shouldis.bitset.matrix</dt>
 <dd>&nbsp;</dd>
 <dt><a href="../com/shouldis/bitset/parallel/package-summary.html">com.shouldis.bitset.parallel</a> - package com.shouldis.bitset.parallel</dt>
 <dd>&nbsp;</dd>
 <dt><a href="../com/shouldis/bitset/random/package-summary.html">com.shouldis.bitset.random</a> - package com.shouldis.bitset.random</dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/chunk/ChunkFunction.html#combine(com.shouldis.bitset.chunk.ChunkFunction,com.shouldis.bitset.chunk.ChunkFunction)">combine(ChunkFunction, ChunkFunction)</a></span> - Static method in interface com.shouldis.bitset.chunk.<a href="../com/shouldis/bitset/chunk/ChunkFunction.html" title="interface in com.shouldis.bitset.chunk">ChunkFunction</a></dt>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/matrix/MatrixFunction.html#combine(com.shouldis.bitset.matrix.MatrixFunction,com.shouldis.bitset.matrix.MatrixFunction)">combine(MatrixFunction, MatrixFunction)</a></span> - Static method in interface com.shouldis.bitset.matrix.<a href="../com/shouldis/bitset/matrix/MatrixFunction.html" title="interface in com.shouldis.bitset.matrix">MatrixFunction</a></dt>
 <dd>
-<div class="block">Creates a <a href="../com/shouldis/bitset/chunk/ChunkFunction.html" title="interface in com.shouldis.bitset.chunk"><code>ChunkFunction</code></a> which performs the two specified
- <a href="../com/shouldis/bitset/chunk/ChunkFunction.html" title="interface in com.shouldis.bitset.chunk"><code>ChunkFunction</code></a>s <b>first</b> and <b>second</b> in sequence.</div>
+<div class="block">Creates a <a href="../com/shouldis/bitset/matrix/MatrixFunction.html" title="interface in com.shouldis.bitset.matrix"><code>MatrixFunction</code></a> which performs the two specified
+ <a href="../com/shouldis/bitset/matrix/MatrixFunction.html" title="interface in com.shouldis.bitset.matrix"><code>MatrixFunction</code></a>s <b>first</b> and <b>second</b> in sequence.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../com/shouldis/bitset/WordFunction.html#combine(com.shouldis.bitset.WordFunction,com.shouldis.bitset.WordFunction)">combine(WordFunction, WordFunction)</a></span> - Static method in interface com.shouldis.bitset.<a href="../com/shouldis/bitset/WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a></dt>
 <dd>
 <div class="block">Creates a <a href="../com/shouldis/bitset/WordFunction.html" title="interface in com.shouldis.bitset"><code>WordFunction</code></a> which performs the two specified
  <a href="../com/shouldis/bitset/WordFunction.html" title="interface in com.shouldis.bitset"><code>WordFunction</code></a>s <b>first</b> and <b>second</b> in sequence.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/chunk/ChunkFunction.html#CONCURRENT_COPY">CONCURRENT_COPY</a></span> - Static variable in interface com.shouldis.bitset.chunk.<a href="../com/shouldis/bitset/chunk/ChunkFunction.html" title="interface in com.shouldis.bitset.chunk">ChunkFunction</a></dt>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/matrix/MatrixFunction.html#CONCURRENT_COPY">CONCURRENT_COPY</a></span> - Static variable in interface com.shouldis.bitset.matrix.<a href="../com/shouldis/bitset/matrix/MatrixFunction.html" title="interface in com.shouldis.bitset.matrix">MatrixFunction</a></dt>
 <dd>
-<div class="block"><a href="../com/shouldis/bitset/chunk/ChunkFunction.html" title="interface in com.shouldis.bitset.chunk"><code>ChunkFunction</code></a> that returns a copy of the specified <a href="../com/shouldis/bitset/chunk/Chunk.html" title="class in com.shouldis.bitset.chunk"><code>Chunk</code></a>
+<div class="block"><a href="../com/shouldis/bitset/matrix/MatrixFunction.html" title="interface in com.shouldis.bitset.matrix"><code>MatrixFunction</code></a> that returns a copy of the specified <a href="../com/shouldis/bitset/matrix/Matrix.html" title="class in com.shouldis.bitset.matrix"><code>Matrix</code></a>
  backed by a <a href="../com/shouldis/bitset/ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> using
- <a href="../com/shouldis/bitset/chunk/Chunk.html#createConcurrent(com.shouldis.bitset.chunk.Chunk)"><code>Chunk.createConcurrent(Chunk)</code></a>.</div>
+ <a href="../com/shouldis/bitset/matrix/Matrix.html#createConcurrent(com.shouldis.bitset.matrix.Matrix)"><code>Matrix.createConcurrent(Matrix)</code></a>.</div>
 </dd>
 <dt><a href="../com/shouldis/bitset/ConcurrentBitSet.html" title="class in com.shouldis.bitset"><span class="typeNameLink">ConcurrentBitSet</span></a> - Class in <a href="../com/shouldis/bitset/package-summary.html">com.shouldis.bitset</a></dt>
 <dd>
@@ -152,35 +135,35 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Transforms this <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> so that each bit matches the state of that in
  the give <b>set</b>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/chunk/ChunkFunction.html#COPY">COPY</a></span> - Static variable in interface com.shouldis.bitset.chunk.<a href="../com/shouldis/bitset/chunk/ChunkFunction.html" title="interface in com.shouldis.bitset.chunk">ChunkFunction</a></dt>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/matrix/MatrixFunction.html#COPY">COPY</a></span> - Static variable in interface com.shouldis.bitset.matrix.<a href="../com/shouldis/bitset/matrix/MatrixFunction.html" title="interface in com.shouldis.bitset.matrix">MatrixFunction</a></dt>
 <dd>
-<div class="block"><a href="../com/shouldis/bitset/chunk/ChunkFunction.html" title="interface in com.shouldis.bitset.chunk"><code>ChunkFunction</code></a> that returns a copy of the specified <a href="../com/shouldis/bitset/chunk/Chunk.html" title="class in com.shouldis.bitset.chunk"><code>Chunk</code></a>
- backed by a <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> using <a href="../com/shouldis/bitset/chunk/Chunk.html#create(com.shouldis.bitset.chunk.Chunk)"><code>Chunk.create(Chunk)</code></a>.</div>
+<div class="block"><a href="../com/shouldis/bitset/matrix/MatrixFunction.html" title="interface in com.shouldis.bitset.matrix"><code>MatrixFunction</code></a> that returns a copy of the specified <a href="../com/shouldis/bitset/matrix/Matrix.html" title="class in com.shouldis.bitset.matrix"><code>Matrix</code></a>
+ backed by a <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> using <a href="../com/shouldis/bitset/matrix/Matrix.html#create(com.shouldis.bitset.matrix.Matrix)"><code>Matrix.create(Matrix)</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/chunk/Chunk.html#create()">create()</a></span> - Static method in class com.shouldis.bitset.chunk.<a href="../com/shouldis/bitset/chunk/Chunk.html" title="class in com.shouldis.bitset.chunk">Chunk</a></dt>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/matrix/Matrix.html#create()">create()</a></span> - Static method in class com.shouldis.bitset.matrix.<a href="../com/shouldis/bitset/matrix/Matrix.html" title="class in com.shouldis.bitset.matrix">Matrix</a></dt>
 <dd>
-<div class="block">Creates a <a href="../com/shouldis/bitset/chunk/Chunk.html" title="class in com.shouldis.bitset.chunk"><code>Chunk</code></a> backed by a <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> with size equal to
- <a href="../com/shouldis/bitset/chunk/Chunk.html#CHUNK_SIZE"><code>Chunk.CHUNK_SIZE</code></a>.</div>
+<div class="block">Creates a <a href="../com/shouldis/bitset/matrix/Matrix.html" title="class in com.shouldis.bitset.matrix"><code>Matrix</code></a> backed by a <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> with size equal to
+ <a href="../com/shouldis/bitset/matrix/Matrix.html#MATRIX_SIZE"><code>Matrix.MATRIX_SIZE</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/chunk/Chunk.html#create(com.shouldis.bitset.chunk.Chunk)">create(Chunk)</a></span> - Static method in class com.shouldis.bitset.chunk.<a href="../com/shouldis/bitset/chunk/Chunk.html" title="class in com.shouldis.bitset.chunk">Chunk</a></dt>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/matrix/Matrix.html#create(com.shouldis.bitset.matrix.Matrix)">create(Matrix)</a></span> - Static method in class com.shouldis.bitset.matrix.<a href="../com/shouldis/bitset/matrix/Matrix.html" title="class in com.shouldis.bitset.matrix">Matrix</a></dt>
 <dd>
-<div class="block">Creates a <a href="../com/shouldis/bitset/chunk/Chunk.html" title="class in com.shouldis.bitset.chunk"><code>Chunk</code></a> backed by a <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> with size equal to
- <a href="../com/shouldis/bitset/chunk/Chunk.html#CHUNK_SIZE"><code>Chunk.CHUNK_SIZE</code></a>.</div>
+<div class="block">Creates a <a href="../com/shouldis/bitset/matrix/Matrix.html" title="class in com.shouldis.bitset.matrix"><code>Matrix</code></a> backed by a <a href="../com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> with size equal to
+ <a href="../com/shouldis/bitset/matrix/Matrix.html#MATRIX_SIZE"><code>Matrix.MATRIX_SIZE</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/chunk/Chunk.html#createConcurrent()">createConcurrent()</a></span> - Static method in class com.shouldis.bitset.chunk.<a href="../com/shouldis/bitset/chunk/Chunk.html" title="class in com.shouldis.bitset.chunk">Chunk</a></dt>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/matrix/Matrix.html#createConcurrent()">createConcurrent()</a></span> - Static method in class com.shouldis.bitset.matrix.<a href="../com/shouldis/bitset/matrix/Matrix.html" title="class in com.shouldis.bitset.matrix">Matrix</a></dt>
 <dd>
-<div class="block">Creates a <a href="../com/shouldis/bitset/chunk/Chunk.html" title="class in com.shouldis.bitset.chunk"><code>Chunk</code></a> backed by a <a href="../com/shouldis/bitset/ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> with size equal
- to <a href="../com/shouldis/bitset/chunk/Chunk.html#CHUNK_SIZE"><code>Chunk.CHUNK_SIZE</code></a>.</div>
+<div class="block">Creates a <a href="../com/shouldis/bitset/matrix/Matrix.html" title="class in com.shouldis.bitset.matrix"><code>Matrix</code></a> backed by a <a href="../com/shouldis/bitset/ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> with size equal
+ to <a href="../com/shouldis/bitset/matrix/Matrix.html#MATRIX_SIZE"><code>Matrix.MATRIX_SIZE</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/chunk/Chunk.html#createConcurrent(com.shouldis.bitset.chunk.Chunk)">createConcurrent(Chunk)</a></span> - Static method in class com.shouldis.bitset.chunk.<a href="../com/shouldis/bitset/chunk/Chunk.html" title="class in com.shouldis.bitset.chunk">Chunk</a></dt>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/matrix/Matrix.html#createConcurrent(com.shouldis.bitset.matrix.Matrix)">createConcurrent(Matrix)</a></span> - Static method in class com.shouldis.bitset.matrix.<a href="../com/shouldis/bitset/matrix/Matrix.html" title="class in com.shouldis.bitset.matrix">Matrix</a></dt>
 <dd>
-<div class="block">Creates a <a href="../com/shouldis/bitset/chunk/Chunk.html" title="class in com.shouldis.bitset.chunk"><code>Chunk</code></a> backed by a <a href="../com/shouldis/bitset/ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> with size equal
- to <a href="../com/shouldis/bitset/chunk/Chunk.html#CHUNK_SIZE"><code>Chunk.CHUNK_SIZE</code></a>.</div>
+<div class="block">Creates a <a href="../com/shouldis/bitset/matrix/Matrix.html" title="class in com.shouldis.bitset.matrix"><code>Matrix</code></a> backed by a <a href="../com/shouldis/bitset/ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> with size equal
+ to <a href="../com/shouldis/bitset/matrix/Matrix.html#MATRIX_SIZE"><code>Matrix.MATRIX_SIZE</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/chunk/Chunk.html#createImmutable(com.shouldis.bitset.chunk.Chunk)">createImmutable(Chunk)</a></span> - Static method in class com.shouldis.bitset.chunk.<a href="../com/shouldis/bitset/chunk/Chunk.html" title="class in com.shouldis.bitset.chunk">Chunk</a></dt>
+<dt><span class="memberNameLink"><a href="../com/shouldis/bitset/matrix/Matrix.html#createImmutable(com.shouldis.bitset.matrix.Matrix)">createImmutable(Matrix)</a></span> - Static method in class com.shouldis.bitset.matrix.<a href="../com/shouldis/bitset/matrix/Matrix.html" title="class in com.shouldis.bitset.matrix">Matrix</a></dt>
 <dd>
-<div class="block">Creates a <a href="../com/shouldis/bitset/chunk/Chunk.html" title="class in com.shouldis.bitset.chunk"><code>Chunk</code></a> backed by an <a href="../com/shouldis/bitset/ImmutableBitSet.html" title="class in com.shouldis.bitset"><code>ImmutableBitSet</code></a> with size equal
- to <a href="../com/shouldis/bitset/chunk/Chunk.html#CHUNK_SIZE"><code>Chunk.CHUNK_SIZE</code></a>.</div>
+<div class="block">Creates a <a href="../com/shouldis/bitset/matrix/Matrix.html" title="class in com.shouldis.bitset.matrix"><code>Matrix</code></a> backed by an <a href="../com/shouldis/bitset/ImmutableBitSet.html" title="class in com.shouldis.bitset"><code>ImmutableBitSet</code></a> with size equal
+ to <a href="../com/shouldis/bitset/matrix/Matrix.html#MATRIX_SIZE"><code>Matrix.MATRIX_SIZE</code></a>.</div>
 </dd>
 </dl>
 <a href="index-1.html">A</a>&nbsp;<a href="index-2.html">B</a>&nbsp;<a href="index-3.html">C</a>&nbsp;<a href="index-4.html">D</a>&nbsp;<a href="index-5.html">E</a>&nbsp;<a href="index-6.html">F</a>&nbsp;<a href="index-7.html">G</a>&nbsp;<a href="index-8.html">H</a>&nbsp;<a href="index-9.html">I</a>&nbsp;<a href="index-10.html">L</a>&nbsp;<a href="index-11.html">M</a>&nbsp;<a href="index-12.html">N</a>&nbsp;<a href="index-13.html">O</a>&nbsp;<a href="index-14.html">P</a>&nbsp;<a href="index-15.html">R</a>&nbsp;<a href="index-16.html">S</a>&nbsp;<a href="index-17.html">T</a>&nbsp;<a href="index-18.html">W</a>&nbsp;<a href="index-19.html">X</a>&nbsp;<a href="index-20.html">Y</a>&nbsp;<br><a href="../allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="../allpackages-index.html">All&nbsp;Packages</a></div>

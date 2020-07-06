@@ -1,4 +1,4 @@
-package com.shouldis.bitset.chunk;
+package com.shouldis.bitset.matrix;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -13,14 +13,14 @@ import com.shouldis.bitset.ImmutableBitSet;
  * 
  * @author Aaron Shouldis
  */
-public final class Chunk implements Serializable {
+public final class Matrix implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * The number of bits contained in a {@link Chunk}
+	 * The number of bits contained in a {@link Matrix}
 	 */
-	public static final int CHUNK_SIZE = Long.SIZE * Long.SIZE;
+	public static final int MATRIX_SIZE = Long.SIZE * Long.SIZE;
 
 	/**
 	 * The {@link BitSet} storing the bits contained in this {@link BitSet}. (X, Y)
@@ -31,76 +31,76 @@ public final class Chunk implements Serializable {
 	/**
 	 * Internal, private constructor.
 	 * 
-	 * @param bits the {@link BitSet} to initialize this {@link Chunk} with.
+	 * @param bits the {@link BitSet} to initialize this {@link Matrix} with.
 	 * 
 	 * @throws NullPointerException if <b>bits</b> is null.
 	 */
-	private Chunk(final BitSet bits) {
+	private Matrix(final BitSet bits) {
 		this.bits = Objects.requireNonNull(bits);
 	}
 
 	/**
-	 * Creates a {@link Chunk} backed by a {@link BitSet} with size equal to
-	 * {@link #CHUNK_SIZE}. All bits are initialized to the <i>dead</I> state.
+	 * Creates a {@link Matrix} backed by a {@link BitSet} with size equal to
+	 * {@link #MATRIX_SIZE}. All bits are initialized to the <i>dead</I> state.
 	 * 
-	 * @return the created {@link Chunk}.
+	 * @return the created {@link Matrix}.
 	 */
-	public static Chunk create() {
-		return new Chunk(new BitSet(CHUNK_SIZE));
+	public static Matrix create() {
+		return new Matrix(new BitSet(MATRIX_SIZE));
 	}
 
 	/**
-	 * Creates a {@link Chunk} backed by a {@link BitSet} with size equal to
-	 * {@link #CHUNK_SIZE}. All bits copy the state of the bits in the specified
-	 * {@link Chunk} <b>chunk</b>.
+	 * Creates a {@link Matrix} backed by a {@link BitSet} with size equal to
+	 * {@link #MATRIX_SIZE}. All bits copy the state of the bits in the specified
+	 * {@link Matrix} <b>matrix</b>.
 	 * 
-	 * @param chunk the {@link Chunk} to copy.
+	 * @param matrix the {@link Matrix} to copy.
 	 * 
-	 * @return the created {@link Chunk} copy of <b>chunk</b>.
+	 * @return the created {@link Matrix} copy of <b>matrix</b>.
 	 */
-	public static Chunk create(final Chunk chunk) {
-		return new Chunk(new BitSet(chunk.bits()));
+	public static Matrix create(final Matrix matrix) {
+		return new Matrix(new BitSet(matrix.bits()));
 	}
 
 	/**
-	 * Creates a {@link Chunk} backed by a {@link ConcurrentBitSet} with size equal
-	 * to {@link #CHUNK_SIZE}. All bits are initialized to the <i>dead</I> state.
+	 * Creates a {@link Matrix} backed by a {@link ConcurrentBitSet} with size equal
+	 * to {@link #MATRIX_SIZE}. All bits are initialized to the <i>dead</I> state.
 	 * 
-	 * @return the created {@link Chunk}.
+	 * @return the created {@link Matrix}.
 	 */
-	public static Chunk createConcurrent() {
-		return new Chunk(new ConcurrentBitSet(CHUNK_SIZE));
+	public static Matrix createConcurrent() {
+		return new Matrix(new ConcurrentBitSet(MATRIX_SIZE));
 	}
 
 	/**
-	 * Creates a {@link Chunk} backed by a {@link ConcurrentBitSet} with size equal
-	 * to {@link #CHUNK_SIZE}. All bits copy the state of the bits in the specified
-	 * {@link Chunk} <b>chunk</b>.
+	 * Creates a {@link Matrix} backed by a {@link ConcurrentBitSet} with size equal
+	 * to {@link #MATRIX_SIZE}. All bits copy the state of the bits in the specified
+	 * {@link Matrix} <b>matrix</b>.
 	 * 
-	 * @param chunk the {@link Chunk} to copy.
+	 * @param matrix the {@link Matrix} to copy.
 	 * 
-	 * @return the created {@link Chunk} copy of <b>chunk</b>.
+	 * @return the created {@link Matrix} copy of <b>matrix</b>.
 	 */
-	public static Chunk createConcurrent(final Chunk chunk) {
-		return new Chunk(new ConcurrentBitSet(chunk.bits()));
+	public static Matrix createConcurrent(final Matrix matrix) {
+		return new Matrix(new ConcurrentBitSet(matrix.bits()));
 	}
 
 	/**
-	 * Creates a {@link Chunk} backed by an {@link ImmutableBitSet} with size equal
-	 * to {@link #CHUNK_SIZE}. All bits copy the state of the bits in the specified
-	 * {@link Chunk} <b>chunk</b>.
+	 * Creates a {@link Matrix} backed by an {@link ImmutableBitSet} with size equal
+	 * to {@link #MATRIX_SIZE}. All bits copy the state of the bits in the specified
+	 * {@link Matrix} <b>matrix</b>.
 	 * 
-	 * @param chunk the {@link Chunk} to copy.
+	 * @param matrix the {@link Matrix} to copy.
 	 * 
-	 * @return the created {@link Chunk} copy of <b>chunk</b>.
+	 * @return the created {@link Matrix} copy of <b>matrix</b>.
 	 */
-	public static Chunk createImmutable(final Chunk chunk) {
-		return new Chunk(new ImmutableBitSet(chunk.bits()));
+	public static Matrix createImmutable(final Matrix matrix) {
+		return new Matrix(new ImmutableBitSet(matrix.bits()));
 	}
 
 	/**
 	 * Resolves the x-coordinate corresponding to the specified <b>index</b>. If the
-	 * index is out of the [0, {@link #CHUNK_SIZE}), the result is undefined.
+	 * index is out of the [0, {@link #MATRIX_SIZE}), the result is undefined.
 	 * 
 	 * @param index the bit index to map to an x-coordinate.
 	 * @return the x-coordinate representation of <b>index</b>.
@@ -111,7 +111,7 @@ public final class Chunk implements Serializable {
 
 	/**
 	 * Resolves the y-coordinate corresponding to the specified <b>index</b>. If the
-	 * index is out of the range [0, {@link #CHUNK_SIZE}), the result is undefined.
+	 * index is out of the range [0, {@link #MATRIX_SIZE}), the result is undefined.
 	 * 
 	 * @param index the bit index to map to an y-coordinate.
 	 * @return the y-coordinate representation of <b>index</b>.
@@ -135,7 +135,7 @@ public final class Chunk implements Serializable {
 	/**
 	 * Resolves an x-coordinate and a y-coordinate to a bit index through wrapping.
 	 * {@link #wrap(int)} is used to bound the coordinates in the range [0,
-	 * {@link Long#SIZE}) as if this {@link Chunk} was a torus.
+	 * {@link Long#SIZE}) as if this {@link Matrix} was a torus.
 	 * 
 	 * @param x the x-coordinate to resolve to a bit index.
 	 * @param y the y-coordinate to resolve to a bit index.
@@ -148,7 +148,7 @@ public final class Chunk implements Serializable {
 
 	/**
 	 * Resolves an x-coordinate or y-coordinate to a x-coordinate or y-coordinate
-	 * bounding it within the range [0, {@link Long#SIZE}) as if this {@link Chunk}
+	 * bounding it within the range [0, {@link Long#SIZE}) as if this {@link Matrix}
 	 * was a torus.
 	 * 
 	 * @param coordinate the coordinate to bound within the range [0,
@@ -165,11 +165,11 @@ public final class Chunk implements Serializable {
 	}
 
 	/**
-	 * Returns a reference to the {@link BitSet} backing this {@link Chunk}. If
-	 * {@link #createConcurrent()} or {@link #createConcurrent(Chunk)} were used to
-	 * create this {@link Chunk}, a {@link ConcurrentBitSet} will be returned.
+	 * Returns a reference to the {@link BitSet} backing this {@link Matrix}. If
+	 * {@link #createConcurrent()} or {@link #createConcurrent(Matrix)} were used to
+	 * create this {@link Matrix}, a {@link ConcurrentBitSet} will be returned.
 	 * 
-	 * @return the {@link BitSet} representing the bits of this {@link Chunk}.
+	 * @return the {@link BitSet} representing the bits of this {@link Matrix}.
 	 */
 	public BitSet bits() {
 		return bits;
@@ -193,7 +193,7 @@ public final class Chunk implements Serializable {
 		if (obj == this) {
 			return true;
 		}
-		return obj instanceof Chunk && bits.equals(((Chunk) obj).bits());
+		return obj instanceof Matrix && bits.equals(((Matrix) obj).bits());
 	}
 
 }
