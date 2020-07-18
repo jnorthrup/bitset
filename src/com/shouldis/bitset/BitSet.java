@@ -111,46 +111,6 @@ public class BitSet implements Serializable {
 	}
 
 	/**
-	 * Ensures that the bit at the specified <b>index</b> is in the <i>live</i>
-	 * state. If it is not, it will be changed.
-	 * 
-	 * @param index the index of the bit to change to the <i>live</i> state.
-	 * @return whether or not this {@link BitSet} was changed as a result.
-	 * @throws ArrayIndexOutOfBoundsException if <b>index</b> is negative, or
-	 *                                        greater than or equal to
-	 *                                        {@link #size}.
-	 */
-	public boolean add(final int index) {
-		final int wordIndex = divideSize(index);
-		final long mask = bitMask(index);
-		if ((getWord(wordIndex) & mask) != 0L) {
-			return false;
-		}
-		orWord(wordIndex, mask);
-		return true;
-	}
-
-	/**
-	 * Ensures that the bit at the specified <b>index</b> is the <i>dead</i> state.
-	 * If it is not, it will be changed.
-	 * 
-	 * @param index the index of the bit to change to the <i>dead</i> state.
-	 * @return whether or not this {@link BitSet} was changed as a result.
-	 * @throws ArrayIndexOutOfBoundsException if <b>index</b> is negative, or
-	 *                                        greater than or equal to
-	 *                                        {@link #size}.
-	 */
-	public boolean remove(final int index) {
-		final int wordIndex = divideSize(index);
-		final long mask = bitMask(index);
-		if ((getWord(wordIndex) & mask) == 0L) {
-			return false;
-		}
-		andWord(wordIndex, ~mask);
-		return true;
-	}
-
-	/**
 	 * Checks the current state of the bit at the specified <b>index</b>. Returns
 	 * {@code true} if the bit is in the <i>live</i> state, and {@code false} if it
 	 * is not.
@@ -328,6 +288,46 @@ public class BitSet implements Serializable {
 			}
 			xOrWord(end, endMask);
 		}
+	}
+
+	/**
+	 * Ensures that the bit at the specified <b>index</b> is in the <i>live</i>
+	 * state. If it is not, it will be changed.
+	 * 
+	 * @param index the index of the bit to change to the <i>live</i> state.
+	 * @return whether or not this {@link BitSet} was changed as a result.
+	 * @throws ArrayIndexOutOfBoundsException if <b>index</b> is negative, or
+	 *                                        greater than or equal to
+	 *                                        {@link #size}.
+	 */
+	public boolean add(final int index) {
+		final int wordIndex = divideSize(index);
+		final long mask = bitMask(index);
+		if ((getWord(wordIndex) & mask) != 0L) {
+			return false;
+		}
+		orWord(wordIndex, mask);
+		return true;
+	}
+
+	/**
+	 * Ensures that the bit at the specified <b>index</b> is the <i>dead</i> state.
+	 * If it is not, it will be changed.
+	 * 
+	 * @param index the index of the bit to change to the <i>dead</i> state.
+	 * @return whether or not this {@link BitSet} was changed as a result.
+	 * @throws ArrayIndexOutOfBoundsException if <b>index</b> is negative, or
+	 *                                        greater than or equal to
+	 *                                        {@link #size}.
+	 */
+	public boolean remove(final int index) {
+		final int wordIndex = divideSize(index);
+		final long mask = bitMask(index);
+		if ((getWord(wordIndex) & mask) == 0L) {
+			return false;
+		}
+		andWord(wordIndex, ~mask);
+		return true;
 	}
 
 	/**

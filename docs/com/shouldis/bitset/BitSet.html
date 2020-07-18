@@ -848,42 +848,6 @@ long&nbsp;mask)</code></th>
 <ul class="blockList">
 <li class="blockList">
 <section class="detail">
-<h3><a id="add(int)">add</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">boolean</span>&nbsp;<span class="memberName">add</span>&#8203;(<span class="arguments">int&nbsp;index)</span></div>
-<div class="block">Ensures that the bit at the specified <b>index</b> is in the <i>live</i>
- state. If it is not, it will be changed.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>index</code> - the index of the bit to change to the <i>live</i> state.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>whether or not this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> was changed as a result.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>index</b> is negative, or
-                                        greater than or equal to
-                                        <a href="#size"><code>size</code></a>.</dd>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
-<h3><a id="remove(int)">remove</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">boolean</span>&nbsp;<span class="memberName">remove</span>&#8203;(<span class="arguments">int&nbsp;index)</span></div>
-<div class="block">Ensures that the bit at the specified <b>index</b> is the <i>dead</i> state.
- If it is not, it will be changed.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>index</code> - the index of the bit to change to the <i>dead</i> state.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>whether or not this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> was changed as a result.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>index</b> is negative, or
-                                        greater than or equal to
-                                        <a href="#size"><code>size</code></a>.</dd>
-</dl>
-</section>
-</li>
-<li class="blockList">
-<section class="detail">
 <h3><a id="get(int)">get</a></h3>
 <div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">boolean</span>&nbsp;<span class="memberName">get</span>&#8203;(<span class="arguments">int&nbsp;index)</span></div>
 <div class="block">Checks the current state of the bit at the specified <b>index</b>. Returns
@@ -1027,6 +991,42 @@ int&nbsp;to)</span></div>
 <dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>from</b> or <b>to</b> are
                                         outside of the range [0,
                                         <a href="#size"><code>size</code></a>).</dd>
+</dl>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="add(int)">add</a></h3>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">boolean</span>&nbsp;<span class="memberName">add</span>&#8203;(<span class="arguments">int&nbsp;index)</span></div>
+<div class="block">Ensures that the bit at the specified <b>index</b> is in the <i>live</i>
+ state. If it is not, it will be changed.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>index</code> - the index of the bit to change to the <i>live</i> state.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether or not this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> was changed as a result.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>index</b> is negative, or
+                                        greater than or equal to
+                                        <a href="#size"><code>size</code></a>.</dd>
+</dl>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="remove(int)">remove</a></h3>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">boolean</span>&nbsp;<span class="memberName">remove</span>&#8203;(<span class="arguments">int&nbsp;index)</span></div>
+<div class="block">Ensures that the bit at the specified <b>index</b> is the <i>dead</i> state.
+ If it is not, it will be changed.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>index</code> - the index of the bit to change to the <i>dead</i> state.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether or not this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> was changed as a result.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.ArrayIndexOutOfBoundsException</code> - if <b>index</b> is negative, or
+                                        greater than or equal to
+                                        <a href="#size"><code>size</code></a>.</dd>
 </dl>
 </section>
 </li>
