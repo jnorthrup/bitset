@@ -63,13 +63,7 @@ public interface MatrixFunction {
 	 * {@link MatrixFunction} that flips the x-coordinate of all bits in the
 	 * specified {@link Matrix}, mirroring it along the y-axis.
 	 */
-	public static final MatrixFunction FLIP_X = (final Matrix matrix) -> {
-		final BitSet bits = matrix.bits();
-		for (int i = 0; i < Long.SIZE; i++) {
-			bits.apply(i, WordFunction.REVERSE);
-		}
-		return matrix;
-	};
+	public static final MatrixFunction FLIP_X = MatrixFunction.of(WordFunction.REVERSE);
 
 	/**
 	 * {@link MatrixFunction} that flips the y-coordinate of all bits in the
