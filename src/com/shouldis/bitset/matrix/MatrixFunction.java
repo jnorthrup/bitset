@@ -105,6 +105,23 @@ public interface MatrixFunction {
 	public static final MatrixFunction ROTATE_L = combine(TRANSPOSE, FLIP_X);
 
 	/**
+	 * Creates a {@link MatrixFunction} which performs the specified
+	 * {@link WordFunction} <b>function</b> on each word contained in the matrix
+	 * provided.
+	 * 
+	 * @param function the {@link WordFunction} to be applied to the matrix.
+	 * @return a {@link MatrixFunction} which applied the specified <b>function</b>.
+	 */
+	public static MatrixFunction of(final WordFunction function) {
+		return (final Matrix matrix) -> {
+			for (int i = 0; i < Long.SIZE; i++) {
+				matrix.bits().apply(i, function);
+			}
+			return matrix;
+		};
+	}
+
+	/**
 	 * Creates a {@link MatrixFunction} which performs the two specified
 	 * {@link MatrixFunction}s <b>first</b> and <b>second</b> in sequence.
 	 * 
