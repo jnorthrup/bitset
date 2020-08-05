@@ -99,6 +99,50 @@ public interface MatrixFunction {
 	public static final MatrixFunction ROTATE_L = combine(TRANSPOSE, FLIP_X);
 
 	/**
+	 * {@link MatrixFunction} derived from {@link WordFunction#shiftR(int)} used to
+	 * shift the bits within a specified {@link Matrix} to the right.
+	 * 
+	 * @param distance how far to shift the bits to the right.
+	 * @return a function representing a shift by <b>distance</b> bits.
+	 */
+	public static MatrixFunction bitShiftR(final int distance) {
+		return MatrixFunction.of(WordFunction.shiftR(distance));
+	}
+
+	/**
+	 * {@link MatrixFunction} derived from {@link WordFunction#shiftL(int)} used to
+	 * shift the bits within a specified {@link Matrix} to the left.
+	 * 
+	 * @param distance how far to shift the bits to the left.
+	 * @return a function representing a shift by <b>distance</b> bits.
+	 */
+	public static MatrixFunction bitShiftL(final int distance) {
+		return MatrixFunction.of(WordFunction.shiftL(distance));
+	}
+
+	/**
+	 * {@link MatrixFunction} derived from {@link WordFunction#rotateR(int)} used to
+	 * rotate the bits within a specified {@link Matrix} to the right.
+	 * 
+	 * @param distance how far to rotate the bits to the right.
+	 * @return a function representing a rotation by <b>distance</b> bits.
+	 */
+	public static MatrixFunction bitRotateR(final int distance) {
+		return MatrixFunction.of(WordFunction.rotateR(distance));
+	}
+
+	/**
+	 * {@link MatrixFunction} derived from {@link WordFunction#rotateL(int)} used to
+	 * rotate the bits within a specified {@link Matrix} to the left.
+	 * 
+	 * @param distance how far to rotate the bits to the left.
+	 * @return a function representing a rotation by <b>distance</b> bits.
+	 */
+	public static MatrixFunction bitRotateL(final int distance) {
+		return MatrixFunction.of(WordFunction.rotateL(distance));
+	}
+
+	/**
 	 * Creates a {@link MatrixFunction} which performs the specified
 	 * {@link WordFunction} <b>function</b> on each word contained in the matrix
 	 * provided.
