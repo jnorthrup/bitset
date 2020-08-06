@@ -2,7 +2,9 @@ package com.shouldis.bitset;
 
 /**
  * Implementation of {@link BitSet} causing {@link #setWord(int, long)}, which
- * all write operations us, to throw an {@link UnsupportedOperationException}.
+ * controls all write operations, to throw an
+ * {@link UnsupportedOperationException}.
+ * 
  * The state of all bits are immutable once initialized.
  * 
  * @author Aaron Shouldis
