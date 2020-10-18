@@ -14,6 +14,8 @@ import com.shouldis.bitset.parallel.LiveBiterator;
  * retrieving their boolean values.
  * <p>
  * The bits represented by this {@link BitSet} will either be in the <i>live</i>
+ * state (<code>1, true</code>), or the <i>dead</i> state
+ * (<code>0, false</code>).
  * <p>
  * {@link BitSet} on its own is thread-safe only for read operations, although a
  * {@link com.shouldis.bitset.parallel.Biterator} may be used to stream indices
