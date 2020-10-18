@@ -53,14 +53,14 @@ public final class ConcurrentBitSet extends BitSet {
 	public boolean add(final int index) {
 		final int wordIndex = divideSize(index);
 		final long mask = bitMask(index);
-		long expected, word;
+		long expected, replacment;
 		do {
 			expected = getWord(wordIndex);
 			if ((expected & mask) != 0L) {
 				return false;
 			}
-			word = expected | mask;
-		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+			replacment = expected | mask;
+		} while (!HANDLE.compareAndSet(words, wordIndex, expected, replacment));
 		return true;
 	}
 
@@ -68,14 +68,14 @@ public final class ConcurrentBitSet extends BitSet {
 	public boolean remove(final int index) {
 		final int wordIndex = divideSize(index);
 		final long mask = bitMask(index);
-		long expected, word;
+		long expected, replacment;
 		do {
 			expected = getWord(wordIndex);
 			if ((expected & mask) == 0L) {
 				return false;
 			}
-			word = expected & ~mask;
-		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+			replacment = expected & ~mask;
+		} while (!HANDLE.compareAndSet(words, wordIndex, expected, replacment));
 		return true;
 	}
 
@@ -106,47 +106,47 @@ public final class ConcurrentBitSet extends BitSet {
 
 	@Override
 	public void notAndWord(final int wordIndex, final long mask) {
-		long expected, word;
+		long expected, replacment;
 		do {
 			expected = getWord(wordIndex);
-			word = ~(expected & mask);
-		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+			replacment = ~(expected & mask);
+		} while (!HANDLE.compareAndSet(words, wordIndex, expected, replacment));
 	}
 
 	@Override
 	public void notOrWord(final int wordIndex, final long mask) {
-		long expected, word;
+		long expected, replacment;
 		do {
 			expected = getWord(wordIndex);
-			word = ~(expected | mask);
-		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+			replacment = ~(expected | mask);
+		} while (!HANDLE.compareAndSet(words, wordIndex, expected, replacment));
 	}
 
 	@Override
 	public void notXOrWord(final int wordIndex, final long mask) {
-		long expected, word;
+		long expected, replacment;
 		do {
 			expected = getWord(wordIndex);
-			word = ~(expected ^ mask);
-		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+			replacment = ~(expected ^ mask);
+		} while (!HANDLE.compareAndSet(words, wordIndex, expected, replacment));
 	}
 
 	@Override
 	public void setWordSegment(final int wordIndex, final long word, final long mask) {
-		long expected, newWord;
+		long expected, replacment;
 		do {
 			expected = getWord(wordIndex);
-			newWord = (mask & word) | (~mask & expected);
-		} while (!HANDLE.compareAndSet(words, wordIndex, expected, newWord));
+			replacment = (mask & word) | (~mask & expected);
+		} while (!HANDLE.compareAndSet(words, wordIndex, expected, replacment));
 	}
 
 	@Override
 	public void apply(final int wordIndex, final WordFunction function) {
-		long expected, word;
+		long expected, replacment;
 		do {
 			expected = getWord(wordIndex);
-			word = function.apply(expected);
-		} while (!HANDLE.compareAndSet(words, wordIndex, expected, word));
+			replacment = function.apply(expected);
+		} while (!HANDLE.compareAndSet(words, wordIndex, expected, replacment));
 	}
 
 }
