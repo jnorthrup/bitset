@@ -5,7 +5,7 @@ import java.lang.invoke.VarHandle;
 
 /**
  * Implementation of {@link BitSet} in which all methods capable of reading or
- * writing the state of bits are delegated to atomic-operations.
+ * writing the state of bits are delegated to atomic operations.
  * <p>
  * The use of atomic operations allows concurrent modification of this
  * {@link ConcurrentBitSet} without any external synchronization at the cost of
