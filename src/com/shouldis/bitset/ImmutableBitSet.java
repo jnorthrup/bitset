@@ -24,7 +24,7 @@ public final class ImmutableBitSet extends BitSet {
 	public ImmutableBitSet(final BitSet set) {
 		super(set.size);
 		for (int i = 0; i < wordCount; i++) {
-			words[i] = set.getWord(i);
+			super.setWord(i, set.getWord(i));
 		}
 	}
 
