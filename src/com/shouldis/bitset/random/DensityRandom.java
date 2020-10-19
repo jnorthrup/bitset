@@ -96,14 +96,14 @@ public final class DensityRandom extends Random {
 	 */
 	public DensityRandom(double density, int depth, final long seed) {
 		super(seed);
-		depth = boundDepth(depth);
-		density = boundDensity(density, depth);
-		long numerator = Math.round(density / powerInverse(depth));
+		depth = DensityRandom.boundDepth(depth);
+		density = DensityRandom.boundDensity(density, depth);
+		long numerator = Math.round(density / DensityRandom.powerInverse(depth));
 		final int reductions = Long.numberOfTrailingZeros(numerator);
 		numerator >>>= reductions;
 		sequence = numerator >>> 1;
 		this.depth = depth - reductions;
-		this.density = numerator * powerInverse(this.depth);
+		this.density = numerator * DensityRandom.powerInverse(this.depth);
 	}
 
 	/**
@@ -124,7 +124,7 @@ public final class DensityRandom extends Random {
 	 *                desired <b>density</b>.
 	 */
 	public DensityRandom(final double density, final int depth) {
-		this(density, depth, generateSeed());
+		this(density, depth, Random.generateSeed());
 	}
 
 	/**
@@ -149,7 +149,7 @@ public final class DensityRandom extends Random {
 	 *                  numbers with.
 	 */
 	public DensityRandom(final double density, final double tolerance, final long seed) {
-		this(density, toleranceDepth(tolerance), seed);
+		this(density, DensityRandom.toleranceDepth(tolerance), seed);
 	}
 
 	/**
@@ -172,7 +172,7 @@ public final class DensityRandom extends Random {
 	 *                  is estimated to.
 	 */
 	public DensityRandom(final double density, final double tolerance) {
-		this(density, toleranceDepth(tolerance), generateSeed());
+		this(density, DensityRandom.toleranceDepth(tolerance), DensityRandom.generateSeed());
 	}
 
 	@Override
@@ -201,7 +201,7 @@ public final class DensityRandom extends Random {
 	 *         {@link DensityRandom}
 	 */
 	public static int toleranceDepth(final double tolerance) {
-		return -Math.getExponent(boundPercentage(tolerance));
+		return -Math.getExponent(DensityRandom.boundPercentage(tolerance));
 	}
 
 	/**
@@ -226,7 +226,7 @@ public final class DensityRandom extends Random {
 	 *         -2<sup>-<b>depth</b></sup>].
 	 */
 	private static double boundDensity(final double density, final int depth) {
-		final double inverse = powerInverse(depth);
+		final double inverse = DensityRandom.powerInverse(depth);
 		return Math.min(Math.max(density, inverse), 1.0 - inverse);
 	}
 
