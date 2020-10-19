@@ -20,7 +20,7 @@ public final class Matrix implements Serializable {
 	/**
 	 * The number of bits contained in a {@link Matrix}
 	 */
-	public static final int MATRIX_SIZE = Long.SIZE * Long.SIZE;
+	public static final int MATRIX_SIZE = BitSet.multiplySize(Long.SIZE);
 
 	/**
 	 * The {@link BitSet} storing the bits contained in this {@link BitSet}. (X, Y)
