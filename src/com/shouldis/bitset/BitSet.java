@@ -87,11 +87,11 @@ public class BitSet implements Serializable {
 	 * @throws IllegalArgumentException if <b>size</b> is less than 0.
 	 */
 	public BitSet(final int size) {
-		int wordCount = divideSize(size);
+		int wordCount = BitSet.divideSize(size);
 		if (wordCount < 0) {
 			throw new IllegalArgumentException(Integer.toString(size));
 		}
-		if (modSize(size) > 0) {
+		if (BitSet.modSize(size) > 0) {
 			wordCount++;
 		}
 		this.size = size;
@@ -124,7 +124,7 @@ public class BitSet implements Serializable {
 	 *                                        than or equal to {@link #size}.
 	 */
 	public final boolean get(final int index) {
-		return (getWord(divideSize(index)) & bitMask(index)) != 0L;
+		return (getWord(BitSet.divideSize(index)) & BitSet.bitMask(index)) != 0L;
 	}
 
 	/**
@@ -143,8 +143,8 @@ public class BitSet implements Serializable {
 		if (from >= to) {
 			return 0;
 		}
-		final int start = divideSize(from);
-		final int end = divideSize(to - 1);
+		final int start = BitSet.divideSize(from);
+		final int end = BitSet.divideSize(to - 1);
 		final long startMask = MASK << from;
 		final long endMask = MASK >>> -to;
 		int sum;
@@ -170,7 +170,7 @@ public class BitSet implements Serializable {
 	 *                                        {@link #size}.
 	 */
 	public final void set(final int index) {
-		orWord(divideSize(index), bitMask(index));
+		orWord(BitSet.divideSize(index), BitSet.bitMask(index));
 	}
 
 	/**
@@ -191,8 +191,8 @@ public class BitSet implements Serializable {
 		if (from >= to) {
 			return;
 		}
-		final int start = divideSize(from);
-		final int end = divideSize(to - 1);
+		final int start = BitSet.divideSize(from);
+		final int end = BitSet.divideSize(to - 1);
 		final long startMask = MASK << from;
 		final long endMask = MASK >>> -to;
 		if (start == end) {
@@ -215,7 +215,7 @@ public class BitSet implements Serializable {
 	 *                                        than or equal to {@link #size}.
 	 */
 	public final void clear(final int index) {
-		andWord(divideSize(index), ~bitMask(index));
+		andWord(BitSet.divideSize(index), ~BitSet.bitMask(index));
 	}
 
 	/**
@@ -234,8 +234,8 @@ public class BitSet implements Serializable {
 		if (from >= to) {
 			return;
 		}
-		final int start = divideSize(from);
-		final int end = divideSize(to - 1);
+		final int start = BitSet.divideSize(from);
+		final int end = BitSet.divideSize(to - 1);
 		final long startMask = MASK << from;
 		final long endMask = MASK >>> -to;
 		if (start == end) {
@@ -258,7 +258,7 @@ public class BitSet implements Serializable {
 	 *                                        than or equal to {@link #size}.
 	 */
 	public final void toggle(final int index) {
-		xOrWord(divideSize(index), bitMask(index));
+		xOrWord(BitSet.divideSize(index), BitSet.bitMask(index));
 	}
 
 	/**
@@ -277,8 +277,8 @@ public class BitSet implements Serializable {
 		if (from >= to) {
 			return;
 		}
-		final int start = divideSize(from);
-		final int end = divideSize(to - 1);
+		final int start = BitSet.divideSize(from);
+		final int end = BitSet.divideSize(to - 1);
 		final long startMask = MASK << from;
 		final long endMask = MASK >>> -to;
 		if (start == end) {
@@ -303,8 +303,8 @@ public class BitSet implements Serializable {
 	 *                                        {@link #size}.
 	 */
 	public boolean add(final int index) {
-		final int wordIndex = divideSize(index);
-		final long mask = bitMask(index);
+		final int wordIndex = BitSet.divideSize(index);
+		final long mask = BitSet.bitMask(index);
 		if ((getWord(wordIndex) & mask) != 0L) {
 			return false;
 		}
@@ -323,8 +323,8 @@ public class BitSet implements Serializable {
 	 *                                        {@link #size}.
 	 */
 	public boolean remove(final int index) {
-		final int wordIndex = divideSize(index);
-		final long mask = bitMask(index);
+		final int wordIndex = BitSet.divideSize(index);
+		final long mask = BitSet.bitMask(index);
 		if ((getWord(wordIndex) & mask) == 0L) {
 			return false;
 		}
@@ -539,7 +539,7 @@ public class BitSet implements Serializable {
 	 * @return the index of the next <i>live</i> bit, or -1 if none were found.
 	 */
 	public final int nextLive(final int index) {
-		int wordIndex = divideSize(index);
+		int wordIndex = BitSet.divideSize(index);
 		if (wordIndex >= wordCount || wordIndex < 0) {
 			return -1;
 		}
@@ -566,7 +566,7 @@ public class BitSet implements Serializable {
 	 * @return the index of the next <i>dead</i> bit, or -1 if none were found.
 	 */
 	public final int nextDead(final int index) {
-		int wordIndex = divideSize(index);
+		int wordIndex = BitSet.divideSize(index);
 		if (wordIndex >= wordCount || wordIndex < 0) {
 			return -1;
 		}
@@ -595,7 +595,7 @@ public class BitSet implements Serializable {
 	 *         -1 if none is found.
 	 */
 	private final int nextLiveBit(final long word, final int wordIndex) {
-		final int index = multiplySize(wordIndex) + Long.numberOfTrailingZeros(word);
+		final int index = BitSet.multiplySize(wordIndex) + Long.numberOfTrailingZeros(word);
 		return index < size ? index : -1;
 	}
 
@@ -607,7 +607,7 @@ public class BitSet implements Serializable {
 	 * @return the index of the next <i>live</i> bit, or -1 if none were found.
 	 */
 	public final int lastLive(final int index) {
-		int wordIndex = divideSize(index);
+		int wordIndex = BitSet.divideSize(index);
 		if (wordIndex >= wordCount || wordIndex < 0) {
 			return -1;
 		}
@@ -632,7 +632,7 @@ public class BitSet implements Serializable {
 	 * @return the index of the next <i>dead</i> bit, or -1 if none were found.
 	 */
 	public final int lastDead(final int index) {
-		int wordIndex = divideSize(index);
+		int wordIndex = BitSet.divideSize(index);
 		if (wordIndex >= wordCount || wordIndex < 0) {
 			return -1;
 		}
@@ -661,7 +661,7 @@ public class BitSet implements Serializable {
 	 *         word.
 	 */
 	private final int lastLiveBit(final long word, final int wordIndex) {
-		final int index = multiplySize(wordIndex + 1) - Long.numberOfLeadingZeros(word) - 1;
+		final int index = BitSet.multiplySize(wordIndex + 1) - Long.numberOfLeadingZeros(word) - 1;
 		return index < size ? index : -1;
 	}
 

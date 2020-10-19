@@ -51,8 +51,8 @@ public final class ConcurrentBitSet extends BitSet {
 
 	@Override
 	public boolean add(final int index) {
-		final int wordIndex = divideSize(index);
-		final long mask = bitMask(index);
+		final int wordIndex = BitSet.divideSize(index);
+		final long mask = BitSet.bitMask(index);
 		long expected, replacment;
 		do {
 			expected = getWord(wordIndex);
@@ -66,8 +66,8 @@ public final class ConcurrentBitSet extends BitSet {
 
 	@Override
 	public boolean remove(final int index) {
-		final int wordIndex = divideSize(index);
-		final long mask = bitMask(index);
+		final int wordIndex = BitSet.divideSize(index);
+		final long mask = BitSet.bitMask(index);
 		long expected, replacment;
 		do {
 			expected = getWord(wordIndex);
