@@ -143,7 +143,7 @@ public final class Matrix implements Serializable {
 	 *         coordinate after using {@link #wrap(int)}.
 	 */
 	public static int wrapIndex(final int x, final int y) {
-		return index(wrap(x), wrap(y));
+		return Matrix.index(Matrix.wrap(x), Matrix.wrap(y));
 	}
 
 	/**
