@@ -78,8 +78,7 @@ public abstract class Biterator implements Spliterator.OfInt {
 	 * @return the middle index of this {@link Biterator}.
 	 */
 	protected final int middle() {
-		final int middle = (position / 2) + (end / 2);
-		return middle + (((position % 2) + (end % 2)) / 2);
+		return (position & end) + ((position ^ end) >>> 1);
 	}
 
 	/**
