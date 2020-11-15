@@ -84,19 +84,19 @@ public interface MatrixFunction {
 	 * {@link MatrixFunction} that flips the x-coordinate and y-coordinate of all
 	 * bits in the specified {@link Matrix}, effectively rotating it 180 degrees.
 	 */
-	public static final MatrixFunction FLIP = combine(FLIP_X, FLIP_Y);
+	public static final MatrixFunction FLIP = MatrixFunction.combine(FLIP_X, FLIP_Y);
 
 	/**
 	 * {@link MatrixFunction} that rotates the specified {@link Matrix} 90 degrees
 	 * to the right (clockwise).
 	 */
-	public static final MatrixFunction ROTATE_R = combine(TRANSPOSE, FLIP_Y);
+	public static final MatrixFunction ROTATE_R = MatrixFunction.combine(TRANSPOSE, FLIP_Y);
 
 	/**
 	 * {@link MatrixFunction} that rotates the specified {@link Matrix} 90 degrees
 	 * to the left (counter-clockwise).
 	 */
-	public static final MatrixFunction ROTATE_L = combine(TRANSPOSE, FLIP_X);
+	public static final MatrixFunction ROTATE_L = MatrixFunction.combine(TRANSPOSE, FLIP_X);
 
 	/**
 	 * {@link MatrixFunction} derived from {@link WordFunction#shiftR(int)} used to
