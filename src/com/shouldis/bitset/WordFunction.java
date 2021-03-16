@@ -29,17 +29,15 @@ public interface WordFunction {
 
 	/**
 	 * {@link WordFunction} used to reverse the order of bits within the argument
-	 * <b>word</b>. Performs the operations of {@link #REVERSE}, but only
-	 * appropriate for the last word of the specified {@link BitSet} <b>set</b>, or
-	 * {@link BitSet}s of the same size.
+	 * <b>word</b>. Functionally the same operation as {@link #REVERSE}, but only
+	 * appropriate for the last word of {@link BitSet} of the specified <b>size</b>.
 	 * 
-	 * @param set the {@link BitSet} to generate the reverse function for.
+	 * @param size the size of {@link BitSet}s this function will be appropriate for
+	 *             manipulating.
 	 * @return the function used to reverse the final word in <b>set</b>.
-	 * 
-	 * @throws NullPointerException if <b>set</b> is null.
 	 */
-	public static WordFunction hangingReverse(final BitSet set) {
-		final long hanging = BitSet.modSize(-set.size);
+	public static WordFunction hangingReverse(final int size) {
+		final long hanging = BitSet.modSize(-size);
 		final long mask = BitSet.MASK >>> hanging;
 		return (final long word) -> mask & (Long.reverse(word) >>> hanging);
 	}
@@ -57,18 +55,17 @@ public interface WordFunction {
 
 	/**
 	 * {@link WordFunction} used to shift the bits within the argument <b>word</b>
-	 * to the right. Performs the operations of {@link #shiftR(int)}, but only
-	 * appropriate for the last word of the specified {@link BitSet} <b>set</b>, or
-	 * {@link BitSet}s of the same size.
+	 * to the right. Functionally the same operation as {@link #shiftR(int)}, but
+	 * only appropriate for the last word of {@link BitSet} of the specified
+	 * <b>size</b>.
 	 * 
-	 * @param set      the {@link BitSet} to generate the right shift function for.
+	 * @param size     the size of {@link BitSet}s this function will be appropriate
+	 *                 for manipulating.
 	 * @param distance how far to shift the bits to the right.
 	 * @return the function used to shift the final word in <b>set</b>.
-	 * 
-	 * @throws NullPointerException if <b>set</b> is null.
 	 */
-	public static WordFunction hangingShiftR(final BitSet set, final int distance) {
-		final long mask = BitSet.MASK >>> BitSet.modSize(-set.size);
+	public static WordFunction hangingShiftR(final int size, final int distance) {
+		final long mask = BitSet.MASK >>> BitSet.modSize(-size);
 		return (final long word) -> (mask & word) >>> distance;
 	}
 
@@ -85,18 +82,17 @@ public interface WordFunction {
 
 	/**
 	 * {@link WordFunction} used to shift the bits within the argument <b>word</b>
-	 * to the left. Performs the operations of {@link #shiftL(int)}, but only
-	 * appropriate for the last word of the specified {@link BitSet} <b>set</b>, or
-	 * {@link BitSet}s of the same size.
+	 * to the left. Functionally the same operation as {@link #shiftL(int)}, but
+	 * only appropriate for the last word of {@link BitSet} of the specified
+	 * <b>size</b>.
 	 * 
-	 * @param set      the {@link BitSet} to generate the left shift function for.
-	 * @param distance how far to shift the bits to the left.
+	 * @param size     the size of {@link BitSet}s this function will be appropriate
+	 *                 for manipulating.
+	 * @param distance how far to shift the bits to the right.
 	 * @return the function used to shift the final word in <b>set</b>.
-	 * 
-	 * @throws NullPointerException if <b>set</b> is null.
 	 */
-	public static WordFunction hangingShiftL(final BitSet set, final int distance) {
-		final long mask = BitSet.MASK >>> BitSet.modSize(-set.size);
+	public static WordFunction hangingShiftL(final int size, final int distance) {
+		final long mask = BitSet.MASK >>> BitSet.modSize(-size);
 		return (final long word) -> mask & (word << distance);
 	}
 
@@ -113,18 +109,17 @@ public interface WordFunction {
 
 	/**
 	 * {@link WordFunction} used to rotate the bits within the argument <b>word</b>
-	 * to the right. Performs the operations of {@link #rotateR(int)}, but only
-	 * appropriate for the last word of the specified {@link BitSet} <b>set</b>, or
-	 * {@link BitSet}s of the same size.
+	 * to the right. Functionally the same operation as {@link #rotateR(int)}, but
+	 * only appropriate for the last word of {@link BitSet} of the specified
+	 * <b>size</b>.
 	 * 
-	 * @param set      the {@link BitSet} to generate the right rotate function for.
-	 * @param distance how far to rotate the bits to the right.
+	 * @param size     the size of {@link BitSet}s this function will be appropriate
+	 *                 for manipulating.
+	 * @param distance how far to shift the bits to the right.
 	 * @return the function used to shift the final word in <b>set</b>.
-	 * 
-	 * @throws NullPointerException if <b>set</b> is null.
 	 */
-	public static WordFunction hangingRotateR(final BitSet set, final int distance) {
-		final long hanging = BitSet.modSize(-set.size);
+	public static WordFunction hangingRotateR(final int size, final int distance) {
+		final long hanging = BitSet.modSize(-size);
 		final long mask = BitSet.MASK >>> hanging;
 		return (final long word) -> mask & ((word >>> distance) | (word << -(hanging + distance)));
 	}
@@ -142,18 +137,17 @@ public interface WordFunction {
 
 	/**
 	 * {@link WordFunction} used to rotate the bits within the argument <b>word</b>
-	 * to the left. Performs the operations of {@link #rotateL(int)}, but only
-	 * appropriate for the last word of the specified {@link BitSet} <b>set</b>, or
-	 * {@link BitSet}s of the same size.
+	 * to the left. Functionally the same operation as {@link #rotateL(int)}, but
+	 * only appropriate for the last word of {@link BitSet} of the specified
+	 * <b>size</b>.
 	 * 
-	 * @param set      the {@link BitSet} to generate the left rotate function for.
-	 * @param distance how far to rotate the bits to the left.
+	 * @param size     the size of {@link BitSet}s this function will be appropriate
+	 *                 for manipulating.
+	 * @param distance how far to shift the bits to the right.
 	 * @return the function used to shift the final word in <b>set</b>.
-	 * 
-	 * @throws NullPointerException if <b>set</b> is null.
 	 */
-	public static WordFunction hangingRotateL(final BitSet set, final int distance) {
-		final long hanging = BitSet.modSize(-set.size);
+	public static WordFunction hangingRotateL(final int size, final int distance) {
+		final long hanging = BitSet.modSize(-size);
 		final long mask = BitSet.MASK >>> hanging;
 		return (final long word) -> mask & ((word << distance) | (word >>> -(hanging + distance)));
 	}

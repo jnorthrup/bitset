@@ -172,7 +172,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr class="altColor" id="i2">
 <td class="colFirst"><code>static <a href="WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hangingReverse(com.shouldis.bitset.BitSet)">hangingReverse</a></span>&#8203;(<a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hangingReverse(int)">hangingReverse</a></span>&#8203;(int&nbsp;size)</code></th>
 <td class="colLast">
 <div class="block"><a href="WordFunction.html" title="interface in com.shouldis.bitset"><code>WordFunction</code></a> used to reverse the order of bits within the argument
  <b>word</b>.</div>
@@ -180,7 +180,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr class="rowColor" id="i3">
 <td class="colFirst"><code>static <a href="WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hangingRotateL(com.shouldis.bitset.BitSet,int)">hangingRotateL</a></span>&#8203;(<a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hangingRotateL(int,int)">hangingRotateL</a></span>&#8203;(int&nbsp;size,
 int&nbsp;distance)</code></th>
 <td class="colLast">
 <div class="block"><a href="WordFunction.html" title="interface in com.shouldis.bitset"><code>WordFunction</code></a> used to rotate the bits within the argument <b>word</b>
@@ -189,7 +189,7 @@ int&nbsp;distance)</code></th>
 </tr>
 <tr class="altColor" id="i4">
 <td class="colFirst"><code>static <a href="WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hangingRotateR(com.shouldis.bitset.BitSet,int)">hangingRotateR</a></span>&#8203;(<a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hangingRotateR(int,int)">hangingRotateR</a></span>&#8203;(int&nbsp;size,
 int&nbsp;distance)</code></th>
 <td class="colLast">
 <div class="block"><a href="WordFunction.html" title="interface in com.shouldis.bitset"><code>WordFunction</code></a> used to rotate the bits within the argument <b>word</b>
@@ -198,7 +198,7 @@ int&nbsp;distance)</code></th>
 </tr>
 <tr class="rowColor" id="i5">
 <td class="colFirst"><code>static <a href="WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hangingShiftL(com.shouldis.bitset.BitSet,int)">hangingShiftL</a></span>&#8203;(<a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hangingShiftL(int,int)">hangingShiftL</a></span>&#8203;(int&nbsp;size,
 int&nbsp;distance)</code></th>
 <td class="colLast">
 <div class="block"><a href="WordFunction.html" title="interface in com.shouldis.bitset"><code>WordFunction</code></a> used to shift the bits within the argument <b>word</b>
@@ -207,7 +207,7 @@ int&nbsp;distance)</code></th>
 </tr>
 <tr class="altColor" id="i6">
 <td class="colFirst"><code>static <a href="WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hangingShiftR(com.shouldis.bitset.BitSet,int)">hangingShiftR</a></span>&#8203;(<a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hangingShiftR(int,int)">hangingShiftR</a></span>&#8203;(int&nbsp;size,
 int&nbsp;distance)</code></th>
 <td class="colLast">
 <div class="block"><a href="WordFunction.html" title="interface in com.shouldis.bitset"><code>WordFunction</code></a> used to shift the bits within the argument <b>word</b>
@@ -296,19 +296,17 @@ int&nbsp;distance)</code></th>
 </li>
 <li class="blockList">
 <section class="detail">
-<h3><a id="hangingReverse(com.shouldis.bitset.BitSet)">hangingReverse</a></h3>
-<div class="memberSignature"><span class="modifiers">static</span>&nbsp;<span class="returnType"><a href="WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a></span>&nbsp;<span class="memberName">hangingReverse</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
+<h3><a id="hangingReverse(int)">hangingReverse</a></h3>
+<div class="memberSignature"><span class="modifiers">static</span>&nbsp;<span class="returnType"><a href="WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a></span>&nbsp;<span class="memberName">hangingReverse</span>&#8203;(<span class="arguments">int&nbsp;size)</span></div>
 <div class="block"><a href="WordFunction.html" title="interface in com.shouldis.bitset"><code>WordFunction</code></a> used to reverse the order of bits within the argument
- <b>word</b>. Performs the operations of <a href="#REVERSE"><code>REVERSE</code></a>, but only
- appropriate for the last word of the specified <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>, or
- <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s of the same size.</div>
+ <b>word</b>. Functionally the same operation as <a href="#REVERSE"><code>REVERSE</code></a>, but only
+ appropriate for the last word of <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> of the specified <b>size</b>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>set</code> - the <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> to generate the reverse function for.</dd>
+<dd><code>size</code> - the size of <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s this function will be appropriate for
+             manipulating.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the function used to reverse the final word in <b>set</b>.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.NullPointerException</code> - if <b>set</b> is null.</dd>
 </dl>
 </section>
 </li>
@@ -328,21 +326,20 @@ int&nbsp;distance)</code></th>
 </li>
 <li class="blockList">
 <section class="detail">
-<h3><a id="hangingShiftR(com.shouldis.bitset.BitSet,int)">hangingShiftR</a></h3>
-<div class="memberSignature"><span class="modifiers">static</span>&nbsp;<span class="returnType"><a href="WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a></span>&nbsp;<span class="memberName">hangingShiftR</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set,
+<h3><a id="hangingShiftR(int,int)">hangingShiftR</a></h3>
+<div class="memberSignature"><span class="modifiers">static</span>&nbsp;<span class="returnType"><a href="WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a></span>&nbsp;<span class="memberName">hangingShiftR</span>&#8203;(<span class="arguments">int&nbsp;size,
 int&nbsp;distance)</span></div>
 <div class="block"><a href="WordFunction.html" title="interface in com.shouldis.bitset"><code>WordFunction</code></a> used to shift the bits within the argument <b>word</b>
- to the right. Performs the operations of <a href="#shiftR(int)"><code>shiftR(int)</code></a>, but only
- appropriate for the last word of the specified <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>, or
- <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s of the same size.</div>
+ to the right. Functionally the same operation as <a href="#shiftR(int)"><code>shiftR(int)</code></a>, but
+ only appropriate for the last word of <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> of the specified
+ <b>size</b>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>set</code> - the <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> to generate the right shift function for.</dd>
+<dd><code>size</code> - the size of <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s this function will be appropriate
+                 for manipulating.</dd>
 <dd><code>distance</code> - how far to shift the bits to the right.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the function used to shift the final word in <b>set</b>.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.NullPointerException</code> - if <b>set</b> is null.</dd>
 </dl>
 </section>
 </li>
@@ -362,21 +359,20 @@ int&nbsp;distance)</span></div>
 </li>
 <li class="blockList">
 <section class="detail">
-<h3><a id="hangingShiftL(com.shouldis.bitset.BitSet,int)">hangingShiftL</a></h3>
-<div class="memberSignature"><span class="modifiers">static</span>&nbsp;<span class="returnType"><a href="WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a></span>&nbsp;<span class="memberName">hangingShiftL</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set,
+<h3><a id="hangingShiftL(int,int)">hangingShiftL</a></h3>
+<div class="memberSignature"><span class="modifiers">static</span>&nbsp;<span class="returnType"><a href="WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a></span>&nbsp;<span class="memberName">hangingShiftL</span>&#8203;(<span class="arguments">int&nbsp;size,
 int&nbsp;distance)</span></div>
 <div class="block"><a href="WordFunction.html" title="interface in com.shouldis.bitset"><code>WordFunction</code></a> used to shift the bits within the argument <b>word</b>
- to the left. Performs the operations of <a href="#shiftL(int)"><code>shiftL(int)</code></a>, but only
- appropriate for the last word of the specified <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>, or
- <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s of the same size.</div>
+ to the left. Functionally the same operation as <a href="#shiftL(int)"><code>shiftL(int)</code></a>, but
+ only appropriate for the last word of <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> of the specified
+ <b>size</b>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>set</code> - the <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> to generate the left shift function for.</dd>
-<dd><code>distance</code> - how far to shift the bits to the left.</dd>
+<dd><code>size</code> - the size of <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s this function will be appropriate
+                 for manipulating.</dd>
+<dd><code>distance</code> - how far to shift the bits to the right.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the function used to shift the final word in <b>set</b>.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.NullPointerException</code> - if <b>set</b> is null.</dd>
 </dl>
 </section>
 </li>
@@ -396,21 +392,20 @@ int&nbsp;distance)</span></div>
 </li>
 <li class="blockList">
 <section class="detail">
-<h3><a id="hangingRotateR(com.shouldis.bitset.BitSet,int)">hangingRotateR</a></h3>
-<div class="memberSignature"><span class="modifiers">static</span>&nbsp;<span class="returnType"><a href="WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a></span>&nbsp;<span class="memberName">hangingRotateR</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set,
+<h3><a id="hangingRotateR(int,int)">hangingRotateR</a></h3>
+<div class="memberSignature"><span class="modifiers">static</span>&nbsp;<span class="returnType"><a href="WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a></span>&nbsp;<span class="memberName">hangingRotateR</span>&#8203;(<span class="arguments">int&nbsp;size,
 int&nbsp;distance)</span></div>
 <div class="block"><a href="WordFunction.html" title="interface in com.shouldis.bitset"><code>WordFunction</code></a> used to rotate the bits within the argument <b>word</b>
- to the right. Performs the operations of <a href="#rotateR(int)"><code>rotateR(int)</code></a>, but only
- appropriate for the last word of the specified <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>, or
- <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s of the same size.</div>
+ to the right. Functionally the same operation as <a href="#rotateR(int)"><code>rotateR(int)</code></a>, but
+ only appropriate for the last word of <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> of the specified
+ <b>size</b>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>set</code> - the <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> to generate the right rotate function for.</dd>
-<dd><code>distance</code> - how far to rotate the bits to the right.</dd>
+<dd><code>size</code> - the size of <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s this function will be appropriate
+                 for manipulating.</dd>
+<dd><code>distance</code> - how far to shift the bits to the right.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the function used to shift the final word in <b>set</b>.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.NullPointerException</code> - if <b>set</b> is null.</dd>
 </dl>
 </section>
 </li>
@@ -430,21 +425,20 @@ int&nbsp;distance)</span></div>
 </li>
 <li class="blockList">
 <section class="detail">
-<h3><a id="hangingRotateL(com.shouldis.bitset.BitSet,int)">hangingRotateL</a></h3>
-<div class="memberSignature"><span class="modifiers">static</span>&nbsp;<span class="returnType"><a href="WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a></span>&nbsp;<span class="memberName">hangingRotateL</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set,
+<h3><a id="hangingRotateL(int,int)">hangingRotateL</a></h3>
+<div class="memberSignature"><span class="modifiers">static</span>&nbsp;<span class="returnType"><a href="WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a></span>&nbsp;<span class="memberName">hangingRotateL</span>&#8203;(<span class="arguments">int&nbsp;size,
 int&nbsp;distance)</span></div>
 <div class="block"><a href="WordFunction.html" title="interface in com.shouldis.bitset"><code>WordFunction</code></a> used to rotate the bits within the argument <b>word</b>
- to the left. Performs the operations of <a href="#rotateL(int)"><code>rotateL(int)</code></a>, but only
- appropriate for the last word of the specified <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>, or
- <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s of the same size.</div>
+ to the left. Functionally the same operation as <a href="#rotateL(int)"><code>rotateL(int)</code></a>, but
+ only appropriate for the last word of <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> of the specified
+ <b>size</b>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>set</code> - the <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> to generate the left rotate function for.</dd>
-<dd><code>distance</code> - how far to rotate the bits to the left.</dd>
+<dd><code>size</code> - the size of <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s this function will be appropriate
+                 for manipulating.</dd>
+<dd><code>distance</code> - how far to shift the bits to the right.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the function used to shift the final word in <b>set</b>.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.NullPointerException</code> - if <b>set</b> is null.</dd>
 </dl>
 </section>
 </li>
