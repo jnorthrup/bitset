@@ -1,5 +1,6 @@
 package com.shouldis.bitset.random;
 
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
 
 import com.shouldis.bitset.BitSet;
@@ -264,9 +265,7 @@ public class Random {
 	 * @see DensityRandom
 	 */
 	public final void randomize(final BitSet set, final int from, final int to) {
-		if (from >= to) {
-			return;
-		}
+		Objects.checkFromToIndex(from, to, set.size);
 		final int start = BitSet.divideSize(from);
 		final int end = BitSet.divideSize(to - 1);
 		final long startMask = BitSet.MASK << from;
@@ -318,9 +317,7 @@ public class Random {
 	 * @see DensityRandom
 	 */
 	public final void xOrRandomize(final BitSet set, final int from, final int to) {
-		if (from >= to) {
-			return;
-		}
+		Objects.checkFromToIndex(from, to, set.size);
 		final int start = BitSet.divideSize(from);
 		final int end = BitSet.divideSize(to - 1);
 		final long startMask = BitSet.MASK << from;

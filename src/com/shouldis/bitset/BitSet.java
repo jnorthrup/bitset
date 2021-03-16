@@ -2,6 +2,7 @@ package com.shouldis.bitset;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 import com.shouldis.bitset.parallel.DeadBiterator;
@@ -140,9 +141,7 @@ public class BitSet implements Serializable {
 	 *                                        {@link #size}).
 	 */
 	public final int get(final int from, final int to) {
-		if (from >= to) {
-			return 0;
-		}
+		Objects.checkFromToIndex(from, to, size);
 		final int start = BitSet.divideSize(from);
 		final int end = BitSet.divideSize(to - 1);
 		final long startMask = MASK << from;
@@ -188,9 +187,7 @@ public class BitSet implements Serializable {
 	 *                                        {@link #size}).
 	 */
 	public final void set(final int from, final int to) {
-		if (from >= to) {
-			return;
-		}
+		Objects.checkFromToIndex(from, to, size);
 		final int start = BitSet.divideSize(from);
 		final int end = BitSet.divideSize(to - 1);
 		final long startMask = MASK << from;
@@ -231,9 +228,7 @@ public class BitSet implements Serializable {
 	 *                                        {@link #size}).
 	 */
 	public final void clear(final int from, final int to) {
-		if (from >= to) {
-			return;
-		}
+		Objects.checkFromToIndex(from, to, size);
 		final int start = BitSet.divideSize(from);
 		final int end = BitSet.divideSize(to - 1);
 		final long startMask = MASK << from;
@@ -274,9 +269,7 @@ public class BitSet implements Serializable {
 	 *                                        {@link #size}).
 	 */
 	public final void toggle(final int from, final int to) {
-		if (from >= to) {
-			return;
-		}
+		Objects.checkFromToIndex(from, to, size);
 		final int start = BitSet.divideSize(from);
 		final int end = BitSet.divideSize(to - 1);
 		final long startMask = MASK << from;
