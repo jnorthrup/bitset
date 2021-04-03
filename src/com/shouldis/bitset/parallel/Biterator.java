@@ -85,7 +85,7 @@ public abstract class Biterator implements Spliterator.OfInt {
 	 * Calculates an appropriate place to split this {@link Biterator} considering
 	 * only the current {@link #position} and {@link #end}.
 	 * 
-	 * @return an appropriate place to split this {@link Biterator}
+	 * @return an appropriate place to split this {@link Biterator}.
 	 */
 	protected int splitIndex() {
 		final int middle = middle();

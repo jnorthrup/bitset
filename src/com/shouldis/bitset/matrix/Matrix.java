@@ -18,7 +18,7 @@ public final class Matrix implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * The number of bits contained in a {@link Matrix}
+	 * The number of bits contained in a {@link Matrix}.
 	 */
 	public static final int MATRIX_SIZE = BitSet.multiplySize(Long.SIZE);
 
