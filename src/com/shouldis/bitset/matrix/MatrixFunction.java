@@ -47,8 +47,8 @@ public interface MatrixFunction {
 	 * {@link Matrix}.
 	 */
 	public static final MatrixFunction TRANSPOSE = (final Matrix matrix) -> {
-		final BitSet bits = matrix.bits();
 		long xOrMask, mask = BitSet.MASK >>> Integer.SIZE;
+		final BitSet bits = matrix.bits();
 		for (int blockSize = Integer.SIZE; blockSize != 0; mask ^= mask << (blockSize >>>= 1)) {
 			for (int i = 0; i < Long.SIZE; i = ((i | blockSize) + 1) & ~blockSize) {
 				xOrMask = mask & (bits.getWord(i) ^ (bits.getWord(i | blockSize) >>> blockSize));
@@ -70,8 +70,8 @@ public interface MatrixFunction {
 	 * specified {@link Matrix}, mirroring it along the x-axis.
 	 */
 	public static final MatrixFunction FLIP_Y = (final Matrix matrix) -> {
-		final BitSet bits = matrix.bits();
 		long swap;
+		final BitSet bits = matrix.bits();
 		for (int i = 0; i < Integer.SIZE; i++) {
 			swap = bits.getWord(i);
 			bits.setWord(i, bits.getWord(63 - i));
@@ -152,8 +152,9 @@ public interface MatrixFunction {
 	 */
 	public static MatrixFunction of(final WordFunction function) {
 		return (final Matrix matrix) -> {
+			BitSet bits = matrix.bits();
 			for (int i = 0; i < Long.SIZE; i++) {
-				matrix.bits().apply(i, function);
+				bits.apply(i, function);
 			}
 			return matrix;
 		};
