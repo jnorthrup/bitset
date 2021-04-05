@@ -1572,7 +1572,9 @@ int&nbsp;wordIndex)</span></div>
 <section class="detail">
 <h3><a id="population()">population</a></h3>
 <div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">population</span>()</div>
-<div class="block">Calculates the number of <i>live</i> bits within this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>.</div>
+<div class="block">Calculates the number of <i>live</i> bits within this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>.
+ <a href="#clearHanging()"><code>clearHanging()</code></a> can be used to stop the interference of hanging bits.
+ In certain cases, hanging bits can cause an integer overflow.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the number of <i>live</i> bits.</dd>
@@ -1585,7 +1587,8 @@ int&nbsp;wordIndex)</span></div>
 <div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">double</span>&nbsp;<span class="memberName">density</span>&#8203;(<span class="arguments">int&nbsp;from,
 int&nbsp;to)</span></div>
 <div class="block">Calculates what percentage of bits in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> are in the
- <i>live</i> state in the specified range [<b>from</b>, <b>to</b>).</div>
+ <i>live</i> state in the specified range [<b>from</b>, <b>to</b>).
+ <a href="#clearHanging()"><code>clearHanging()</code></a> can be used to stop the interference of hanging bits.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>from</code> - (inclusive) the index of the first bit to be checked.</dd>
@@ -1604,7 +1607,8 @@ int&nbsp;to)</span></div>
 <h3><a id="density()">density</a></h3>
 <div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">double</span>&nbsp;<span class="memberName">density</span>()</div>
 <div class="block">Calculates what percentage of bits in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> are in the
- <i>live</i> state.</div>
+ <i>live</i> state. <a href="#clearHanging()"><code>clearHanging()</code></a> can be used to stop the
+ interference of hanging bits.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the percentage of <i>live</i> bits.</dd>
@@ -1616,7 +1620,8 @@ int&nbsp;to)</span></div>
 <h3><a id="identifier()">identifier</a></h3>
 <div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">long</span>&nbsp;<span class="memberName">identifier</span>()</div>
 <div class="block">Calculates a <code>long</code> identifier number which acts as a larger hash code
- with fewer collisions, drawing from the hashCode and population.</div>
+ with fewer collisions, drawing from the hashCode and population.
+ <a href="#clearHanging()"><code>clearHanging()</code></a> can be used to stop the interference of hanging bits.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the unique identifying code.</dd>

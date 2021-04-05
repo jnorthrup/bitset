@@ -849,6 +849,8 @@ public class BitSet implements Serializable {
 
 	/**
 	 * Calculates the number of <i>live</i> bits within this {@link BitSet}.
+	 * {@link #clearHanging()} can be used to stop the interference of hanging bits.
+	 * In certain cases, hanging bits can cause an integer overflow.
 	 * 
 	 * @return the number of <i>live</i> bits.
 	 */
@@ -863,6 +865,7 @@ public class BitSet implements Serializable {
 	/**
 	 * Calculates what percentage of bits in this {@link BitSet} are in the
 	 * <i>live</i> state in the specified range [<b>from</b>, <b>to</b>).
+	 * {@link #clearHanging()} can be used to stop the interference of hanging bits.
 	 * 
 	 * @param from (inclusive) the index of the first bit to be checked.
 	 * @param to   (exclusive) the end of the range of bits to be checked.
@@ -877,7 +880,8 @@ public class BitSet implements Serializable {
 
 	/**
 	 * Calculates what percentage of bits in this {@link BitSet} are in the
-	 * <i>live</i> state.
+	 * <i>live</i> state. {@link #clearHanging()} can be used to stop the
+	 * interference of hanging bits.
 	 *
 	 * @return the percentage of <i>live</i> bits.
 	 */
@@ -888,6 +892,7 @@ public class BitSet implements Serializable {
 	/**
 	 * Calculates a {@code long} identifier number which acts as a larger hash code
 	 * with fewer collisions, drawing from the hashCode and population.
+	 * {@link #clearHanging()} can be used to stop the interference of hanging bits.
 	 * 
 	 * @return the unique identifying code.
 	 */
