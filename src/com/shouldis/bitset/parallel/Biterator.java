@@ -9,16 +9,17 @@ import java.util.stream.StreamSupport;
 import com.shouldis.bitset.BitSet;
 
 /**
- * Implementation of {@link Spliterator} that is meant to be used in conjunction
- * with {@link BitSet}s. This class allows for parallel processing on the
- * indices of a {@link BitSet} such that those operations will never enter race
- * conditions on the underlying longs within {@link BitSet#words}. This behavior
- * can only be guaranteed if the indices returned by the {@link Biterator} are
- * manipulated, and not some offset or translation. This bounding of indices to
- * specific threads is needed because of the non-atomic nature of modifying a
- * long. Using a generic parallel {@link IntStream} would cause changes to the
- * underlying long words of a {@link BitSet} to be potentially overridden by
- * other threads.
+ * Bit Iterating implementation of {@link Spliterator} that is meant to be used
+ * in conjunction with {@link BitSet}s. This class allows for parallel
+ * processing on the indices of a {@link BitSet} such that those operations will
+ * never enter race conditions on the underlying longs within
+ * {@link BitSet#words}. This behavior can only be guaranteed if the indices
+ * returned by the {@link Biterator} are manipulated, and not some offset or
+ * translation. This bounding of indices to specific threads is necessary
+ * because of the non-atomic nature of modifying a long. Using a generic
+ * parallel {@link IntStream} would cause changes to the underlying long words
+ * of a {@link BitSet} to be potentially overridden by other threads
+ * manipulating nearby bits.
  *
  * @author Aaron Shouldis
  * @see BitSet

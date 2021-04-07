@@ -83,7 +83,7 @@ public final class ArrayBiterator extends SizedBiterator {
 
 	@Override
 	public Spliterator.OfInt trySplit() {
-		if (estimateSize() < THRESHOLD) {
+		if (estimateSize() < Biterator.THRESHOLD) {
 			return null;
 		}
 		return new ArrayBiterator(items, position, position = splitIndex());

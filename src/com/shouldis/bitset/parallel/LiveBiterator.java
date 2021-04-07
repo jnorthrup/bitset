@@ -119,7 +119,7 @@ public final class LiveBiterator extends Biterator {
 
 	@Override
 	public Spliterator.OfInt trySplit() {
-		if (estimateSize() < THRESHOLD) {
+		if (estimateSize() < Biterator.THRESHOLD) {
 			return null;
 		}
 		return new LiveBiterator(set, position, position = splitIndex());

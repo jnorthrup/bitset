@@ -107,16 +107,17 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <pre>public abstract class <span class="typeNameLabel">Biterator</span>
 extends java.lang.Object
 implements java.util.Spliterator.OfInt</pre>
-<div class="block">Implementation of <code>Spliterator</code> that is meant to be used in conjunction
- with <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s. This class allows for parallel processing on the
- indices of a <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> such that those operations will never enter race
- conditions on the underlying longs within <a href="../BitSet.html#words"><code>BitSet.words</code></a>. This behavior
- can only be guaranteed if the indices returned by the <a href="Biterator.html" title="class in com.shouldis.bitset.parallel"><code>Biterator</code></a> are
- manipulated, and not some offset or translation. This bounding of indices to
- specific threads is needed because of the non-atomic nature of modifying a
- long. Using a generic parallel <code>IntStream</code> would cause changes to the
- underlying long words of a <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> to be potentially overridden by
- other threads.</div>
+<div class="block">Bit Iterating implementation of <code>Spliterator</code> that is meant to be used
+ in conjunction with <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>s. This class allows for parallel
+ processing on the indices of a <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> such that those operations will
+ never enter race conditions on the underlying longs within
+ <a href="../BitSet.html#words"><code>BitSet.words</code></a>. This behavior can only be guaranteed if the indices
+ returned by the <a href="Biterator.html" title="class in com.shouldis.bitset.parallel"><code>Biterator</code></a> are manipulated, and not some offset or
+ translation. This bounding of indices to specific threads is necessary
+ because of the non-atomic nature of modifying a long. Using a generic
+ parallel <code>IntStream</code> would cause changes to the underlying long words
+ of a <a href="../BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> to be potentially overridden by other threads
+ manipulating nearby bits.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>Aaron Shouldis</dd>

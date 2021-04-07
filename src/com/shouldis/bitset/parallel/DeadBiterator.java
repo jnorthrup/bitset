@@ -119,7 +119,7 @@ public final class DeadBiterator extends Biterator {
 
 	@Override
 	public Spliterator.OfInt trySplit() {
-		if (estimateSize() < THRESHOLD) {
+		if (estimateSize() < Biterator.THRESHOLD) {
 			return null;
 		}
 		return new DeadBiterator(set, position, position = splitIndex());
