@@ -5,14 +5,34 @@ import java.lang.invoke.VarHandle;
 
 /**
  * Implementation of {@link BitSet} in which all methods capable of reading or
- * writing the state of bits are delegated to atomic operations.
+ * writing the state of bits are delegated to concurrent-safe operations.
  * <p>
  * The use of atomic operations allows concurrent modification of this
  * {@link ConcurrentBitSet} without any external synchronization at the cost of
- * processing time. These operations are done by the semantics of
+ * some performance. These operations are done by the semantics of
  * {@link VarHandle#setVolatile(Object...)}. Note that operations affecting more
  * than 1 word such as {@link #not()} and {@link #xOr(BitSet)}, will only be
  * made atomic on a per-word basis.
+ * <p>
+ * Some operations can leverage {@link VarHandle} better than others -- the
+ * following are performed on a perfectly atomic basis:
+ * <ul>
+ * <li>{@link #getWord(int)}</li>
+ * <li>{@link #setWord(int, long)}</li>
+ * <li>{@link #andWord(int, long)}</li>
+ * <li>{@link #orWord(int, long)}</li>
+ * <li>{@link #xOrWord(int, long)}</li>
+ * <li>{@link #toggleWord(int)}</li>
+ * <li>{@link #fillWord(int)}</li>
+ * <li>{@link #emptyWord(int)}</li>
+ * </ul>
+ * The other operations must use CAS operations, and can encounter memory
+ * contention as a result. In these cases, all methods will retry the operation
+ * until it is successful, but {@link #tryApply(int, WordFunction)} and
+ * {@link #tryApply(int, WordBiFunction, long)} can instead be used to have
+ * control over what happens in the event of memory contention.
+ * {@link #tryAdd(int)} and {@link #tryRemove(int)} are also defined, but return
+ * {@code false} under two separate conditions.
  * 
  * @author Aaron Shouldis
  * @see BitSet
@@ -67,16 +87,53 @@ public final class ConcurrentBitSet extends BitSet {
 	@Override
 	public boolean remove(final int index) {
 		final int wordIndex = BitSet.divideSize(index);
-		final long mask = BitSet.bitMask(index);
+		final long mask = ~BitSet.bitMask(index);
 		long expected, replacment;
 		do {
 			expected = getWord(wordIndex);
-			if ((expected & mask) == 0L) {
+			if ((expected | mask) != BitSet.MASK) {
 				return false;
 			}
-			replacment = expected & ~mask;
+			replacment = expected & mask;
 		} while (!HANDLE.compareAndSet(words, wordIndex, expected, replacment));
 		return true;
+	}
+
+	/**
+	 * Tries to set the bit at the specified <b>index</b> to the <i>live</i> state.
+	 * If it is not, it will be changed. Unlike {@link ConcurrentBitSet#add(int)},
+	 * this method will not retry in the event of memory contention.
+	 * 
+	 * @param index the index of the bit to change to the <i>live</i> state.
+	 * @return whether or not this {@link BitSet} was changed as a result.
+	 * @throws ArrayIndexOutOfBoundsException if <b>index</b> is negative, or
+	 *                                        greater than or equal to
+	 *                                        {@link #size}.
+	 */
+	public boolean tryAdd(final int index) {
+		final int wordIndex = BitSet.divideSize(index);
+		final long mask = BitSet.bitMask(index);
+		final long expected = getWord(wordIndex);
+		return (expected & mask) == 0L && HANDLE.compareAndSet(words, wordIndex, expected, expected | mask);
+	}
+
+	/**
+	 * Tries to set the bit at the specified <b>index</b> to the <i>dead</i> state.
+	 * If it is not, it will be changed. Unlike
+	 * {@link ConcurrentBitSet#remove(int)}, this method will not retry in the event
+	 * of memory contention.
+	 * 
+	 * @param index the index of the bit to change to the <i>dead</i> state.
+	 * @return whether or not this {@link BitSet} was changed as a result.
+	 * @throws ArrayIndexOutOfBoundsException if <b>index</b> is negative, or
+	 *                                        greater than or equal to
+	 *                                        {@link #size}.
+	 */
+	public boolean tryRemove(final int index) {
+		final int wordIndex = BitSet.divideSize(index);
+		final long mask = ~BitSet.bitMask(index);
+		final long expected = getWord(wordIndex);
+		return (expected | mask) == BitSet.MASK && HANDLE.compareAndSet(words, wordIndex, expected, expected & mask);
 	}
 
 	@Override
@@ -106,29 +163,17 @@ public final class ConcurrentBitSet extends BitSet {
 
 	@Override
 	public void notAndWord(final int wordIndex, final long mask) {
-		long expected, replacment;
-		do {
-			expected = getWord(wordIndex);
-			replacment = ~(expected & mask);
-		} while (!HANDLE.compareAndSet(words, wordIndex, expected, replacment));
+		apply(wordIndex, WordBiFunction.NOT_AND, mask);
 	}
 
 	@Override
 	public void notOrWord(final int wordIndex, final long mask) {
-		long expected, replacment;
-		do {
-			expected = getWord(wordIndex);
-			replacment = ~(expected | mask);
-		} while (!HANDLE.compareAndSet(words, wordIndex, expected, replacment));
+		apply(wordIndex, WordBiFunction.NOT_OR, mask);
 	}
 
 	@Override
 	public void notXOrWord(final int wordIndex, final long mask) {
-		long expected, replacment;
-		do {
-			expected = getWord(wordIndex);
-			replacment = ~(expected ^ mask);
-		} while (!HANDLE.compareAndSet(words, wordIndex, expected, replacment));
+		apply(wordIndex, WordBiFunction.NOT_XOR, mask);
 	}
 
 	@Override
@@ -147,6 +192,51 @@ public final class ConcurrentBitSet extends BitSet {
 			expected = getWord(wordIndex);
 			replacment = function.apply(expected);
 		} while (!HANDLE.compareAndSet(words, wordIndex, expected, replacment));
+	}
+
+	@Override
+	public void apply(final int wordIndex, final WordBiFunction function, final long mask) {
+		long expected, replacment;
+		do {
+			expected = getWord(wordIndex);
+			replacment = function.apply(expected, mask);
+		} while (!HANDLE.compareAndSet(words, wordIndex, expected, replacment));
+	}
+
+	/**
+	 * Tries to apply the specified {@link WordFunction} <b>function</b> to the word
+	 * at the specified <b>wordIndex</b>. While {@link #apply(int, WordFunction)}
+	 * will retry in the event of memory contention, this function returns a boolean
+	 * representing whether or not the operation was successful.
+	 * 
+	 * @param wordIndex the index within {@link #words} to apply the function to.
+	 * @param function  the {@link WordFunction} to apply at the specified
+	 *                  <b>wordIndex</b>.
+	 * @return whether or not the operation was successfully applied, meaning it
+	 *         didn't encounter any memory contention.
+	 */
+	public boolean tryApply(final int wordIndex, final WordFunction function) {
+		final long expected = getWord(wordIndex);
+		return HANDLE.compareAndSet(words, wordIndex, expected, function.apply(expected));
+	}
+
+	/**
+	 * Tries to apply the specified {@link WordBiFunction} <b>function</b> to the
+	 * word at the specified <b>wordIndex</b>. While
+	 * {@link #apply(int, WordBiFunction, long)} will retry in the event of memory
+	 * contention, this function returns a boolean representing whether or not the
+	 * operation was successful.
+	 * 
+	 * @param wordIndex the index within {@link #words} to apply the function to.
+	 * @param function  the {@link WordBiFunction} to apply at the specified
+	 *                  <b>wordIndex</b> in conjunction with <b>mask</b>.
+	 * @param mask      the mask to use in the specified <b>function</b>.
+	 * @return whether or not the operation was successfully applied, meaning it
+	 *         didn't encounter any memory contention.
+	 */
+	public boolean tryApply(final int wordIndex, final WordBiFunction function, final long mask) {
+		final long expected = getWord(wordIndex);
+		return HANDLE.compareAndSet(words, wordIndex, expected, function.apply(expected, mask));
 	}
 
 }

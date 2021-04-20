@@ -43,7 +43,8 @@ public class BitSet implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Long mask with all bits in the <i>live</i> state. (0xFFFFFFFFFFFFFFFF)
+	 * Long mask with all bits in the <i>live</i> state. Used for readability in
+	 * place of {@code -1L} (0xFFFFFFFFFFFFFFFF).
 	 */
 	public static final long MASK = -1L;
 
@@ -317,11 +318,11 @@ public class BitSet implements Serializable {
 	 */
 	public boolean remove(final int index) {
 		final int wordIndex = BitSet.divideSize(index);
-		final long mask = BitSet.bitMask(index);
-		if ((getWord(wordIndex) & mask) == 0L) {
+		final long mask = ~BitSet.bitMask(index);
+		if ((getWord(wordIndex) | mask) != MASK) {
 			return false;
 		}
-		andWord(wordIndex, ~mask);
+		andWord(wordIndex, mask);
 		return true;
 	}
 
@@ -520,6 +521,20 @@ public class BitSet implements Serializable {
 	 */
 	public void apply(final int wordIndex, final WordFunction function) {
 		setWord(wordIndex, function.apply(getWord(wordIndex)));
+	}
+
+	/**
+	 * Applies the specified {@link WordBiFunction} <b>function</b> to the word at
+	 * the specified <b>wordIndex</b> using <b>mask</b> as the second
+	 * {@link WordBiFunction} argument.
+	 * 
+	 * @param wordIndex the index within {@link #words} to apply the function to.
+	 * @param function  the {@link WordBiFunction} to apply at the specified
+	 *                  <b>wordIndex</b>.
+	 * @param mask      the mask to use in the specified <b>function</b>.
+	 */
+	public void apply(final int wordIndex, final WordBiFunction function, final long mask) {
+		setWord(wordIndex, function.apply(getWord(wordIndex), mask));
 	}
 
 	/**
@@ -890,25 +905,6 @@ public class BitSet implements Serializable {
 	}
 
 	/**
-	 * Calculates a {@code long} identifier number which acts as a larger hash code
-	 * with fewer collisions, drawing from the hashCode and population.
-	 * {@link #clearHanging()} can be used to stop the interference of hanging bits.
-	 * 
-	 * @return the unique identifying code.
-	 */
-	public final long identifier() {
-		long word, hash = size;
-		int population = 0;
-		for (int i = 0; i < wordCount; i++) {
-			word = getWord(i);
-			hash *= 31L;
-			hash += word;
-			population += Long.bitCount(word);
-		}
-		return hash ^ population;
-	}
-
-	/**
 	 * Calculates <b>index</b> divided by 64. Equivalent to the index of the word
 	 * corresponding to the specified <b>index</b>.
 	 * 
@@ -951,13 +947,6 @@ public class BitSet implements Serializable {
 	 */
 	public static final long bitMask(final int index) {
 		return 1L << index;
-	}
-
-	@Override
-	public String toString() {
-		final StringBuilder builder = new StringBuilder();
-		builder.append("Size: [").append(size).append("] Population: [").append(population()).append(']');
-		return builder.toString();
 	}
 
 	@Override
