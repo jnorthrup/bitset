@@ -11,7 +11,7 @@ import java.lang.invoke.VarHandle;
  * {@link ConcurrentBitSet} without any external synchronization at the cost of
  * some performance. These operations are done by the semantics of
  * {@link VarHandle#setVolatile(Object...)}. Note that operations affecting more
- * than 1 word such as {@link #not()} and {@link #xOr(BitSet)}, will only be
+ * than 1 word such as {@link #flip()} and {@link #xOr(BitSet)}, will only be
  * made atomic on a per-word basis.
  * <p>
  * Some operations can leverage {@link VarHandle} better than others -- the
@@ -22,7 +22,7 @@ import java.lang.invoke.VarHandle;
  * <li>{@link #andWord(int, long)}</li>
  * <li>{@link #orWord(int, long)}</li>
  * <li>{@link #xOrWord(int, long)}</li>
- * <li>{@link #toggleWord(int)}</li>
+ * <li>{@link #flipWord(int)}</li>
  * <li>{@link #fillWord(int)}</li>
  * <li>{@link #emptyWord(int)}</li>
  * </ul>

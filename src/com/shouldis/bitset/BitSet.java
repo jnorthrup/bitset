@@ -249,11 +249,11 @@ public class BitSet implements Serializable {
 	 * Changes the state of the bit at the specified <b>index</b> to its opposite
 	 * through an {@code XOR} operation.
 	 * 
-	 * @param index the index of the bit to toggle.
+	 * @param index the index of the bit to flip.
 	 * @throws ArrayIndexOutOfBoundsException if <b>index</b> is negative or greater
 	 *                                        than or equal to {@link #size}.
 	 */
-	public final void toggle(final int index) {
+	public final void flip(final int index) {
 		xOrWord(BitSet.divideSize(index), BitSet.bitMask(index));
 	}
 
@@ -263,13 +263,13 @@ public class BitSet implements Serializable {
 	 * <b>from</b> is greater than or equal to <b>to</b>. {@link ConcurrentBitSet}
 	 * will only perform this atomically on each word within the range individually.
 	 * 
-	 * @param from (inclusive) the index of the first bit to be toggled.
-	 * @param to   (exclusive) the end of the range of bits to be toggled.
+	 * @param from (inclusive) the index of the first bit to flip.
+	 * @param to   (exclusive) the end of the range of bits to flip.
 	 * @throws ArrayIndexOutOfBoundsException if <b>from</b> or <b>to</b> are
 	 *                                        outside of the range [0,
 	 *                                        {@link #size}).
 	 */
-	public final void toggle(final int from, final int to) {
+	public final void flip(final int from, final int to) {
 		Objects.checkFromToIndex(from, to, size);
 		final int start = BitSet.divideSize(from);
 		final int end = BitSet.divideSize(to - 1);
@@ -280,7 +280,7 @@ public class BitSet implements Serializable {
 		} else {
 			xOrWord(start, startMask);
 			for (int i = start + 1; i < end; i++) {
-				toggleWord(i);
+				flipWord(i);
 			}
 			xOrWord(end, endMask);
 		}
@@ -476,12 +476,12 @@ public class BitSet implements Serializable {
 	 * Changes the long word at <b>wordIndex</b> within {@link #words} to the
 	 * complement of its current state.
 	 * 
-	 * @param wordIndex the index within {@link #words} to perform the toggle
+	 * @param wordIndex the index within {@link #words} to perform the flip
 	 *                  operation upon.
 	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
 	 *                                        range [0, {@link #wordCount}).
 	 */
-	public final void toggleWord(final int wordIndex) {
+	public final void flipWord(final int wordIndex) {
 		xOrWord(wordIndex, MASK);
 	}
 
@@ -717,9 +717,9 @@ public class BitSet implements Serializable {
 	 * Transforms each bit in this {@link BitSet} into the complement of its current
 	 * state.
 	 */
-	public final void not() {
+	public final void flip() {
 		for (int i = 0; i < wordCount; i++) {
-			toggleWord(i);
+			flipWord(i);
 		}
 	}
 
