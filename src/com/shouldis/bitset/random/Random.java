@@ -109,38 +109,12 @@ public class Random {
 	}
 
 	/**
-	 * Returns the next pseudo-random, uniformly distributed long value from this
-	 * random number generator's sequence, which will be in the range [0,
-	 * <b>bound</b>)
-	 * 
-	 * @param bound the upper bound of the range of generated longs.
-	 * @return the next long between 0 and <b>bound</b>.
-	 * @throws IllegalArgumentException if <b>bound</b> is less than 1;
-	 */
-	public final long nextLong(final long bound) {
-		if (bound < 1L) {
-			throw new IllegalArgumentException(Long.toString(bound));
-		}
-		long random = nextLong();
-		final long mask = bound - 1L;
-		if ((bound & mask) == 0L) {
-			random &= mask;
-		} else {
-			long temp = random >>> 1;
-			while (temp + mask - (random = temp % bound) < 0L) {
-				temp = nextPositiveLong();
-			}
-		}
-		return random;
-	}
-
-	/**
 	 * Returns the next pseudo-random, uniformly distributed integer value from this
 	 * random number generator's sequence.
 	 * 
 	 * @return the next randomly generated integer.
 	 */
-	private final int nextInt() {
+	public final int nextInt() {
 		return (int) (nextLong() >>> Integer.SIZE);
 	}
 
@@ -152,32 +126,6 @@ public class Random {
 	 */
 	public final int nextPositiveInt() {
 		return (int) (nextLong() >>> 33);
-	}
-
-	/**
-	 * Returns the next pseudo-random, uniformly distributed integer value from this
-	 * random number generator's sequence, which will be in the range [0,
-	 * <b>bound</b>).
-	 * 
-	 * @param bound the upper bound of the range of generated integers.
-	 * @return the next integer between 0 and <b>bound</b>.
-	 * @throws IllegalArgumentException if <b>bound</b> is less than 1;
-	 */
-	public final int nextInt(final int bound) {
-		if (bound < 1) {
-			throw new IllegalArgumentException(Integer.toString(bound));
-		}
-		int random = nextInt();
-		final int mask = bound - 1;
-		if ((bound & mask) == 0) {
-			random &= mask;
-		} else {
-			int temp = random >>> 1;
-			while (temp + mask - (random = temp % bound) < 0) {
-				temp = nextPositiveInt();
-			}
-		}
-		return random;
 	}
 
 	/**
