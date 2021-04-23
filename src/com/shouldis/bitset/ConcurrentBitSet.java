@@ -206,7 +206,7 @@ public final class ConcurrentBitSet extends BitSet {
 	/**
 	 * Tries to apply the specified {@link WordFunction} <b>function</b> to the word
 	 * at the specified <b>wordIndex</b>. While {@link #apply(int, WordFunction)}
-	 * will retry in the event of memory contention, this function returns a boolean
+	 * will retry in the event of memory contention, this method returns a boolean
 	 * representing whether or not the operation was successful.
 	 * 
 	 * @param wordIndex the index within {@link #words} to apply the function to.
@@ -224,7 +224,7 @@ public final class ConcurrentBitSet extends BitSet {
 	 * Tries to apply the specified {@link WordBiFunction} <b>function</b> to the
 	 * word at the specified <b>wordIndex</b>. While
 	 * {@link #apply(int, WordBiFunction, long)} will retry in the event of memory
-	 * contention, this function returns a boolean representing whether or not the
+	 * contention, this method returns a boolean representing whether or not the
 	 * operation was successful.
 	 * 
 	 * @param wordIndex the index within {@link #words} to apply the function to.
