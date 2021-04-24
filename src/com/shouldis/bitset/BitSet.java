@@ -918,7 +918,7 @@ public class BitSet implements Serializable {
 	 * @return <b>n</b> / 64.
 	 */
 	public static final int divideSize(final int n) {
-		return n >> LOG_2_SIZE;
+		return n >>> LOG_2_SIZE;
 	}
 
 	/**
