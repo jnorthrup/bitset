@@ -38,7 +38,7 @@ public interface WordFunction {
 	 */
 	public static WordFunction hangingReverse(final int size) {
 		final long hanging = BitSet.modSize(-size);
-		final long mask = BitSet.MASK >>> hanging;
+		final long mask = BitSet.LIVE >>> hanging;
 		return (final long word) -> mask & (Long.reverse(word) >>> hanging);
 	}
 
@@ -65,7 +65,7 @@ public interface WordFunction {
 	 * @return the function used to shift the final word in <b>set</b>.
 	 */
 	public static WordFunction hangingShiftR(final int size, final int distance) {
-		final long mask = BitSet.MASK >>> BitSet.modSize(-size);
+		final long mask = BitSet.LIVE >>> BitSet.modSize(-size);
 		return (final long word) -> (mask & word) >>> distance;
 	}
 
@@ -92,7 +92,7 @@ public interface WordFunction {
 	 * @return the function used to shift the final word in <b>set</b>.
 	 */
 	public static WordFunction hangingShiftL(final int size, final int distance) {
-		final long mask = BitSet.MASK >>> BitSet.modSize(-size);
+		final long mask = BitSet.LIVE >>> BitSet.modSize(-size);
 		return (final long word) -> mask & (word << distance);
 	}
 
@@ -120,7 +120,7 @@ public interface WordFunction {
 	 */
 	public static WordFunction hangingRotateR(final int size, final int distance) {
 		final long hanging = BitSet.modSize(-size);
-		final long mask = BitSet.MASK >>> hanging;
+		final long mask = BitSet.LIVE >>> hanging;
 		return (final long word) -> mask & ((word >>> distance) | (word << -(hanging + distance)));
 	}
 
@@ -148,7 +148,7 @@ public interface WordFunction {
 	 */
 	public static WordFunction hangingRotateL(final int size, final int distance) {
 		final long hanging = BitSet.modSize(-size);
-		final long mask = BitSet.MASK >>> hanging;
+		final long mask = BitSet.LIVE >>> hanging;
 		return (final long word) -> mask & ((word << distance) | (word >>> -(hanging + distance)));
 	}
 

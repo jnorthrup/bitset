@@ -46,7 +46,13 @@ public class BitSet implements Serializable {
 	 * Long mask with all bits in the <i>live</i> state. Used for readability in
 	 * place of {@code -1L} (0xFFFFFFFFFFFFFFFF).
 	 */
-	public static final long MASK = -1L;
+	public static final long LIVE = -1L;
+
+	/**
+	 * Long mask with all bits in the <i>dead</i> state. Used for readability in
+	 * place of {@code 0L} (0x0000000000000000).
+	 */
+	public static final long DEAD = 0L;
 
 	/**
 	 * Mask used to compute potentially faster modulo operations. {@code n % m} is
@@ -126,7 +132,7 @@ public class BitSet implements Serializable {
 	 *                                        than or equal to {@link #size}.
 	 */
 	public boolean get(final int index) {
-		return (getWord(BitSet.divideSize(index)) & BitSet.bitMask(index)) != 0L;
+		return (getWord(BitSet.divideSize(index)) & BitSet.bitMask(index)) != DEAD;
 	}
 
 	/**
@@ -145,8 +151,8 @@ public class BitSet implements Serializable {
 		Objects.checkFromToIndex(from, to, size);
 		final int start = BitSet.divideSize(from);
 		final int end = BitSet.divideSize(to - 1);
-		final long startMask = MASK << from;
-		final long endMask = MASK >>> -to;
+		final long startMask = LIVE << from;
+		final long endMask = LIVE >>> -to;
 		int sum;
 		if (start == end) {
 			sum = Long.bitCount(getWord(start) & startMask & endMask);
@@ -191,8 +197,8 @@ public class BitSet implements Serializable {
 		Objects.checkFromToIndex(from, to, size);
 		final int start = BitSet.divideSize(from);
 		final int end = BitSet.divideSize(to - 1);
-		final long startMask = MASK << from;
-		final long endMask = MASK >>> -to;
+		final long startMask = LIVE << from;
+		final long endMask = LIVE >>> -to;
 		if (start == end) {
 			orWord(start, startMask & endMask);
 		} else {
@@ -232,8 +238,8 @@ public class BitSet implements Serializable {
 		Objects.checkFromToIndex(from, to, size);
 		final int start = BitSet.divideSize(from);
 		final int end = BitSet.divideSize(to - 1);
-		final long startMask = MASK << from;
-		final long endMask = MASK >>> -to;
+		final long startMask = LIVE << from;
+		final long endMask = LIVE >>> -to;
 		if (start == end) {
 			andWord(start, ~(startMask & endMask));
 		} else {
@@ -273,8 +279,8 @@ public class BitSet implements Serializable {
 		Objects.checkFromToIndex(from, to, size);
 		final int start = BitSet.divideSize(from);
 		final int end = BitSet.divideSize(to - 1);
-		final long startMask = MASK << from;
-		final long endMask = MASK >>> -to;
+		final long startMask = LIVE << from;
+		final long endMask = LIVE >>> -to;
 		if (start == end) {
 			xOrWord(start, startMask & endMask);
 		} else {
@@ -299,7 +305,7 @@ public class BitSet implements Serializable {
 	public boolean add(final int index) {
 		final int wordIndex = BitSet.divideSize(index);
 		final long mask = BitSet.bitMask(index);
-		if ((getWord(wordIndex) & mask) != 0L) {
+		if ((getWord(wordIndex) & mask) != DEAD) {
 			return false;
 		}
 		orWord(wordIndex, mask);
@@ -319,7 +325,7 @@ public class BitSet implements Serializable {
 	public boolean remove(final int index) {
 		final int wordIndex = BitSet.divideSize(index);
 		final long mask = ~BitSet.bitMask(index);
-		if ((getWord(wordIndex) | mask) != MASK) {
+		if ((getWord(wordIndex) | mask) != LIVE) {
 			return false;
 		}
 		andWord(wordIndex, mask);
@@ -482,12 +488,12 @@ public class BitSet implements Serializable {
 	 *                                        range [0, {@link #wordCount}).
 	 */
 	public void flipWord(final int wordIndex) {
-		xOrWord(wordIndex, MASK);
+		xOrWord(wordIndex, LIVE);
 	}
 
 	/**
 	 * Changes the long word at <b>wordIndex</b> within {@link #words} to
-	 * {@link #MASK}, setting all bits to the <i>live</i> state.
+	 * {@link #LIVE}, setting all bits to the <i>live</i> state.
 	 * 
 	 * @param wordIndex the index within {@link #words} to perform the fill
 	 *                  operation upon.
@@ -495,7 +501,7 @@ public class BitSet implements Serializable {
 	 *                                        range [0, {@link #wordCount}).
 	 */
 	public void fillWord(final int wordIndex) {
-		setWord(wordIndex, MASK);
+		setWord(wordIndex, LIVE);
 	}
 
 	/**
@@ -508,7 +514,7 @@ public class BitSet implements Serializable {
 	 *                                        range [0, {@link #wordCount}).
 	 */
 	public void emptyWord(final int wordIndex) {
-		setWord(wordIndex, 0L);
+		setWord(wordIndex, DEAD);
 	}
 
 	/**
@@ -551,13 +557,13 @@ public class BitSet implements Serializable {
 		if (wordIndex >= wordCount || wordIndex < 0) {
 			return -1;
 		}
-		long word = getWord(wordIndex) & (MASK << index);
-		if (word != 0L) {
+		long word = getWord(wordIndex) & (LIVE << index);
+		if (word != DEAD) {
 			return nextLiveBit(word, wordIndex);
 		}
 		while (++wordIndex < wordCount) {
 			word = getWord(wordIndex);
-			if (word != 0L) {
+			if (word != DEAD) {
 				return nextLiveBit(word, wordIndex);
 			}
 		}
@@ -578,13 +584,13 @@ public class BitSet implements Serializable {
 		if (wordIndex >= wordCount || wordIndex < 0) {
 			return -1;
 		}
-		long word = ~getWord(wordIndex) & (MASK << index);
-		if (word != 0L) {
+		long word = ~getWord(wordIndex) & (LIVE << index);
+		if (word != DEAD) {
 			return nextLiveBit(word, wordIndex);
 		}
 		while (++wordIndex < wordCount) {
 			word = ~getWord(wordIndex);
-			if (word != 0L) {
+			if (word != DEAD) {
 				return nextLiveBit(word, wordIndex);
 			}
 		}
@@ -619,13 +625,13 @@ public class BitSet implements Serializable {
 		if (wordIndex >= wordCount || wordIndex < 0) {
 			return -1;
 		}
-		long word = getWord(wordIndex) & (MASK >>> -(index + 1));
-		if (word != 0L) {
+		long word = getWord(wordIndex) & (LIVE >>> -(index + 1));
+		if (word != DEAD) {
 			return lastLiveBit(word, wordIndex);
 		}
 		while (wordIndex-- > 0) {
 			word = getWord(wordIndex);
-			if (word != 0L) {
+			if (word != DEAD) {
 				return lastLiveBit(word, wordIndex);
 			}
 		}
@@ -644,13 +650,13 @@ public class BitSet implements Serializable {
 		if (wordIndex >= wordCount || wordIndex < 0) {
 			return -1;
 		}
-		long word = ~getWord(wordIndex) & (MASK >>> -(index + 1));
-		if (word != 0L) {
+		long word = ~getWord(wordIndex) & (LIVE >>> -(index + 1));
+		if (word != DEAD) {
 			return lastLiveBit(word, wordIndex);
 		}
 		while (wordIndex-- > 0) {
 			word = ~getWord(wordIndex);
-			if (word != 0L) {
+			if (word != DEAD) {
 				return lastLiveBit(word, wordIndex);
 			}
 		}
@@ -858,7 +864,7 @@ public class BitSet implements Serializable {
 	public void clearHanging() {
 		final int hanging = BitSet.modSize(-size);
 		if (hanging > 0) {
-			andWord(wordCount - 1, MASK >>> hanging);
+			andWord(wordCount - 1, LIVE >>> hanging);
 		}
 	}
 

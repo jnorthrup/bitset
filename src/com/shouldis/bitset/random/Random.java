@@ -138,7 +138,7 @@ public class Random {
 		if (BitSet.modSize(bitsConsumed) == 0) {
 			booleanWord = nextWord();
 		}
-		return (booleanWord & BitSet.bitMask(bitsConsumed++)) != 0L;
+		return (booleanWord & BitSet.bitMask(bitsConsumed++)) != BitSet.DEAD;
 	}
 
 	/**
@@ -216,8 +216,8 @@ public class Random {
 		Objects.checkFromToIndex(from, to, set.size);
 		final int start = BitSet.divideSize(from);
 		final int end = BitSet.divideSize(to - 1);
-		final long startMask = BitSet.MASK << from;
-		final long endMask = BitSet.MASK >>> -to;
+		final long startMask = BitSet.LIVE << from;
+		final long endMask = BitSet.LIVE >>> -to;
 		if (start == end) {
 			set.setWordSegment(start, nextWord(), startMask & endMask);
 		} else {
@@ -268,8 +268,8 @@ public class Random {
 		Objects.checkFromToIndex(from, to, set.size);
 		final int start = BitSet.divideSize(from);
 		final int end = BitSet.divideSize(to - 1);
-		final long startMask = BitSet.MASK << from;
-		final long endMask = BitSet.MASK >>> -to;
+		final long startMask = BitSet.LIVE << from;
+		final long endMask = BitSet.LIVE >>> -to;
 		if (start == end) {
 			set.xOrWord(start, nextWord() & startMask & endMask);
 		} else {
@@ -305,7 +305,7 @@ public class Random {
 	 * @param seed the seed used to change to state of this {@link Random}.
 	 */
 	public final void setSeed(long seed) {
-		if (seed == 0L) {
+		if (seed == BitSet.DEAD) {
 			seed = generateSeed();
 		} else if (seed != MAGIC_NUMBER) {
 			seed ^= MAGIC_NUMBER;
@@ -340,7 +340,7 @@ public class Random {
 			next = current = SEED_ENTROPY.get();
 			do {
 				next ^= System.nanoTime();
-			} while (next == 0L);
+			} while (next == BitSet.DEAD);
 			next *= MAGIC_NUMBER;
 		} while (!SEED_ENTROPY.compareAndSet(current, next));
 		return next;

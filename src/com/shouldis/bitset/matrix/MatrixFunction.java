@@ -47,7 +47,7 @@ public interface MatrixFunction {
 	 * {@link Matrix}.
 	 */
 	public static final MatrixFunction TRANSPOSE = (final Matrix matrix) -> {
-		long xOrMask, mask = BitSet.MASK >>> Integer.SIZE;
+		long xOrMask, mask = BitSet.LIVE >>> Integer.SIZE;
 		final BitSet bits = matrix.bits();
 		for (int blockSize = Integer.SIZE; blockSize != 0; mask ^= mask << (blockSize >>>= 1)) {
 			for (int i = 0; i < Long.SIZE; i = ((i | blockSize) + 1) & ~blockSize) {

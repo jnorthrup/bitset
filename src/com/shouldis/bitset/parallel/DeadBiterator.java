@@ -70,13 +70,13 @@ public final class DeadBiterator extends Biterator {
 		if (index >= end) {
 			return end;
 		}
-		long word = ~set.getWord(wordIndex) & (BitSet.MASK << index);
-		if (word != 0L) {
+		long word = ~set.getWord(wordIndex) & (BitSet.LIVE << index);
+		if (word != BitSet.DEAD) {
 			return nextLiveBit(word, wordIndex);
 		}
 		while (++wordIndex <= lastWordIndex) {
 			word = ~set.getWord(wordIndex);
-			if (word != 0L) {
+			if (word != BitSet.DEAD) {
 				return nextLiveBit(word, wordIndex);
 			}
 		}
@@ -102,11 +102,11 @@ public final class DeadBiterator extends Biterator {
 		}
 		int wordIndex = BitSet.divideSize(position);
 		final int lastWordIndex = BitSet.divideSize(end - 1);
-		long word = ~set.getWord(wordIndex) & (BitSet.MASK << position);
+		long word = ~set.getWord(wordIndex) & (BitSet.LIVE << position);
 		do {
 			action.accept(position);
 			word ^= Long.lowestOneBit(word);
-			while (word == 0L) {
+			while (word == BitSet.DEAD) {
 				if (wordIndex == lastWordIndex) {
 					position = end;
 					return;

@@ -82,7 +82,7 @@ public final class ConcurrentBitSet extends BitSet {
 		long expected, replacment;
 		do {
 			expected = getWord(wordIndex);
-			if ((expected & mask) != 0L) {
+			if ((expected & mask) != BitSet.DEAD) {
 				return false;
 			}
 			replacment = expected | mask;
@@ -97,7 +97,7 @@ public final class ConcurrentBitSet extends BitSet {
 		long expected, replacment;
 		do {
 			expected = getWord(wordIndex);
-			if ((expected | mask) != BitSet.MASK) {
+			if ((expected | mask) != BitSet.LIVE) {
 				return false;
 			}
 			replacment = expected & mask;
@@ -121,7 +121,7 @@ public final class ConcurrentBitSet extends BitSet {
 		final int wordIndex = BitSet.divideSize(index);
 		final long mask = BitSet.bitMask(index);
 		final long expected = getWord(wordIndex);
-		return (expected & mask) == 0L && HANDLE.compareAndSet(words, wordIndex, expected, expected | mask);
+		return (expected & mask) == BitSet.DEAD && HANDLE.compareAndSet(words, wordIndex, expected, expected | mask);
 	}
 
 	/**
@@ -140,7 +140,7 @@ public final class ConcurrentBitSet extends BitSet {
 		final int wordIndex = BitSet.divideSize(index);
 		final long mask = ~BitSet.bitMask(index);
 		final long expected = getWord(wordIndex);
-		return (expected | mask) == BitSet.MASK && HANDLE.compareAndSet(words, wordIndex, expected, expected & mask);
+		return (expected | mask) == BitSet.LIVE && HANDLE.compareAndSet(words, wordIndex, expected, expected & mask);
 	}
 
 	@Override
