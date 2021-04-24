@@ -3,7 +3,9 @@ package com.shouldis.bitset;
 /**
  * Implementation of {@link BitSet} causing {@link #setWord(int, long)}, which
  * controls all write operations, to throw an
- * {@link UnsupportedOperationException}.
+ * {@link UnsupportedOperationException}. Normal operations against the
+ * (protected visibility) array {@link BitSet#words} will still be able to
+ * modify {@link ImmutableBitSet}s.
  * 
  * The state of all bits are immutable once initialized.
  * 
