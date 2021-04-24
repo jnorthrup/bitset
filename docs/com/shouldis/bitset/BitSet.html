@@ -174,14 +174,14 @@ implements java.io.Serializable</pre>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>private static int</code></td>
+<td class="colFirst"><code>protected static int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#LOG_2_SIZE">LOG_2_SIZE</a></span></code></th>
 <td class="colLast">
 <div class="block">log<sub>2</sub>64.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>private static int</code></td>
+<td class="colFirst"><code>protected static int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#MOD_SIZE_MASK">MOD_SIZE_MASK</a></span></code></th>
 <td class="colLast">
 <div class="block">Mask used to compute potentially faster modulo operations.</div>
@@ -768,7 +768,7 @@ long&nbsp;mask)</code></th>
 <li class="blockList">
 <section class="detail">
 <h3><a id="MOD_SIZE_MASK">MOD_SIZE_MASK</a></h3>
-<div class="memberSignature"><span class="modifiers">private static final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">MOD_SIZE_MASK</span></div>
+<div class="memberSignature"><span class="modifiers">protected static final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">MOD_SIZE_MASK</span></div>
 <div class="block">Mask used to compute potentially faster modulo operations. <code>n % m</code> is
  equivalent to <code>n &amp; (m -1)</code> if n is positive, and m = 2<sup>k</sup>.</div>
 <dl>
@@ -780,7 +780,7 @@ long&nbsp;mask)</code></th>
 <li class="blockList">
 <section class="detail">
 <h3><a id="LOG_2_SIZE">LOG_2_SIZE</a></h3>
-<div class="memberSignature"><span class="modifiers">private static final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">LOG_2_SIZE</span></div>
+<div class="memberSignature"><span class="modifiers">protected static final</span>&nbsp;<span class="returnType">int</span>&nbsp;<span class="memberName">LOG_2_SIZE</span></div>
 <div class="block">log<sub>2</sub>64. Used to relate bit indices to word indices through
  bit-shifting as an alternative to division or multiplication by 64.</div>
 <dl>

@@ -58,13 +58,13 @@ public class BitSet implements Serializable {
 	 * Mask used to compute potentially faster modulo operations. {@code n % m} is
 	 * equivalent to {@code n & (m -1)} if n is positive, and m = 2<sup>k</sup>.
 	 */
-	private static final int MOD_SIZE_MASK = Long.SIZE - 1;
+	protected static final int MOD_SIZE_MASK = Long.SIZE - 1;
 
 	/**
 	 * log<sub>2</sub>64. Used to relate bit indices to word indices through
 	 * bit-shifting as an alternative to division or multiplication by 64.
 	 */
-	private static final int LOG_2_SIZE = 6;
+	protected static final int LOG_2_SIZE = 6;
 
 	/**
 	 * The number of indices accessible by this {@link BitSet}. Indices <b>0</b>
