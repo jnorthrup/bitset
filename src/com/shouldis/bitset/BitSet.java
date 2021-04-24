@@ -125,7 +125,7 @@ public class BitSet implements Serializable {
 	 * @throws ArrayIndexOutOfBoundsException if <b>index</b> is negative or greater
 	 *                                        than or equal to {@link #size}.
 	 */
-	public final boolean get(final int index) {
+	public boolean get(final int index) {
 		return (getWord(BitSet.divideSize(index)) & BitSet.bitMask(index)) != 0L;
 	}
 
@@ -141,7 +141,7 @@ public class BitSet implements Serializable {
 	 *                                        outside of the range [0,
 	 *                                        {@link #size}).
 	 */
-	public final int get(final int from, final int to) {
+	public int get(final int from, final int to) {
 		Objects.checkFromToIndex(from, to, size);
 		final int start = BitSet.divideSize(from);
 		final int end = BitSet.divideSize(to - 1);
@@ -169,7 +169,7 @@ public class BitSet implements Serializable {
 	 *                                        greater than or equal to
 	 *                                        {@link #size}.
 	 */
-	public final void set(final int index) {
+	public void set(final int index) {
 		orWord(BitSet.divideSize(index), BitSet.bitMask(index));
 	}
 
@@ -187,7 +187,7 @@ public class BitSet implements Serializable {
 	 *                                        outside of the range [0,
 	 *                                        {@link #size}).
 	 */
-	public final void set(final int from, final int to) {
+	public void set(final int from, final int to) {
 		Objects.checkFromToIndex(from, to, size);
 		final int start = BitSet.divideSize(from);
 		final int end = BitSet.divideSize(to - 1);
@@ -212,7 +212,7 @@ public class BitSet implements Serializable {
 	 * @throws ArrayIndexOutOfBoundsException if <b>index</b> is negative or greater
 	 *                                        than or equal to {@link #size}.
 	 */
-	public final void clear(final int index) {
+	public void clear(final int index) {
 		andWord(BitSet.divideSize(index), ~BitSet.bitMask(index));
 	}
 
@@ -228,7 +228,7 @@ public class BitSet implements Serializable {
 	 *                                        outside of the range [0,
 	 *                                        {@link #size}).
 	 */
-	public final void clear(final int from, final int to) {
+	public void clear(final int from, final int to) {
 		Objects.checkFromToIndex(from, to, size);
 		final int start = BitSet.divideSize(from);
 		final int end = BitSet.divideSize(to - 1);
@@ -253,7 +253,7 @@ public class BitSet implements Serializable {
 	 * @throws ArrayIndexOutOfBoundsException if <b>index</b> is negative or greater
 	 *                                        than or equal to {@link #size}.
 	 */
-	public final void flip(final int index) {
+	public void flip(final int index) {
 		xOrWord(BitSet.divideSize(index), BitSet.bitMask(index));
 	}
 
@@ -269,7 +269,7 @@ public class BitSet implements Serializable {
 	 *                                        outside of the range [0,
 	 *                                        {@link #size}).
 	 */
-	public final void flip(final int from, final int to) {
+	public void flip(final int from, final int to) {
 		Objects.checkFromToIndex(from, to, size);
 		final int start = BitSet.divideSize(from);
 		final int end = BitSet.divideSize(to - 1);
@@ -481,7 +481,7 @@ public class BitSet implements Serializable {
 	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
 	 *                                        range [0, {@link #wordCount}).
 	 */
-	public final void flipWord(final int wordIndex) {
+	public void flipWord(final int wordIndex) {
 		xOrWord(wordIndex, MASK);
 	}
 
@@ -494,7 +494,7 @@ public class BitSet implements Serializable {
 	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
 	 *                                        range [0, {@link #wordCount}).
 	 */
-	public final void fillWord(final int wordIndex) {
+	public void fillWord(final int wordIndex) {
 		setWord(wordIndex, MASK);
 	}
 
@@ -507,7 +507,7 @@ public class BitSet implements Serializable {
 	 * @throws ArrayIndexOutOfBoundsException if <b>wordIndex</b> is outside of the
 	 *                                        range [0, {@link #wordCount}).
 	 */
-	public final void emptyWord(final int wordIndex) {
+	public void emptyWord(final int wordIndex) {
 		setWord(wordIndex, 0L);
 	}
 
@@ -698,7 +698,7 @@ public class BitSet implements Serializable {
 	/**
 	 * Transforms each bit in this {@link BitSet} to the <i>live</i> state.
 	 */
-	public final void fill() {
+	public void fill() {
 		for (int i = 0; i < wordCount; i++) {
 			fillWord(i);
 		}
@@ -707,7 +707,7 @@ public class BitSet implements Serializable {
 	/**
 	 * Transforms each bit in this {@link BitSet} to the <i>dead</i> state.
 	 */
-	public final void empty() {
+	public void empty() {
 		for (int i = 0; i < wordCount; i++) {
 			emptyWord(i);
 		}
@@ -717,7 +717,7 @@ public class BitSet implements Serializable {
 	 * Transforms each bit in this {@link BitSet} into the complement of its current
 	 * state.
 	 */
-	public final void flip() {
+	public void flip() {
 		for (int i = 0; i < wordCount; i++) {
 			flipWord(i);
 		}
@@ -733,7 +733,7 @@ public class BitSet implements Serializable {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public final void and(final BitSet set) {
+	public void and(final BitSet set) {
 		for (int i = 0; i < wordCount; i++) {
 			andWord(i, set.getWord(i));
 		}
@@ -749,7 +749,7 @@ public class BitSet implements Serializable {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public final void or(final BitSet set) {
+	public void or(final BitSet set) {
 		for (int i = 0; i < wordCount; i++) {
 			orWord(i, set.getWord(i));
 		}
@@ -765,7 +765,7 @@ public class BitSet implements Serializable {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public final void xOr(final BitSet set) {
+	public void xOr(final BitSet set) {
 		for (int i = 0; i < wordCount; i++) {
 			xOrWord(i, set.getWord(i));
 		}
@@ -781,7 +781,7 @@ public class BitSet implements Serializable {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public final void notAnd(final BitSet set) {
+	public void notAnd(final BitSet set) {
 		for (int i = 0; i < wordCount; i++) {
 			notAndWord(i, set.getWord(i));
 		}
@@ -797,7 +797,7 @@ public class BitSet implements Serializable {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public final void notOr(final BitSet set) {
+	public void notOr(final BitSet set) {
 		for (int i = 0; i < wordCount; i++) {
 			notOrWord(i, set.getWord(i));
 		}
@@ -813,7 +813,7 @@ public class BitSet implements Serializable {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public final void notXOr(final BitSet set) {
+	public void notXOr(final BitSet set) {
 		for (int i = 0; i < wordCount; i++) {
 			notXOrWord(i, set.getWord(i));
 		}
@@ -829,7 +829,7 @@ public class BitSet implements Serializable {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public final void not(final BitSet set) {
+	public void not(final BitSet set) {
 		for (int i = 0; i < wordCount; i++) {
 			setWord(i, ~set.getWord(i));
 		}
@@ -844,7 +844,7 @@ public class BitSet implements Serializable {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public final void copy(final BitSet set) {
+	public void copy(final BitSet set) {
 		for (int i = 0; i < wordCount; i++) {
 			setWord(i, set.getWord(i));
 		}
@@ -855,7 +855,7 @@ public class BitSet implements Serializable {
 	 * maintain their effect on aggregating functions ({@link #population()},
 	 * {@link #density()}, etc).
 	 */
-	public final void clearHanging() {
+	public void clearHanging() {
 		final int hanging = BitSet.modSize(-size);
 		if (hanging > 0) {
 			andWord(wordCount - 1, MASK >>> hanging);
