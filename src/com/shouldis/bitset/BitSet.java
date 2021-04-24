@@ -905,37 +905,36 @@ public class BitSet implements Serializable {
 	}
 
 	/**
-	 * Calculates <b>index</b> divided by 64. Equivalent to the index of the word
-	 * corresponding to the specified <b>index</b>.
+	 * Calculates <b>n</b> / 64. Typically used to translate the index of a bit to
+	 * the index of the word that bit belongs to within {@link #words}.
 	 * 
-	 * @param index the index to divide by 64.
-	 * @return <b>wordIndex</b> / 64.
+	 * @param n the number to divide by 64.
+	 * @return <b>n</b> / 64.
 	 */
-	public static final int divideSize(final int index) {
-		return index >> LOG_2_SIZE;
+	public static final int divideSize(final int n) {
+		return n >> LOG_2_SIZE;
 	}
 
 	/**
-	 * Calculates <b>wordIndex</b> multiplied by 64. Equivalent to the first index
-	 * of the word at the specified <b>wordIndex</b>.
+	 * Calculates <b>n</b> * 64. Typically used to translate the index of a word
+	 * within {@link #words} to the index of that word's first bit.
 	 * 
-	 * @param wordIndex the index to multiply by 64.
-	 * @return <b>wordIndex</b> * 64.
+	 * @param n the number to multiply by 64.
+	 * @return <b>n</b> * 64.
 	 */
-	public static final int multiplySize(final int wordIndex) {
-		return wordIndex << LOG_2_SIZE;
+	public static final int multiplySize(final int n) {
+		return n << LOG_2_SIZE;
 	}
 
 	/**
-	 * Equivalent to {@code index % 64} for positive numbers, and modulo of positive
-	 * numbers faster.
+	 * Calculates <b>n</b> % 64 for positive numbers. Also calculates 64 -
+	 * (-<b>n</b> % 64) for negative numbers as a side effect.
 	 * 
-	 * @param index the index to perform the modulo operation upon.
+	 * @param n the number to modulo by 64.
 	 * @return the result of the modulo operation.
-	 * @see #MOD_SIZE_MASK
 	 */
-	public static final int modSize(final int index) {
-		return index & MOD_SIZE_MASK;
+	public static final int modSize(final int n) {
+		return n & MOD_SIZE_MASK;
 	}
 
 	/**

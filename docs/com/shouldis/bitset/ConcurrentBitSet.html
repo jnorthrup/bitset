@@ -117,6 +117,10 @@ extends <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></p
  Some operations can leverage <code>VarHandle</code> better than others -- the
  following are performed on a perfectly atomic basis:
  <ul>
+ <li><a href="BitSet.html#get(int)"><code>BitSet.get(int)</code></a></li>
+ <li><a href="BitSet.html#set(int)"><code>BitSet.set(int)</code></a></li>
+ <li><a href="BitSet.html#clear(int)"><code>BitSet.clear(int)</code></a></li>
+ <li><a href="BitSet.html#flip(int)"><code>BitSet.flip(int)</code></a></li>
  <li><a href="#getWord(int)"><code>getWord(int)</code></a></li>
  <li><a href="#setWord(int,long)"><code>setWord(int, long)</code></a></li>
  <li><a href="#andWord(int,long)"><code>andWord(int, long)</code></a></li>
@@ -131,8 +135,10 @@ extends <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></p
  until it is successful, but <a href="#tryApply(int,com.shouldis.bitset.WordFunction)"><code>tryApply(int, WordFunction)</code></a> and
  <a href="#tryApply(int,com.shouldis.bitset.WordBiFunction,long)"><code>tryApply(int, WordBiFunction, long)</code></a> can instead be used to have
  control over what happens in the event of memory contention.
- <a href="#tryAdd(int)"><code>tryAdd(int)</code></a> and <a href="#tryRemove(int)"><code>tryRemove(int)</code></a> are also defined, but return
- <code>false</code> under two separate conditions.</div>
+ <a href="#tryAdd(int)"><code>tryAdd(int)</code></a> and <a href="#tryRemove(int)"><code>tryRemove(int)</code></a> are also defined, but will
+ return <code>false</code> under two separate conditions: either encountering
+ memory contention, or when <a href="#add(int)"><code>add(int)</code></a> or <a href="#remove(int)"><code>remove(int)</code></a> would
+ typically return <code>false</code>.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>Aaron Shouldis</dd>
@@ -525,8 +531,9 @@ long&nbsp;mask)</code></th>
 <h3><a id="tryAdd(int)">tryAdd</a></h3>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">boolean</span>&nbsp;<span class="memberName">tryAdd</span>&#8203;(<span class="arguments">int&nbsp;index)</span></div>
 <div class="block">Tries to set the bit at the specified <b>index</b> to the <i>live</i> state.
- If it is not, it will be changed. Unlike <a href="#add(int)"><code>add(int)</code></a>,
- this method will not retry in the event of memory contention.</div>
+ If it is not already the <i>live</i> state, it will be changed. Unlike
+ <a href="#add(int)"><code>add(int)</code></a>, this method will not retry in the event of
+ memory contention, and will instead return <code>false</code>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>index</code> - the index of the bit to change to the <i>live</i> state.</dd>
@@ -544,9 +551,9 @@ long&nbsp;mask)</code></th>
 <h3><a id="tryRemove(int)">tryRemove</a></h3>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">boolean</span>&nbsp;<span class="memberName">tryRemove</span>&#8203;(<span class="arguments">int&nbsp;index)</span></div>
 <div class="block">Tries to set the bit at the specified <b>index</b> to the <i>dead</i> state.
- If it is not, it will be changed. Unlike
+ If it is not already in the <i>dead</i> state, it will be changed. Unlike
  <a href="#remove(int)"><code>remove(int)</code></a>, this method will not retry in the event
- of memory contention.</div>
+ of memory contention, and will instead return <code>false</code>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>index</code> - the index of the bit to change to the <i>dead</i> state.</dd>
