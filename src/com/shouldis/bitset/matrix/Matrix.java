@@ -176,11 +176,6 @@ public final class Matrix implements Serializable {
 	}
 
 	@Override
-	public String toString() {
-		return bits.toString();
-	}
-
-	@Override
 	public int hashCode() {
 		return bits.hashCode();
 	}

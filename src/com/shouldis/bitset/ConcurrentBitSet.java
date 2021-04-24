@@ -17,6 +17,10 @@ import java.lang.invoke.VarHandle;
  * Some operations can leverage {@link VarHandle} better than others -- the
  * following are performed on a perfectly atomic basis:
  * <ul>
+ * <li>{@link #get(int)}</li>
+ * <li>{@link #set(int)}</li>
+ * <li>{@link #clear(int)}</li>
+ * <li>{@link #flip(int)}</li>
  * <li>{@link #getWord(int)}</li>
  * <li>{@link #setWord(int, long)}</li>
  * <li>{@link #andWord(int, long)}</li>
@@ -31,8 +35,10 @@ import java.lang.invoke.VarHandle;
  * until it is successful, but {@link #tryApply(int, WordFunction)} and
  * {@link #tryApply(int, WordBiFunction, long)} can instead be used to have
  * control over what happens in the event of memory contention.
- * {@link #tryAdd(int)} and {@link #tryRemove(int)} are also defined, but return
- * {@code false} under two separate conditions.
+ * {@link #tryAdd(int)} and {@link #tryRemove(int)} are also defined, but will
+ * return {@code false} under two separate conditions: either encountering
+ * memory contention, or when {@link #add(int)} or {@link #remove(int)} would
+ * typically return {@code false}.
  * 
  * @author Aaron Shouldis
  * @see BitSet
@@ -101,8 +107,9 @@ public final class ConcurrentBitSet extends BitSet {
 
 	/**
 	 * Tries to set the bit at the specified <b>index</b> to the <i>live</i> state.
-	 * If it is not, it will be changed. Unlike {@link ConcurrentBitSet#add(int)},
-	 * this method will not retry in the event of memory contention.
+	 * If it is not already the <i>live</i> state, it will be changed. Unlike
+	 * {@link ConcurrentBitSet#add(int)}, this method will not retry in the event of
+	 * memory contention, and will instead return {@code false}.
 	 * 
 	 * @param index the index of the bit to change to the <i>live</i> state.
 	 * @return whether or not this {@link BitSet} was changed as a result.
@@ -119,9 +126,9 @@ public final class ConcurrentBitSet extends BitSet {
 
 	/**
 	 * Tries to set the bit at the specified <b>index</b> to the <i>dead</i> state.
-	 * If it is not, it will be changed. Unlike
+	 * If it is not already in the <i>dead</i> state, it will be changed. Unlike
 	 * {@link ConcurrentBitSet#remove(int)}, this method will not retry in the event
-	 * of memory contention.
+	 * of memory contention, and will instead return {@code false}.
 	 * 
 	 * @param index the index of the bit to change to the <i>dead</i> state.
 	 * @return whether or not this {@link BitSet} was changed as a result.
