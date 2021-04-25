@@ -101,7 +101,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dl>
 <dl>
 <dt>Direct Known Subclasses:</dt>
-<dd><code><a href="ConcurrentBitSet.html" title="class in com.shouldis.bitset">ConcurrentBitSet</a></code>, <code><a href="ImmutableBitSet.html" title="class in com.shouldis.bitset">ImmutableBitSet</a></code></dd>
+<dd><code><a href="ConcurrentBitSet.html" title="class in com.shouldis.bitset">ConcurrentBitSet</a></code>, <code><a href="ImmutableBitSet.html" title="class in com.shouldis.bitset">ImmutableBitSet</a></code>, <code><a href="InlineBitSet.html" title="class in com.shouldis.bitset">InlineBitSet</a></code></dd>
 </dl>
 <hr>
 <pre>public class <span class="typeNameLabel">BitSet</span>
@@ -122,6 +122,12 @@ implements java.io.Serializable</pre>
  Alternatively, a <a href="ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> may be used to make all operations
  thread-safe, requiring no external synchronization at the cost of
  performance.
+ <p>
+ While this implementation of <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> is made extensible, flexible, and
+ readable by how verbose it is made by functional decomposition -- this
+ impacts performance because of the overhead created by the call stack. When
+ no extra functionality or modified behavior is needed, <a href="InlineBitSet.html" title="class in com.shouldis.bitset"><code>InlineBitSet</code></a>
+ performs the same operations, but "hot" methods are made faster by inlining.
  <p>
  If <a href="#size"><code>size</code></a> isn't a multiple of 64, there will be hanging bits that
  exist on the end of the last long within <a href="#words"><code>words</code></a>, which are not
@@ -1440,21 +1446,21 @@ int&nbsp;wordIndex)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="fill()">fill</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">fill</span>()</div>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">fill</span>()</div>
 <div class="block">Transforms each bit in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> to the <i>live</i> state.</div>
 </section>
 </li>
 <li class="blockList">
 <section class="detail">
 <h3><a id="empty()">empty</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">empty</span>()</div>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">empty</span>()</div>
 <div class="block">Transforms each bit in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> to the <i>dead</i> state.</div>
 </section>
 </li>
 <li class="blockList">
 <section class="detail">
 <h3><a id="flip()">flip</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">flip</span>()</div>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">flip</span>()</div>
 <div class="block">Transforms each bit in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> into the complement of its current
  state.</div>
 </section>
@@ -1462,7 +1468,7 @@ int&nbsp;wordIndex)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="and(com.shouldis.bitset.BitSet)">and</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">and</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">and</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
 <div class="block">Performs a global <code>AND</code> operation on all bits in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>
  with those in the specified <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 <dl>
@@ -1479,7 +1485,7 @@ int&nbsp;wordIndex)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="or(com.shouldis.bitset.BitSet)">or</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">or</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">or</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
 <div class="block">Performs a global <code>OR</code> operation on all bits in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>
  with those in the specified <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 <dl>
@@ -1496,7 +1502,7 @@ int&nbsp;wordIndex)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="xOr(com.shouldis.bitset.BitSet)">xOr</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">xOr</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">xOr</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
 <div class="block">Performs a global <code>XOR</code> operation on all bits in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>
  with those in the specified <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 <dl>
@@ -1513,7 +1519,7 @@ int&nbsp;wordIndex)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="notAnd(com.shouldis.bitset.BitSet)">notAnd</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">notAnd</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">notAnd</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
 <div class="block">Performs a global <code>NOT AND</code> operation on all bits in this
  <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> with those in the specified <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 <dl>
@@ -1530,7 +1536,7 @@ int&nbsp;wordIndex)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="notOr(com.shouldis.bitset.BitSet)">notOr</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">notOr</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">notOr</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
 <div class="block">Performs a global <code>NOT OR</code> operation on all bits in this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>
  with those in the specified <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 <dl>
@@ -1547,7 +1553,7 @@ int&nbsp;wordIndex)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="notXOr(com.shouldis.bitset.BitSet)">notXOr</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">notXOr</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">notXOr</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
 <div class="block">Performs a global <code>NOT XOR</code> operation on all bits in this
  <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> with those in the specified <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> <b>set</b>.</div>
 <dl>
@@ -1564,7 +1570,7 @@ int&nbsp;wordIndex)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="not(com.shouldis.bitset.BitSet)">not</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">not</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">not</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
 <div class="block">Transforms this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> into the complement of the specified
  <b>set</b>.</div>
 <dl>
@@ -1581,7 +1587,7 @@ int&nbsp;wordIndex)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="copy(com.shouldis.bitset.BitSet)">copy</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">copy</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">copy</span>&#8203;(<span class="arguments"><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a>&nbsp;set)</span></div>
 <div class="block">Transforms this <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> so that each bit matches the state of that in
  the give <b>set</b>.</div>
 <dl>
@@ -1597,7 +1603,7 @@ int&nbsp;wordIndex)</span></div>
 <li class="blockList">
 <section class="detail">
 <h3><a id="clearHanging()">clearHanging</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">clearHanging</span>()</div>
+<div class="memberSignature"><span class="modifiers">public final</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">clearHanging</span>()</div>
 <div class="block">Changes the state of any hanging bits to the <i>dead</i> state in order to
  maintain their effect on aggregating functions (<a href="#population()"><code>population()</code></a>,
  <a href="#density()"><code>density()</code></a>, etc).</div>

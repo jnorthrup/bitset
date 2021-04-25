@@ -25,6 +25,12 @@ import com.shouldis.bitset.parallel.LiveBiterator;
  * thread-safe, requiring no external synchronization at the cost of
  * performance.
  * <p>
+ * While this implementation of {@link BitSet} is made extensible, flexible, and
+ * readable by how verbose it is made by functional decomposition -- this
+ * impacts performance because of the overhead created by the call stack. When
+ * no extra functionality or modified behavior is needed, {@link InlineBitSet}
+ * performs the same operations, but "hot" methods are made faster by inlining.
+ * <p>
  * If {@link #size} isn't a multiple of 64, there will be hanging bits that
  * exist on the end of the last long within {@link #words}, which are not
  * accounted for by {@link #size}. No exception will be thrown when these bit

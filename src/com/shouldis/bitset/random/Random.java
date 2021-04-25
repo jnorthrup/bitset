@@ -5,6 +5,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import com.shouldis.bitset.BitSet;
 import com.shouldis.bitset.ConcurrentBitSet;
+import com.shouldis.bitset.InlineBitSet;
 
 /**
  * Pseudo-random number generator using a modified version of the (not
@@ -188,6 +189,23 @@ public class Random {
 	 */
 	public final ConcurrentBitSet nextConcurrentBitSet(final int size) {
 		final ConcurrentBitSet set = new ConcurrentBitSet(size);
+		for (int i = 0; i < set.wordCount; i++) {
+			set.setWord(i, nextWord());
+		}
+		return set;
+	}
+
+	/**
+	 * Generates a {@link InlineBitSet} with the specified <b>size</b>, with each
+	 * word filled with {@link #nextWord()}.
+	 * 
+	 * @param size the size of the generated {@link InlineBitSet}.
+	 * @return a randomly generated {@link InlineBitSet} with the specified
+	 *         <b>size</b>.
+	 * @throws IllegalArgumentException if <b>size</b> is less than 0.
+	 */
+	public final InlineBitSet nextInlineBitSet(final int size) {
+		final InlineBitSet set = new InlineBitSet(size);
 		for (int i = 0; i < set.wordCount; i++) {
 			set.setWord(i, nextWord());
 		}

@@ -6,6 +6,9 @@ package com.shouldis.bitset;
  * cost of readability. However, methods still have the exact behavior as their
  * {@link BitSet} counterpart they override. {@link Long#bitCount(long)}
  * intentionally isn't inlined to retain existing VM optimizations.
+ * 
+ * @author Aaron Shouldis
+ * @see BitSet
  */
 public final class InlineBitSet extends BitSet {
 

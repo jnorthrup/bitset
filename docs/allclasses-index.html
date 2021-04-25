@@ -19,7 +19,7 @@
 <script type="text/javascript" src="script-dir/jquery-ui.js"></script>
 </head>
 <body class="all-classes-index">
-<script type="text/javascript">var data = {"i0":2,"i1":2,"i2":2,"i3":2,"i4":2,"i5":2,"i6":2,"i7":2,"i8":2,"i9":1,"i10":2,"i11":2,"i12":2,"i13":1,"i14":1};
+<script type="text/javascript">var data = {"i0":2,"i1":2,"i2":2,"i3":2,"i4":2,"i5":2,"i6":2,"i7":2,"i8":2,"i9":2,"i10":1,"i11":2,"i12":2,"i13":2,"i14":1,"i15":1};
 var tabs = {65535:["t0","All Classes"],1:["t1","Interface Summary"],2:["t2","Class Summary"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -141,6 +141,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </th>
 </tr>
 <tr class="rowColor" id="i7">
+<td class="colFirst"><a href="com/shouldis/bitset/InlineBitSet.html" title="class in com.shouldis.bitset">InlineBitSet</a></td>
+<th class="colLast" scope="row">
+<div class="block">Implementation of <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in which most methods are manually inlined
+ to increase performance by reducing the overhead from the call-stack at the
+ cost of readability.</div>
+</th>
+</tr>
+<tr class="altColor" id="i8">
 <td class="colFirst"><a href="com/shouldis/bitset/parallel/LiveBiterator.html" title="class in com.shouldis.bitset.parallel">LiveBiterator</a></td>
 <th class="colLast" scope="row">
 <div class="block">Implementation of <a href="com/shouldis/bitset/parallel/Biterator.html" title="class in com.shouldis.bitset.parallel"><code>Biterator</code></a> used to stream the indices of <i>live</i>
@@ -148,27 +156,27 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  a <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
 </th>
 </tr>
-<tr class="altColor" id="i8">
+<tr class="rowColor" id="i9">
 <td class="colFirst"><a href="com/shouldis/bitset/matrix/Matrix.html" title="class in com.shouldis.bitset.matrix">Matrix</a></td>
 <th class="colLast" scope="row">
 <div class="block">64 by 64 bit matrix backed by either a <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>,
  <a href="com/shouldis/bitset/ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> or <a href="com/shouldis/bitset/ImmutableBitSet.html" title="class in com.shouldis.bitset"><code>ImmutableBitSet</code></a>.</div>
 </th>
 </tr>
-<tr class="rowColor" id="i9">
+<tr class="altColor" id="i10">
 <td class="colFirst"><a href="com/shouldis/bitset/matrix/MatrixFunction.html" title="interface in com.shouldis.bitset.matrix">MatrixFunction</a></td>
 <th class="colLast" scope="row">
 <div class="block">Functional interface used to apply functions to a <a href="com/shouldis/bitset/matrix/Matrix.html" title="class in com.shouldis.bitset.matrix"><code>Matrix</code></a>.</div>
 </th>
 </tr>
-<tr class="altColor" id="i10">
+<tr class="rowColor" id="i11">
 <td class="colFirst"><a href="com/shouldis/bitset/random/Random.html" title="class in com.shouldis.bitset.random">Random</a></td>
 <th class="colLast" scope="row">
 <div class="block">Pseudo-random number generator using a modified version of the (not
  cryptography-secure) XORShift64 algorithm to generate uniform random numbers.</div>
 </th>
 </tr>
-<tr class="rowColor" id="i11">
+<tr class="altColor" id="i12">
 <td class="colFirst"><a href="com/shouldis/bitset/parallel/RangeBiterator.html" title="class in com.shouldis.bitset.parallel">RangeBiterator</a></td>
 <th class="colLast" scope="row">
 <div class="block">Implementation of <a href="com/shouldis/bitset/parallel/SizedBiterator.html" title="class in com.shouldis.bitset.parallel"><code>SizedBiterator</code></a> used to stream all indices of a
@@ -176,21 +184,21 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  <a href="com/shouldis/bitset/BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in parallel.</div>
 </th>
 </tr>
-<tr class="altColor" id="i12">
+<tr class="rowColor" id="i13">
 <td class="colFirst"><a href="com/shouldis/bitset/parallel/SizedBiterator.html" title="class in com.shouldis.bitset.parallel">SizedBiterator</a></td>
 <th class="colLast" scope="row">
 <div class="block">Implementation of <a href="com/shouldis/bitset/parallel/Biterator.html" title="class in com.shouldis.bitset.parallel"><code>Biterator</code></a> that is meant to be used when streaming a
  known number of indices.</div>
 </th>
 </tr>
-<tr class="rowColor" id="i13">
+<tr class="altColor" id="i14">
 <td class="colFirst"><a href="com/shouldis/bitset/WordBiFunction.html" title="interface in com.shouldis.bitset">WordBiFunction</a></td>
 <th class="colLast" scope="row">
 <div class="block">Functional interface used in conjunction with
  <a href="com/shouldis/bitset/BitSet.html#apply(int,com.shouldis.bitset.WordBiFunction,long)"><code>BitSet.apply(int, WordBiFunction, long)</code></a>.</div>
 </th>
 </tr>
-<tr class="altColor" id="i14">
+<tr class="rowColor" id="i15">
 <td class="colFirst"><a href="com/shouldis/bitset/WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a></td>
 <th class="colLast" scope="row">
 <div class="block">Functional interface used in conjunction with

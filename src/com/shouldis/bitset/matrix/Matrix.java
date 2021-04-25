@@ -6,6 +6,7 @@ import java.util.Objects;
 import com.shouldis.bitset.BitSet;
 import com.shouldis.bitset.ConcurrentBitSet;
 import com.shouldis.bitset.ImmutableBitSet;
+import com.shouldis.bitset.InlineBitSet;
 
 /**
  * 64 by 64 bit matrix backed by either a {@link BitSet},
@@ -96,6 +97,29 @@ public final class Matrix implements Serializable {
 	 */
 	public static Matrix createImmutable(final Matrix matrix) {
 		return new Matrix(new ImmutableBitSet(matrix.bits()));
+	}
+
+	/**
+	 * Creates a {@link Matrix} backed by a {@link InlineBitSet} with size equal to
+	 * {@link #MATRIX_SIZE}. All bits are initialized to the <i>dead</I> state.
+	 * 
+	 * @return the created {@link Matrix}.
+	 */
+	public static Matrix createInline() {
+		return new Matrix(new InlineBitSet(MATRIX_SIZE));
+	}
+
+	/**
+	 * Creates a {@link Matrix} backed by a {@link InlineBitSet} with size equal to
+	 * {@link #MATRIX_SIZE}. All bits copy the state of the bits in the specified
+	 * {@link Matrix} <b>matrix</b>.
+	 * 
+	 * @param matrix the {@link Matrix} to copy.
+	 * 
+	 * @return the created {@link Matrix} copy of <b>matrix</b>.
+	 */
+	public static Matrix createInline(final Matrix matrix) {
+		return new Matrix(new InlineBitSet(matrix.bits()));
 	}
 
 	/**

@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.shouldis.bitset.BitSet;
 import com.shouldis.bitset.ConcurrentBitSet;
 import com.shouldis.bitset.ImmutableBitSet;
+import com.shouldis.bitset.InlineBitSet;
 import com.shouldis.bitset.WordFunction;
 
 /**
@@ -41,6 +42,12 @@ public interface MatrixFunction {
 	 * {@link Matrix#createImmutable(Matrix)}.
 	 */
 	public static final MatrixFunction IMMUTABLE_COPY = Matrix::createImmutable;
+
+	/**
+	 * {@link MatrixFunction} that returns a copy of the specified {@link Matrix}
+	 * backed by an {@link InlineBitSet} using {@link Matrix#createInline(Matrix)}.
+	 */
+	public static final MatrixFunction INLINE_COPY = Matrix::createInline;
 
 	/**
 	 * {@link MatrixFunction} that performs a transpose operation on the specified
