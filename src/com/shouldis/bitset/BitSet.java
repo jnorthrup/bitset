@@ -704,7 +704,7 @@ public class BitSet implements Serializable {
 	/**
 	 * Transforms each bit in this {@link BitSet} to the <i>live</i> state.
 	 */
-	public void fill() {
+	public final void fill() {
 		for (int i = 0; i < wordCount; i++) {
 			fillWord(i);
 		}
@@ -713,7 +713,7 @@ public class BitSet implements Serializable {
 	/**
 	 * Transforms each bit in this {@link BitSet} to the <i>dead</i> state.
 	 */
-	public void empty() {
+	public final void empty() {
 		for (int i = 0; i < wordCount; i++) {
 			emptyWord(i);
 		}
@@ -723,7 +723,7 @@ public class BitSet implements Serializable {
 	 * Transforms each bit in this {@link BitSet} into the complement of its current
 	 * state.
 	 */
-	public void flip() {
+	public final void flip() {
 		for (int i = 0; i < wordCount; i++) {
 			flipWord(i);
 		}
@@ -739,7 +739,7 @@ public class BitSet implements Serializable {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public void and(final BitSet set) {
+	public final void and(final BitSet set) {
 		for (int i = 0; i < wordCount; i++) {
 			andWord(i, set.getWord(i));
 		}
@@ -755,7 +755,7 @@ public class BitSet implements Serializable {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public void or(final BitSet set) {
+	public final void or(final BitSet set) {
 		for (int i = 0; i < wordCount; i++) {
 			orWord(i, set.getWord(i));
 		}
@@ -771,7 +771,7 @@ public class BitSet implements Serializable {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public void xOr(final BitSet set) {
+	public final void xOr(final BitSet set) {
 		for (int i = 0; i < wordCount; i++) {
 			xOrWord(i, set.getWord(i));
 		}
@@ -787,7 +787,7 @@ public class BitSet implements Serializable {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public void notAnd(final BitSet set) {
+	public final void notAnd(final BitSet set) {
 		for (int i = 0; i < wordCount; i++) {
 			notAndWord(i, set.getWord(i));
 		}
@@ -803,7 +803,7 @@ public class BitSet implements Serializable {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public void notOr(final BitSet set) {
+	public final void notOr(final BitSet set) {
 		for (int i = 0; i < wordCount; i++) {
 			notOrWord(i, set.getWord(i));
 		}
@@ -819,7 +819,7 @@ public class BitSet implements Serializable {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public void notXOr(final BitSet set) {
+	public final void notXOr(final BitSet set) {
 		for (int i = 0; i < wordCount; i++) {
 			notXOrWord(i, set.getWord(i));
 		}
@@ -835,7 +835,7 @@ public class BitSet implements Serializable {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public void not(final BitSet set) {
+	public final void not(final BitSet set) {
 		for (int i = 0; i < wordCount; i++) {
 			setWord(i, ~set.getWord(i));
 		}
@@ -850,7 +850,7 @@ public class BitSet implements Serializable {
 	 *                                  {@link BitSet}s are not equal.
 	 * @throws NullPointerException     if <b>set</b> is null.
 	 */
-	public void copy(final BitSet set) {
+	public final void copy(final BitSet set) {
 		for (int i = 0; i < wordCount; i++) {
 			setWord(i, set.getWord(i));
 		}
@@ -861,7 +861,7 @@ public class BitSet implements Serializable {
 	 * maintain their effect on aggregating functions ({@link #population()},
 	 * {@link #density()}, etc).
 	 */
-	public void clearHanging() {
+	public final void clearHanging() {
 		final int hanging = BitSet.modSize(-size);
 		if (hanging > 0) {
 			andWord(wordCount - 1, LIVE >>> hanging);
