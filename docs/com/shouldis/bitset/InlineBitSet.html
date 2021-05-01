@@ -106,9 +106,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 extends <a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></pre>
 <div class="block">Implementation of <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in which most methods are manually inlined
  to increase performance by reducing the overhead from the call-stack at the
- cost of readability. However, methods still have the exact behavior as their
- <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> counterpart they override. <code>Long.bitCount(long)</code>
- intentionally isn't inlined to retain existing VM optimizations.</div>
+ cost of readability. However, methods still have the same behavior as their
+ <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> counterpart they override other than not delegating operations
+ to other methods such as <a href="BitSet.html#bitMask(int)"><code>BitSet.bitMask(int)</code></a> and
+ <a href="BitSet.html#setWord(int,long)"><code>BitSet.setWord(int, long)</code></a>. <code>Long.bitCount(long)</code> intentionally
+ isn't inlined to retain existing VM optimizations.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>Aaron Shouldis</dd>

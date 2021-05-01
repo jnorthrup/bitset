@@ -3,9 +3,11 @@ package com.shouldis.bitset;
 /**
  * Implementation of {@link BitSet} in which most methods are manually inlined
  * to increase performance by reducing the overhead from the call-stack at the
- * cost of readability. However, methods still have the exact behavior as their
- * {@link BitSet} counterpart they override. {@link Long#bitCount(long)}
- * intentionally isn't inlined to retain existing VM optimizations.
+ * cost of readability. However, methods still have the same behavior as their
+ * {@link BitSet} counterpart they override other than not delegating operations
+ * to other methods such as {@link BitSet#bitMask(int)} and
+ * {@link BitSet#setWord(int, long)}. {@link Long#bitCount(long)} intentionally
+ * isn't inlined to retain existing VM optimizations.
  * 
  * @author Aaron Shouldis
  * @see BitSet
