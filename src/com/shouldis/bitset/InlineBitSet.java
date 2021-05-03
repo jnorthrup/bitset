@@ -157,7 +157,7 @@ public final class InlineBitSet extends BitSet {
 
 	@Override
 	public void orWord(final int wordIndex, final long mask) {
-		words[wordIndex] &= mask;
+		words[wordIndex] |= mask;
 	}
 
 	@Override
