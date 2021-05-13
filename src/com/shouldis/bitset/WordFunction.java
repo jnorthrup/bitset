@@ -104,7 +104,7 @@ public interface WordFunction {
 	 * @return a function representing a shift by <b>distance</b> bits.
 	 */
 	public static WordFunction rotateR(final int distance) {
-		return (final long word) -> Long.rotateRight(word, distance);
+		return (final long word) -> (word >>> distance) | (word << -distance);
 	}
 
 	/**
@@ -132,7 +132,7 @@ public interface WordFunction {
 	 * @return a function representing a shift by <b>distance</b> bits.
 	 */
 	public static WordFunction rotateL(final int distance) {
-		return (final long word) -> Long.rotateLeft(word, distance);
+		return (final long word) -> (word << distance) | (word >>> -distance);
 	}
 
 	/**
