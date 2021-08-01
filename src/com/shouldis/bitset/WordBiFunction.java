@@ -6,10 +6,7 @@ import java.util.Objects;
  * Functional interface used in conjunction with
  * {@link BitSet#apply(int, WordBiFunction, long)}. {@link #apply(long, long)}
  * should represent a function used to manipulate the bits within the words of a
- * {@link BitSet}. While {@link BitSet} declares methods specifically for each
- * of the basic bitwise functions, they are also defined as functional
- * interfaces for use specifically in
- * {@link BitSet#apply(int, WordBiFunction, long)}.
+ * {@link BitSet}.
  * 
  * @author Aaron Shouldis
  */
