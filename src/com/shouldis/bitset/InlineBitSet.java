@@ -187,7 +187,7 @@ public final class InlineBitSet extends BitSet {
 
 	@Override
 	public void flipWord(final int wordIndex) {
-		words[wordIndex] = ~words[wordIndex];
+		words[wordIndex] ^= LIVE;
 	}
 
 	@Override
