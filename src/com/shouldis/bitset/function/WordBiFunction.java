@@ -1,6 +1,8 @@
-package com.shouldis.bitset;
+package com.shouldis.bitset.function;
 
 import java.util.Objects;
+
+import com.shouldis.bitset.BitSet;
 
 /**
  * Functional interface used in conjunction with

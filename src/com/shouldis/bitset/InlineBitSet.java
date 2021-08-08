@@ -1,5 +1,8 @@
 package com.shouldis.bitset;
 
+import com.shouldis.bitset.function.WordBiFunction;
+import com.shouldis.bitset.function.WordFunction;
+
 /**
  * Implementation of {@link BitSet} in which most methods are manually inlined
  * to increase performance by reducing the overhead from the call-stack at the

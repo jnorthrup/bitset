@@ -73,35 +73,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <div class="typeSummary">
 <table>
-<caption><span>Interface Summary</span><span class="tabEnd">&nbsp;</span></caption>
-<thead>
-<tr>
-<th class="colFirst" scope="col">Interface</th>
-<th class="colLast" scope="col">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="altColor">
-<th class="colFirst" scope="row"><a href="WordBiFunction.html" title="interface in com.shouldis.bitset">WordBiFunction</a></th>
-<td class="colLast">
-<div class="block">Functional interface used in conjunction with
- <a href="BitSet.html#apply(int,com.shouldis.bitset.WordBiFunction,long)"><code>BitSet.apply(int, WordBiFunction, long)</code></a>.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<th class="colFirst" scope="row"><a href="WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a></th>
-<td class="colLast">
-<div class="block">Functional interface used in conjunction with
- <a href="BitSet.html#apply(int,com.shouldis.bitset.WordFunction)"><code>BitSet.apply(int, WordFunction)</code></a>.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-<li class="blockList">
-<div class="typeSummary">
-<table>
 <caption><span>Class Summary</span><span class="tabEnd">&nbsp;</span></caption>
 <thead>
 <tr>
@@ -140,6 +111,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Implementation of <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a> in which most methods are manually inlined
  to increase performance by reducing the overhead from the call-stack at the
  cost of readability.</div>
+</td>
+</tr>
+<tr class="altColor">
+<th class="colFirst" scope="row"><a href="Matrix.html" title="class in com.shouldis.bitset">Matrix</a></th>
+<td class="colLast">
+<div class="block">64 by 64 bit matrix backed by either a <a href="BitSet.html" title="class in com.shouldis.bitset"><code>BitSet</code></a>,
+ <a href="ConcurrentBitSet.html" title="class in com.shouldis.bitset"><code>ConcurrentBitSet</code></a> or <a href="ImmutableBitSet.html" title="class in com.shouldis.bitset"><code>ImmutableBitSet</code></a>.</div>
 </td>
 </tr>
 </tbody>

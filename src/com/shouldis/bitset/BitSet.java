@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 
+import com.shouldis.bitset.function.WordBiFunction;
+import com.shouldis.bitset.function.WordFunction;
+
 /**
  * Representation a fixed number of bits stored within an internal long array,
  * mapping positive integer indices to individual bits and facilitating the

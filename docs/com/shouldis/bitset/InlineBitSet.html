@@ -224,21 +224,21 @@ long&nbsp;mask)</code></th>
 </tr>
 <tr class="altColor" id="i2">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#apply(int,com.shouldis.bitset.WordBiFunction,long)">apply</a></span>&#8203;(int&nbsp;wordIndex,
-<a href="WordBiFunction.html" title="interface in com.shouldis.bitset">WordBiFunction</a>&nbsp;function,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#apply(int,com.shouldis.bitset.function.WordBiFunction,long)">apply</a></span>&#8203;(int&nbsp;wordIndex,
+<a href="function/WordBiFunction.html" title="interface in com.shouldis.bitset.function">WordBiFunction</a>&nbsp;function,
 long&nbsp;mask)</code></th>
 <td class="colLast">
-<div class="block">Applies the specified <a href="WordBiFunction.html" title="interface in com.shouldis.bitset"><code>WordBiFunction</code></a> <b>function</b> to the word at
+<div class="block">Applies the specified <a href="function/WordBiFunction.html" title="interface in com.shouldis.bitset.function"><code>WordBiFunction</code></a> <b>function</b> to the word at
  the specified <b>wordIndex</b> using <b>mask</b> as the second
- <a href="WordBiFunction.html" title="interface in com.shouldis.bitset"><code>WordBiFunction</code></a> argument.</div>
+ <a href="function/WordBiFunction.html" title="interface in com.shouldis.bitset.function"><code>WordBiFunction</code></a> argument.</div>
 </td>
 </tr>
 <tr class="rowColor" id="i3">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#apply(int,com.shouldis.bitset.WordFunction)">apply</a></span>&#8203;(int&nbsp;wordIndex,
-<a href="WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a>&nbsp;function)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#apply(int,com.shouldis.bitset.function.WordFunction)">apply</a></span>&#8203;(int&nbsp;wordIndex,
+<a href="function/WordFunction.html" title="interface in com.shouldis.bitset.function">WordFunction</a>&nbsp;function)</code></th>
 <td class="colLast">
-<div class="block">Applies the specified <a href="WordFunction.html" title="interface in com.shouldis.bitset"><code>WordFunction</code></a> <b>function</b> to the word at the
+<div class="block">Applies the specified <a href="function/WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a> <b>function</b> to the word at the
  specified <b>wordIndex</b>.</div>
 </td>
 </tr>
@@ -864,38 +864,38 @@ long&nbsp;mask)</span></div>
 </li>
 <li class="blockList">
 <section class="detail">
-<h3><a id="apply(int,com.shouldis.bitset.WordFunction)">apply</a></h3>
+<h3><a id="apply(int,com.shouldis.bitset.function.WordFunction)">apply</a></h3>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">apply</span>&#8203;(<span class="arguments">int&nbsp;wordIndex,
-<a href="WordFunction.html" title="interface in com.shouldis.bitset">WordFunction</a>&nbsp;function)</span></div>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="BitSet.html#apply(int,com.shouldis.bitset.WordFunction)">BitSet</a></code></span></div>
-<div class="block">Applies the specified <a href="WordFunction.html" title="interface in com.shouldis.bitset"><code>WordFunction</code></a> <b>function</b> to the word at the
+<a href="function/WordFunction.html" title="interface in com.shouldis.bitset.function">WordFunction</a>&nbsp;function)</span></div>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="BitSet.html#apply(int,com.shouldis.bitset.function.WordFunction)">BitSet</a></code></span></div>
+<div class="block">Applies the specified <a href="function/WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a> <b>function</b> to the word at the
  specified <b>wordIndex</b>.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="BitSet.html#apply(int,com.shouldis.bitset.WordFunction)">apply</a></code>&nbsp;in class&nbsp;<code><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></dd>
+<dd><code><a href="BitSet.html#apply(int,com.shouldis.bitset.function.WordFunction)">apply</a></code>&nbsp;in class&nbsp;<code><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>wordIndex</code> - the index within <a href="BitSet.html#words"><code>BitSet.words</code></a> to apply the function to.</dd>
-<dd><code>function</code> - the <a href="WordFunction.html" title="interface in com.shouldis.bitset"><code>WordFunction</code></a> to apply at the specified
+<dd><code>function</code> - the <a href="function/WordFunction.html" title="interface in com.shouldis.bitset.function"><code>WordFunction</code></a> to apply at the specified
                   <b>wordIndex</b>.</dd>
 </dl>
 </section>
 </li>
 <li class="blockList">
 <section class="detail">
-<h3><a id="apply(int,com.shouldis.bitset.WordBiFunction,long)">apply</a></h3>
+<h3><a id="apply(int,com.shouldis.bitset.function.WordBiFunction,long)">apply</a></h3>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">apply</span>&#8203;(<span class="arguments">int&nbsp;wordIndex,
-<a href="WordBiFunction.html" title="interface in com.shouldis.bitset">WordBiFunction</a>&nbsp;function,
+<a href="function/WordBiFunction.html" title="interface in com.shouldis.bitset.function">WordBiFunction</a>&nbsp;function,
 long&nbsp;mask)</span></div>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="BitSet.html#apply(int,com.shouldis.bitset.WordBiFunction,long)">BitSet</a></code></span></div>
-<div class="block">Applies the specified <a href="WordBiFunction.html" title="interface in com.shouldis.bitset"><code>WordBiFunction</code></a> <b>function</b> to the word at
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="BitSet.html#apply(int,com.shouldis.bitset.function.WordBiFunction,long)">BitSet</a></code></span></div>
+<div class="block">Applies the specified <a href="function/WordBiFunction.html" title="interface in com.shouldis.bitset.function"><code>WordBiFunction</code></a> <b>function</b> to the word at
  the specified <b>wordIndex</b> using <b>mask</b> as the second
- <a href="WordBiFunction.html" title="interface in com.shouldis.bitset"><code>WordBiFunction</code></a> argument.</div>
+ <a href="function/WordBiFunction.html" title="interface in com.shouldis.bitset.function"><code>WordBiFunction</code></a> argument.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="BitSet.html#apply(int,com.shouldis.bitset.WordBiFunction,long)">apply</a></code>&nbsp;in class&nbsp;<code><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></dd>
+<dd><code><a href="BitSet.html#apply(int,com.shouldis.bitset.function.WordBiFunction,long)">apply</a></code>&nbsp;in class&nbsp;<code><a href="BitSet.html" title="class in com.shouldis.bitset">BitSet</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>wordIndex</code> - the index within <a href="BitSet.html#words"><code>BitSet.words</code></a> to apply the function to.</dd>
-<dd><code>function</code> - the <a href="WordBiFunction.html" title="interface in com.shouldis.bitset"><code>WordBiFunction</code></a> to apply at the specified
+<dd><code>function</code> - the <a href="function/WordBiFunction.html" title="interface in com.shouldis.bitset.function"><code>WordBiFunction</code></a> to apply at the specified
                   <b>wordIndex</b>.</dd>
 <dd><code>mask</code> - the mask to use in the specified <b>function</b>.</dd>
 </dl>

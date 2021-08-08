@@ -1,19 +1,20 @@
-package com.shouldis.bitset.matrix;
+package com.shouldis.bitset.function;
 
 import java.util.Objects;
+import java.util.function.Function;
 
 import com.shouldis.bitset.BitSet;
 import com.shouldis.bitset.ConcurrentBitSet;
 import com.shouldis.bitset.ImmutableBitSet;
 import com.shouldis.bitset.InlineBitSet;
-import com.shouldis.bitset.WordFunction;
+import com.shouldis.bitset.Matrix;
 
 /**
  * Functional interface used to apply functions to a {@link Matrix}.
  * 
  * @author Aaron Shouldis
  */
-public interface MatrixFunction {
+public interface MatrixFunction extends Function<Matrix, Matrix> {
 
 	/**
 	 * Function used to perform operations on a {@link Matrix}.

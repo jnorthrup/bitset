@@ -1,12 +1,7 @@
-package com.shouldis.bitset.matrix;
+package com.shouldis.bitset;
 
 import java.io.Serializable;
 import java.util.Objects;
-
-import com.shouldis.bitset.BitSet;
-import com.shouldis.bitset.ConcurrentBitSet;
-import com.shouldis.bitset.ImmutableBitSet;
-import com.shouldis.bitset.InlineBitSet;
 
 /**
  * 64 by 64 bit matrix backed by either a {@link BitSet},

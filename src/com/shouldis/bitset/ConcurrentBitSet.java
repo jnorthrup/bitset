@@ -3,6 +3,9 @@ package com.shouldis.bitset;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.VarHandle;
 
+import com.shouldis.bitset.function.WordBiFunction;
+import com.shouldis.bitset.function.WordFunction;
+
 /**
  * Implementation of {@link BitSet} in which all methods capable of reading or
  * writing the state of bits are delegated to concurrent-safe operations.
