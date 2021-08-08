@@ -23,6 +23,14 @@ public interface BitSetBiFunction {
 	 */
 	public BitSet apply(BitSet set, BitSet mask);
 
+	/**
+	 * Creates a {@link BitSetBiFunction} which performs the specified
+	 * {@link WordBiFunction} <b>function</b> on each word contained in the
+	 * {@link BitSet} provided.
+	 * 
+	 * @param function the {@link WordFunction} to be applied to the {@link BitSet}.
+	 * @return a {@link BitSetFunction} which applies the specified <b>function</b>.
+	 */
 	public static BitSetBiFunction of(final WordBiFunction function) {
 		return (final BitSet set, final BitSet mask) -> {
 			for (int i = 0; i < set.wordCount; i++) {
