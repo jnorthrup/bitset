@@ -1,7 +1,6 @@
 package com.shouldis.bitset.function;
 
 import java.util.Objects;
-import java.util.function.Function;
 
 import com.shouldis.bitset.BitSet;
 import com.shouldis.bitset.ConcurrentBitSet;
@@ -14,12 +13,12 @@ import com.shouldis.bitset.Matrix;
  * 
  * @author Aaron Shouldis
  */
-public interface MatrixFunction extends Function<Matrix, Matrix> {
+public interface MatrixFunction {
 
 	/**
 	 * Function used to perform operations on a {@link Matrix}.
 	 * 
-	 * @param matrix the {@link BitSet} to manipulate.
+	 * @param matrix the {@link Matrix} to manipulate.
 	 * @return the manipulated <b>matrix</b>.
 	 */
 	public Matrix apply(Matrix matrix);
@@ -107,63 +106,28 @@ public interface MatrixFunction extends Function<Matrix, Matrix> {
 	public static final MatrixFunction ROTATE_L = MatrixFunction.combine(TRANSPOSE, FLIP_X);
 
 	/**
-	 * {@link MatrixFunction} derived from {@link WordFunction#shiftR(int)} used to
-	 * shift the bits within a specified {@link Matrix} to the right.
+	 * Creates a {@link MatrixFunction} which performs the specified
+	 * {@link WordFunction} <b>function</b> on each word contained in the
+	 * {@link Matrix} provided.
 	 * 
-	 * @param distance how far to shift the bits to the right.
-	 * @return a function representing a shift by <b>distance</b> bits.
+	 * @param function the {@link WordFunction} to be applied to the {@link Matrix}.
+	 * @return a {@link MatrixFunction} which applies the specified <b>function</b>.
 	 */
-	public static MatrixFunction bitShiftR(final int distance) {
-		return MatrixFunction.of(WordFunction.shiftR(distance));
-	}
-
-	/**
-	 * {@link MatrixFunction} derived from {@link WordFunction#shiftL(int)} used to
-	 * shift the bits within a specified {@link Matrix} to the left.
-	 * 
-	 * @param distance how far to shift the bits to the left.
-	 * @return a function representing a shift by <b>distance</b> bits.
-	 */
-	public static MatrixFunction bitShiftL(final int distance) {
-		return MatrixFunction.of(WordFunction.shiftL(distance));
-	}
-
-	/**
-	 * {@link MatrixFunction} derived from {@link WordFunction#rotateR(int)} used to
-	 * rotate the bits within a specified {@link Matrix} to the right.
-	 * 
-	 * @param distance how far to rotate the bits to the right.
-	 * @return a function representing a rotation by <b>distance</b> bits.
-	 */
-	public static MatrixFunction bitRotateR(final int distance) {
-		return MatrixFunction.of(WordFunction.rotateR(distance));
-	}
-
-	/**
-	 * {@link MatrixFunction} derived from {@link WordFunction#rotateL(int)} used to
-	 * rotate the bits within a specified {@link Matrix} to the left.
-	 * 
-	 * @param distance how far to rotate the bits to the left.
-	 * @return a function representing a rotation by <b>distance</b> bits.
-	 */
-	public static MatrixFunction bitRotateL(final int distance) {
-		return MatrixFunction.of(WordFunction.rotateL(distance));
+	public static MatrixFunction of(final WordFunction function) {
+		return MatrixFunction.of(BitSetFunction.of(function));
 	}
 
 	/**
 	 * Creates a {@link MatrixFunction} which performs the specified
-	 * {@link WordFunction} <b>function</b> on each word contained in the matrix
-	 * provided.
+	 * {@link BitSetFunction} <b>function</b> on the {@link BitSet} used by the
+	 * {@link Matrix} provided.
 	 * 
-	 * @param function the {@link WordFunction} to be applied to the matrix.
-	 * @return a {@link MatrixFunction} which applied the specified <b>function</b>.
+	 * @param function the {@link WordFunction} to be applied to the {@link Matrix}.
+	 * @return a {@link MatrixFunction} which applies the specified <b>function</b>.
 	 */
-	public static MatrixFunction of(final WordFunction function) {
+	public static MatrixFunction of(final BitSetFunction function) {
 		return (final Matrix matrix) -> {
-			BitSet bits = matrix.bits();
-			for (int i = 0; i < Long.SIZE; i++) {
-				bits.apply(i, function);
-			}
+			function.apply(matrix.bits());
 			return matrix;
 		};
 	}
