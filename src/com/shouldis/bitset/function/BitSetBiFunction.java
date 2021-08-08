@@ -16,7 +16,9 @@ public interface BitSetBiFunction {
 	 * Function used to perform operations on a {@link BitSet} using a second
 	 * {@link BitSet}.
 	 * 
-	 * @param set the {@link BitSet} to manipulate.
+	 * @param set  the {@link BitSet} to manipulate.
+	 * @param mask the second {@link BitSet} typically used as a mask in
+	 *             {@link BitSetBiFunction}s.
 	 * @return the manipulated <b>set</b>.
 	 */
 	public BitSet apply(BitSet set, BitSet mask);

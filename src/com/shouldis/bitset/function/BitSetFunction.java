@@ -30,19 +30,19 @@ public interface BitSetFunction {
 
 	/**
 	 * {@link BitSetFunction} that returns a copy of the specified {@link BitSet}
-	 * using {@link ConcurrentBitSet#BitSet(BitSet)}.
+	 * using {@link ConcurrentBitSet#ConcurrentBitSet(BitSet)}.
 	 */
 	public static final BitSetFunction CONCURRENT_COPY = ConcurrentBitSet::new;
 
 	/**
 	 * {@link BitSetFunction} that returns a copy of the specified {@link BitSet}
-	 * using {@link ImmutableBitSet#BitSet(BitSet)}.
+	 * using {@link ImmutableBitSet#ImmutableBitSet(BitSet)}.
 	 */
 	public static final BitSetFunction IMMUTABLE_COPY = ImmutableBitSet::new;
 
 	/**
 	 * {@link BitSetFunction} that returns a copy of the specified {@link BitSet}
-	 * using {@link InlineBitSet#BitSet(BitSet)}.
+	 * using {@link InlineBitSet#InlineBitSet(BitSet)}.
 	 */
 	public static final BitSetFunction INLINE_COPY = ImmutableBitSet::new;
 
