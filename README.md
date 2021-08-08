@@ -13,7 +13,7 @@ Pure Java implementation of the BitSet data structure prioritizing throughput, p
 
 ## Design
 * Fixed size implementations of BitSet to avoid constant bounds checks, increasing performance while leveraging the ability for BitSets to grow.
-* Because of this library's origin in elementary cellular automata, set and un-set bits are refereed to as either being in the "live" or "dead" state, avoiding homonyms.
+* Given this library's origin in elementary cellular automata, set and un-set bits are referred to as either being in the "live" or "dead" state, avoiding homonyms.
 * No compression given that this library's BitSet implementations are fixed size, and specialized in random data.
 
 ## [Documentation](https://ashouldis.github.io/bitset/)
