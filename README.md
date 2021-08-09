@@ -12,7 +12,7 @@ Pure Java implementation of the BitSet data structure prioritizing throughput, p
 * Matrix representing a 64x64 boolean matrix, allowing matrix operations such as transposition and rotation.
 
 ## Design
-* Fixed size implementations of BitSet to avoid constant bounds checks, increasing performance while leveraging the ability for BitSets to grow.
+* Fixed size implementations of BitSet to avoid constant bounds checks, increasing performance while sacrificing the ability for BitSets to grow.
 * Given this library's origin in elementary cellular automata, set and un-set bits are referred to as either being in the "live" or "dead" state, avoiding homonyms.
 * No compression given that this library's BitSet implementations are fixed size, and specialized in random data.
 
