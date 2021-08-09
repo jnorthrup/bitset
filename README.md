@@ -1,7 +1,7 @@
 # BitSet
 Pure Java implementation of the BitSet data structure prioritizing throughput, performance and extensibility. This library outperforms Java's [java.util.BitSet](https://docs.oracle.com/javase/10/docs/api/java/util/BitSet.html) implementation in most cases, whether by optimizations or tradeoffs.
 
-## Advancements
+## Features
 * BitSet is made as extensible as possible, leveraging functional decomposition to allow for more specialized subclasses.
 * Provides a concurrent implementation, delegating all write operations to thread-safe, atomic operations.
 * Provides a immutable implementation, allowing for finalized BitSets when necessary.
