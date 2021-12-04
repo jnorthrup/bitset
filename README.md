@@ -16,4 +16,4 @@ Pure Java implementation of the BitSet data structure prioritizing throughput, p
 * Given this library's origin in elementary cellular automata, set and un-set bits are referred to as either being in the "live" or "dead" state, avoiding homonyms.
 * No compression given that this library's BitSet implementations are fixed size, and specialized in random data.
 
-## [Documentation](https://ashouldis.github.io/bitset/)
+## [Documentation](https://ashouldis.github.io/bitset/overview-tree)
