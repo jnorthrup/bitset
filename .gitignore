@@ -13,3 +13,5 @@
 *.classpath
 hs_err_pid*
 /bin/
+/bitset.iml
+/.idea/
